@@ -1,0 +1,64 @@
+# set start menu to off (default: on)
+startup_message off
+
+# Surpression of start  "New screen..." for screen-4.1.0
+msgwait 0
+
+## trun off flash
+vbell off
+
+
+# for emacs C-s
+defflow off
+
+# use 256 color 
+#term xterm-256color
+
+# set command key to C-j (default: C-a)
+#escape ^@^@
+escape ^j^j
+
+autodetach on
+altscreen on
+termcapinfo xterm* ti@:te@
+#shell -$SHELL
+
+# scroll back buffer
+defscrollback 100000
+
+hardstatus on
+hardstatus alwayslastline '%{= .g}%H%{-} %L=%-w%45L>%{=u g.}%n %t%{-}%+w %-17<%=%Y-%m-%dT%02c:%s'
+caption always '%?%F%{= gw}%:%{= wk}%?%2n%f%07=%t%='
+sorendition '+r .b'
+windowlist title  '%{u .g}Num Flags Title%030=Hardstatus%='
+windowlist string '%4n %f%011=%t%030=%h%='
+
+## http://yskwkzhr.blogspot.jp/2010/11/screenrc.html
+
+# continuous resize region
+# orverride default `r'(wrap) mapping.
+bind r eval 'echo "Resize window"' 'command -c cresize'
+bind -c cresize j eval 'resize +1'  'command -c cresize'
+bind -c cresize k eval 'resize -1'  'command -c cresize'
+bind -c cresize J eval 'resize +10' 'command -c cresize'
+bind -c cresize K eval 'resize -10' 'command -c cresize'
+bind -c cresize = eval 'resize ='   'command -c cresize'
+bind -c cresize n eval 'resize min' 'command -c cresize'
+bind -c cresize x eval 'resize max' 'command -c cresize'
+
+# switch focus to other region(like vi)
+# orverride default `k'(kill), `t'(time), `b'(break) mappings.
+bind j focus down
+bind k focus up
+bind t focus top
+bind b focus bottom
+bind h focus left
+bind l focus right
+
+termcapinfo xterm "WS = \E[8;%d;%dt"
+#termcapinfo xterm "li#63:co#100"
+termcapinfo xterm "li#100:co#100"
+
+%?%F%{= gW}%:%{= Kk}%?%2n%f%07=%t%=
+
+shell "/bin/zsh"
