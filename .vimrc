@@ -1,9 +1,82 @@
+" viとの互換をとらない
+set nocompatible
+
+"" manegement of vim plugin
+filetype off
+
+if has('vim_starting')
+  "runtimepathにneobundle.vimをインストールしたディレクトリを指定
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+"
+" プラグインをインストールする基準となるパスを指定
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+"
+"" list installing plugins
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'Shougo/vimfiler'     " file manage
+NeoBundle 'thinca/vim-fontzoom' " change font size easy
+NeoBundle 'thinca/vim-quickrun' " quick run in vim
+NeoBundle 'kana/vim-smartchr'
+NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
+NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
+NeoBundle 'tpope/vim-surround' 
+"NeoBundle 'tyru/open-browser-github'
+"
+
+NeoBundle 'autodate.vim' " autodate.vim
+  let autodate_keyword_pre="(Last Update:"
+  let autodate_keyword_post=")"
+  let autodate_format="%Y-%m-%dT%H:%M+09:00"
+  let autodate_lines=5
+
+
+"NeoBundle 'Shougo/vimproc', {
+"      \ 'build' : {
+"      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
+"      \     'cygwin' : 'make -f make_cygwin.mak',
+"      \     'mac' : 'make -f make_mac.mak',
+"      \     'unix' : 'make -f make_unix.mak',
+"      \    },
+"      \ }
+
+NeoBundle 'vim-jp/vimdoc-ja'
+
+filetype plugin on
+filetype indent on
+
+" valid neocomplcache at vim startup
+let g:neocomplcache_enable_at_startup = 1
+
+""" vimfiler
+"" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
+"" IDE explore on startup
+"let g:vimfiler_as_default_explorer  = 1 
+"let g:vimfiler_safe_mode_by_default = 0
+"let g:netrw_liststyle=3
+
+"" vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2 " start indent column
+"let g:indent_guides_auto_colors = 0
+"" 奇数インデントのカラー
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=gray
+"" 偶数インデントのカラー
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=darkgray
+let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
+let g:indent_guides_guide_size = 1 " indent guide size
+
+"" my variable
+let $TODAY=strftime('%Y%m%d')
+
 "2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
 "-----------------------------------------------------------------------------
 " 一般
 "
-" viとの互換をとらない
-set nocompatible
 " コマンド、検索パターンを50個まで履歴に残す
 set history=50
 " 装飾関連
@@ -64,11 +137,17 @@ set cindent
 set textwidth=0 "	Prevent auto line break [130324].
 " 2013/02/27
 
+"" vim auto creating file
+set noswapfile
+"set directory=~/tmp
+set nobackup
+"set backupdir=~/tmp
+set noundofile
+"set undodir=$~/tmp
+
 "File
 set autoread	" 更新時自動読み込み
 set hidden		" 編集中でも他のファイルを開けるようにする
-set noswapfile	" .swpを作らない
-"set nobackup
 syntax on		" シンタックスカラーリングオン
 set autoindent smartindent	" 自動インデント、スマートインデント
 set backspace=indent,eol,start	" バックスペースで特殊記号も削除可能に
@@ -77,14 +156,14 @@ set whichwrap=b,s,h,s,<,>,[,]	" カーソルを行頭、行末で止まらない
 
 autocmd BufNewFile * silent! :0r  ~/.vim/template/%:e.tmpl " 拡張子付きのファイルはテンプレから新規作成
 "" shebangのあるファイルには自動で実行権限を付加
-autocmd BufWritePost * :call AddExecmod()
-function AddExecmod()
-	let line = getline(1)
-    if strpart(line, 0, 2) == "#!"
-		call system("chmod +x ". expand("%"))
-	endif
-endfunction
-
+"autocmd BufWritePost * :call AddExecmod()
+"function AddExecmod()
+"	let line = getline(1)
+"    if strpart(line, 0, 2) == "#!"
+"		call system("chmod +x ". expand("%"))
+"	endif
+"endfunction
+"
 "" open browser by double click
 "function! Browser () 
 "    let line = getline (".") 
@@ -136,69 +215,11 @@ imap <c-k> <UP>
 imap <c-l> <RIGHT>
 
 "inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
-
-"" manegement of vim plugin
-filetype off
-
-if has('vim_starting')
-  "runtimepathにneobundle.vimをインストールしたディレクトリを指定
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
 "
-" プラグインをインストールする基準となるパスを指定
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
 "
-"" list installing plugins
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/unite.vim'
-"NeoBundle 'Shougo/vimfiler'     " file manage
-NeoBundle 'thinca/vim-fontzoom' " change font size easy
-NeoBundle 'thinca/vim-quickrun' " quick run in vim
-NeoBundle 'kana/vim-smartchr'
-NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
-NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
-NeoBundle 'tpope/vim-surround' 
-"NeoBundle 'tyru/open-browser-github'
 
-NeoBundle 'autodate.vim' " autodate.vim
-  let autodate_keyword_pre="(Last Update:"
-  let autodate_keyword_post=")"
-  let autodate_format="%Y-%m-%dT%H:%M+09:00"
-  let autodate_lines=5
-
-
-"NeoBundle 'Shougo/vimproc', {
-"      \ 'build' : {
-"      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
-"      \     'cygwin' : 'make -f make_cygwin.mak',
-"      \     'mac' : 'make -f make_mac.mak',
-"      \     'unix' : 'make -f make_unix.mak',
-"      \    },
-"      \ }
-
-filetype plugin on
-filetype indent on
-
-" valid neocomplcache at vim startup
-let g:neocomplcache_enable_at_startup = 1
-
-""" vimfiler
-"" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
-"" IDE explore on startup
-"let g:vimfiler_as_default_explorer  = 1 
-"let g:vimfiler_safe_mode_by_default = 0
-"let g:netrw_liststyle=3
-
-"" vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2 " start indent column
-"let g:indent_guides_auto_colors = 0
-"" 奇数インデントのカラー
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=gray
-"" 偶数インデントのカラー
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=darkgray
-let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
-let g:indent_guides_guide_size = 1 " indent guide size
+"" move last file position
+augroup vimrcEx
+      au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+      \ exe "normal g`\"" | endif
+augroup END

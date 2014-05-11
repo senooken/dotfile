@@ -7,3 +7,4 @@ set formatoptions=q
 nnoremap <silent> ,F :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("tag ". word)<cr>
 
 let g:neocomplcache_enable_at_startup = 1
+set noundofile

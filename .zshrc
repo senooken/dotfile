@@ -12,8 +12,6 @@
 # Set Shell variable
 # WORDCHARS=$WORDCHARS:s,/,,
 HISTSIZE=200 HISTFILE=~/.zhistory SAVEHIST=180
-PROMPT='%m{%n}%% '
-RPROMPT='[%~]'
 
 # Set shell options
 # 有効にしてあるのは副作用の少ないもの
@@ -29,24 +27,11 @@ setopt cdable_vars sh_word_split auto_param_keys pushd_ignore_dups
 # export http_proxy="http://proxy.kuins.net:8080/"
 # export ftp_proxy="http://proxy.kuins.net:8080/"
 
-# path
-#export PATH="/cygdrive/c/Program Files/SumatraPDF:$PATH"
-#export PATH="/cygdrive/c/texlive/2013/bin/win32:$PATH"
-#export PATH="$PATH:/cygdrive/c/usr/local/vim74-kaoriya-win32"
-
-## local path
-export PATH="${HOME}/local/bin:$PATH"
-export MANPATH="${HOME}/local/man:$MANPATH"
-export LD_LIBRARY_PATH="${HOME}/local/lib:$LD_LIBRARY_PATH"
-
-## for python pip local installed package
-#export PATH=$HOME/.local/bin:$PATH 
-#export MANPATH=$HOME/.local/man:$MANPATH
-#export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
 
 
 export LESS=-iMR
-export DISPLAY=localhost:0.0
+#export DISPLAY=localhost:0.0
+export DISPLAY=:0.0
 
 # Alias and functions
 alias copy='cp -ip' del='rm -i' move='mv -i'
@@ -76,13 +61,14 @@ autoload -U compinit && compinit
 
 ## alias
 alias ls="ls -aFh --color=auto" ll="ls -lh --color=auto"
-alias cp="cp -i" mv="mv -i"
+#alias cp="cp -i" mv="mv -i"
 
 alias df="df -h" du="du -h"
+alias ps="ps w"
 ## for run emacs in terminal
 alias emacs="emacs -nw"
 
-## share gnu screen clopboard
+## share gnu screen clipboard
 if which xsel > /dev/null 2>&1
 then
     # X Window System 環境でのコピー （xsel をインストールする必要あり）
@@ -111,5 +97,6 @@ fi
 #screen -xR
 
 # prompt
-PROMPT=$'%{\e[33m%}%~%{\e[00m%}
-%{\e[36m%}%n@%m$%{\e[00m%} ' 
+# スラッシュ7以上でカレントパスを左側に表示
+PROMPT=$'%7(~|[%~]\n|)%{\e[35m%}%n%#%{\e[m%} '
+RPROMPT=$'%7(~||[%~])'

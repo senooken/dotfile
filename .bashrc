@@ -254,8 +254,8 @@ export HISTSIZE=9999  # 履歴のMAX保存数を指定
 ### alias
 alias ls="ls -aFh --color=auto"
 alias ll="ls -lh"
-alias cp="cp -i"
-alias mv="mv -i"
+#alias cp="cp -i"
+#alias mv="mv -i"
 ## for run emacs in terminal
 alias emacs="emacs -nw"
 
@@ -270,7 +270,7 @@ export SVN_EDITOR=vim
 export GNUPLOT_LIB=""		# data or script path
 
 
-export CYGWIN="nodosfilewarning"
+export CYGWIN="nodosfilewarning winsymlinks:native"
 
 
 #export LD_LIBRARY_PATH=/usr/local/lib#121227

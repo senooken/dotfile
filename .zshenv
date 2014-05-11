@@ -12,6 +12,25 @@ typeset -U path
 # (N-/) を付けることで存在しなければ無視してくれる
 path=( /usr/*/bin(N-/) /usr/local/*/bin(N-/) /var/*/bin(N-/) /usr/bin /bin)
 
+# path
+#export PATH="/cygdrive/c/Program Files/SumatraPDF:$PATH"
+#export PATH="/cygdrive/c/texlive/2013/bin/win32:$PATH"
+#export PATH="$PATH:/cygdrive/c/usr/local/vim74-kaoriya-win32"
+
+## local path
+export PATH="${HOME}/local/bin:$PATH"
+export MANPATH="${HOME}/local/man:$MANPATH"
+export LD_LIBRARY_PATH="${HOME}/local/lib:$LD_LIBRARY_PATH"
+
+## for python pip local installed package
+export PATH=${HOME}/.local/bin:$PATH 
+export MANPATH=${HOME}/.local/man:$MANPATH
+export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
+
+zstyle ":completion::complete:-command-:*:commands" rehash # update PATH when change
+unsetopt cdablevars # invalid additional candidacy whcn cd completation
+
+
 # リモートから起動するコマンド用の環境変数を設定(必要なら)
 export RSYNC_RSH=ssh
 export CVS_RSH=ssh
