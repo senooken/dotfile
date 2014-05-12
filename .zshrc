@@ -60,7 +60,7 @@ zstyle ':completion:*' group-name ''
 autoload -U compinit && compinit
 
 ## alias
-alias ls="ls -aFh --color=auto" ll="ls -lh --color=auto"
+alias ls="ls -AFh --color=auto" ll="ls -lh --color=auto"
 #alias cp="cp -i" mv="mv -i"
 
 alias df="df -h" du="du -h"
