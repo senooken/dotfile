@@ -154,7 +154,10 @@ set backspace=indent,eol,start	" バックスペースで特殊記号も削除�
 set whichwrap=b,s,h,s,<,>,[,]	" カーソルを行頭、行末で止まらないようにする
 "set clipboard=unnamed,autoselect	" バッファにクリップオードを利用する
 
+"" template file
 autocmd BufNewFile * silent! :0r  ~/.vim/template/%:e.tmpl " 拡張子付きのファイルはテンプレから新規作成
+autocmd BufNewFile Makefile silent! :0r  ~/.vim/template/Makefile 
+
 "" shebangのあるファイルには自動で実行権限を付加
 "autocmd BufWritePost * :call AddExecmod()
 "function AddExecmod()
