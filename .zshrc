@@ -18,7 +18,7 @@ HISTSIZE=200 HISTFILE=~/.zhistory SAVEHIST=180
 setopt auto_cd auto_remove_slash auto_name_dirs 
 setopt extended_history hist_ignore_dups hist_ignore_space prompt_subst
 setopt extended_glob list_types no_beep always_last_prompt
-setopt cdable_vars sh_word_split auto_param_keys pushd_ignore_dups
+setopt sh_word_split auto_param_keys pushd_ignore_dups
 # 便利だが副作用の強いものはコメントアウト
 #setopt auto_menu  correct rm_star_silent sun_keyboard_hack
 #setopt share_history inc_append_history

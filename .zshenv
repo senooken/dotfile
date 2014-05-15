@@ -28,7 +28,7 @@ export MANPATH=${HOME}/.local/man:$MANPATH
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 
 zstyle ":completion:*:commands" rehash # update PATH when change
-unsetopt cdablevars # invalid additional candidacy whcn cd completation
+unsetopt cdablevars # invalid additional candidacy when cd completation
 
 
 # リモートから起動するコマンド用の環境変数を設定(必要なら)
