@@ -27,7 +27,7 @@ export PATH=${HOME}/.local/bin:$PATH
 export MANPATH=${HOME}/.local/man:$MANPATH
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 
-zstyle ":completion::complete:-command-:*:commands" rehash # update PATH when change
+zstyle ":completion:*:commands" rehash # update PATH when change
 unsetopt cdablevars # invalid additional candidacy whcn cd completation
 
 
