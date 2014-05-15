@@ -100,3 +100,9 @@ fi
 # スラッシュ7以上でカレントパスを左側に表示
 PROMPT=$'%7(~|[%~]\n|)%{\e[35m%}%n%#%{\e[m%} '
 RPROMPT=$'%7(~||[%~])'
+
+
+## for model setting
+if [ -e ~/.modelrc ]; then
+    source ~/.modelrc
+fi

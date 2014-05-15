@@ -1,0 +1,15 @@
+## JasPer
+export JASPERLIB=$HOME/local/lib
+export JASPERINC=$HOME/local/include
+
+
+## WRF configure
+export WRF_EM_CORE=1 # explicitly defines which model core to build
+export WRF_NMM_CORE=0 # explicitly defines which model core NOT to build 
+export WRF_DA_CORE=0 # explicitly defines no data assimilation
+export NETCDF=$HOME/local/
+# export OMP_NUM_THREADS=1 # if you have OpenMP on your system, this is how to specify the number of threads 
+# export MP_STACK_SIZE=64000000 # OpenMP blows through the stack size, set it large. However, if the model still crashes, it may be a problem of overspecifying stack size. Set stack size sufficiently large, but not unlimited. On some systems, the equivalent parameter could be KMP_STACKSIZE, or OMP_STACKSIZE
+
+export WRFIO_NCD_LARGE_FILE_SUPPORT=1 # for generating lager than 2 GB netcdf file
+
