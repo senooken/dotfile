@@ -61,6 +61,7 @@ autoload -U compinit && compinit
 
 ## alias
 alias ls="ls -AFh --color=auto" ll="ls -lh --color=auto"
+alias lll="ls -lh --color=auto | less"
 #alias cp="cp -i" mv="mv -i"
 
 alias df="df -h" du="du -h"

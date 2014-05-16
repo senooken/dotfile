@@ -2,6 +2,9 @@
 export JASPERLIB=$HOME/local/lib
 export JASPERINC=$HOME/local/include
 
+## for libpng
+#export ZLIBLIB=$HOME/local/lib
+#export ZLIBINC=$HOME/local/include
 
 ## WRF configure
 export WRF_EM_CORE=1 # explicitly defines which model core to build

@@ -20,12 +20,16 @@ path=( /usr/*/bin(N-/) /usr/local/*/bin(N-/) /var/*/bin(N-/) /usr/bin /bin)
 ## local path
 export PATH="${HOME}/local/bin:$PATH"
 export MANPATH="${HOME}/local/man:$MANPATH"
-export LD_LIBRARY_PATH="${HOME}/local/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="${HOME}/local/lib/:$LD_LIBRARY_PATH"
+export INCLUDE="${HOME}/local/include:$INCLUDE"
+export C_INCLUDE_PATH="${HOME}/local/include:$C_INCLUDE_PATH"
+export CPATH="${HOME}/local/include:$CPATH"
 
 ## for python pip local installed package
 export PATH=${HOME}/.local/bin:$PATH 
 export MANPATH=${HOME}/.local/man:$MANPATH
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
+export INCLUDE="${HOME}/.local/include:$INCLUDE"
 
 zstyle ":completion:*:commands" rehash # update PATH when change
 unsetopt cdablevars # invalid additional candidacy when cd completation
@@ -37,6 +41,12 @@ export CVS_RSH=ssh
 
 #export LANG=ja_JP.UTF-8
 export LANG=en_US.UTF-8
+export LANG=C
+
+#case $TERM in
+#    linux) LANG=C ;;
+#    *) LANG=ja_JP.UTF-8 ;;
+#esac
 
 export CYGWIN="nodosfilewarning winsymlinks:native"
 ### binding keys
