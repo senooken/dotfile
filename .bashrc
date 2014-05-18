@@ -223,7 +223,8 @@ export PATH PAGER JLESSCHARSET
 PS1="$HOSTNAME:\w$ "
 
 if [ -n ${DISPLAY} ]; then
- export DISPLAY=localhost:0.0
+ #export DISPLAY=localhost:0.0
+ export DISPLAY=:0.0
 fi
 
 

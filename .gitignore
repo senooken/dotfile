@@ -1,6 +1,4 @@
 .DS_Store
 Thumbs.db
-.git
-*.o
-*.exe
 *.log
+*.exe

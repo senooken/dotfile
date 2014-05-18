@@ -204,7 +204,7 @@ colorscheme default
 
 ""	my config
 " Command mode keybind.
-map <c-a> <HOME>
+"map <c-a> <HOME>
 map <c-e> <END>
 map <m-d> dw
 "map <c-u> d0
@@ -226,3 +226,6 @@ augroup vimrcEx
       au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
       \ exe "normal g`\"" | endif
 augroup END
+
+
+set nrformats=   " deal as decimal for number
