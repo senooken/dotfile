@@ -12,11 +12,6 @@ typeset -U path
 # (N-/) を付けることで存在しなければ無視してくれる
 path=( /usr/*/bin(N-/) /usr/local/*/bin(N-/) /var/*/bin(N-/) /usr/bin /bin)
 
-# path
-#export PATH="/cygdrive/c/Program Files/SumatraPDF:$PATH"
-#export PATH="/cygdrive/c/texlive/2013/bin/win32:$PATH"
-#export PATH="$PATH:/cygdrive/c/usr/local/vim74-kaoriya-win32"
-
 ## local path
 export PATH="${HOME}/local/bin:$PATH"
 export MANPATH="${HOME}/local/man:$MANPATH"
@@ -34,6 +29,7 @@ export INCLUDE="${HOME}/.local/include:$INCLUDE"
 zstyle ":completion:*:commands" rehash # update PATH when change
 unsetopt cdablevars # invalid additional candidacy when cd completation
 
+export WINEARCH=win32
 
 # リモートから起動するコマンド用の環境変数を設定(必要なら)
 export RSYNC_RSH=ssh

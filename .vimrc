@@ -1,5 +1,6 @@
-" viとの互換をとらない
-set nocompatible
+"" default vim setting by practical vim 
+set nocompatible " viとの互換をとらない
+filetype plugin on " valid vim plugin
 
 "" manegement of vim plugin
 filetype off
@@ -46,7 +47,6 @@ NeoBundle 'autodate.vim' " autodate.vim
 
 NeoBundle 'vim-jp/vimdoc-ja'
 
-filetype plugin on
 filetype indent on
 
 " valid neocomplcache at vim startup
