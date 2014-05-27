@@ -18,10 +18,12 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "
 "" list installing plugins
 NeoBundle 'Shougo/neocomplcache'
+" valid neocomplcache at vim startup
+  let g:neocomplcache_enable_at_startup = 1
+
 NeoBundle 'Shougo/unite.vim'
 "NeoBundle 'Shougo/vimfiler'     " file manage
 NeoBundle 'thinca/vim-fontzoom' " change font size easy
-NeoBundle 'thinca/vim-quickrun' " quick run in vim
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
 NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
@@ -36,21 +38,26 @@ NeoBundle 'autodate.vim' " autodate.vim
   let autodate_lines=5
 
 
-"NeoBundle 'Shougo/vimproc', {
-"      \ 'build' : {
-"      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
-"      \     'cygwin' : 'make -f make_cygwin.mak',
-"      \     'mac' : 'make -f make_mac.mak',
-"      \     'unix' : 'make -f make_unix.mak',
-"      \    },
-"      \ }
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+
+NeoBundle 'thinca/vim-quickrun' " quick run in vim
+  let g:quickrun_config = {
+  \  "_": {  
+  \    'runner' : 'vimproc',
+  \  },
+  \}
 
 NeoBundle 'vim-jp/vimdoc-ja'
 
 filetype indent on
 
-" valid neocomplcache at vim startup
-let g:neocomplcache_enable_at_startup = 1
 
 """ vimfiler
 "" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
