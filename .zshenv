@@ -35,9 +35,9 @@ export WINEARCH=win32
 export RSYNC_RSH=ssh
 export CVS_RSH=ssh
 
-#export LANG=ja_JP.UTF-8
-export LANG=en_US.UTF-8
-export LANG=C
+export LANG=ja_JP.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
 
 #case $TERM in
 #    linux) LANG=C ;;
@@ -47,7 +47,7 @@ export LANG=C
 export CYGWIN="nodosfilewarning winsymlinks:native"
 ### binding keys
 bindkey -e
-#bindkey '^p'   history-beginning-search-backward
+
 #bindkey '^n'   history-beginning-search-forward
 
 #bindkey "^[[5~" # PageUp

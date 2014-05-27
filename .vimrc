@@ -55,6 +55,7 @@ NeoBundle 'thinca/vim-quickrun' " quick run in vim
   \}
 
 NeoBundle 'vim-jp/vimdoc-ja'
+NeoBundle 'Shougo/neosnippet'
 
 filetype indent on
 
