@@ -234,10 +234,10 @@ fi
 
 ## .bashrc personal setting.
 
-## language (2013/01/27)
-#export LANG=C
+## locale
 export LANG=ja_JP.UTF-8
-#export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
 
 
 ## synchonization of bash history [130414]
