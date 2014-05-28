@@ -96,8 +96,8 @@
 # alias mv='mv -i'
 #
 # Default to human readable figures
-# alias df='df -h'
-# alias du='du -h'
+alias df='df -h'
+alias du='du -h'
 #
 # Misc :)
 # alias less='less -r'                          # raw control characters
@@ -253,8 +253,9 @@ export HISTSIZE=9999  # 履歴のMAX保存数を指定
 
 
 ### alias
-alias ls="ls -aFh --color=auto"
-alias ll="ls -lh"
+alias ls="ls -AFh --color=auto"
+alias ll="ls -lh --color=auto"
+alias l="l -AFh --color=auto"
 #alias cp="cp -i"
 #alias mv="mv -i"
 ## for run emacs in terminal
