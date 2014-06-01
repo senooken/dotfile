@@ -1,0 +1,7 @@
+snippet     filename
+alias       fname
+    `expand("%")`
+
+snippet     ffilename
+alias       ffname
+    `substitute(expand("%:p"), '\', '/', "g")`

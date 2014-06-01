@@ -3,7 +3,7 @@ set nocompatible " viとの互換をとらない
 filetype plugin on " valid vim plugin
 
 "" manegement of vim plugin
-filetype off
+"filetype off
 
 if has('vim_starting')
   "runtimepathにneobundle.vimをインストールしたディレクトリを指定
@@ -20,16 +20,21 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
 " valid neocomplcache at vim startup
   let g:neocomplcache_enable_at_startup = 1
+  "let g:neocomplcache_snipetts_dir="~/.vim/snippet"
+
   " <TAB>: completion.                                         
   "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"   
-  "inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>" 
+  inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>" 
 
 NeoBundle 'Shougo/neosnippet'
+  " Tell Neosnippet about the other snippets
+  "let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+  let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vimr/bundle/vim-snippets'
   " Plugin key-mappings.  " <C-k>でsnippetの展開
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_target)
-  " SuperTab like snippets behavior.
+  " SuperTab like snippets bEHAVIr.
   imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
   smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
   
@@ -39,6 +44,7 @@ NeoBundle 'Shougo/neosnippet'
   endif
 
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'Shougo/unite.vim'
 
