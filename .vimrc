@@ -15,13 +15,33 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
-"
+
 "" list installing plugins
 NeoBundle 'Shougo/neocomplcache'
 " valid neocomplcache at vim startup
   let g:neocomplcache_enable_at_startup = 1
+  " <TAB>: completion.                                         
+  "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"   
+  "inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>" 
+
+NeoBundle 'Shougo/neosnippet'
+  " Plugin key-mappings.  " <C-k>でsnippetの展開
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  " SuperTab like snippets behavior.
+  imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+  smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  
+  " For snippet_complete marker.
+  if has('conceal')
+      set conceallevel=2 concealcursor=i
+  endif
+
+NeoBundle 'Shougo/neosnippet-snippets'
 
 NeoBundle 'Shougo/unite.vim'
+
 "NeoBundle 'Shougo/vimfiler'     " file manage
 NeoBundle 'thinca/vim-fontzoom' " change font size easy
 NeoBundle 'kana/vim-smartchr'
@@ -55,7 +75,6 @@ NeoBundle 'thinca/vim-quickrun' " quick run in vim
   \}
 
 NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'Shougo/neosnippet'
 
 filetype indent on
 
@@ -222,7 +241,8 @@ imap <c-e> <END>
 imap <c-a> <HOME>
 imap <c-h> <LEFT>
 imap <c-j> <DOWN>
-imap <c-k> <UP>
+"imap <c-k> <UP>
+imap <m-k> <UP>
 imap <c-l> <RIGHT>
 
 "inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
