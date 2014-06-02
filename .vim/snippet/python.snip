@@ -1,0 +1,56 @@
+snippet import
+    import matplotlib.pyplot as plt
+    import os, sys
+    import pandas as pd
+
+snippet importfont
+    import matplotlib.font_manager as fm
+    import matplotlib.text as text
+
+snippet importmap
+    from mpl_toolkits.basemap from Basemap
+
+snippet ifpath
+    if not os.path.exists(${1:dir}): os.makedirs($1)
+
+snippet params
+    PARAMS{
+            "lines.linewidth": 2,
+            "axes.labelsize": 2,
+            "legend.fontsize": 14,
+            "axes.grid": True,
+        }
+    plt.rcParams.update(PARAMS)
+
+snippet font_replace
+    def font_replace():
+        PROP=fm.FontProperties(fname="/cygdrive/c/Windows/Fonts/ipaexg.ttf")
+        fig=plt.gcf()
+        for o in fig.findobj(text.Text):
+            o.set_fontproperties(PROP)
+    
+
+snippet plot_design
+    plt.xlabel()
+    plt.ylabel()
+    plt.title()
+    plt.legend(loc="best")
+    plt.coloabar()
+
+snippet basemap
+    BM=Basemap(resolution="${1:resolution}")
+
+snippet plt_subplot
+    for now, var in enumerate(${1:list}, start=1):
+        plt.subplot(${2:col-row},now)
+        #plt.title("({alph) {var}".format(alph=now, var=var))
+        plt.title("({alph) {var}".format(alph=chr(ord("a")+now), var=var))
+    plt.annotate("${3:GeneralTitle}", xy=(0.5, 0.955), xycoords="figure fraction", ha="center")
+    plt.savefig("${4:fig}.pdf", bbox_inches="tight")
+
+
+snippet dir
+    INDIR="${1:indir}"
+    INDIR=os.path.expandusers(INDIR)
+    INFILE="${2:infile}"
+    OUTDIR=${3:outdir}
