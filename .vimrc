@@ -20,7 +20,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
 " valid neocomplcache at vim startup
   let g:neocomplcache_enable_at_startup = 1
-  "let g:neocomplcache_snipetts_dir="~/.vim/snippet"
 
   " <TAB>: completion.                                         
   "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"   
