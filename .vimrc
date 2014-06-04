@@ -3,14 +3,9 @@ set nocompatible " viとの互換をとらない
 filetype plugin on " valid vim plugin
 
 "Charset, Line ending
-set termencoding=utf-8
 set encoding=utf-8
-"
-"" encoding
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis,cp932
-
-" file format
- set fileformats=unix,dos,mac
+set fileformats=unix,dos,mac
 
 
 "" manegement of vim plugin
@@ -39,7 +34,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
   " Tell Neosnippet about the other snippets
   "let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-  let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vimr/bundle/vim-snippets'
+  let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
   " Plugin key-mappings.  " <C-k>でsnippetの展開
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)

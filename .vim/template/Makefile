@@ -1,6 +1,6 @@
 ## Makefile
 ## @author: SENOO, Ken
-## (Last Update: )
+## (Last Update: 2014-06-04T23:11+09:00)
 
 FC=gfortran
 CC=gcc
@@ -14,7 +14,7 @@ MOD=
 FFLAGS=
 CFLAGS=
 CPPFLAGS=
-LDFLAGS=
+LDFLAGS= -g
 
 
 %.o: %.cpp # c, cpp, f90
