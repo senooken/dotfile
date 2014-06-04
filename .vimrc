@@ -2,6 +2,17 @@
 set nocompatible " viとの互換をとらない
 filetype plugin on " valid vim plugin
 
+"Charset, Line ending
+set termencoding=utf-8
+set encoding=utf-8
+"
+"" encoding
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis,cp932
+
+" file format
+ set fileformats=unix,dos,mac
+
+
 "" manegement of vim plugin
 "filetype off
 
@@ -221,15 +232,6 @@ set showcmd		" 入力中のコマンドを表示
 set showmode	" 現在のモードを表示
 set cursorline	" カーソル行をハイライト
 
-"Charset, Line ending
-set termencoding=utf-8
-set encoding=utf-8
-
-" encoding
-set fileencoding=utf-8
-
-" file format
-set fileformat=unix
 
 " color 
 colorscheme default
