@@ -238,6 +238,7 @@ fi
 export LANG=ja_JP.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_TIME=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
 
 
 ## synchonization of bash history [130414]

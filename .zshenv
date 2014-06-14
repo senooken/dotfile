@@ -38,6 +38,7 @@ export CVS_RSH=ssh
 export LANG=ja_JP.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_TIME=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
 
 #case $TERM in
 #    linux) LANG=C ;;
