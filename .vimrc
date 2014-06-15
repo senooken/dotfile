@@ -239,13 +239,16 @@ map <m-d> dw
 "map <c-u> d0
 "map <c-k> d$
 " When insert mode, enable hjkl and go to home/end.
-imap <c-e> <END>
-imap <c-a> <HOME>
-imap <c-h> <LEFT>
-imap <c-j> <DOWN>
-"imap <c-k> <UP>
-imap <m-k> <UP>
-imap <c-l> <RIGHT>
+inoremap <c-e> <END>
+inoremap <c-a> <HOME>
+inoremap <c-h> <LEFT>
+inoremap <c-j> <DOWN>
+inoremap <c-k> <UP>
+"inoremap <m-k> <UP>
+inoremap <c-l> <RIGHT>
+
+inoremap <c-d> <delete>
+inoremap <c-b> <c-g>u<c-h>
 
 "inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
 "
