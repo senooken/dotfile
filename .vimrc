@@ -36,7 +36,8 @@ NeoBundle 'Shougo/neosnippet'
   "let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
   let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
   " Plugin key-mappings.  " <C-k>でsnippetの展開
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  "imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  imap <CR> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_target)
   " SuperTab like snippets bEHAVIr.
