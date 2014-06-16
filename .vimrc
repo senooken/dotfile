@@ -37,7 +37,7 @@ NeoBundle 'Shougo/neosnippet'
   let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
   " Plugin key-mappings.  " <C-k>でsnippetの展開
   "imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  imap <CR> <Plug>(neosnippet_expand_or_jump)
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_target)
   " SuperTab like snippets bEHAVIr.
@@ -235,19 +235,18 @@ colorscheme default
 ""	my config
 " Command mode keybind.
 "map <c-a> <HOME>
-map <c-e> <END>
-map <m-d> dw
+noremap <c-e> <END>
+noremap <m-d> dw
 "map <c-u> d0
 "map <c-k> d$
 " When insert mode, enable hjkl and go to home/end.
 inoremap <c-e> <END>
 inoremap <c-a> <HOME>
-inoremap <c-h> <LEFT>
-inoremap <c-j> <DOWN>
-inoremap <c-k> <UP>
+inoremap <m-h> <LEFT>
+inoremap <m-j> <DOWN>
+inoremap <m-k> <UP>
 "inoremap <m-k> <UP>
-inoremap <c-l> <RIGHT>
-
+inoremap <m-l> <RIGHT>
 inoremap <c-d> <delete>
 inoremap <c-b> <c-g>u<c-h>
 
