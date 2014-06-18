@@ -11,5 +11,5 @@ $if Bash
  
     # キーバインド key: "hoge"でhogeが展開される
     "\C-x\C-p": " | percol"
+    "\C-^": "~/"
 $endif
-"\C-^": "~/"
