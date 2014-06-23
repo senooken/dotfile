@@ -68,3 +68,5 @@ bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 
 zstyle ":completion:*default"  list-colors ""
+# case insensitive completion
+zstyle ':completion:*' matcher-list "m:{a-zA-A}={A-Za-z}"

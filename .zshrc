@@ -59,6 +59,7 @@ zstyle ':completion:*' format '%BCompleting %d%b'
 zstyle ':completion:*' group-name ''
 autoload -U compinit && compinit
 
+
 ## alias
 alias ls="ls -AFh --color=auto" ll="ls -lh --color=auto"
 alias l="ls -AFh --color=auto"

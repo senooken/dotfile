@@ -16,3 +16,6 @@ export NETCDF=$HOME/local/
 
 export WRFIO_NCD_LARGE_FILE_SUPPORT=1 # for generating lager than 2 GB netcdf file
 
+## PVM
+export PVM_ROOT=${HOME}/local/src/pvm3
+export PVM_ARCH=LINUX64
