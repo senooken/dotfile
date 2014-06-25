@@ -29,6 +29,7 @@ export INCLUDE="${HOME}/.local/include:$INCLUDE"
 zstyle ":completion:*:commands" rehash # update PATH when change
 unsetopt cdablevars # invalid additional candidacy when cd completation
 setopt interactivecomments # line end comment out after #
+unsetopt equals # invalid = expansion for bash script [ == ].
 
 export WINEARCH=win32
 

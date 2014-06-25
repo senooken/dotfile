@@ -103,8 +103,12 @@ fi
 PROMPT=$'%7(~|[%~]\n|)%{\e[35m%}%n%#%{\e[m%} '
 RPROMPT=$'%7(~||[%~])'
 
-
 ## for model setting
 if [ -e ~/.modelrc ]; then
     source ~/.modelrc
+fi
+
+## for other individual setting
+if [ -e ~/.otherrc ]; then
+    source ~/.otherrc
 fi

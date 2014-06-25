@@ -310,3 +310,13 @@ alias vim="vim -X"
  
 
  export PATH="/cygdrive/c/Program Files/IrfanView/iview425j:$PATH"
+
+## for model setting
+if [ -e ~/.modelrc ]; then
+    source ~/.modelrc
+fi
+
+## for other individual setting
+if [ -e ~/.otherrc ]; then
+    source ~/.otherrc
+fi
