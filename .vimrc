@@ -101,11 +101,11 @@ filetype indent on
 "" vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2 " start indent column
-"let g:indent_guides_auto_colors = 0
+let g:indent_guides_auto_colors = 0
 "" 奇数インデントのカラー
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=gray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=gray
 "" 偶数インデントのカラー
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=darkgray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=yellow " darkgray
 let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
 let g:indent_guides_guide_size = 1 " indent guide size
 
