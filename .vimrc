@@ -162,9 +162,9 @@ set autoindent
 set smarttab
 set expandtab
 " Tab文字を画面上の見た目で何文字幅にするか設定
-set tabstop=4
+set tabstop=2
 " cindentやautoindent時に挿入されるタブの幅
-set shiftwidth=4
+set shiftwidth=2
 " Tabキー使用時にTabでは無くホワイトスペースを入れたい時に使用する
 " この値が0以外の時はtabstopの設定が無効になる
 set softtabstop=0
@@ -175,6 +175,9 @@ set cindent
 
 set textwidth=0 "	Prevent auto line break [130324].
 " 2013/02/27
+
+"" tab config for each languages
+autocmd! FileType python setlocal shiftwidth=4 tabstop=4 
 
 "" vim auto creating file
 set noswapfile
@@ -228,6 +231,9 @@ set showcmd		" 入力中のコマンドを表示
 set showmode	" 現在のモードを表示
 set cursorline	" カーソル行をハイライト
 
+
+"" other 
+set wildmenu
 
 " color 
 colorscheme default
