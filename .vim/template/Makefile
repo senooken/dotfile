@@ -1,6 +1,6 @@
 ## Makefile
 ## @author: SENOO, Ken
-## (Last Update: 2014-06-04T23:11+09:00)
+## (Last Update: 2014-06-26T16:11+09:00)
 
 FC=gfortran
 CC=gcc
@@ -29,5 +29,5 @@ ${TARGET}: ${OBJ}
 
 .PHONY: clean
 clean:
-	rm -rf ${TARGET} ${OBJ} ${MOD}
+	rm -f ${TARGET} ${OBJ} ${MOD}
 
