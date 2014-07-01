@@ -259,10 +259,10 @@ inoremap <c-b> <c-g>u<c-h>
 "inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
 
 "" move window
-nnoremap <c-h> <C-w>h
-nnoremap <c-j> <C-w>j
-nnoremap <c-k> <C-w>k
-nnoremap <c-l> <C-w>l
+nnoremap <ESC>h <C-w>h
+nnoremap <ESC>j <C-w>j
+nnoremap <ESC>k <C-w>k
+nnoremap <ESC>l <C-w>l
 
 
 "" move last file position

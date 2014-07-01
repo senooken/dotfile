@@ -26,7 +26,7 @@ export MANPATH=${HOME}/.local/man:$MANPATH
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 export INCLUDE="${HOME}/.local/include:$INCLUDE"
 
-zstyle ":completion:*:commands" rehash # update PATH when change
+zstyle ":completion:*:commands" rehash 1 # update PATH when change
 unsetopt cdablevars # invalid additional candidacy when cd completation
 setopt interactivecomments # line end comment out after #
 unsetopt equals # invalid = expansion for bash script [ == ].
