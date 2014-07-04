@@ -57,7 +57,8 @@ bindkey -e
 # 補完システムを利用: 補完の挙動が分かりやすくなる2つの設定のみ記述
 zstyle ':completion:*' format '%BCompleting %d%b'
 zstyle ':completion:*' group-name ''
-autoload -U compinit && compinit
+autoload -U compinit && compinit -u
+
 
 
 ## alias
