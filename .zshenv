@@ -16,15 +16,14 @@ path=( /usr/*/bin(N-/) /usr/local/*/bin(N-/) /var/*/bin(N-/) /usr/bin /bin)
 export PATH="${HOME}/local/bin:$PATH"
 export MANPATH="${HOME}/local/man:$MANPATH"
 export LD_LIBRARY_PATH="${HOME}/local/lib/:/usr/lib/:$LD_LIBRARY_PATH"
-export INCLUDE="${HOME}/local/include:$INCLUDE"
-export C_INCLUDE_PATH="${HOME}/local/include:$C_INCLUDE_PATH"
+#export C_INCLUDE_PATH="${HOME}/local/include:$C_INCLUDE_PATH"
 export CPATH="${HOME}/local/include:$CPATH"
 
 ## for python pip local installed package
 export PATH=${HOME}/.local/bin:$PATH 
 export MANPATH=${HOME}/.local/man:$MANPATH
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
-export INCLUDE="${HOME}/.local/include:$INCLUDE"
+#export INCLUDE="${HOME}/.local/include:$INCLUDE"
 
 zstyle ":completion:*:commands" rehash 1 # update PATH when change
 unsetopt cdablevars # invalid additional candidacy when cd completation
