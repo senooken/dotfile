@@ -92,6 +92,7 @@ NeoBundle 'tyru/caw.vim' " comment out
   " 再度 \c でコメントアウトを解除
   " 選択してから複数行の \c も可能
   nmap \c <Plug>(caw:i:toggle)
+<<<<<<< HEAD
   vmap \c <Plug>(caw:i:toggle)
 
   " \C でコメントアウトの解除
