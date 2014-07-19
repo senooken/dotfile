@@ -91,8 +91,8 @@ NeoBundle 'tyru/caw.vim' " comment out
   " \c でカーソル行をコメントアウト
   " 再度 \c でコメントアウトを解除
   " 選択してから複数行の \c も可能
-  nmap \c <Plug>(caw:I:toggle)
-  vmap \c <Plug>(caw:I:toggle)
+  nmap \c <Plug>(caw:i:toggle)
+  vmap \c <Plug>(caw:i:toggle)
 
   " \C でコメントアウトの解除
   nmap \C <Plug>(caw:I:uncomment)
