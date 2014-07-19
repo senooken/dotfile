@@ -100,9 +100,10 @@ fi
 #screen -xR
 
 # prompt
+RED="%{\e[31m%}"
 # スラッシュ7以上でカレントパスを左側に表示
 PROMPT=$'%7(~|[%~]\n|)%{\e[35m%}%n%#%{\e[m%} '
-RPROMPT=$'%7(~||[%~])'
+RPROMPT=$'%7(~||[%{\e[31m%}%~%{\e[m%}])'
 
 ## for model setting
 if [ -e ~/.modelrc ]; then

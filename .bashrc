@@ -110,9 +110,6 @@ alias du='du -h'
 # alias ls='ls -hF --color=tty'                 # classify files in colour
 # alias dir='ls --color=auto --format=vertical'
 # alias vdir='ls --color=auto --format=long'
-# alias ll='ls -l'                              # long list
-# alias la='ls -A'                              # all but . and ..
-# alias l='ls -CF'                              #
 
 # Umask
 #
@@ -206,12 +203,11 @@ if [ -f /etc/bashrc ]; then
 . /etc/bashrc
 fi
 export SHELL=/bin/bash
-#export HOME=/home/senoo
 export TMPDIR=/tmp
 export TZ=JST-09
 export MAKE_MODE=unix
 
-PATH=/usr/local/sbin:/usr/sbin:/sbin:.:${HOME}/local/bin:${HOME}/script
+PATH=/usr/local/sbin:/usr/sbin:/sbin:.
 PATH=/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:$PATH
 PATH=$PATH:/cygdrive/c/usr/local/vim73-kaoriya-win32
 PAGER=less
@@ -219,8 +215,25 @@ PAGER=less
 export LESS="-iMR"
 JLESSCHARSET=japanese-sjis
 export PATH PAGER JLESSCHARSET
+PURPLE="\[\e[35m\]"
+RED="\[\e[31m\]"
+GREEN="\[\e[32m\]"
+CLEAR="\[\e[m\]"
 
-PS1="$HOSTNAME:\w$ "
+PS1="$PURPLE\u:$RED\w$PURPLE\$ $CLEAR"
+#PS1='\`if [ 5 -ge `sed <<< $PWD "s;[^/];;g" | wc -c`  ] ; then echo "$PURPLE\u:$RED\w$PURPLE\n\$ $CLEAR"; fi\`'
+
+
+
+## shell option
+shopt -s autocd
+shopt -s cdable_vars # enable cd <var>
+shopt -s cdspell # auto modify cd path in missing.
+shopt -s extglob # extentive regex. ?，*, +, @, !(1|2)
+shopt -s direxpand # auto modify in completion
+shopt -s dotglob # include .dotfile in <command> *.
+shopt -s globstar # **: match recursive subdirectory. **/: only 1 recursive.
+shopt -s nocaseglob # ignore case
 
 if [ -n ${DISPLAY} ]; then
  #export DISPLAY=localhost:0.0
@@ -275,22 +288,23 @@ export GNUPLOT_LIB=""		# data or script path
 
 export CYGWIN="nodosfilewarning winsymlinks:native"
 
+## local path
+export PATH="${HOME}/local/bin:$PATH"
+export MANPATH="${HOME}/local/man:$MANPATH"
+export LD_LIBRARY_PATH="${HOME}/local/lib:/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
+#export C_INCLUDE_PATH="${HOME}/local/include:$C_INCLUDE_PATH"
+export CPATH="${HOME}/local/include:$CPATH"
 
-#export LD_LIBRARY_PATH=/usr/local/lib#121227
-export LD_LIBRARY_PATH="/$HOME/local/lib:/usr/local/lib:/usr/lib:${LD_LIBRARY_PATH}"
-export MANPATH=${HOME}/local/man:$MANPATH
-
-## Gnuplot (2013/02/28)
-export GNUPLOT_LIB=""		# data or script path
+## for python pip local installed package
+export PATH=${HOME}/.local/bin:$PATH 
+export MANPATH=${HOME}/.local/man:$MANPATH
+export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
+#export INCLUDE="${HOME}/.local/include:$INCLUDE"
 
 ## For wget proxy
 # export HTTP_PROXY="proxy.kuins.net:8080"
 # export http_proxy="http://proxy.kuins.net:8080/"
 # export ftp_proxy="http://proxy.kuins.net:8080/"
-
-export PATH=/cygdrive/c/usr/local/latex2html/bin:$PATH
-## libevent.pc (tmux) (130413)
-export PKG_CONFIG_PATH=$HOME/local/lib/pkgconfig
 
 ## run Gnu screen 4.1 (130413)
 #if [ "$WINDOW" = '' ]; then
@@ -301,15 +315,6 @@ export PKG_CONFIG_PATH=$HOME/local/lib/pkgconfig
 ## high speed run vim
 alias vim="vim -X"
 
-## python
-# export PYTHONPATH="/cygdrive/c/Python27/Lib/site-packages"
- 
-# export PYTHONPATH="/cygdrive/c/Python27/Lib/site-packages"
-# export PYTHONPATH="/cygdrive/c/Python26/ArcGIS10.0/Lib/site-packages:$PYTHONPATH"
-# export PYTHONPATH="/usr/local/Lib/python2.6/site-packages/numpy:$PYTHONPATH"
- 
-
- export PATH="/cygdrive/c/Program Files/IrfanView/iview425j:$PATH"
 
 ## for model setting
 if [ -e ~/.modelrc ]; then
