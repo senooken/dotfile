@@ -203,7 +203,7 @@ set hidden		" 編集中でも他のファイルを開けるようにする
 syntax on		" シンタックスカラーリングオン
 set autoindent smartindent	" 自動インデント、スマートインデント
 set backspace=indent,eol,start	" バックスペースで特殊記号も削除可能に
-set whichwrap=b,s,h,s,<,>,[,]	" カーソルを行頭、行末で止まらないようにする
+set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらないようにする
 "set clipboard=unnamed,autoselect	" バッファにクリップオードを利用する
 
 "" template file
