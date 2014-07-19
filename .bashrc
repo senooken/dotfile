@@ -215,17 +215,17 @@ PAGER=less
 export LESS="-iMR"
 JLESSCHARSET=japanese-sjis
 export PATH PAGER JLESSCHARSET
+
+## prompt
 PURPLE="\[\e[35m\]"
 RED="\[\e[31m\]"
 GREEN="\[\e[32m\]"
 CLEAR="\[\e[m\]"
 
 #PS1="$PURPLE\u:$RED\w$PURPLE\$ $CLEAR"
-#PS1="$(if [ 3 -le $(sed <<< $PWD "s;[^/];;g" | wc -c)  ] ; then echo "$PURPLE\u:$RED\w$PURPLE\$ $CLEAR" ; else echo '$PURPLE\u:$RED\w$PURPLE\n\$ $CLEAR'; fi)"
-PS1=$(if [ $(expr length ${PWD//[^\/]/}) = 3 ] ; then echo "$PURPLE\u:$RED\w$PURPLE\n\$ $CLEAR"; else echo "$PURPLE\u:$RED\w$PURPLE\$ $CLEAR" ; fi)
-
-#PS1="\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O'\n'\[\e[0m\]; fi\`[\u@\h:\w]\\$ "
-#PS1="\`if [ \$(expr length \${PWD//[^\/]/}) = 3 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O'\n'\[\e[0m\]; fi\`[\u@\h:\w]\\$ "
+PS1="\`if [[ \$(expr length \${PWD//[^\/]/}) > 7 ]]; then 
+  echo '$PURPLE\u:$RED\w$PURPLE\n\$ $CLEAR'
+  else echo '$PURPLE\u:$RED\w$PURPLE\$ $CLEAR' ; fi\`"
 
 ## shell option
 shopt -s autocd
