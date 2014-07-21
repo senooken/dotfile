@@ -293,7 +293,7 @@ export CYGWIN="nodosfilewarning winsymlinks:native"
 ## local path
 export PATH="${HOME}/local/bin:$PATH"
 export MANPATH="${HOME}/local/man:$MANPATH"
-export LD_LIBRARY_PATH="${HOME}/local/lib:/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="${HOME}/local/lib:$HOME/local/lib64:/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
 #export C_INCLUDE_PATH="${HOME}/local/include:$C_INCLUDE_PATH"
 export CPATH="${HOME}/local/include:$CPATH"
 

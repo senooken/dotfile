@@ -19,3 +19,14 @@ export WRFIO_NCD_LARGE_FILE_SUPPORT=1 # for generating lager than 2 GB netcdf fi
 ## PVM
 export PVM_ROOT=${HOME}/local/src/pvm3
 export PVM_ARCH=LINUX64
+
+## OpenFOAM
+export FOAM_INST_DIR=$HOME/model/OpenFOAM
+source $FOAM_INST_DIR/OpenFOAM-2.2.2/etc/bashrc
+
+#export QTHOME=$FOAM_INST_DIR/ThirdParty-2.3.0/platforms/linux64Gcc/qt-4.7.3
+#export PATH=$QTHOME/bin:$PATH
+#export LD_LIBRARY_PATH=$QTHOME/lib:$LD_LIBRARY_PATH
+#
+#export CMAKE_DIR=$FOAM_INST_DIR/ThirdParty-2.3.0/platforms/linux64Gcc/cmake-3.0.0
+#export PATH=$CMAKE_DIR/bin:$PATH
