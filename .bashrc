@@ -223,7 +223,7 @@ GREEN="\[\e[32m\]"
 CLEAR="\[\e[m\]"
 
 #PS1="$PURPLE\u:$RED\w$PURPLE\$ $CLEAR"
-PS1="\`if [[ \$(expr length \${PWD//[^\/]/}) > 7 ]]; then 
+PS1="\`if [[ \$(expr length \${PWD//[^\/]/}) > 5 ]]; then 
   echo '$PURPLE\u:$RED\w$PURPLE\n\$ $CLEAR'
   else echo '$PURPLE\u:$RED\w$PURPLE\$ $CLEAR' ; fi\`"
 

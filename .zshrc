@@ -68,8 +68,27 @@ alias l="ls -AFh --color=auto"
 
 alias df="df -h" du="du -h"
 alias ps="ps w"
-## for run emacs in terminal
+### for run emacs in terminal
 alias emacs="emacs -nw"
+
+### Global aliases 
+alias -g A="| awk"
+alias -g G="| grep"
+alias -g GV="| grep -v"
+alias -g H="| head"
+alias -g L="| $PAGER"
+alias -g P=' --help | less'
+alias -g R="| ruby -e"
+alias -g S="| sed"
+alias -g T="| tail"
+alias -g V="| vim -R -"
+alias -g U=' --help | head'
+alias -g W="| wc"
+
+### development
+alias py='python'
+alias rb='ruby'
+alias gpp='g++'
 
 ## share gnu screen clipboard
 if which xsel > /dev/null 2>&1
