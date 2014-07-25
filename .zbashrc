@@ -10,12 +10,22 @@ export LC_MESSAGES=en_US.UTF-8
 alias ls="ls -AFh --color=auto"
 alias ll="ls -lh --color=auto"
 alias l="l -AFh --color=auto"
+# Default to human readable figures
+alias df='df -h' du='du -h'
+alias ps="ps w"
 
 ## for run emacs in terminal
 alias emacs="emacs -nw"
+
+alias grep='grep --color'                     # show differences in colour
+alias egrep='egrep --color=auto'              # show differences in colour
+alias fgrep='fgrep --color=auto'              # show differences in colour
+
+export SVN_EDITOR=vim
 ## Gnuplot (2013/02/28)
 export GNUPLOT_LIB=""		# data or script path
 export CYGWIN="nodosfilewarning winsymlinks:native"
+export GREP_OPTIONS="--color=auto --binary-files=without-match"
 
 ## local path
 export PATH="${HOME}/local/bin:$PATH"

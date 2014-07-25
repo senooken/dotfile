@@ -36,15 +36,8 @@
 # Don't use ^D to exit
 # set -o ignoreeof
 #
-# Use case-insensitive filename globbing
-# shopt -s nocaseglob
-#
 # Make bash append rather than overwrite the history on disk
 # shopt -s histappend
-#
-# When changing directory small typos can be ignored by bash
-# for example, cd /vr/lgo/apaache would find /var/log/apache
-# shopt -s cdspell
 
 # Completion options
 #
@@ -90,24 +83,12 @@
 # application.  To override the alias instruction use a \ before, ie
 # \rm will call the real rm not the alias.
 #
-# Interactive operation...
-# alias rm='rm -i'
-# alias cp='cp -i'
-# alias mv='mv -i'
-#
-# Default to human readable figures
-alias df='df -h'
-alias du='du -h'
 #
 # Misc :)
 # alias less='less -r'                          # raw control characters
 # alias whence='type -a'                        # where, of a sort
-# alias grep='grep --color'                     # show differences in colour
-# alias egrep='egrep --color=auto'              # show differences in colour
-# alias fgrep='fgrep --color=auto'              # show differences in colour
 #
 # Some shortcuts for different directory listings
-# alias ls='ls -hF --color=tty'                 # classify files in colour
 # alias dir='ls --color=auto --format=vertical'
 # alias vdir='ls --color=auto --format=long'
 
@@ -195,9 +176,6 @@ alias du='du -h'
 # alias cd=cd_func
 
 
-
-
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 . /etc/bashrc
@@ -234,8 +212,10 @@ shopt -s cdspell # auto modify cd path in missing.
 shopt -s extglob # extentive regex. ?，*, +, @, !(1|2)
 shopt -s direxpand # auto modify in completion
 shopt -s dotglob # include .dotfile in <command> *.
+shopt -s hostcomplete # try host completion
 shopt -s globstar # **: match recursive subdirectory. **/: only 1 recursive.
 shopt -s nocaseglob # ignore case
+
 
 if [ -n ${DISPLAY} ]; then
  #export DISPLAY=localhost:0.0
@@ -268,28 +248,6 @@ shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 export HISTSIZE=9999  # 履歴のMAX保存数を指定
 
 
-### alias
-alias ls="ls -AFh --color=auto"
-alias ll="ls -lh --color=auto"
-alias l="l -AFh --color=auto"
-#alias cp="cp -i"
-#alias mv="mv -i"
-## for run emacs in terminal
-alias emacs="emacs -nw"
-
-### VCS (Version Control Sytem)
-##  Subversion (2013/01/25)
-export SVN_EDITOR=vim
-
-## Git complementation
-#source $HOME/local/git/contrib/completion/git-completion.bash
-
-## Gnuplot (2013/02/28)
-export GNUPLOT_LIB=""		# data or script path
-
-
-export CYGWIN="nodosfilewarning winsymlinks:native"
-
 ## local path
 export PATH="${HOME}/local/bin:$PATH"
 export MANPATH="${HOME}/local/man:$MANPATH"
@@ -318,12 +276,3 @@ export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 alias vim="vim -X"
 
 
-## for model setting
-if [ -e ~/.modelrc ]; then
-    source ~/.modelrc
-fi
-
-## for other individual setting
-if [ -e ~/.otherrc ]; then
-    source ~/.otherrc
-fi

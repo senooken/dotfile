@@ -27,8 +27,6 @@ setopt sh_word_split auto_param_keys pushd_ignore_dups
 # export http_proxy="http://proxy.kuins.net:8080/"
 # export ftp_proxy="http://proxy.kuins.net:8080/"
 
-
-
 export LESS=-iMR
 #export DISPLAY=localhost:0.0
 export DISPLAY=:0.0
@@ -58,18 +56,6 @@ bindkey -e
 zstyle ':completion:*' format '%BCompleting %d%b'
 zstyle ':completion:*' group-name ''
 autoload -U compinit && compinit -u
-
-
-
-## alias
-alias ls="ls -AFh --color=auto" ll="ls -lh --color=auto"
-alias l="ls -AFh --color=auto"
-#alias cp="cp -i" mv="mv -i"
-
-alias df="df -h" du="du -h"
-alias ps="ps w"
-### for run emacs in terminal
-alias emacs="emacs -nw"
 
 ### Global aliases 
 alias -g A="| awk"
@@ -124,15 +110,6 @@ RED="%{\e[31m%}"
 PROMPT=$'%7(~|[%~]\n|)%{\e[35m%}%n%#%{\e[m%} '
 RPROMPT=$'%7(~||[%{\e[31m%}%~%{\e[m%}])'
 
-## for model setting
-if [ -e ~/.modelrc ]; then
-    source ~/.modelrc
-fi
-
-## for other individual setting
-if [ -e ~/.otherrc ]; then
-    source ~/.otherrc
-fi
 
 # pip zsh completion start
 function _pip_completion {
