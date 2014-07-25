@@ -22,7 +22,9 @@ export PVM_ARCH=LINUX64
 
 ## OpenFOAM
 export FOAM_INST_DIR=/opt/
-source $FOAM_INST_DIR/openfoam230/etc/bashrc
+if [ -e $FOAM_INST_DIR/openfoam230/etc/bashrc ]; then
+  . $FOAM_INST_DIR/openfoam230/etc/bashrc
+fi
 #export FOAM_INST_DIR=/opt/ # $HOME/model/OpenFOAM
 #source $FOAM_INST_DIR/OpenFOAM-2.2.2/etc/bashrc
 
