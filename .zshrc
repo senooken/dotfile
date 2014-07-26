@@ -13,7 +13,7 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   # antigen use oh-my-zsh
 
   ## bundles from the default repository (robbyussell's oh-my-zsh)
-  # antigen bundle git
+  antigen bundle git
   # antigen bundle heroku
   antigen bundle pip
   # # antigen bundle lein
@@ -25,24 +25,23 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   antigen-bundle github
   antigen-bundle gnu-utils
   antigen-bundle python
-  # antigen-bundle hchbaw/auto-fu.zsh # need unsetopt sh_word_split
-  #   zle-line-init () {auto-fu-init;}
-  #   zle -N zle-line-init
-  #   zstyle ':completion:*' completer _oldlist _complete
-  #   zle -N zle-keymap-select auto-fu-zle-keymap-select
-  #
-  #   # Enterを押したときは自動補完された部分を利用しない。
-  #   afu+cancel-and-accept-line() {
-  #       ((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur" }
-  #       zle afu+accept-line
-  #   }
-  #   zle -N afu+cancel-and-accept-line
-  #   bindkey -M afu "^M" afu+cancel-and-accept-line  
-  #   zstyle ':auto-fu:var' postdisplay $'' # 「-azfu-」を表示させない
-  antigen-bundle zsh-users/zsh-syntax-highlighting 
-  # antigen-bundle tarruda/zsh-autosuggestions
+  antigen-bundle hchbaw/auto-fu.zsh # need unsetopt sh_word_split
+    zle-line-init () {auto-fu-init;}
+    zle -N zle-line-init
+    zstyle ':completion:*' completer _oldlist _complete
+    zle -N zle-keymap-select auto-fu-zle-keymap-select
   
-  # antigen theme robbyrussell
+    # Enterを押したときは自動補完された部分を利用しない。
+    afu+cancel-and-accept-line() {
+        ((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur" }
+        zle afu+accept-line
+    }
+    zle -N afu+cancel-and-accept-line
+    bindkey -M afu "^M" afu+cancel-and-accept-line  
+    zstyle ':auto-fu:var' postdisplay $'' # 「-azfu-」を表示させない
+  antigen-bundle zsh-users/zsh-syntax-highlighting 
+  
+  antigen theme robbyrussell
   antigen-apply
 fi
 
@@ -215,4 +214,3 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
 
 zstyle ':completion:*' use-cache true # speed up apt
-
