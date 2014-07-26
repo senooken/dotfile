@@ -178,7 +178,7 @@ zle -N insert-last-word smart-insert-last-word
 zstyle :insert-last-word match '*([^[:space:]][[:alpha:]/\\]|[[:alpha:]/\\][^[:space:]])*'
 bindkey '^]' insert-last-word  # ここはお好みの割り当てにする
 
-## quote previous word in single or double quote by Meta-s, Meta-d
+## quote previous word in single or double quote by Meta-s, Meta-w
 autoload -U modify-current-argument
 _quote-previous-word-in-single() {
   modify-current-argument '${(qq)${(Q)ARG}}'
@@ -192,7 +192,7 @@ _quote-previous-word-in-double() {
   zle vi-forward-blank-word
 }
 zle -N _quote-previous-word-in-double
-bindkey '^[d' _quote-previous-word-in-double
+bindkey '^[w' _quote-previous-word-in-double
 
 
 zstyle ':completion:*:default' menu select=2 # select completion
