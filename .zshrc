@@ -113,7 +113,7 @@ if [ "$WINDOW" = '' ]; then
 fi
 #screen -xR
 
-# prompt
+## prompt
 setopt prompt_subst # valid variable expansion 
 setopt transient_rprompt # clear rprompt after next line
 
@@ -134,4 +134,3 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 # pip zsh completion end
-
