@@ -61,7 +61,7 @@
 # Don't put duplicate lines in the history.
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 export HISTSIZE=9999  # number of saved history commands
-export HISTFILESIZE=9999 # number of saved history command lines
+export HISTFILESIZE=$HISTSIZE # number of saved history command lines
 export HISTTIMEFORMAT="%Y%m%dT%H%M "
 
 # Ignore some controlling instructions
@@ -230,15 +230,6 @@ if [ ! -n "${TERM}" ]; then
 TERM=cygwin
 fi
 
-## .bashrc personal setting.
-
-## locale
-export LANG=ja_JP.UTF-8
-export LANGUAGE=en_US.UTF-8
-export LC_TIME=en_US.UTF-8
-export LC_MESSAGES=en_US.UTF-8
-
-
 ## synchonization of bash history [130414]
 # url: http://iandeth.dyndns.org/mt/ian/archives/000651.html
 function share_history {  # 以下の内容を関数として定義
@@ -277,4 +268,5 @@ export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 ## high speed run vim
 alias vim="vim -X"
 
-
+## for shared shell setting
+[ -e ~/.zbashrc ] && source ~/.zbashrc

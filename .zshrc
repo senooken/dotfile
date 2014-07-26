@@ -10,15 +10,24 @@
 
 ###
 # Set Shell variable
-# WORDCHARS=$WORDCHARS:s,/,,
-HISTSIZE=200 HISTFILE=~/.zhistory SAVEHIST=180
+WORDCHARS=$WORDCHARS:s,/,, # C-wのときに/で区切る
+## history
+HISTSIZE=9999 HISTFILE=~/.zhistory SAVEHIST=$HISTSIZE
+setopt extended_history
+setopt hist_ignore_dups
+setopt inc_append_history
+# setopt hist_ignore_space 
 
 # Set shell options
 # 有効にしてあるのは副作用の少ないもの
 setopt auto_cd auto_remove_slash auto_name_dirs 
-setopt extended_history hist_ignore_dups hist_ignore_space prompt_subst
 setopt extended_glob list_types no_beep always_last_prompt
 setopt sh_word_split auto_param_keys pushd_ignore_dups
+setopt mark_dirs
+REPORTTIME=10
+setopt auto_param_slash # auto appen directory var /
+setopt rm_star_silent
+
 # 便利だが副作用の強いものはコメントアウト
 #setopt auto_menu  correct rm_star_silent sun_keyboard_hack
 #setopt share_history inc_append_history
@@ -105,6 +114,9 @@ fi
 #screen -xR
 
 # prompt
+setopt prompt_subst # valid variable expansion 
+setopt transient_rprompt # clear rprompt after next line
+
 RED="%{\e[31m%}"
 # スラッシュ7以上でカレントパスを左側に表示
 PROMPT=$'%7(~|[%~]\n|)%{\e[35m%}%n%#%{\e[m%} '

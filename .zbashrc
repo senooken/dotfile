@@ -1,33 +1,5 @@
-
-## locale
-export LANG=ja_JP.UTF-8
-export LANGUAGE=en_US.UTF-8
-export LC_TIME=en_US.UTF-8
-export LC_MESSAGES=en_US.UTF-8
-
-
-### alias
-alias ls="ls -AFh --color=auto"
-alias ll="ls -lh --color=auto"
-alias l="l -AFh --color=auto"
-# Default to human readable figures
-alias df='df -h' du='du -h'
-alias ps="ps w"
-
-## for run emacs in terminal
-alias emacs="emacs -nw"
-
-alias grep='grep --color'                     # show differences in colour
-alias egrep='egrep --color=auto'              # show differences in colour
-alias fgrep='fgrep --color=auto'              # show differences in colour
-
-export SVN_EDITOR=vim
-## Gnuplot (2013/02/28)
-export GNUPLOT_LIB=""		# data or script path
-export CYGWIN="nodosfilewarning winsymlinks:native"
-export GREP_OPTIONS="--color=auto --binary-files=without-match"
-
 ## local path
+### local install path
 export PATH="${HOME}/local/bin:$PATH"
 export MANPATH="${HOME}/local/man:$MANPATH"
 export LD_LIBRARY_PATH="${HOME}/local/lib:$HOME/local/lib64:/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
@@ -40,12 +12,38 @@ export MANPATH=${HOME}/.local/man:$MANPATH
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 #export INCLUDE="${HOME}/.local/include:$INCLUDE"
 
+
+## locale
+export LANG=ja_JP.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+
+
+## alias
+alias ls="ls -AFh --color=auto"
+alias ll="ls -Glh --color=auto"
+alias l="l -AFh --color=auto"
+
+### Default to human readable figures
+alias df='df -h' du='du -h'
+alias ps="ps w"
+
+alias emacs="emacs -nw"
+
+### Git
+alias gic="git commit -am"
+alias gia="git add"
+
+export SVN_EDITOR=vim
+export GNUPLOT_LIB=""		# data or script path
+export CYGWIN="nodosfilewarning winsymlinks:native"
+export GREP_OPTIONS="--color=auto --binary-files=without-match"
+export LV="-c -l" 
+
+
 ## for model setting
-if [ -e ~/.modelrc ]; then
-    source ~/.modelrc
-fi
+[ -e ~/.modelrc ] && source ~/.modelrc
 
 ## for other individual setting
-if [ -e ~/.otherrc ]; then
-    source ~/.otherrc
-fi
+[ -e ~/.otherrc ] && source ~/.otherrc
