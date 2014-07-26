@@ -61,4 +61,4 @@ termcapinfo xterm "li#100:co#100"
 
 %?%F%{= gW}%:%{= Kk}%?%2n%f%07=%t%=
 
-shell "/bin/zsh"
+shell "zsh"
