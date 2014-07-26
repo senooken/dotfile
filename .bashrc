@@ -180,9 +180,8 @@ export HISTTIMEFORMAT="%Y%m%dT%H%M "
 
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-. /etc/bashrc
-fi
+[ -f /etc/bashrc ] && . /etc/bashrc
+
 export SHELL=/bin/bash
 export TMPDIR=/tmp
 export TZ=JST-09
@@ -190,10 +189,8 @@ export MAKE_MODE=unix
 
 PATH=/usr/local/sbin:/usr/sbin:/sbin:.
 PATH=/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:$PATH
-PATH=$PATH:/cygdrive/c/usr/local/vim73-kaoriya-win32
+
 PAGER=less
-#PAGER="less -isR"
-export LESS="-iMR"
 JLESSCHARSET=japanese-sjis
 export PATH PAGER JLESSCHARSET
 
@@ -220,39 +217,20 @@ shopt -s globstar # **: match recursive subdirectory. **/: only 1 recursive.
 shopt -s nocaseglob # ignore case
 
 
-if [ -n ${DISPLAY} ]; then
- #export DISPLAY=localhost:0.0
- export DISPLAY=:0.0
-fi
+[ -n ${DISPLAY} ] && export DISPLAY=:0.0
 
-
-if [ ! -n "${TERM}" ]; then
-TERM=cygwin
-fi
+[ ! -n "${TERM}" ] && TERM=cygwin
 
 ## synchonization of bash history [130414]
 # url: http://iandeth.dyndns.org/mt/ian/archives/000651.html
 function share_history {  # 以下の内容を関数として定義
-	    history -a  # .bash_historyに前回コマンドを1行追記
-	    history -c  # 端末ローカルの履歴を一旦消去
-	    history -r  # .bash_historyから履歴を読み込み直す
+  history -a  # .BASH_HISTORYに前回コマンドを1行追記
+  history -c  # 端末ローカルの履歴を一旦消去
+  history -r  # .BASH_HISTORYから履歴を読み込み直す
 }
 PROMPT_COMMAND='share_history'  # 上記関数をプロンプト毎に自動実施
 shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 
-
-## local path
-export PATH="${HOME}/local/bin:$PATH"
-export MANPATH="${HOME}/local/man:$MANPATH"
-export LD_LIBRARY_PATH="${HOME}/local/lib:$HOME/local/lib64:/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
-#export C_INCLUDE_PATH="${HOME}/local/include:$C_INCLUDE_PATH"
-export CPATH="${HOME}/local/include:$CPATH"
-
-## for python pip local installed package
-export PATH=${HOME}/.local/bin:$PATH 
-export MANPATH=${HOME}/.local/man:$MANPATH
-export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
-#export INCLUDE="${HOME}/.local/include:$INCLUDE"
 
 ## For wget proxy
 # export HTTP_PROXY="proxy.kuins.net:8080"

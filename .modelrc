@@ -21,7 +21,7 @@ export PVM_ROOT=${HOME}/local/src/pvm3
 export PVM_ARCH=LINUX64
 
 ## OpenFOAM
-export FOAM_INST_DIR=/opt/
+export FOAM_INST_DIR=/opt
 if [ -e $FOAM_INST_DIR/openfoam230/etc/bashrc ]; then
   . $FOAM_INST_DIR/openfoam230/etc/bashrc
 fi

@@ -40,6 +40,7 @@ export GNUPLOT_LIB=""		# data or script path
 export CYGWIN="nodosfilewarning winsymlinks:native"
 export GREP_OPTIONS="--color=auto --binary-files=without-match"
 export LV="-c -l" 
+export LESS="-imr"
 
 
 ## for model setting
