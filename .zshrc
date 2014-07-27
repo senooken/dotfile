@@ -251,25 +251,6 @@ export CVS_RSH=ssh
 #    *) LANG=ja_JP.UTF-8 ;;
 #esac
 
-### binding keys
-bindkey -e
-
-#bindkey '^n'   history-beginning-search-forward
-
-#bindkey "^[[5~" # PageUp
-#bindkey "^[[6~" # PageDown
-bindkey "^[[3~" delete-char
-
-## Home and End key mapping
-# for cygwin
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-# for linux
-bindkey "^[OH" beginning-of-line
-bindkey "^[OF" end-of-line
-# for screen
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[4~" end-of-line
 
 zstyle ":completion:*default"  list-colors ""
 # case insensitive completion
