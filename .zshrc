@@ -6,6 +6,7 @@
 #
 #####################################################################
 
+
 ## plugin manage
 if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   ADOTDIR=$HOME/.zsh/
@@ -25,18 +26,23 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   antigen-bundle github
   antigen-bundle gnu-utils
   antigen-bundle python
-
+ 
+  ## cdr
     autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-    add-zsh-hook chpwd chpwd_recent_dirs
+    zstyle ':completion:*:*:cdr:*:*' menu selection
+    zstyle ':completion:*' recent-dirs-insert both
     zstyle ':chpwd:*' recent-dirs-max 5000
     zstyle ':chpwd:*' recent-dirs-default yes
-    zstyle ':completion:*' recent-dirs-insert both
+    zstyle ':chpwd:*' recent-dirs-pushd true
 
-  antigen-bundle zsh-users/zaw # auto-fuより先に書く
+  # antigen-bundle zsh-users/zaw # auto-fuより先に書く
+  # source ~/.zsh/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zaw.git/zaw.zsh
+    antigen-bundle zsh-users/zaw.git
     zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
-    bindkey '^m' zaw
+    # bindkey '^m' zaw
     bindkey "^r" zaw-history
-    bindkey "^@" zaw-cdr
+    bindkey "^m^m" zaw-cdr
+ 
 
   antigen-bundle hchbaw/auto-fu.zsh # need unsetopt sh_word_split
     zstyle ':auto-fu:var' postdisplay $'' # 「-azfu-」を表示させない
@@ -44,7 +50,7 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
     zle -N zle-line-init
     zstyle ':completion:*' completer _oldlist _complete
     zle -N zle-keymap-select auto-fu-zle-keymap-select
-  
+
     # # Enterを押したときは自動補完された部分を利用しない。
     # afu+cancel-and-accept-line() {
     #     ((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur" }
@@ -55,11 +61,12 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   antigen-bundle zsh-users/zsh-syntax-highlighting 
   antigen-bundle rupa/z
     compctl -U -K _z_zsh_tab_completion \${_Z_CMD:-z}
-  
-  
+ 
+ 
   antigen theme robbyrussell
   antigen-apply
 fi
+
 
 ###
 # Set Shell variable
@@ -69,13 +76,15 @@ HISTSIZE=9999 HISTFILE=~/.zhistory SAVEHIST=$HISTSIZE
 setopt extended_history
 setopt hist_ignore_dups
 setopt inc_append_history
-# setopt hist_ignore_space 
+setopt hist_ignore_space 
 
 # Set shell options
 # 有効にしてあるのは副作用の少ないもの
 setopt auto_cd auto_name_dirs 
 setopt auto_remove_slash 
 setopt extended_glob list_types no_beep always_last_prompt
+setopt auto_param_keys pushd_ignore_dups
+# setopt sh_word_split 
 setopt sh_word_split auto_param_keys pushd_ignore_dups
 setopt auto_param_keys pushd_ignore_dups
 setopt mark_dirs
