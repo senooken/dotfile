@@ -35,8 +35,7 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
     zstyle ':chpwd:*' recent-dirs-default yes
     zstyle ':chpwd:*' recent-dirs-pushd true
 
-  # antigen-bundle zsh-users/zaw # auto-fuより先に書く
-  # source ~/.zsh/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zaw.git/zaw.zsh
+  # antigen-bundle zsh-users/zaw # auto-fuより先に書く need unsetopt sh_word_split
     antigen-bundle zsh-users/zaw.git
     zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
     # bindkey '^m' zaw
@@ -84,7 +83,7 @@ setopt auto_cd auto_name_dirs
 setopt auto_remove_slash 
 setopt extended_glob list_types no_beep always_last_prompt
 setopt auto_param_keys pushd_ignore_dups
-# setopt sh_word_split 
+# unsetopt sh_word_split  # need zaw, auto-fu
 setopt sh_word_split auto_param_keys pushd_ignore_dups
 setopt auto_param_keys pushd_ignore_dups
 setopt mark_dirs
@@ -95,10 +94,6 @@ setopt rm_star_silent
 # 便利だが副作用の強いものはコメントアウト
 #setopt auto_menu  correct rm_star_silent sun_keyboard_hack
 #setopt share_history inc_append_history
-
-## For wget proxy
-# export http_proxy="http://proxy.kuins.net:8080/"
-# export ftp_proxy="http://proxy.kuins.net:8080/"
 
 export DISPLAY=:0.0
 

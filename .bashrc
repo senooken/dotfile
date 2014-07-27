@@ -232,11 +232,6 @@ PROMPT_COMMAND='share_history'  # 上記関数をプロンプト毎に自動実�
 shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 
 
-## For wget proxy
-# export HTTP_PROXY="proxy.kuins.net:8080"
-# export http_proxy="http://proxy.kuins.net:8080/"
-# export ftp_proxy="http://proxy.kuins.net:8080/"
-
 ## run Gnu screen 4.1 (130413)
 #if [ "$WINDOW" = '' ]; then
 #    screen-4.1.0.exe -d -R
@@ -247,4 +242,4 @@ shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 alias vim="vim -X"
 
 ## for shared shell setting
-# [ -e ~/.zbashrc ] && source ~/.zbashrc
+[ -e ~/.zbashrc ] && source ~/.zbashrc
