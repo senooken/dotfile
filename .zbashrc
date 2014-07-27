@@ -21,7 +21,7 @@ export LC_MESSAGES=en_US.UTF-8
 
 
 ## alias
-alias ls="ls -Ah --color=auto"
+alias ls="ls -AFh --color=auto"
 # alias ls="ls -AFh --color=auto"
 alias ll='ls -Gl --time-style=+"%Y-%m-%d %H:%M"'
 alias l="ls -F"

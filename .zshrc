@@ -26,17 +26,17 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   antigen-bundle gnu-utils
   antigen-bundle python
 
-    # autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-    # add-zsh-hook chpwd chpwd_recent_dirs
-    # zstyle ':chpwd:*' recent-dirs-max 5000
-    # zstyle ':chpwd:*' recent-dirs-default yes
-    # zstyle ':completion:*' recent-dirs-insert both
+    autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+    add-zsh-hook chpwd chpwd_recent_dirs
+    zstyle ':chpwd:*' recent-dirs-max 5000
+    zstyle ':chpwd:*' recent-dirs-default yes
+    zstyle ':completion:*' recent-dirs-insert both
 
-  # antigen-bundle zsh-users/zaw # auto-fuより先に書く
-  #   zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
-  #   bindkey '^m' zaw
-  #   bindkey "^r" zaw-history
-  #   bindkey "^@" zaw-cdr
+  antigen-bundle zsh-users/zaw # auto-fuより先に書く
+    zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
+    bindkey '^m' zaw
+    bindkey "^r" zaw-history
+    bindkey "^@" zaw-cdr
 
   antigen-bundle hchbaw/auto-fu.zsh # need unsetopt sh_word_split
     zstyle ':auto-fu:var' postdisplay $'' # 「-azfu-」を表示させない
@@ -230,3 +230,46 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
 
 zstyle ':completion:*' use-cache true # speed up apt
+
+zstyle ":completion:*:commands" rehash 1 # update PATH when change
+unsetopt cdablevars # invalid additional candidacy when cd completation
+setopt interactivecomments # line end comment out after #
+unsetopt equals # invalid = expansion for bash script [ == ].
+
+export WINEARCH=win32
+
+# リモートから起動するコマンド用の環境変数を設定(必要なら)
+export RSYNC_RSH=ssh
+export CVS_RSH=ssh
+
+#case $TERM in
+#    linux) LANG=C ;;
+#    *) LANG=ja_JP.UTF-8 ;;
+#esac
+
+### binding keys
+bindkey -e
+
+#bindkey '^n'   history-beginning-search-forward
+
+#bindkey "^[[5~" # PageUp
+#bindkey "^[[6~" # PageDown
+bindkey "^[[3~" delete-char
+
+## Home and End key mapping
+# for cygwin
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+# for linux
+bindkey "^[OH" beginning-of-line
+bindkey "^[OF" end-of-line
+# for screen
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+
+zstyle ":completion:*default"  list-colors ""
+# case insensitive completion
+zstyle ':completion:*' matcher-list "m:{a-zA-A}={A-Za-z}"
+
+## for shared shell setting
+[ -e ~/.zbashrc ] && source ~/.zbashrc

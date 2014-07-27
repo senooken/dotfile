@@ -247,4 +247,4 @@ shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 alias vim="vim -X"
 
 ## for shared shell setting
-[ -e ~/.zbashrc ] && source ~/.zbashrc
+# [ -e ~/.zbashrc ] && source ~/.zbashrc
