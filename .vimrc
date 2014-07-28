@@ -73,7 +73,7 @@ NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'Shougo/unite.vim'
 
-"NeoBundle 'Shougo/vimfiler'     " file manage
+NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
 NeoBundle 'thinca/vim-fontzoom' " change font size easy
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon

@@ -86,7 +86,7 @@ setopt extended_glob list_types no_beep always_last_prompt
 setopt auto_param_keys pushd_ignore_dups
 # unsetopt sh_word_split  # need zaw, auto-fu
 setopt pushd_ignore_dups
-# setopt mark_dirs # append / when expansion file = directory
+setopt mark_dirs # append / when expansion file = directory
 # setopt auto_param_slash # auto append directory var /
 REPORTTIME=10
 setopt rm_star_silent

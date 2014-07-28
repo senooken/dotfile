@@ -46,3 +46,15 @@ setenv GNUPLOT_LIB ""		# data or script path
 
 setenv SMK_HOME /home/Senoo/research/SMOKEv3.0 
 
+set autocorrect # 補完前にスペル訂正
+set complete = enhance # ignore case
+set filec # valid completion csh
+## time コマンドの出力書式: この設定で、8秒以上 CPU を使った処理は自動的に time を表示してくれる。
+set time=(8 "?
+    tIME SPENT IN USER MODE   (cpu SECONDS) : %uS?
+    tIME SPENT IN KERNEL MODE (cpu SECONDS) : %sS?
+    tOTAL TIME                              : %eS?
+    cpu UTILISATION (PERCENTAGE)            : %p?
+    tIMES THE PROCESS WAS SWAPPED           : %w?
+    tIMES OF MAJOR PAGE FAULTS              : %f?
+    tIMES OF MINOR PAGE FAULTS              : %r")
