@@ -156,7 +156,7 @@ NeoBundle 'Lokaltog/vim-easymotion' " cursor
   map F <Plug>(easymotion-Fl)
   map T <Plug>(easymotion-Tl)
 
-filetype indent on
+filetype indent on " required
 
 
 """ vimfiler

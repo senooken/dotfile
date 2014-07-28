@@ -26,15 +26,15 @@ export LC_MESSAGES=en_US.UTF-8
 
 ## alias
 alias ls="ls -AFh --color=auto"
-# alias ls="ls -AFh --color=auto"
-alias ll='ls -Gl --time-style=+"%Y-%m-%d %H:%M"'
+alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l="ls -F"
 
 ### Default to human readable figures
-alias df='df -h' du='du -h'
+alias df='df -h' 
+alias du='du -h'
 alias ps="ps w"
 
-alias emacs="emacs -nw"
+# alias emacs="emacs -nw"
 
 ### Git
 alias gic="git commit -am"
@@ -47,12 +47,16 @@ export GREP_OPTIONS="--color=auto --binary-files=without-match"
 export LV="-c -l" 
 export LESS="-imr"
 
-case "${OSTYPE}" in
-  freebsd*|darwin*) alias o="open"     ;;
-  linux*) alias open="xdg-open" ;;
-#    alias open="gnome-open";;
-  cygwin*) alias open="cygstart"     ;;
-esac
+# case "${OSTYPE}" in
+#   freebsd*|darwin*) 
+#   alias o="open"     ;;
+#   linux*) 
+#    alias open="xdg-open" ;;
+# #    alias open="gnome-open";;
+#   cygwin*) 
+#   alias open="cygstart"     
+#   ;;
+# esac
 
 
 ## for model setting

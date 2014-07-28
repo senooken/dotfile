@@ -11,58 +11,58 @@
 if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   ADOTDIR=$HOME/.zsh/
   source ~/.zsh/antigen/antigen.zsh
-  # antigen use oh-my-zsh
-
-  # bundles from the default repository (robbyussell's oh-my-zsh)
-  antigen bundle git
-  # antigen bundle heroku
-  antigen bundle pip
-  # # antigen bundle lein
-  antigen bundle command-not-found
+  # # antigen use oh-my-zsh
   #
-  antigen-bundle zsh-users/zsh-completions
-  antigen-bundle history
-  antigen-bundle cp
-  antigen-bundle github
-  antigen-bundle gnu-utils
-  antigen-bundle python
- 
-  ## cdr
-    autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-    zstyle ':completion:*:*:cdr:*:*' menu selection
-    zstyle ':completion:*' recent-dirs-insert both
-    zstyle ':chpwd:*' recent-dirs-max 5000
-    zstyle ':chpwd:*' recent-dirs-default yes
-    zstyle ':chpwd:*' recent-dirs-pushd true
-
-  # antigen-bundle zsh-users/zaw # auto-fuより先に書く need unsetopt sh_word_split
-    antigen-bundle zsh-users/zaw.git
-    zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
-    # bindkey '^m' zaw
-    bindkey "^r" zaw-history
-    bindkey "^m^m" zaw-cdr
- 
-
-  antigen-bundle hchbaw/auto-fu.zsh # need unsetopt sh_word_split
-    zstyle ':auto-fu:var' postdisplay $'' # 「-azfu-」を表示させない
-    zle-line-init () {auto-fu-init;}
-    zle -N zle-line-init
-    zstyle ':completion:*' completer _oldlist _complete
-    zle -N zle-keymap-select auto-fu-zle-keymap-select
-
-    # # Enterを押したときは自動補完された部分を利用しない。
-    # afu+cancel-and-accept-line() {
-    #     ((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur" }
-    #     zle afu+accept-line
-    # }
-    # zle -N afu+cancel-and-accept-line
-    # bindkey -M afu "^M" afu+cancel-and-accept-line  
-  antigen-bundle zsh-users/zsh-syntax-highlighting 
-  antigen-bundle rupa/z
-    compctl -U -K _z_zsh_tab_completion \${_Z_CMD:-z}
- 
- 
-  antigen theme robbyrussell
+  # # bundles from the default repository (robbyussell's oh-my-zsh)
+  # # antigen-bundle git
+  # # antigen bundle heroku
+  # antigen-bundle pip
+  # # # antigen bundle lein
+  # antigen-bundle command-not-found
+  # #
+  # antigen-bundle zsh-users/zsh-completions
+  # antigen-bundle history
+  # antigen-bundle cp
+  # antigen-bundle github
+  # antigen-bundle gnu-utils
+  # antigen-bundle python
+  
+  # ## cdr
+  #   autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+  #   zstyle ':completion:*:*:cdr:*:*' menu selection
+  #   zstyle ':completion:*' recent-dirs-insert both
+  #   zstyle ':chpwd:*' recent-dirs-max 5000
+  #   zstyle ':chpwd:*' recent-dirs-default yes
+  #   zstyle ':chpwd:*' recent-dirs-pushd true
+  #
+  # # antigen-bundle zsh-users/zaw # auto-fuより先に書く need unsetopt sh_word_split
+  #   antigen-bundle zsh-users/zaw.git
+  #   zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
+  #   # bindkey '^m' zaw
+  #   bindkey "^r" zaw-history
+  #   bindkey "^m^m" zaw-cdr
+  #
+  #
+  # # antigen-bundle hchbaw/auto-fu.zsh # need unsetopt sh_word_split
+  # #   zstyle ':auto-fu:var' postdisplay $'' # 「-azfu-」を表示させない
+  # #   zle-line-init () {auto-fu-init;}
+  # #   zle -N zle-line-init
+  # #   zstyle ':completion:*' completer _oldlist _complete
+  # #   # zle -N zle-keymap-select auto-fu-zle-keymap-select
+  # #
+  # #   # Enterを押したときは自動補完された部分を利用しない。
+  # #   afu+cancel-and-accept-line() {
+  # #       ((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur" }
+  # #       zle afu+accept-line
+  # #   }
+  # #   zle -N afu+cancel-and-accept-line
+  # #   bindkey -M afu "^M" afu+cancel-and-accept-line  
+  
+  # antigen-bundle zsh-users/zsh-syntax-highlighting 
+  # antigen-bundle rupa/z
+  #   compctl -U -K _z_zsh_tab_completion \${_Z_CMD:-z}
+  
+  # antigen theme robbyrussell
   antigen-apply
 fi
 
@@ -78,18 +78,20 @@ setopt inc_append_history
 setopt hist_ignore_space 
 
 # Set shell options
+# http://voidy21.hatenablog.jp/entry/20090902/1251918174
 # 有効にしてあるのは副作用の少ないもの
 setopt auto_cd auto_name_dirs 
 setopt auto_remove_slash 
 setopt extended_glob list_types no_beep always_last_prompt
 setopt auto_param_keys pushd_ignore_dups
 # unsetopt sh_word_split  # need zaw, auto-fu
-setopt sh_word_split auto_param_keys pushd_ignore_dups
-setopt auto_param_keys pushd_ignore_dups
-setopt mark_dirs
+setopt pushd_ignore_dups
+# setopt mark_dirs # append / when expansion file = directory
+# setopt auto_param_slash # auto append directory var /
 REPORTTIME=10
-setopt auto_param_slash # auto append directory var /
 setopt rm_star_silent
+setopt glob_dots # valid completion start from . file
+setopt magic_equal_subst     # コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
 
 # 便利だが副作用の強いものはコメントアウト
 #setopt auto_menu  correct rm_star_silent sun_keyboard_hack
@@ -218,13 +220,22 @@ bindkey '^[w' _quote-previous-word-in-double
 zstyle ':completion:*:default' menu select=2 # select completion
 
 
+#色の定義
+# local DEFAULT=$'%{^[[m%}'$
+# local RED=$'%{^[[1;31m%}'$
+# local GREEN=$'%{^[[1;32m%}'$
+# local YELLOW=$'%{^[[1;33m%}'
+# local BLUE=$'%{^[[1;34m%}'$
+# local PURPLE=$'%{^[[1;35m%}'$
+# local LIGHT_BLUE=$'%{^[[1;36m%}'$
+# local WHITE=$'%{^[[1;37m%}'$
 
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
-zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
-zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
-zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
+# zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
+# zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
+# zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
+# zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
 # グループ名に空文字列を指定すると，マッチ対象のタグ名がグループ名に使われる。
 # したがって，すべての マッチ種別を別々に表示させたいなら以下のようにする
@@ -250,7 +261,6 @@ export CVS_RSH=ssh
 #    linux) LANG=C ;;
 #    *) LANG=ja_JP.UTF-8 ;;
 #esac
-
 
 zstyle ":completion:*default"  list-colors ""
 # case insensitive completion
