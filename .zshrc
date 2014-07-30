@@ -27,20 +27,20 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   # antigen-bundle gnu-utils
   # antigen-bundle python
   
-  # ## cdr
-  #   autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-  #   zstyle ':completion:*:*:cdr:*:*' menu selection
-  #   zstyle ':completion:*' recent-dirs-insert both
-  #   zstyle ':chpwd:*' recent-dirs-max 5000
-  #   zstyle ':chpwd:*' recent-dirs-default yes
-  #   zstyle ':chpwd:*' recent-dirs-pushd true
-  #
-  # # antigen-bundle zsh-users/zaw # auto-fuより先に書く need unsetopt sh_word_split
-  #   antigen-bundle zsh-users/zaw.git
-  #   zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
-  #   # bindkey '^m' zaw
-  #   bindkey "^r" zaw-history
-  #   bindkey "^m^m" zaw-cdr
+  ## cdr
+    autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+    zstyle ':completion:*:*:cdr:*:*' menu selection
+    zstyle ':completion:*' recent-dirs-insert both
+    zstyle ':chpwd:*' recent-dirs-max 5000
+    zstyle ':chpwd:*' recent-dirs-default yes
+    zstyle ':chpwd:*' recent-dirs-pushd true
+  
+  # antigen-bundle zsh-users/zaw # auto-fuより先に書く need unsetopt sh_word_split
+    antigen-bundle zsh-users/zaw.git
+    zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
+    # bindkey '^m' zaw
+    bindkey "^r" zaw-history
+    bindkey "^m^m" zaw-cdr
   #
   #
   # # antigen-bundle hchbaw/auto-fu.zsh # need unsetopt sh_word_split

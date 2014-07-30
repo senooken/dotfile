@@ -349,3 +349,17 @@ set nrformats=   " deal as decimal for number
   let fortran_free_source=1
   let fortran_fold=1
   au! BufRead,BufNewFile *.f90 let b:fortran_do_enddo=1
+
+"" show special character
+set lcs=tab:►\ ,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
+set list
+
+""" 全角スペースの表示
+highlight ZenkakuSpace cterm=underline ctermbg=red guibg=#666666
+au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
+au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
+
+"" folding
+autocmd FileType python :set foldmethod=indent
+autocmd FileType python :set foldlevel=1
+autocmd FileType python :set foldnestmax=2

@@ -40,6 +40,14 @@ alias ps="ps w"
 alias gic="git commit -am"
 alias gia="git add"
 
+### open
+alias o="open"
+case "${OSTYPE}" in
+  freebsd*|darwin*) alias o="open" ;;
+  linux*) alias open="xdg-open" ;; #    alias open="gnome-open";;
+  cygwin*) alias open="cygstart" ;;
+esac
+
 export SVN_EDITOR=vim
 export GNUPLOT_LIB=""		# data or script path
 export CYGWIN="nodosfilewarning winsymlinks:native"
@@ -47,16 +55,6 @@ export GREP_OPTIONS="--color=auto --binary-files=without-match"
 export LV="-c -l" 
 export LESS="-imr"
 
-# case "${OSTYPE}" in
-#   freebsd*|darwin*) 
-#   alias o="open"     ;;
-#   linux*) 
-#    alias open="xdg-open" ;;
-# #    alias open="gnome-open";;
-#   cygwin*) 
-#   alias open="cygstart"     
-#   ;;
-# esac
 
 
 ## for model setting
