@@ -50,7 +50,7 @@ esac
 
 export SVN_EDITOR=vim
 export GNUPLOT_LIB=""		# data or script path
-export CYGWIN="nodosfilewarning winsymlinks:native"
+export CYGWIN="nodosfilewarning winsymlinks:nativestrict"
 export GREP_OPTIONS="--color=auto --binary-files=without-match"
 export LV="-c -l" 
 export LESS="-imr"
