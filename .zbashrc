@@ -39,6 +39,7 @@ alias ps="ps w"
 ### Git
 alias gic="git commit -am"
 alias gia="git add"
+alias gim="git mv"
 
 ### open
 alias o="open"

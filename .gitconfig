@@ -8,7 +8,7 @@
 	grep = auto
 [core]
 	excludesfile = /home/senooken/.gitignore
-	fileMode = false
+	filemode = false
 [push]
 	default = current
 [alias]

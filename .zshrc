@@ -36,7 +36,9 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
     zstyle ':chpwd:*' recent-dirs-pushd true
   
   # antigen-bundle zsh-users/zaw # auto-fuより先に書く need unsetopt sh_word_split
-    antigen-bundle zsh-users/zaw.git
+    antigen bundle zsh-users/zaw.git
+    # antigen-bundle nakamuray/zaw.git
+    # source ~/.zsh/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zaw.git
     zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
     # bindkey '^m' zaw
     bindkey "^r" zaw-history
@@ -63,7 +65,7 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   #   compctl -U -K _z_zsh_tab_completion \${_Z_CMD:-z}
   
   # antigen theme robbyrussell
-  antigen-apply
+  # antigen-apply
 fi
 
 
