@@ -351,7 +351,7 @@ set nrformats=   " deal as decimal for number
   au! BufRead,BufNewFile *.f90 let b:fortran_do_enddo=1
 
 "" show special character
-set lcs=tab:►\ ,trail:␣,extends:»,precedes:«,nbsp:%
+set lcs=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
 " set lcs=tab:►\ ,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
 set list
 
