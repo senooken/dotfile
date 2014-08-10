@@ -321,15 +321,14 @@ noremap <m-d> dw
 " When insert mode, enable hjkl and go to home/end.
 inoremap <c-e> <END>
 inoremap <c-a> <HOME>
-inoremap <m-h> <LEFT>
-inoremap <m-j> <DOWN>
-inoremap <m-k> <UP>
-"inoremap <m-k> <UP>
-inoremap <m-l> <RIGHT>
+inoremap <c-h> <LEFT>
+inoremap <c-j> <DOWN>
+inoremap <c-k> <UP>
+inoremap <c-l> <RIGHT>
 inoremap <c-d> <delete>
 inoremap <c-b> <c-g>u<c-h>
 
-"inoremap <expr> = smartchr#loop(' = ', '=', ' == ')
+" inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
 
 "" move window
 nnoremap <ESC>h <C-w>h
@@ -340,16 +339,16 @@ nnoremap <ESC>l <C-w>l
 
 "" move last file position
 augroup vimrcEx
-      au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-      \ exe "normal g`\"" | endif
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
 augroup END
 
 
 set nrformats=   " deal as decimal for number
 
 
-""" language
-"" Fortran
+"" language
+""" Fortran
   let fortran_free_source=1
   let fortran_fold=1
   au! BufRead,BufNewFile *.f90 let b:fortran_do_enddo=1

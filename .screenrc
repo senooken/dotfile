@@ -16,7 +16,7 @@ defflow off
 
 # set command key to C-j (default: C-a)
 #escape ^@^@
-escape ^j^j
+escape ^m^m
 
 autodetach on
 altscreen on
