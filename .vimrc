@@ -104,6 +104,10 @@ NeoBundle 'thinca/vim-quickrun' " quick run in vim
   \    'runner' : 'vimproc',
   \  },
   \}
+  let g:quickrun_config={'*': {'split': ''}} " 規定の画面分割を上下にする。
+  set splitbelow
+  set splitright
+
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'tyru/caw.vim' " comment out
   " コメントアウトを切り替えるマッピング
