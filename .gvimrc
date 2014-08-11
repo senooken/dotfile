@@ -14,4 +14,4 @@ let g:neocomplcache_enable_at_startup = 1
 set noundofile
 
 "" 改行文字を表示
-set lcs=tab:►\ ,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
+set lcs=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
