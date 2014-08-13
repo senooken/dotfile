@@ -364,6 +364,6 @@ au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 
 "" folding
-autocmd FileType python :set foldmethod=indent
+" autocmd FileType python :set foldmethod=indent
 autocmd FileType python :set foldlevel=1
 autocmd FileType python :set foldnestmax=2
