@@ -1,9 +1,9 @@
 set number	" show line number
 "" font
 if has("gui_gtk2")
-  set guifont=migu_1m\ 10
+  set guifont=migu_1m\ 9
 elseif has("gui_win32")
-  set guifont=migu_1m:h10	"font
+  set guifont=migu_1m:h9	"font
 endif
 "set guifont=ipagothic:h12	"font
 set textwidth=0

@@ -56,9 +56,10 @@ NeoBundle 'Shougo/neosnippet'
   let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
   " Plugin key-mappings.  " <C-k>でsnippetの展開
   "imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
+  " imap <expr><CR> !pumvisible()? "" : neosnippet#expandable() ? "\<Plug>(neosnippet_expand)": neocomplete#close_popup()
+  imap <C-f> <Plug>(neosnippet_expand_or_jump)
+  smap <C-f> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-f> <Plug>(neosnippet_expand_target)
   " SuperTab like snippets bEHAVIr.
   imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
   smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
@@ -71,6 +72,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
+NeoBundle 'kana/vim-smartinput'
 NeoBundle 'Shougo/unite.vim'
 
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage

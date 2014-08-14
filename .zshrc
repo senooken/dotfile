@@ -29,6 +29,7 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   
   ## cdr
     autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+    add-zsh-hook chpwd chpwd_recent_dirs
     zstyle ':completion:*:*:cdr:*:*' menu selection
     zstyle ':completion:*' recent-dirs-insert both
     zstyle ':chpwd:*' recent-dirs-max 5000
