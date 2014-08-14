@@ -73,6 +73,14 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'kana/vim-smartinput'
+
+"" C++
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.cpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
 NeoBundle 'Shougo/unite.vim'
 
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
