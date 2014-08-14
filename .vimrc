@@ -49,6 +49,12 @@ NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
   endif
   inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+  "" C++
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.cpp =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
 NeoBundle 'Shougo/neosnippet'
   " Tell Neosnippet about the other snippets
@@ -73,13 +79,42 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'kana/vim-smartinput'
-
-"" C++
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.cpp =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  "" C++でstruct, class, enum+{の入力後に;を追記
+  call smartinput#define_rule({
+        \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
+        \   'char'     : '{',
+        \   'input'    : '{};<Left><Left>',
+        \   'filetype' : ['cpp'],
+        \   })
+  call smartinput#map_to_trigger('i', ':', ':', ':')
+  " call smartinput#define_rule({
+  "             \   'at'       : ':\%#',
+  "             \   'char'     : ':',
+  "             \   'input'    : '<BS>::',
+  "             \   'filetype' : ['cpp'],
+  "             \   })
+  " s:: -> std::, b:: -> boost::
+  " boost:: の補完
+  call smartinput#define_rule({
+              \   'at'       : '\<b:\%#',
+              \   'char'     : ':',
+              \   'input'    : '<BS>oost::',
+              \   'filetype' : ['cpp'],
+              \   })
+  " std:: の補完
+  call smartinput#define_rule({
+              \   'at'       : '\<s:\%#',
+              \   'char'     : ':',
+              \   'input'    : '<BS>td::',
+              \   'filetype' : ['cpp'],
+              \   })
+  " detail:: の補完
+  call smartinput#define_rule({
+              \   'at'       : '\%(\s\|::\)d:\%#',
+              \   'char'     : ':',
+              \   'input'    : '<BS>etail::',
+              \   'filetype' : ['cpp'],
+              \   })
 
 NeoBundle 'Shougo/unite.vim'
 
