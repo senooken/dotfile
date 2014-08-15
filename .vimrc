@@ -1,3 +1,7 @@
+"" .vimrc
+"" author: SENOO, Ken
+"" (Last Update: 2014-08-15T22:24+09:00)
+
 "" default vim setting by practical vim 
 set nocompatible " viとの互換をとらない
 filetype plugin on " valid vim plugin
@@ -15,7 +19,7 @@ if has('vim_starting')
   "runtimepathにneobundle.vimをインストールしたディレクトリを指定
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-"
+
 " プラグインをインストールする基準となるパスを指定
 call neobundle#rc(expand('~/.vim/bundle/'))
 
@@ -23,7 +27,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "" list installing plugins
-
 """ if_luaが有効ならneocompleteを使う
 NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
   if neobundle#is_installed('neocomplete')
@@ -32,7 +35,7 @@ NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
     let g:neocomplete#enable_ignore_case = 1
     let g:neocomplete#enable_smart_case = 1
     if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
+      let g:neocomplete#keyword_patterns = {}
     endif
     let g:neocomplete#keyword_patterns._ = '\h\w*'
   elseif neobundle#is_installed('neocomplcache')
@@ -41,7 +44,7 @@ NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
     let g:neocomplcache_enable_ignore_case = 1
     let g:neocomplcache_enable_smart_case = 1
     if !exists('g:neocomplcache_keyword_patterns')
-        let g:neocomplcache_keyword_patterns = {}
+      let g:neocomplcache_keyword_patterns = {}
     endif
     let g:neocomplcache_keyword_patterns._ = '\h\w*'
     let g:neocomplcache_enable_camel_case_completion = 1
@@ -69,52 +72,52 @@ NeoBundle 'Shougo/neosnippet'
   " SuperTab like snippets bEHAVIr.
   imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
   smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-  
+
   " For snippet_complete marker.
   if has('conceal')
-      set conceallevel=2 concealcursor=i
+    set conceallevel=2 concealcursor=i
   endif
 
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
-" NeoBundle 'kana/vim-smartinput'
-"   "" C++でstruct, class, enum+{の入力後に;を追記
-"   call smartinput#define_rule({
-"         \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
-"         \   'char'     : '{',
-"         \   'input'    : '{};<Left><Left>',
-"         \   'filetype' : ['cpp'],
-"         \   })
-"   call smartinput#map_to_trigger('i', ':', ':', ':')
-"   " call smartinput#define_rule({
-"   "             \   'at'       : ':\%#',
-"   "             \   'char'     : ':',
-"   "             \   'input'    : '<BS>::',
-"   "             \   'filetype' : ['cpp'],
-"   "             \   })
-"   " s:: -> std::, b:: -> boost::
-"   " boost:: の補完
-"   call smartinput#define_rule({
-"               \   'at'       : '\<b:\%#',
-"               \   'char'     : ':',
-"               \   'input'    : '<BS>oost::',
-"               \   'filetype' : ['cpp'],
-"               \   })
-"   " std:: の補完
-"   call smartinput#define_rule({
-"               \   'at'       : '\<s:\%#',
-"               \   'char'     : ':',
-"               \   'input'    : '<BS>td::',
-"               \   'filetype' : ['cpp'],
-"               \   })
-"   " detail:: の補完
-"   call smartinput#define_rule({
-"               \   'at'       : '\%(\s\|::\)d:\%#',
-"               \   'char'     : ':',
-"               \   'input'    : '<BS>etail::',
-"               \   'filetype' : ['cpp'],
-"               \   })
+NeoBundle 'kana/vim-smartinput'
+  "" C++でstruct, class, enum+{の入力後に;を追記
+  call smartinput#define_rule({
+        \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
+        \   'char'     : '{',
+        \   'input'    : '{};<Left><Left>',
+        \   'filetype' : ['cpp'],
+        \   })
+  call smartinput#map_to_trigger('i', ':', ':', ':')
+  " call smartinput#define_rule({
+  "             \   'at'       : ':\%#',
+  "             \   'char'     : ':',
+  "             \   'input'    : '<BS>::',
+  "             \   'filetype' : ['cpp'],
+  "             \   })
+  " s:: -> std::, b:: -> boost::
+  " boost:: の補完
+  call smartinput#define_rule({
+              \   'at'       : '\<b:\%#',
+              \   'char'     : ':',
+              \   'input'    : '<BS>oost::',
+              \   'filetype' : ['cpp'],
+              \   })
+  " std:: の補完
+  call smartinput#define_rule({
+              \   'at'       : '\<s:\%#',
+              \   'char'     : ':',
+              \   'input'    : '<BS>td::',
+              \   'filetype' : ['cpp'],
+              \   })
+  " detail:: の補完
+  call smartinput#define_rule({
+              \   'at'       : '\%(\s\|::\)d:\%#',
+              \   'char'     : ':',
+              \   'input'    : '<BS>etail::',
+              \   'filetype' : ['cpp'],
+              \   })
 
 NeoBundle 'Shougo/unite.vim'
 
@@ -135,13 +138,13 @@ NeoBundle 'autodate.vim' " autodate.vim
 
 
 NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+  \ 'build' : {
+  \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
+  \    'cygwin' : 'make -f make_cygwin.mak',
+  \    'mac' : 'make -f make_mac.mak',
+  \    'unix' : 'make -f make_unix.mak',
+  \   },
+  \ }
 
 NeoBundle 'thinca/vim-quickrun' " quick run in vim
   let g:quickrun_config = {
@@ -156,9 +159,7 @@ NeoBundle 'thinca/vim-quickrun' " quick run in vim
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'tyru/caw.vim' " comment out
   " コメントアウトを切り替えるマッピング
-  " \c でカーソル行をコメントアウト
-  " 再度 \c でコメントアウトを解除
-  " 選択してから複数行の \c も可能
+  " \c でカーソル行をコメントアウト  再度 \c でコメントアウトを解除
   nmap \c <Plug>(caw:i:toggle)
   vmap \c <Plug>(caw:i:toggle)
 
@@ -242,7 +243,7 @@ set history=50
 set nonumber
 
 " タイトルをウインドウ枠に表示 
-" 2013/01/29 notitleにすることで「vimを使ってくれてありがとう」を非表示にする
+" notitleにすることで「vimを使ってくれてありがとう」を非表示にする
 set notitle
 " ルーラーを表示
 set ruler
@@ -314,19 +315,19 @@ set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらな�
 "set clipboard=unnamed,autoselect	" バッファにクリップオードを利用する
 
 "" template file
-autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat 
+autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
 autocmd BufNewFile * silent! :0r  ~/.vim/template/%:e.tmpl " 拡張子付きのファイルはテンプレから新規作成
-autocmd BufNewFile Makefile silent! :0r  ~/.vim/template/Makefile 
+autocmd BufNewFile Makefile silent! :0r  ~/.vim/template/Makefile
 
 "" shebangのあるファイルには自動で実行権限を付加
-"autocmd BufWritePost * :call AddExecmod()
-"function AddExecmod()
-"	let line = getline(1)
-"    if strpart(line, 0, 2) == "#!"
-"		call system("chmod +x ". expand("%"))
-"	endif
-"endfunction
-"
+autocmd BufWritePost * :call AddExecmod()
+function AddExecmod()
+  let line = getline(1)
+  if strpart(line, 0, 2) == "#!" && !has("gui_win32") " WindowsのGvimではしない
+    call system("chmod +x ". expand("%"))
+  endif
+endfunction
+
 "" open browser by double click
 "function! Browser () 
 "    let line = getline (".") 
