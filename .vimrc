@@ -78,43 +78,43 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
-NeoBundle 'kana/vim-smartinput'
-  "" C++でstruct, class, enum+{の入力後に;を追記
-  call smartinput#define_rule({
-        \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
-        \   'char'     : '{',
-        \   'input'    : '{};<Left><Left>',
-        \   'filetype' : ['cpp'],
-        \   })
-  call smartinput#map_to_trigger('i', ':', ':', ':')
-  " call smartinput#define_rule({
-  "             \   'at'       : ':\%#',
-  "             \   'char'     : ':',
-  "             \   'input'    : '<BS>::',
-  "             \   'filetype' : ['cpp'],
-  "             \   })
-  " s:: -> std::, b:: -> boost::
-  " boost:: の補完
-  call smartinput#define_rule({
-              \   'at'       : '\<b:\%#',
-              \   'char'     : ':',
-              \   'input'    : '<BS>oost::',
-              \   'filetype' : ['cpp'],
-              \   })
-  " std:: の補完
-  call smartinput#define_rule({
-              \   'at'       : '\<s:\%#',
-              \   'char'     : ':',
-              \   'input'    : '<BS>td::',
-              \   'filetype' : ['cpp'],
-              \   })
-  " detail:: の補完
-  call smartinput#define_rule({
-              \   'at'       : '\%(\s\|::\)d:\%#',
-              \   'char'     : ':',
-              \   'input'    : '<BS>etail::',
-              \   'filetype' : ['cpp'],
-              \   })
+" NeoBundle 'kana/vim-smartinput'
+"   "" C++でstruct, class, enum+{の入力後に;を追記
+"   call smartinput#define_rule({
+"         \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
+"         \   'char'     : '{',
+"         \   'input'    : '{};<Left><Left>',
+"         \   'filetype' : ['cpp'],
+"         \   })
+"   call smartinput#map_to_trigger('i', ':', ':', ':')
+"   " call smartinput#define_rule({
+"   "             \   'at'       : ':\%#',
+"   "             \   'char'     : ':',
+"   "             \   'input'    : '<BS>::',
+"   "             \   'filetype' : ['cpp'],
+"   "             \   })
+"   " s:: -> std::, b:: -> boost::
+"   " boost:: の補完
+"   call smartinput#define_rule({
+"               \   'at'       : '\<b:\%#',
+"               \   'char'     : ':',
+"               \   'input'    : '<BS>oost::',
+"               \   'filetype' : ['cpp'],
+"               \   })
+"   " std:: の補完
+"   call smartinput#define_rule({
+"               \   'at'       : '\<s:\%#',
+"               \   'char'     : ':',
+"               \   'input'    : '<BS>td::',
+"               \   'filetype' : ['cpp'],
+"               \   })
+"   " detail:: の補完
+"   call smartinput#define_rule({
+"               \   'at'       : '\%(\s\|::\)d:\%#',
+"               \   'char'     : ':',
+"               \   'input'    : '<BS>etail::',
+"               \   'filetype' : ['cpp'],
+"               \   })
 
 NeoBundle 'Shougo/unite.vim'
 
@@ -412,3 +412,5 @@ au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 " autocmd FileType python :set foldmethod=indent
 autocmd FileType python :set foldlevel=1
 autocmd FileType python :set foldnestmax=2
+
+autocmd FileType * setlocal formatoptions-=ro
