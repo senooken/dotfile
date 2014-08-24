@@ -4,9 +4,7 @@ startup_message off
 # Surpression of start  "New screen..." for screen-4.1.0
 msgwait 0
 
-## trun off flash
-vbell off
-
+vbell off # trun off flash
 
 # for emacs C-s
 defflow off
@@ -20,7 +18,6 @@ escape ^n^n
 
 autodetach on
 altscreen on
-termcapinfo xterm* ti@:te@
 #shell -$SHELL
 
 # scroll back buffer
@@ -55,9 +52,9 @@ bind b focus bottom
 bind h focus left
 bind l focus right
 
+termcapinfo xterm* ti@:te@
 termcapinfo xterm "WS = \E[8;%d;%dt"
-#termcapinfo xterm "li#63:co#100"
-termcapinfo xterm "li#100:co#100"
+termcapinfo xterm "li#100:co#100" # set default window size
 
 %?%F%{= gW}%:%{= Kk}%?%2n%f%07=%t%=
 
