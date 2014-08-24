@@ -49,6 +49,11 @@ case "${OSTYPE}" in
   cygwin*) alias open="cygstart" ;;
 esac
 
+### development
+alias py='python'
+alias rb='ruby'
+alias gpp='g++'
+
 export SVN_EDITOR=vim
 export GNUPLOT_LIB=""		# data or script path
 export CYGWIN="nodosfilewarning winsymlinks:nativestrict"

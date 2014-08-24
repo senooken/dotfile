@@ -78,23 +78,20 @@ HISTSIZE=9999 HISTFILE=~/.zhistory SAVEHIST=$HISTSIZE
 setopt extended_history
 setopt hist_ignore_dups
 setopt inc_append_history
-setopt hist_ignore_space 
+setopt hist_ignore_space
 
 # Set shell options
 # http://voidy21.hatenablog.jp/entry/20090902/1251918174
 # 有効にしてあるのは副作用の少ないもの
-setopt auto_cd auto_name_dirs 
-setopt auto_remove_slash 
-setopt extended_glob list_types no_beep always_last_prompt
-setopt auto_param_keys pushd_ignore_dups
+setopt auto_cd auto_name_dirs
+setopt auto_remove_slash
+setopt list_types no_beep always_last_prompt
+setopt pushd_ignore_dups
 # unsetopt sh_word_split  # need zaw, auto-fu
 setopt pushd_ignore_dups
-setopt mark_dirs # append / when expansion file = directory
 # setopt auto_param_slash # auto append directory var /
 REPORTTIME=10
 setopt rm_star_silent
-setopt glob_dots # valid completion start from . file
-setopt magic_equal_subst     # コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
 
 # 便利だが副作用の強いものはコメントアウト
 #setopt auto_menu  correct rm_star_silent sun_keyboard_hack
@@ -142,11 +139,6 @@ alias -g U=' --help | head'
 alias -g P=" --help | $PAGER"
 alias -g W="| wc"
 
-### development
-alias py='python'
-alias rb='ruby'
-alias gpp='g++'
-
 ## share gnu screen clipboard
 if which xsel > /dev/null 2>&1
 then
@@ -185,18 +177,6 @@ PROMPT=$'%7(~|[%~]\n|)%{\e[35m%}%n%#%{\e[m%} '
 RPROMPT=$'%7(~||[%{\e[31m%}%~%{\e[m%}])'
 
 
-## pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-    COMP_CWORD=$(( cword-1 )) \
-    PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
-## pip zsh completion end
-
 ## insert last argument by  C-]
 autoload smart-insert-last-word
 zle -N insert-last-word smart-insert-last-word
@@ -220,9 +200,6 @@ zle -N _quote-previous-word-in-double
 bindkey '^[w' _quote-previous-word-in-double
 
 
-zstyle ':completion:*:default' menu select=2 # select completion
-
-
 #色の定義
 # local DEFAULT=$'%{^[[m%}'$
 # local RED=$'%{^[[1;31m%}'$
@@ -233,8 +210,12 @@ zstyle ':completion:*:default' menu select=2 # select completion
 # local LIGHT_BLUE=$'%{^[[1;36m%}'$
 # local WHITE=$'%{^[[1;37m%}'$
 
+zstyle ':completion:*:default' menu select=2 # select completion
 zstyle ':completion:*' verbose yes
-zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+# zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*' completer _complete _match _prefix _approximate _list _history
+## _expandをつけると$HOMEなどが展開されて面倒くさい。
+
 # zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
 # zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
 # zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
@@ -246,13 +227,30 @@ zstyle ':completion:*' group-name ''
 
 ## ignore object file and intermediate file
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
-
 zstyle ':completion:*' use-cache true # speed up apt
-
 zstyle ":completion:*:commands" rehash 1 # update PATH when change
-unsetopt cdablevars # invalid additional candidacy when cd completation
 setopt interactivecomments # line end comment out after #
 unsetopt equals # invalid = expansion for bash script [ == ].
+
+## setting of completion
+unsetopt cdable_vars # invalid additional candidacy when cd completation
+setopt glob_dots # valid completion start from . file
+setopt magic_equal_subst # コマンドラインの引数で --prefix=/usrなど=以降でも補完
+setopt mark_dirs # append / when expansion file = directory
+setopt complete_in_word # 単語の途中でも補完を有効化
+setopt extended_glob # ファイル名パターンマッチに使えるフラグを有効化
+
+## pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+    COMP_CWORD=$(( cword-1 )) \
+    PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+## pip zsh completion end
 
 export WINEARCH=win32
 
