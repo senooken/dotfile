@@ -1,5 +1,5 @@
 ## Makefile
-## @author: SENOO, Ken
+## Author: SENOO, Ken
 ## (Last Update: )
 
 FC=# gfortran
