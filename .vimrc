@@ -1,6 +1,5 @@
 "" .vimrc
-"" author: SENOO, Ken
-"" (Last Update: 2014-08-15T22:24+09:00)
+"" Author: SENOO, Ken
 
 "" default vim setting by practical vim 
 set nocompatible " viとの互換をとらない
@@ -119,6 +118,8 @@ NeoBundle 'kana/vim-smartinput'
               \   'filetype' : ['cpp'],
               \   })
 
+
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Shougo/unite.vim'
 
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
