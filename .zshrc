@@ -213,7 +213,7 @@ bindkey '^[w' _quote-previous-word-in-double
 zstyle ':completion:*:default' menu select=2 # select completion
 zstyle ':completion:*' verbose yes
 # zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-zstyle ':completion:*' completer _complete _match _prefix _approximate _list _history
+zstyle ':completion:*' completer _complete _match _approximate _list _history _ignored _prefix
 ## _expandをつけると$HOMEなどが展開されて面倒くさい。
 
 # zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
