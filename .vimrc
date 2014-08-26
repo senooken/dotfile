@@ -324,7 +324,7 @@ autocmd BufNewFile Makefile silent! :0r  ~/.vim/template/Makefile
 autocmd BufWritePost * :call AddExecmod()
 function AddExecmod()
   let line = getline(1)
-  if strpart(line, 0, 2) == "#!" && !has("gui_win32") " WindowsのGvimではしない
+  if strpart(line, 0, 2) == "#!" && !has("gui_win32") && !has('win32') && !has('win64') && !has('win32unix') " WindowsのGvimではしない
     call system("chmod +x ". expand("%"))
   endif
 endfunction
