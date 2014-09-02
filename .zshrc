@@ -176,6 +176,8 @@ RED="%{\e[31m%}"
 PROMPT=$'%7(~|[%~]\n|)%{\e[35m%}%n%#%{\e[m%} '
 RPROMPT=$'%7(~||[%{\e[31m%}%~%{\e[m%}])'
 
+## tmux
+PROMPT+='$([ -n "$TMUX" ] && tmux display -p "#I-#P"): '
 
 ## insert last argument by  C-]
 autoload smart-insert-last-word
