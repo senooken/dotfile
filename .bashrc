@@ -187,9 +187,6 @@ export TMPDIR=/tmp
 export TZ=JST-09
 export MAKE_MODE=unix
 
-PATH=/usr/local/sbin:/usr/sbin:/sbin:.
-PATH=/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:$PATH
-
 PAGER=less
 JLESSCHARSET=japanese-sjis
 export PATH PAGER JLESSCHARSET

@@ -7,7 +7,7 @@ export LD_LIBRARY_PATH="${HOME}/local/lib:$HOME/local/lib64:/usr/local/lib:/usr/
 export CPATH="${HOME}/local/include:$CPATH"
 
 ## for python pip local installed package
-export PATH=${HOME}/.local/bin:$PATH 
+export PATH=${HOME}/.local/bin:$PATH
 export MANPATH=${HOME}/.local/man:$HOME/.local/share/man:$MANPATH
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 #export INCLUDE="${HOME}/.local/include:$INCLUDE"
