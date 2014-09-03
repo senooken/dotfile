@@ -61,6 +61,7 @@ export MSYS="winsymlinks:nativestrict"
 export GREP_OPTIONS="--color=auto --binary-files=without-match"
 export LV="-c -l" 
 export LESS="-imr"
+export PAGER="less"
 
 
 
