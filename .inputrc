@@ -42,10 +42,17 @@
 "\eOF": end-of-line
 
 # Allow 8-bit input/output
+<<<<<<< HEAD
 set meta-flag on
 set convert-meta off
 set input-meta on
 set output-meta on
+=======
+#set meta-flag on
+#set convert-meta off
+#set input-meta on
+#set output-meta on
+>>>>>>> ad69c57cc82d965a561967c35a017932693407ff
 #$if Bash
   # Don't ring bell on completion
   #set bell-style none
