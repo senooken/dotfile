@@ -19,8 +19,7 @@ typeset -U path
 # Setup command search path
 typeset -U path
 # (N-/) を付けることで存在しなければ無視してくれる
-path=( /usr/*/*bin(N-/) /usr/local/*/*bin(N-/) /var/*/*bin(N-/) /usr/*bin /*bin)
->>>>>>> ad69c57cc82d965a561967c35a017932693407ff
+# path=( /usr/*/*bin(N-/) /usr/local/*/*bin(N-/) /var/*/*bin(N-/) /usr/*bin /*bin)
 
 ## binding keys
 bindkey -e
