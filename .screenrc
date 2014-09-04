@@ -21,7 +21,7 @@ altscreen on
 #shell -$SHELL
 
 # scroll back buffer
-defscrollback 100000
+defscrollback 1000
 
 hardstatus on
 hardstatus alwayslastline '%{= .g}%H%{-} %L=%-w%45L>%{=u g.}%n %t%{-}%+w %-17<%=%Y-%m-%dT%02c:%s'
