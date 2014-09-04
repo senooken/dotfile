@@ -25,3 +25,5 @@
 [http]
 	sslcainfo = /mingw32/ssl/certs/ca-bundle.crt
 	sslverify = false
+[init]
+	templatedir = /home/senooken/.git-template
