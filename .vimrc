@@ -81,22 +81,22 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'kana/vim-smartinput'
-  " "" C++でstruct, class, enum+{の入力後に;を追記
+  "" C++でstruct, class, enum+{の入力後に;を追記
   call smartinput#define_rule({
         \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
         \   'char'     : '{',
         \   'input'    : '{};<Left><Left>',
         \   'filetype' : ['cpp'],
         \   })
-  " call smartinput#map_to_trigger('i', ':', ':', ':')
-  " " call smartinput#define_rule({
-  " "             \   'at'       : ':\%#',
-  " "             \   'char'     : ':',
-  " "             \   'input'    : '<BS>::',
-  " "             \   'filetype' : ['cpp'],
-  " "             \   })
-  " " s:: -> std::, b:: -> boost::
-  " " boost:: の補完
+  call smartinput#map_to_trigger('i', ':', ':', ':')
+  " call smartinput#define_rule({
+  "             \   'at'       : ':\%#',
+  "             \   'char'     : ':',
+  "             \   'input'    : '<BS>::',
+  "             \   'filetype' : ['cpp'],
+  "             \   })
+  "" s:: -> std::, b:: -> boost::
+  "" boost:: の補完
   call smartinput#define_rule({
               \   'at'       : '\<b:\%#',
               \   'char'     : ':',
