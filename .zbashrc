@@ -59,10 +59,12 @@ export GNUPLOT_LIB=""		# data or script path
 export CYGWIN="nodosfilewarning winsymlinks:nativestrict"
 export MSYS="winsymlinks:nativestrict"
 export GREP_OPTIONS="--color=auto --binary-files=without-match"
+
+## Pager
+export PAGER="less"
+which lv > /dev/null 2>&1 && export PAGER=lv
 export LV="-c -l" 
 export LESS="-imr"
-export PAGER="less"
-
 
 
 ## for model setting
