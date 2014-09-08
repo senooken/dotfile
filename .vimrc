@@ -122,6 +122,27 @@ NeoBundle 'kana/vim-smartinput'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Shougo/unite.vim'
 
+"" code highlight
+NeoBundleLazy 'vim-jp/cpp-vim', {
+      \ 'autoload': {'filetypes' : 'cpp'}
+      \ }
+
+augroup cpp-path
+    autocmd!
+    autocmd FileType cpp setlocal path=.,/usr/include,/usr/local/include,/usr/lib/c++/v1
+augroup END
+
+"" Install clang_complete
+" NeoBundle 'Rip-Rip/clang_complete'
+"   let g:clang_periodic_quickfix = 1
+"   let g:clang_complete_copen = 1
+"   let g:clang_use_library = 1
+"
+"   " this need to be updated on llvm update
+"   let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
+"   " specify compiler options
+"   let g:clang_user_options = '-std=c++11 -stdlib=libc++'
+
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
 NeoBundle 'thinca/vim-fontzoom' " change font size easy
 NeoBundle 'kana/vim-smartchr'
