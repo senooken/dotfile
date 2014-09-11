@@ -396,6 +396,12 @@ inoremap <c-l> <RIGHT>
 inoremap <c-d> <delete>
 inoremap <c-b> <c-g>u<c-h>
 
+"" Handle tmux HOME and End key in vim
+map <Esc>OH <Home>
+map! <Esc>OH <Home>
+map <Esc>OF <End>
+map! <Esc>OF <End>
+
 " inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
 
 "" move window
