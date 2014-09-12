@@ -158,6 +158,11 @@ NeoBundle 'autodate.vim' " autodate.vim
   let autodate_format="%Y-%m-%dT%H:%M+09:00"
   let autodate_lines=5
 
+NeoBundle 'gist:syui/8192e440c49d879338eb', {
+  \ 'name': 'airautonfile.vim',
+  \ 'script_type': 'plugin'
+  \ }
+
 
 NeoBundle 'Shougo/vimproc', {
   \ 'build' : {

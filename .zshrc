@@ -140,6 +140,11 @@ alias -g U=' --help | head'
 alias -g P=" --help | $PAGER"
 alias -g W="| wc"
 
+#### Copy to clipboard
+which xsel 2>&1 > /dev/null && alias -g C="| xsel -ib" # Linux
+which putclip 2>&1 > /dev/null && alias -g C="| putclip" # Cygwin
+which pbcopy 2>&1 > /dev/null && alias -g C="| pbcopy" # Mac
+
 ## share gnu screen clipboard
 if which xsel > /dev/null 2>&1
 then
