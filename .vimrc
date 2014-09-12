@@ -158,10 +158,13 @@ NeoBundle 'autodate.vim' " autodate.vim
   let autodate_format="%Y-%m-%dT%H:%M+09:00"
   let autodate_lines=5
 
-NeoBundle 'gist:syui/8192e440c49d879338eb', {
-  \ 'name': 'airautonfile.vim',
-  \ 'script_type': 'plugin'
-  \ }
+" NeoBundle 'gist:syui/8192e440c49d879338eb', {
+"   \ 'name': 'airautonfile.vim',
+"   \ 'script_type': 'plugin'
+"   \ }
+"   let g:air_autofile_cmd = 1
+"   let g:air_autofile_comment = 'file name: '
+
 
 
 NeoBundle 'Shougo/vimproc', {
@@ -456,3 +459,4 @@ augroup MyXML
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
+" .vimrc
