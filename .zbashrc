@@ -52,7 +52,7 @@ esac
 ### development
 alias py='python'
 alias rb='ruby'
-alias gpp='g++ -Wall'
+alias gpp='g++ -Wall -std=c++1y'
 
 export SVN_EDITOR=vim
 export GNUPLOT_LIB=""		# data or script path
