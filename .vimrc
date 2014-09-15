@@ -152,20 +152,16 @@ NeoBundle 'tpope/vim-surround'
 "NeoBundle 'tyru/open-browser-github'
 "
 
-NeoBundle 'autodate.vim' " autodate.vim
+NeoBundle 'autodate.vim'
   let autodate_keyword_pre="(Last Update:"
   let autodate_keyword_post=")"
   let autodate_format="%Y-%m-%dT%H:%M+09:00"
-  let autodate_lines=5
+  let autodate_lines=10
 
-" NeoBundle 'gist:syui/8192e440c49d879338eb', {
-"   \ 'name': 'airautonfile.vim',
-"   \ 'script_type': 'plugin'
-"   \ }
-"   let g:air_autofile_cmd = 1
-"   let g:air_autofile_comment = 'file name: '
-
-
+NeoBundle 'lamsh/autofname.vim'
+  let autofname_keyword_pre="(File name:"
+  let autofname_keyword_post=")"
+  let autofname_lines=10
 
 NeoBundle 'Shougo/vimproc', {
   \ 'build' : {
