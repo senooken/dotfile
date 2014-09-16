@@ -143,6 +143,8 @@ augroup END
 "   " specify compiler options
 "   let g:clang_user_options = '-std=c++11 -stdlib=libc++'
 
+NeoBundle 'davidhalter/jedi-vim'
+
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
 NeoBundle 'thinca/vim-fontzoom' " change font size easy
 NeoBundle 'kana/vim-smartchr'
