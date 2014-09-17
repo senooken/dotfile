@@ -150,7 +150,10 @@ NeoBundle 'thinca/vim-fontzoom' " change font size easy
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
 NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
-NeoBundle 'tpope/vim-surround' 
+"" text edit
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'Align'
+NeoBundle 'YankRing.vim'
 "NeoBundle 'tyru/open-browser-github'
 "
 
