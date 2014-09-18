@@ -128,6 +128,7 @@ autoload -U compinit && compinit -u
 ### Global aliases 
 alias -g A="| awk"
 alias -g G="| grep"
+alias -g GE="| grep -i error"
 alias -g GV="| grep -v"
 alias -g H="| head"
 alias -g L="| $PAGER"
