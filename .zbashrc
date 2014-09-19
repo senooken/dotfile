@@ -53,6 +53,7 @@ esac
 alias py='python'
 alias rb='ruby'
 alias gpp='g++ -Wall -std=c++1y'
+alias gf='gfortran -Wall -static'
 
 export SVN_EDITOR=vim
 export GNUPLOT_LIB=""		# data or script path
