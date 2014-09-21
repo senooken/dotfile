@@ -179,11 +179,12 @@ NeoBundle 'Shougo/vimproc', {
 
 NeoBundle 'thinca/vim-quickrun' " quick run in vim
   let g:quickrun_config = {"_": {'runner' : 'vimproc'}}
+  let g:quickrun_config={'fortran': {'cmdopt': '-Wall -static'}}
+  let g:quickrun_config={'cpp': {'cmdopt': '-Wall'}}
+
   let g:quickrun_config={'_': {'split': ''}} " 規定の画面分割を上下にする。
   set splitbelow
   set splitright
-  let g:quickrun_config={'fortran': {'cmdopt': '-Wall -static'}}
-  let g:quickrun_config={'cpp': {'cmdopt': '-Wall'}}
 
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'tyru/caw.vim' " comment out
