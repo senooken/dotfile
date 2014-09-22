@@ -1,6 +1,6 @@
-## Makefile
+## (File name: )
 ## Author: SENOO, Ken
-## (Last Update: )
+## (Last update: )
 
 FC=# gfortran
 CC=# gcc
