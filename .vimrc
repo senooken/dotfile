@@ -81,13 +81,19 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'kana/vim-smartinput'
+  "" 空白文字以外のときは勝手に補間させない
+  call smartinput#define_rule({
+    \ 'at': '\%#\S', 'char': '(', 'input': '(' })
+  call smartinput#define_rule({
+    \ 'at': '\%#\S', 'char': ')', 'input': ')' })
+
   "" C++でstruct, class, enum+{の入力後に;を追記
   call smartinput#define_rule({
-        \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
-        \   'char'     : '{',
-        \   'input'    : '{};<Left><Left>',
-        \   'filetype' : ['cpp'],
-        \   })
+    \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
+    \   'char'     : '{',
+    \   'input'    : '{};<Left><Left>',
+    \   'filetype' : ['cpp'],
+    \   })
   call smartinput#map_to_trigger('i', ':', ':', ':')
   " call smartinput#define_rule({
   "             \   'at'       : ':\%#',
@@ -98,25 +104,25 @@ NeoBundle 'kana/vim-smartinput'
   "" s:: -> std::, b:: -> boost::
   "" boost:: の補完
   call smartinput#define_rule({
-              \   'at'       : '\<b:\%#',
-              \   'char'     : ':',
-              \   'input'    : '<BS>oost::',
-              \   'filetype' : ['cpp'],
-              \   })
+    \   'at'       : '\<b:\%#',
+    \   'char'     : ':',
+    \   'input'    : '<BS>oost::',
+    \   'filetype' : ['cpp'],
+    \   })
   " std:: の補完
   call smartinput#define_rule({
-              \   'at'       : '\<s:\%#',
-              \   'char'     : ':',
-              \   'input'    : '<BS>td::',
-              \   'filetype' : ['cpp'],
-              \   })
+    \   'at'       : '\<s:\%#',
+    \   'char'     : ':',
+    \   'input'    : '<BS>td::',
+    \   'filetype' : ['cpp'],
+    \   })
   " detail:: の補完
   call smartinput#define_rule({
-              \   'at'       : '\%(\s\|::\)d:\%#',
-              \   'char'     : ':',
-              \   'input'    : '<BS>etail::',
-              \   'filetype' : ['cpp'],
-              \   })
+    \   'at'       : '\%(\s\|::\)d:\%#',
+    \   'char'     : ':',
+    \   'input'    : '<BS>etail::',
+    \   'filetype' : ['cpp'],
+    \   })
 
 
 NeoBundle 'mattn/emmet-vim'
