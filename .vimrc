@@ -86,6 +86,14 @@ NeoBundle 'kana/vim-smartinput'
     \ 'at': '\%#\S', 'char': '(', 'input': '(' })
   call smartinput#define_rule({
     \ 'at': '\%#\S', 'char': ')', 'input': ')' })
+  call smartinput#define_rule({
+    \ 'at': '\%#\S', 'char': '[', 'input': '[' })
+  call smartinput#define_rule({
+    \ 'at': '\%#\S', 'char': ']', 'input': ']' })
+  call smartinput#define_rule({
+    \ 'at': '\%#\S', 'char': '{', 'input': '{' })
+  call smartinput#define_rule({
+    \ 'at': '\%#\S', 'char': '}', 'input': '}' })
 
   "" C++でstruct, class, enum+{の入力後に;を追記
   call smartinput#define_rule({
