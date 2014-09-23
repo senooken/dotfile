@@ -121,6 +121,14 @@ NeoBundle 'kana/vim-smartinput'
 
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Shougo/unite.vim'
+  let g:unite_source_history_yank_enable=1
+  nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+  nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+
+NeoBundle 'Shougo/neomru.vim'
+  let g:neomru#time_format = "[%Y%m%dT%H%M] "
+  let g:unite_source_file_mru_limit = 200
+  nnoremap <silent> ,ur :<C-u>Unite file_mru<CR>
 
 "" code highlight
 NeoBundleLazy 'vim-jp/cpp-vim', {
@@ -150,6 +158,19 @@ NeoBundle 'thinca/vim-fontzoom' " change font size easy
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
 NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
+  "" vim-indent-guides'
+  let g:indent_guides_enable_on_vim_startup = 1
+  let g:indent_guides_start_level = 2 " start indent column
+  let g:indent_guides_auto_colors = 0
+  "" 奇数インデントのカラー
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=gray
+  "" 偶数インデントのカラー
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=yellow " darkgray
+  let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
+  let g:indent_guides_guide_size = 1 " indent guide size
+
+NeoBundle "osyo-manga/vim-over"
+
 "" text edit
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'Align'
@@ -246,16 +267,6 @@ filetype indent on " required
 "let g:vimfiler_safe_mode_by_default = 0
 "let g:netrw_liststyle=3
 
-"" vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2 " start indent column
-let g:indent_guides_auto_colors = 0
-"" 奇数インデントのカラー
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=gray
-"" 偶数インデントのカラー
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=yellow " darkgray
-let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
-let g:indent_guides_guide_size = 1 " indent guide size
 
 "" my variable
 let $TODAY=strftime('%Y%m%d')
