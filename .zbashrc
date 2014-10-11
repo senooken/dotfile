@@ -64,11 +64,11 @@ export GREP_OPTIONS="--color=auto --binary-files=without-match"
 ## compile
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
 export LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋め込み
-[ `which wx-config` ] && export WXCONFIG="`wx-config --cppflags --libs | tr \"\n\" ' '`" # wxwidgetsのコンパイルフラグ
+[ `command -v wx-config` ] && export WXCONFIG="`wx-config --cppflags --libs | tr \"\n\" ' '`" # wxwidgetsのコンパイルフラグ
 
 ## Pager
 export PAGER="less"
-[ `which lv` ] && export PAGER=lv
+[ `command -v lv` ] && export PAGER=lv
 export LV="-c -l"
 export LESS="-imr"
 
