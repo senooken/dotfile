@@ -30,7 +30,7 @@ alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l="ls -F"
 
 ### Default to human readable figures
-alias df='df -h' 
+alias df='df -h'
 alias du='du -h'
 alias ps="ps w"
 
@@ -64,12 +64,12 @@ export GREP_OPTIONS="--color=auto --binary-files=without-match"
 ## compile
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
 export LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋め込み
-export WXCONFIG="`wx-config --cppflags --libs | tr \"\n\" ' '`" # wxwidgetsのコンパイルフラグ
+[ `which wx-config` ] && export WXCONFIG="`wx-config --cppflags --libs | tr \"\n\" ' '`" # wxwidgetsのコンパイルフラグ
 
 ## Pager
 export PAGER="less"
-which lv > /dev/null 2>&1 && export PAGER=lv
-export LV="-c -l" 
+[ `which lv` ] && export PAGER=lv
+export LV="-c -l"
 export LESS="-imr"
 
 
