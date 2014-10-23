@@ -54,6 +54,7 @@ alias py='python'
 alias rb='ruby'
 alias gpp='g++ -Wall -std=c++1y'
 alias gf='gfortran -Wall -static'
+[ `command -v xstow` ] && alias stow=xstow
 
 export SVN_EDITOR=vim
 export GNUPLOT_LIB=""		# data or script path
@@ -71,7 +72,6 @@ export PAGER="less"
 [ `command -v lv` ] && export PAGER=lv
 export LV="-c -l"
 export LESS="-imr"
-
 
 ## for model setting
 [ -e ~/.modelrc ] && source ~/.modelrc
