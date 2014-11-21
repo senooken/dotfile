@@ -183,14 +183,21 @@ NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
   let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
   let g:indent_guides_guide_size = 1 " indent guide size
 
-NeoBundle "osyo-manga/vim-over"
+" NeoBundle "osyo-manga/vim-over"
 
 "" text edit
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'Align'
 NeoBundle 'YankRing.vim'
-"NeoBundle 'tyru/open-browser-github'
-"
+
+NeoBundle 'tyru/open-browser'
+  let g:netrw_nogx = 1 " disable netrw's gx mapping
+  nmap gx <Plug>(openbrowser-smart-search)
+  vmap gx <Plug>(openbrowser-smart-search)
+NeoBundle 'kannokanno/previm'
+NeoBundle 'plasticboy/vim-markdown'
+
+
 
 NeoBundle 'autodate.vim'
   let autodate_keyword_pre="(Last update:"
