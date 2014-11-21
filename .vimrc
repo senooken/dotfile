@@ -1,4 +1,4 @@
-"" .vimrc
+"" (File name: .vimrc)
 "" Author: SENOO, Ken
 
 "" default vim setting by practical vim 
@@ -191,9 +191,6 @@ NeoBundle 'Align'
 NeoBundle 'YankRing.vim'
 
 NeoBundle 'tyru/open-browser'
-  let g:netrw_nogx = 1 " disable netrw's gx mapping
-  nmap gx <Plug>(openbrowser-smart-search)
-  vmap gx <Plug>(openbrowser-smart-search)
 NeoBundle 'kannokanno/previm'
 NeoBundle 'plasticboy/vim-markdown'
 
