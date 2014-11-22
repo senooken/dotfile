@@ -7,7 +7,7 @@
 	branch = auto
 	grep = auto
 [core]
-	excludesfile = /home/senooken/.gitignore
+	excludesfile = ~/.gitignore
 	filemode = false
 [push]
 	default = current
@@ -26,4 +26,4 @@
 	sslcainfo = /mingw32/ssl/certs/ca-bundle.crt
 	sslverify = false
 [init]
-	templatedir = /home/senooken/.git-template
+	templatedir = ~/.git-template
