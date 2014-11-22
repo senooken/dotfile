@@ -1,0 +1,13 @@
+'global':
+  'exception-reporting':
+    'userId': 'fc952bc5-7f12-3006-ffb4-dc97bd8219c3'
+  'welcome':
+    'showOnStartup': false
+  'editor':
+    'fontFamily': '"Migu 1M"'
+    'fontSize': 12
+    'softWrap': true
+    'showIndentGuide': true
+    'invisibles': {}
+  'core':
+    'destroyEmptyPanes': false
