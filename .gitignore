@@ -2,4 +2,9 @@
 Thumbs.db
 *.log
 *.exe
+*.mod
+*.[ao]
 .netrwhist
+*~
+*.swp
+tmp/
