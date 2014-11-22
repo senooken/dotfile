@@ -382,10 +382,19 @@ autocmd BufNewFile Makefile silent! :0r  ~/.vim/template/Makefile
 autocmd BufWritePost * :call AddExecmod()
 function AddExecmod()
   let line = getline(1)
-  if strpart(line, 0, 2) == "#!" && !has("gui_win32") && !has('win32') && !has('win64') && !has('win32unix') " WindowsのGvimではしない
-    call system("chmod +x ". expand("%"))
+  if strpart(line, 0, 2) == "#!"
+    if has('win32') || has('win64')
+      call system("icacls " . expand("%") . " /grant " . $USERNAME . ":(X)")
+    else
+      call system("chmod +x ". expand("%"))
+    endif
   endif
 endfunction
+
+if has("win32") || has("win64")
+  set shell = cmd
+  set shellcmdflag = /c
+endif
 
 "" open browser by double click
 "function! Browser () 
