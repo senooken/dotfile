@@ -9,6 +9,10 @@
 [core]
 	excludesfile = ~/.gitignore
 	filemode = false
+[diff "word"]
+	texconv = strings
+[diff "db"]
+	textconv = strings
 [push]
 	default = current
 [alias]
