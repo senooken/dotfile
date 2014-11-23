@@ -27,10 +27,8 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 call neobundle#end()
 
 "" list installing plugins
-""" if_luaが有効ならneocompleteを使う
-NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
-  if neobundle#is_installed('neocomplete')
-    " neocomplete用設定
+if has("lua")
+  NeoBundle 'Shougo/neocomplete'
     let g:neocomplete#enable_at_startup = 1
     let g:neocomplete#enable_ignore_case = 1
     let g:neocomplete#enable_smart_case = 1
@@ -38,8 +36,8 @@ NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
       let g:neocomplete#keyword_patterns = {}
     endif
     let g:neocomplete#keyword_patterns._ = '\h\w*'
-  elseif neobundle#is_installed('neocomplcache')
-    " neocomplcache用設定
+else
+  NeoBundle 'Shougo/neocomplcache'
     let g:neocomplcache_enable_at_startup = 1
     let g:neocomplcache_enable_ignore_case = 1
     let g:neocomplcache_enable_smart_case = 1
@@ -49,7 +47,7 @@ NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
     let g:neocomplcache_keyword_patterns._ = '\h\w*'
     let g:neocomplcache_enable_camel_case_completion = 1
     let g:neocomplcache_enable_underbar_completion = 1
-  endif
+endif
   inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
   "" C++
@@ -58,6 +56,38 @@ NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
   endif
   let g:neocomplete#force_omni_input_patterns.cpp =
         \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+" NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
+"   if neobundle#is_installed('neocomplete')
+"     " neocomplete用設定
+"     let g:neocomplete#enable_at_startup = 1
+"     let g:neocomplete#enable_ignore_case = 1
+"     let g:neocomplete#enable_smart_case = 1
+"     if !exists('g:neocomplete#keyword_patterns')
+"       let g:neocomplete#keyword_patterns = {}
+"     endif
+"     let g:neocomplete#keyword_patterns._ = '\h\w*'
+"   elseif neobundle#is_installed('neocomplcache')
+"     " neocomplcache用設定
+"     let g:neocomplcache_enable_at_startup = 1
+"     let g:neocomplcache_enable_ignore_case = 1
+"     let g:neocomplcache_enable_smart_case = 1
+"     if !exists('g:neocomplcache_keyword_patterns')
+"       let g:neocomplcache_keyword_patterns = {}
+"     endif
+"     let g:neocomplcache_keyword_patterns._ = '\h\w*'
+"     let g:neocomplcache_enable_camel_case_completion = 1
+"     let g:neocomplcache_enable_underbar_completion = 1
+"   endif
+  " inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+  " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+  " "" C++
+  " if !exists('g:neocomplete#force_omni_input_patterns')
+  "   let g:neocomplete#force_omni_input_patterns = {}
+  " endif
+  " let g:neocomplete#force_omni_input_patterns.cpp =
+  "       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
 
 NeoBundle 'Shougo/neosnippet'
   " Tell Neosnippet about the other snippets
@@ -393,8 +423,8 @@ function AddExecmod()
 endfunction
 
 if has("win32") || has("win64")
-  set shell = cmd
-  set shellcmdflag = /c
+  set shell=cmd
+  set shellcmdflag=/c
 endif
 
 "" open browser by double click
@@ -417,8 +447,8 @@ set smartcase
 set showmatch	" 括弧の対応をハイライト
 set showcmd		" 入力中のコマンドを表示
 set showmode	" 現在のモードを表示
+" set cursorcolumn " カーソル列をハイライト
 set cursorline	" カーソル行をハイライト
-
 
 "" other 
 set wildmenu
@@ -480,7 +510,7 @@ set lcs=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
 set list
 
 """ 全角スペースの表示
-highlight ZenkakuSpace cterm=underline ctermbg=red guibg=#666666
+highlight ZenkakuSpace ctermbg=red guibg=#666666
 au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 
