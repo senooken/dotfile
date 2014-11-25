@@ -6,10 +6,8 @@ script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
 for dotfile in ${script_dir}/.??*
 do
-  if [ $OS == "Windows_NT" ]; then
-    case $dotfile in
-      *.atom*) ln -sfd $dotfile $USERPROFILE/
-    esac
+  if [ $OS == "Windows_NT" ] && echo $dotfile | grep -q atom ; then
+    ln -sfd $dotfile $USERPROFILE/
   else
     ln -sfd  $dotfile  ~/
   fi
