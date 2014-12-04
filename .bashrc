@@ -213,9 +213,6 @@ shopt -s hostcomplete # try host completion
 shopt -s globstar # **: match recursive subdirectory. **/: only 1 recursive.
 shopt -s nocaseglob # ignore case
 
-
-[ -n ${DISPLAY} ] && export DISPLAY=:0.0
-
 [ ! -n "${TERM}" ] && TERM=cygwin
 
 ## synchonization of bash history [130414]

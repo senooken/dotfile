@@ -25,6 +25,8 @@ export LANGUAGE=en_US.UTF-8
 export LC_TIME=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 
+[ -n ${DISPLAY} ] && export DISPLAY=:0.0
+
 ## For wget proxy
 # export HTTP_PROXY="proxy.kuins.net:8080"
 # export http_proxy="http://proxy.kuins.net:8080/"

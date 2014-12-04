@@ -92,12 +92,11 @@ setopt pushd_ignore_dups
 # setopt auto_param_slash # auto append directory var /
 REPORTTIME=10
 setopt rm_star_silent
+setopt BSD_ECHO # echo時にエスケープシーケンスを解釈させない(bashと同挙動)
 
 # 便利だが副作用の強いものはコメントアウト
 #setopt auto_menu  correct rm_star_silent sun_keyboard_hack
 #setopt share_history inc_append_history
-
-export DISPLAY=:0.0
 
 # Alias and functions
 alias copy='cp -ip' del='rm -i' move='mv -i'
@@ -142,10 +141,10 @@ alias -g P=" --help | $PAGER"
 alias -g W="| wc"
 
 #### Copy to clipboard
-which xsel 2>&1 > /dev/null && alias -g C="| xsel -ib" # Linux
-which putclip 2>&1 > /dev/null && alias -g C="| putclip" # Cygwin
+[ `command -v xsel` ] && alias -g C="| xsel -ib" # Linux
+[ `command -v putclip` ] && alias -g C="| putclip" # Cygwin
 [ `command -v clip` ] && alias -g C="| clip" # MSYS (Windows)
-which pbcopy 2>&1 > /dev/null && alias -g C="| pbcopy" # Mac
+[ `command -v pbcopy` ] && alias -g C="| pbcopy" # Mac
 
 ## share gnu screen clipboard
 if which xsel > /dev/null 2>&1
