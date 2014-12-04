@@ -529,3 +529,4 @@ augroup MyXML
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
 " .vimrc
+

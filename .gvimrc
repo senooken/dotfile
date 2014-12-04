@@ -19,3 +19,6 @@ set lcs=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
 
 "" disable foding in gvim
 set foldmethod=manual
+
+
+colorscheme morning
