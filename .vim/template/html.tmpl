@@ -33,17 +33,27 @@
         h6:before {content: counter(section1) "." counter(section2) "." counter(section3)
                   "." counter(section4) "." counter(section5) "." counter(section6) " ";}
       /* フォント設定 */
-      code {
+      var {
+        font-style: italic;
+      }
+      kbd {
         font-family: Inconsolata, "Migu 1M", monospace;
-        background-color: #e6ffe6;
+        background-color: #ffffe6;
         border-width: thin;
         border-style: solid;
         border-color: #cccccc;
         border-radius: 5px;
       }
-      pre {
+      code {
         font-family: Inconsolata, "Migu 1M", monospace;
         background-color: #e6ffe6;
+      }
+      samp {
+        font-family: Inconsolata, "Migu 1M", monospace;
+        background-color: #e6e6e6;
+      }
+      pre {
+        font-family: Inconsolata, "Migu 1M", monospace;
       }
       p {
         text-indent: 1em;
