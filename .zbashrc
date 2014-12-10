@@ -1,6 +1,7 @@
 ## path
 ### system path
 export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
+export CPATH="/usr/local/include:/usr/include:$LD_LIBRARY_PATH"
 
 ### local install path
 LOCAL="${HOME}/local"
@@ -58,12 +59,25 @@ case "${OSTYPE}" in
   msys*) alias open="start";;
 esac
 
+#### Copy to clipboard
+[ `command -v clip` ] && alias clip="clip" # MSYS (Windows)
+[ `command -v xsel` ] && alias clip="xsel -ib" # Linux
+[ `command -v putclip` ] && alias clip="putclip" # Cygwin
+[ `command -v pbcopy` ] && alias clip="pbcopy" # Mac
+
 ### development
 alias py='python'
 alias rb='ruby'
 alias gpp='g++ -Wall -std=c++1y'
 alias gf='gfortran -Wall -static'
 [ `command -v xstow` ] && alias stow=xstow
+
+## enable alias in non-interactive shell
+shell=`readlink /proc/$$/exe`
+case $shell in
+  *bash) shopt -s expand_aliases;;
+  # *zsh) setopt aliases;;
+esac
 
 export SVN_EDITOR=vim
 export GNUPLOT_LIB=""		# data or script path

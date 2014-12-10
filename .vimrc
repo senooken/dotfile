@@ -528,5 +528,8 @@ augroup MyXML
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
-" .vimrc
 
+"" 外部コマンドでaliasを使えるようにする
+if glob('~/.zbashrc')
+  let $BASH_ENV='~/.zbashrc'
+endif

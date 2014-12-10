@@ -197,8 +197,8 @@ RED="\[\e[31m\]"
 GREEN="\[\e[32m\]"
 CLEAR="\[\e[m\]"
 
-#PS1="$PURPLE\u:$RED\w$PURPLE\$ $CLEAR"
-PS1="\`if [[ \$(expr length \${PWD//[^\/]/}) > 7 ]]; then 
+# 階層 >= 8でプロンプトが2行になる
+PS1="\`if [[ \$(expr length \${PWD//[^\/]/}) > 7 ]]; then
   echo '$PURPLE\u:$RED\w$PURPLE\n\$ $CLEAR'
   else echo '$PURPLE\u:$RED\w$PURPLE\$ $CLEAR' ; fi\`"
 
