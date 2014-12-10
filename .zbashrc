@@ -58,12 +58,25 @@ case "${OSTYPE}" in
   msys*) alias open="start";;
 esac
 
+#### Copy to clipboard
+[ `command -v xsel` ] && alias clip="xsel -ib" # Linux
+[ `command -v putclip` ] && alias clip="putclip" # Cygwin
+[ `command -v clip` ] && alias clip="clip" # MSYS (Windows)
+[ `command -v pbcopy` ] && alias clip="pbcopy" # Mac
+
 ### development
 alias py='python'
 alias rb='ruby'
 alias gpp='g++ -Wall -std=c++1y'
 alias gf='gfortran -Wall -static'
 [ `command -v xstow` ] && alias stow=xstow
+
+## enable alias in non-interactive shell
+shell=`readlink /proc/$$/exe`
+case $shell in
+  *bash) shopt -s expand_aliases;;
+  # *zsh) setopt aliases;;
+esac
 
 export SVN_EDITOR=vim
 export GNUPLOT_LIB=""		# data or script path
