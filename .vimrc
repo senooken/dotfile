@@ -256,6 +256,7 @@ NeoBundle 'thinca/vim-quickrun' " quick run in vim
   set splitbelow
   set splitright
 
+NeoBundle 'gtags.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'tyru/caw.vim' " comment out
   " コメントアウトを切り替えるマッピング

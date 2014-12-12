@@ -1,7 +1,7 @@
 ## path
 ### system path
 export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
-export CPATH="/usr/local/include:/usr/include:$LD_LIBRARY_PATH"
+export CPATH="/usr/local/include:/usr/include:$CPATH"
 
 ### local install path
 LOCAL="${HOME}/local"
@@ -60,7 +60,7 @@ case "${OSTYPE}" in
 esac
 
 #### Copy to clipboard
-[ `command -v clip` ] && alias clip="clip" # MSYS (Windows)
+# [ `command -v clip` ] && alias clip="clip" # MSYS (Windows)
 [ `command -v xsel` ] && alias clip="xsel -ib" # Linux
 [ `command -v putclip` ] && alias clip="putclip" # Cygwin
 [ `command -v pbcopy` ] && alias clip="pbcopy" # Mac
