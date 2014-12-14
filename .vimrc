@@ -382,19 +382,18 @@ set softtabstop=0
 " オートインデントを有効にする
 set cindent
 
-set textwidth=0 "	Prevent auto line break [130324].
-" 2013/02/27
+set textwidth=0 " Prevent auto line break
 
 "" tab config for each languages
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4 
 
 "" vim auto creating file
-set noswapfile
-"set directory=~/tmp
-set nobackup
-"set backupdir=~/tmp
-set noundofile
-"set undodir=$~/tmp
+" set noswapfile
+set directory=~/.vim/tmp
+" set nobackup
+set backupdir=~/.vim/tmp
+" set noundofile
+set undodir=~/.vim/tmp
 
 "File
 set autoread	" 更新時自動読み込み
