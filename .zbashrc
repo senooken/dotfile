@@ -61,16 +61,16 @@ esac
 
 #### Copy to clipboard
 # [ `command -v clip` ] && alias clip="clip" # MSYS (Windows)
-[ `command -v xsel` ] && alias clip="xsel -ib" # Linux
-[ `command -v putclip` ] && alias clip="putclip" # Cygwin
-[ `command -v pbcopy` ] && alias clip="pbcopy" # Mac
+[ "`command -v xsel`" ] && alias clip="xsel -ib" # Linux
+[ "`command -v putclip`" ] && alias clip="putclip" # Cygwin
+[ "`command -v pbcopy`" ] && alias clip="pbcopy" # Mac
 
 ### development
 alias py='python'
 alias rb='ruby'
 alias gpp='g++ -Wall -std=c++1y'
 alias gf='gfortran -Wall -static'
-[ `command -v xstow` ] && alias stow=xstow
+[ "`command -v xstow`" ] && alias stow=xstow
 
 ## enable alias in non-interactive shell
 shell=`readlink /proc/$$/exe`
@@ -79,7 +79,9 @@ case $shell in
   # *zsh) setopt aliases;;
 esac
 
-export SVN_EDITOR=vim
+alias vim="vim -X"
+[ "`command -v vim`" ] && export EDITOR=vim
+export SVN_EDITOR=$EDITOR
 export GNUPLOT_LIB=""		# data or script path
 export CYGWIN="nodosfilewarning winsymlinks:nativestrict"
 export MSYS="winsymlinks:nativestrict"
@@ -88,13 +90,13 @@ export GREP_OPTIONS="--color=auto --binary-files=without-match"
 ## compile
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
 export LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋め込み
-[ `command -v wx-config` ] && export WXCONFIG="`wx-config --cppflags --libs | tr \"\n\" ' '`" # wxwidgetsのコンパイルフラグ
+[ "`command -v wx-config`" ] && export WXCONFIG="`wx-config --cppflags --libs | tr \"\n\" ' '`" # wxwidgetsのコンパイルフラグ
 
 ## Pager
 export PAGER="less"
-[ `command -v lv` ] && export PAGER=lv
+[ "`command -v lv`" ] && export PAGER=lv
 export LV="-c -l"
 export LESS="-imr"
 
 ## for other individual setting
-[ -e ~/.otherrc ] && source ~/.otherrc
+[ -f ~/.otherrc ] && source ~/.otherrc

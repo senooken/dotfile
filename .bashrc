@@ -232,8 +232,5 @@ shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 #   screen -d -R
 #fi
 
-## high speed run vim
-alias vim="vim -X"
-
 ## for shared shell setting
 [ -e ~/.zbashrc ] && source ~/.zbashrc

@@ -141,10 +141,10 @@ alias -g P=" --help | $PAGER"
 alias -g W="| wc"
 
 #### Copy to clipboard
-[ `command -v xsel` ] && alias -g C="| xsel -ib" # Linux
-[ `command -v putclip` ] && alias -g C="| putclip" # Cygwin
-[ `command -v clip` ] && alias -g C="| clip" # MSYS (Windows)
-[ `command -v pbcopy` ] && alias -g C="| pbcopy" # Mac
+[ "`command -v xsel`" ] && alias -g C="| xsel -ib" # Linux
+[ "`command -v putclip`" ] && alias -g C="| putclip" # Cygwin
+[ "`command -v clip`" ] && alias -g C="| clip" # MSYS (Windows)
+[ "`command -v pbcopy`" ] && alias -g C="| pbcopy" # Mac
 
 ## share gnu screen clipboard
 if which xsel > /dev/null 2>&1
