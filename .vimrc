@@ -529,6 +529,10 @@ augroup MyXML
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
 
+"" mouse
+set mouse=a
+set ttymouse=xterm2
+
 "" 外部コマンドでaliasを使えるようにする
 if glob('~/.zbashrc')
   let $BASH_ENV='~/.zbashrc'

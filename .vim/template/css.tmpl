@@ -68,20 +68,19 @@ figure figcaption:before {
   counter-increment: figure;
   content: "図" counter(section1) "." counter(figure) " ";
 }
+/* table */
+table {border-collapse: collapse;}
+tr:nth-child(odd) {background: #ffffe6; }
 
 /* フォント設定 */
-p {
-  text-indent: 1em;
-}
+p {text-indent: 1em; }
 h1, h2, h3, h4, h5, h6 {
   font-family: "TeX Gyre Heros", "MigMix 1P", sans-serif;
   background-color: #e6e6ff;
 }
 
 /* PC語句 */
-var {
-  font-style: italic;
-}
+var {font-style: italic; }
 kbd, code, samp {
   font-family: Inconsolata, "Migu 1M", monospace;
   border-width: thin;
@@ -89,15 +88,9 @@ kbd, code, samp {
   border-color: #cccccc;
   border-radius: 5px;
 }
-kbd {
-  background-color: #ffffe6;
-}
-code {
-  background-color: #ffe6e6;
-}
-samp {
-  background-color: #e6e6e6;
-}
+kbd {background-color: #ffffe6; }
+code {background-color: #ffe6e6; }
+samp {background-color: #e6e6e6; }
 pre {
   font-family: Inconsolata, "Migu 1M", monospace;
   background-color: #e6ffe6;
