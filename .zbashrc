@@ -28,6 +28,13 @@ export LC_MESSAGES=en_US.UTF-8
 # export http_proxy="http://proxy.kuins.net:8080/"
 # export ftp_proxy="http://proxy.kuins.net:8080/"
 
+## enable alias in non-interactive shell
+shell=`readlink /proc/$$/exe`
+case $shell in
+  *bash) shopt -s expand_aliases;;
+  # *zsh) setopt aliases;;
+esac
+
 ## alias
 alias ls="ls -AFh --color=auto"
 alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
@@ -71,12 +78,6 @@ alias gf='gfortran -Wall -static'
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 
-## enable alias in non-interactive shell
-shell=`readlink /proc/$$/exe`
-case $shell in
-  *bash) shopt -s expand_aliases;;
-  # *zsh) setopt aliases;;
-esac
 GREP_OPTIONS="--color=auto --binary-files=without-match" ## grep 2.21
 alias grep="grep $GREP_OPTIONS"
 
@@ -97,6 +98,7 @@ export PAGER="less"
 [ "`command -v lv`" ] && export PAGER=lv
 export LV="-c -l"
 export LESS="-imr"
+
 
 ## for other individual setting
 [ -f ~/.otherrc ] && source ~/.otherrc

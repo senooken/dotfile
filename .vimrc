@@ -534,6 +534,6 @@ set mouse=a
 set ttymouse=xterm2
 
 "" 外部コマンドでaliasを使えるようにする
-if glob('~/.zbashrc')
-  let $BASH_ENV='~/.zbashrc'
+if filereadable(glob('~/.zbashrc'))
+  let $BASH_ENV=expand('~/.zbashrc')
 endif
