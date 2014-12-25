@@ -68,12 +68,12 @@ esac
 [ "`command -v pbcopy`" ]  && alias clip="pbcopy" # Mac
 
 ### development
-alias py   = 'python'
-alias py3  = 'python3'
-alias ipy3 = 'ipython3'
-alias rb   = 'ruby'
-alias gpp  = 'g++ -Wall -std=c++1y'
-alias gf   = 'gfortran -Wall -static'
+alias py='python'
+alias py3='python3'
+alias ipy3='ipython3'
+alias rb='ruby'
+alias gpp='g++ -Wall -std=c++1y'
+alias gf='gfortran -Wall -static'
 [ "`command -v xstow`" ] && alias stow=xstow
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
