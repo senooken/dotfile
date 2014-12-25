@@ -96,12 +96,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "TeX Gyre Heros", "MigMix 1P", sans-serif;
   background-color: #e6e6ff;
 }
-
 /* PC語句 */
-var {
-  font-style: italic;
-}
-kbd, code, samp {
+kbd, code, samp, var {
   font-family: Inconsolata, "Migu 1M", monospace;
   border-width: thin;
   border-style: solid;
@@ -109,10 +105,20 @@ kbd, code, samp {
   border-radius: 5px;
 }
 kbd {
-  background-color: #ffffe6;
+  background-color: #ffe6e6;
 }
 code {
-  background-color: #ffe6e6;
+  background-color: #ffffe6;
 }
 samp {
   background-color: #e6e6e6;
+}
+var {
+  font-style: normal;
+  background-color: #80ffff;
+}
+pre {
+  font-family: Inconsolata, "Migu 1M", monospace;
+  background-color: #e6ffe6;
+  overflow: auto;
+}
