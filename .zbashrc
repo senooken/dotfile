@@ -56,16 +56,16 @@ alias gim="git mv"
 alias o="open"
 case "${OSTYPE}" in
   freebsd*|darwin*) alias o="open" ;;
-  linux*) alias open="xdg-open" ;; # alias open="gnome-open";;
-  cygwin*) alias open="cygstart" ;;
-  msys*) alias open="start";;
+  linux*)           alias open="xdg-open" ;; # alias open="gnome-open";;
+  cygwin*)          alias open="cygstart" ;;
+  msys*)            alias open="start";;
 esac
 
 #### Copy to clipboard
-# [ `command -v clip` ] && alias clip="clip" # MSYS (Windows)
-[ "`command -v xsel`" ] && alias clip="xsel -ib" # Linux
+# [ `command -v clip` ]    && alias clip="clip" # MSYS (Windows)
+[ "`command -v xsel`" ]    && alias clip="xsel -ib" # Linux
 [ "`command -v putclip`" ] && alias clip="putclip" # Cygwin
-[ "`command -v pbcopy`" ] && alias clip="pbcopy" # Mac
+[ "`command -v pbcopy`" ]  && alias clip="pbcopy" # Mac
 
 ### development
 alias py='python'
