@@ -9,6 +9,7 @@ export PATH="${LOCAL}/bin:$PATH"
 export LD_LIBRARY_PATH="${LOCAL}/lib:$LD_LIBRARY_PATH"
 export CPATH="${LOCAL}/include:$CPATH"
 export MANPATH="${LOCAL}/man:${LOCAL}/share/man:$MANPATH"
+export INFOPATH="${LOCAL}/info:${LOCAL}/share/info:$INFOPATH"
 
 export PKG_CONFIG_PATH="${LOCAL}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
