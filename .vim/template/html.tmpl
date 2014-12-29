@@ -84,11 +84,13 @@
     }
 
     /* caption */
-    table caption:before {
+    body {counter-reset: table;}
+    caption::before {
       counter-increment: table;
       content: "表" counter(section1) "." counter(table) " ";
     }
-    figure figcaption:before {
+    body {counter-reset: figure;}
+    figcaption::before {
       counter-increment: figure;
       content: "図" counter(section1) "." counter(figure) " ";
     }
