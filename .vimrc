@@ -390,7 +390,7 @@ autocmd! FileType python setlocal shiftwidth=4 tabstop=4
 
 "" vim auto creating file
 " set noswapfile
-set directory=~/.vim/tmp
+" set directory=~/.vim/tmp
 " set nobackup
 set backupdir=~/.vim/tmp
 " set noundofile
