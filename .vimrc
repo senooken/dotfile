@@ -348,6 +348,7 @@ set showmatch
 set laststatus=2
 " ステータスラインに表示する情報の指定
 "set statusline=%y%{GetStatusEx()}%F%m%r%=<%c:%l>
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P'}
 " ステータスラインの色
 hi StatusLine   term=NONE cterm=NONE ctermfg=black ctermbg=white
 " ハイライト
@@ -389,7 +390,7 @@ autocmd! FileType python setlocal shiftwidth=4 tabstop=4
 
 "" vim auto creating file
 " set noswapfile
-set directory=~/.vim/tmp
+" set directory=~/.vim/tmp
 " set nobackup
 set backupdir=~/.vim/tmp
 " set noundofile
