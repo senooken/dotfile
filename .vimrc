@@ -1,18 +1,12 @@
 "" (File name: .vimrc)
 "" Author: SENOO, Ken
 
-"" default vim setting by practical vim 
 set nocompatible " viとの互換をとらない
-filetype plugin on " valid vim plugin
 
 "Charset, Line ending
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis,cp932
 set fileformats=unix,dos,mac
-
-
-"" manegement of vim plugin
-"filetype off
 
 if has('vim_starting')
   "runtimepathにneobundle.vimをインストールしたディレクトリを指定
@@ -24,299 +18,296 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
   " Let NeoBundle manage NeoBundle
   NeoBundleFetch 'Shougo/neobundle.vim'
+
+  "" list installing plugins
+  if has("lua")
+    NeoBundle 'Shougo/neocomplete'
+      let g:neocomplete#enable_at_startup = 1
+      let g:neocomplete#enable_ignore_case = 1
+      let g:neocomplete#enable_smart_case = 1
+      if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+      endif
+      let g:neocomplete#keyword_patterns._ = '\h\w*'
+  else
+    NeoBundle 'Shougo/neocomplcache'
+      let g:neocomplcache_enable_at_startup = 1
+      let g:neocomplcache_enable_ignore_case = 1
+      let g:neocomplcache_enable_smart_case = 1
+      if !exists('g:neocomplcache_keyword_patterns')
+        let g:neocomplcache_keyword_patterns = {}
+      endif
+      let g:neocomplcache_keyword_patterns._ = '\h\w*'
+      let g:neocomplcache_enable_camel_case_completion = 1
+      let g:neocomplcache_enable_underbar_completion = 1
+  endif
+    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+    "" C++
+    if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:neocomplete#force_omni_input_patterns.cpp =
+          \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+  " NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
+  "   if neobundle#is_installed('neocomplete')
+  "     " neocomplete用設定
+  "     let g:neocomplete#enable_at_startup = 1
+  "     let g:neocomplete#enable_ignore_case = 1
+  "     let g:neocomplete#enable_smart_case = 1
+  "     if !exists('g:neocomplete#keyword_patterns')
+  "       let g:neocomplete#keyword_patterns = {}
+  "     endif
+  "     let g:neocomplete#keyword_patterns._ = '\h\w*'
+  "   elseif neobundle#is_installed('neocomplcache')
+  "     " neocomplcache用設定
+  "     let g:neocomplcache_enable_at_startup = 1
+  "     let g:neocomplcache_enable_ignore_case = 1
+  "     let g:neocomplcache_enable_smart_case = 1
+  "     if !exists('g:neocomplcache_keyword_patterns')
+  "       let g:neocomplcache_keyword_patterns = {}
+  "     endif
+  "     let g:neocomplcache_keyword_patterns._ = '\h\w*'
+  "     let g:neocomplcache_enable_camel_case_completion = 1
+  "     let g:neocomplcache_enable_underbar_completion = 1
+  "   endif
+    " inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+    " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+    " "" C++
+    " if !exists('g:neocomplete#force_omni_input_patterns')
+    "   let g:neocomplete#force_omni_input_patterns = {}
+    " endif
+    " let g:neocomplete#force_omni_input_patterns.cpp =
+    "       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+
+  NeoBundle 'Shougo/neosnippet'
+    " Tell Neosnippet about the other snippets
+    "let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+    let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
+    " Plugin key-mappings.  " <C-k>でsnippetの展開
+    "imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    " imap <expr><CR> !pumvisible()? "" : neosnippet#expandable() ? "\<Plug>(neosnippet_expand)": neocomplete#close_popup()
+    imap <C-f> <Plug>(neosnippet_expand_or_jump)
+    smap <C-f> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-f> <Plug>(neosnippet_expand_target)
+    " SuperTab like snippets bEHAVIr.
+    imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+    smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+    " For snippet_complete marker.
+    if has('conceal')
+      set conceallevel=2 concealcursor=i
+    endif
+
+  NeoBundle 'Shougo/neosnippet-snippets'
+  NeoBundle 'honza/vim-snippets'
+
+  NeoBundle 'kana/vim-smartinput'
+    "" 空白文字以外のときは勝手に補間させない
+    call smartinput#define_rule({
+      \ 'at': '\%#\S', 'char': '(', 'input': '(' })
+    call smartinput#define_rule({
+      \ 'at': '\%#\S', 'char': ')', 'input': ')' })
+    call smartinput#define_rule({
+      \ 'at': '\%#\S', 'char': '[', 'input': '[' })
+    call smartinput#define_rule({
+      \ 'at': '\%#\S', 'char': ']', 'input': ']' })
+    call smartinput#define_rule({
+      \ 'at': '\%#\S', 'char': '{', 'input': '{' })
+    call smartinput#define_rule({
+      \ 'at': '\%#\S', 'char': '}', 'input': '}' })
+
+    "" C++でstruct, class, enum+{の入力後に;を追記
+    call smartinput#define_rule({
+      \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
+      \   'char'     : '{',
+      \   'input'    : '{};<Left><Left>',
+      \   'filetype' : ['cpp'],
+      \   })
+    call smartinput#map_to_trigger('i', ':', ':', ':')
+    " call smartinput#define_rule({
+    "             \   'at'       : ':\%#',
+    "             \   'char'     : ':',
+    "             \   'input'    : '<BS>::',
+    "             \   'filetype' : ['cpp'],
+    "             \   })
+    "" s:: -> std::, b:: -> boost::
+    "" boost:: の補完
+    call smartinput#define_rule({
+      \   'at'       : '\<b:\%#',
+      \   'char'     : ':',
+      \   'input'    : '<BS>oost::',
+      \   'filetype' : ['cpp'],
+      \   })
+    " std:: の補完
+    call smartinput#define_rule({
+      \   'at'       : '\<s:\%#',
+      \   'char'     : ':',
+      \   'input'    : '<BS>td::',
+      \   'filetype' : ['cpp'],
+      \   })
+    " detail:: の補完
+    call smartinput#define_rule({
+      \   'at'       : '\%(\s\|::\)d:\%#',
+      \   'char'     : ':',
+      \   'input'    : '<BS>etail::',
+      \   'filetype' : ['cpp'],
+      \   })
+
+
+  NeoBundle 'mattn/emmet-vim'
+  NeoBundle 'Shougo/unite.vim'
+    let g:unite_source_history_yank_enable=1
+    nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+    nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+
+  NeoBundle 'Shougo/neomru.vim'
+    let g:neomru#time_format = "[%Y%m%dT%H%M] "
+    let g:unite_source_file_mru_limit = 200
+    nnoremap <silent> ,ur :<C-u>Unite file_mru<CR>
+
+  "" code highlight
+  NeoBundleLazy 'vim-jp/cpp-vim', {
+        \ 'autoload': {'filetypes' : 'cpp'}
+        \ }
+
+  augroup cpp-path
+      autocmd!
+      autocmd FileType cpp setlocal path=.,/usr/include,/usr/local/include,/usr/lib/c++/v1
+  augroup END
+
+  "" Install clang_complete
+  " NeoBundle 'Rip-Rip/clang_complete'
+  "   let g:clang_periodic_quickfix = 1
+  "   let g:clang_complete_copen = 1
+  "   let g:clang_use_library = 1
+  "
+  "   " this need to be updated on llvm update
+  "   let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
+  "   " specify compiler options
+  "   let g:clang_user_options = '-std=c++11 -stdlib=libc++'
+
+  " NeoBundle 'davidhalter/jedi-vim'
+
+  NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
+  NeoBundle 'thinca/vim-fontzoom' " change font size easy
+  NeoBundle 'kana/vim-smartchr'
+  NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
+  NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
+    "" vim-indent-guides'
+    let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_start_level = 2 " start indent column
+    let g:indent_guides_auto_colors = 0
+    "" 奇数インデントのカラー
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=gray
+    "" 偶数インデントのカラー
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=yellow " darkgray
+    let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
+    let g:indent_guides_guide_size = 1 " indent guide size
+
+  "" text edit
+  NeoBundle 'tpope/vim-surround'
+  NeoBundle 'Align'
+  NeoBundle 'YankRing.vim'
+
+  NeoBundle 'tyru/open-browser'
+  NeoBundle 'kannokanno/previm'
+  NeoBundle 'plasticboy/vim-markdown'
+
+
+
+  NeoBundle 'autodate.vim'
+    let autodate_keyword_pre="(Last update:"
+    let autodate_keyword_post=")"
+    let autodate_format="%Y-%m-%dT%H:%M+09:00"
+    let autodate_lines=10
+
+  NeoBundle 'lamsh/autofname.vim'
+    let autofname_keyword_pre="(File name:"
+    let autofname_keyword_post=")"
+    let autofname_lines=10
+
+  NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+    \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
+    \    'cygwin' : 'make -f make_cygwin.mak',
+    \    'mac' : 'make -f make_mac.mak',
+    \    'unix' : 'make -f make_unix.mak',
+    \   },
+    \ }
+
+  NeoBundle 'thinca/vim-quickrun' " quick run in vim
+    let g:quickrun_config = {"_": {'runner' : 'vimproc'}}
+    let g:quickrun_config={'fortran': {'cmdopt': '-Wall -static'}}
+    let g:quickrun_config={'cpp': {'cmdopt': '-Wall'}}
+
+    let g:quickrun_config={'_': {'split': ''}} " 規定の画面分割を上下にする。
+    set splitbelow
+    set splitright
+
+  NeoBundle 'gtags.vim'
+  NeoBundle 'vim-jp/vimdoc-ja'
+  NeoBundle 'tyru/caw.vim' " comment out
+    " コメントアウトを切り替えるマッピング
+    " \c でカーソル行をコメントアウト  再度 \c でコメントアウトを解除
+    nmap \c <Plug>(caw:i:toggle)
+    vmap \c <Plug>(caw:i:toggle)
+
+    " \C でコメントアウトの解除
+    nmap \C <Plug>(caw:I:uncomment)
+    vmap \C <Plug>(caw:I:uncomment)
+
+  NeoBundle 'Lokaltog/vim-easymotion' " cursor
+    let g:EasyMotion_do_mapping = 0
+    nmap s <Plug>(easymotion-s2)
+    xmap s <Plug>(easymotion-s2)
+    omap z <Plug>(easymotion-s2)
+    " Turn on case sensitive feature
+    let g:EasyMotion_smartcase = 1
+    " `JK` Motions: Extend line motions
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+    " keep cursor column with `JK` motions
+    let g:EasyMotion_startofline = 0
+    map f <Plug>(easymotion-fl)
+    " =======================================
+    " General Configuration
+    " =======================================
+    let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTASDGZXCVBJF'
+    " Show target key with upper case to improve readability
+    let g:EasyMotion_use_upper = 1
+    " Jump to first match with enter & space
+    let g:EasyMotion_enter_jump_first = 1
+    let g:EasyMotion_space_jump_first = 1
+
+    " =======================================
+    " Search Motions
+    " =======================================
+    " Extend search motions with vital-over command line interface
+    " Incremental highlight of all the matches
+    " Now, you don't need to repetitively press `n` or `N` with EasyMotion feature
+    " `<Tab>` & `<S-Tab>` to scroll up/down a page with next match
+    " :h easymotion-command-line
+    nmap g/ <Plug>(easymotion-sn)
+    xmap g/ <Plug>(easymotion-sn)
+    omap g/ <Plug>(easymotion-tn)
+
+    map t <Plug>(easymotion-tl)
+    map F <Plug>(easymotion-Fl)
+    map T <Plug>(easymotion-Tl)
+
+
+  """ vimfiler
+  "" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
+  "" IDE explore on startup
+  "let g:vimfiler_as_default_explorer  = 1 
+  "let g:vimfiler_safe_mode_by_default = 0
+  "let g:netrw_liststyle=3
+
 call neobundle#end()
-
-"" list installing plugins
-if has("lua")
-  NeoBundle 'Shougo/neocomplete'
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_ignore_case = 1
-    let g:neocomplete#enable_smart_case = 1
-    if !exists('g:neocomplete#keyword_patterns')
-      let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns._ = '\h\w*'
-else
-  NeoBundle 'Shougo/neocomplcache'
-    let g:neocomplcache_enable_at_startup = 1
-    let g:neocomplcache_enable_ignore_case = 1
-    let g:neocomplcache_enable_smart_case = 1
-    if !exists('g:neocomplcache_keyword_patterns')
-      let g:neocomplcache_keyword_patterns = {}
-    endif
-    let g:neocomplcache_keyword_patterns._ = '\h\w*'
-    let g:neocomplcache_enable_camel_case_completion = 1
-    let g:neocomplcache_enable_underbar_completion = 1
-endif
-  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-  "" C++
-  if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-  endif
-  let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-
-" NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
-"   if neobundle#is_installed('neocomplete')
-"     " neocomplete用設定
-"     let g:neocomplete#enable_at_startup = 1
-"     let g:neocomplete#enable_ignore_case = 1
-"     let g:neocomplete#enable_smart_case = 1
-"     if !exists('g:neocomplete#keyword_patterns')
-"       let g:neocomplete#keyword_patterns = {}
-"     endif
-"     let g:neocomplete#keyword_patterns._ = '\h\w*'
-"   elseif neobundle#is_installed('neocomplcache')
-"     " neocomplcache用設定
-"     let g:neocomplcache_enable_at_startup = 1
-"     let g:neocomplcache_enable_ignore_case = 1
-"     let g:neocomplcache_enable_smart_case = 1
-"     if !exists('g:neocomplcache_keyword_patterns')
-"       let g:neocomplcache_keyword_patterns = {}
-"     endif
-"     let g:neocomplcache_keyword_patterns._ = '\h\w*'
-"     let g:neocomplcache_enable_camel_case_completion = 1
-"     let g:neocomplcache_enable_underbar_completion = 1
-"   endif
-  " inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-  " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-  " "" C++
-  " if !exists('g:neocomplete#force_omni_input_patterns')
-  "   let g:neocomplete#force_omni_input_patterns = {}
-  " endif
-  " let g:neocomplete#force_omni_input_patterns.cpp =
-  "       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-
-
-NeoBundle 'Shougo/neosnippet'
-  " Tell Neosnippet about the other snippets
-  "let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-  let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
-  " Plugin key-mappings.  " <C-k>でsnippetの展開
-  "imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  " imap <expr><CR> !pumvisible()? "" : neosnippet#expandable() ? "\<Plug>(neosnippet_expand)": neocomplete#close_popup()
-  imap <C-f> <Plug>(neosnippet_expand_or_jump)
-  smap <C-f> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-f> <Plug>(neosnippet_expand_target)
-  " SuperTab like snippets bEHAVIr.
-  imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-  smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-  " For snippet_complete marker.
-  if has('conceal')
-    set conceallevel=2 concealcursor=i
-  endif
-
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'honza/vim-snippets'
-
-NeoBundle 'kana/vim-smartinput'
-  "" 空白文字以外のときは勝手に補間させない
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': '(', 'input': '(' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': ')', 'input': ')' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': '[', 'input': '[' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': ']', 'input': ']' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': '{', 'input': '{' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': '}', 'input': '}' })
-
-  "" C++でstruct, class, enum+{の入力後に;を追記
-  call smartinput#define_rule({
-    \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
-    \   'char'     : '{',
-    \   'input'    : '{};<Left><Left>',
-    \   'filetype' : ['cpp'],
-    \   })
-  call smartinput#map_to_trigger('i', ':', ':', ':')
-  " call smartinput#define_rule({
-  "             \   'at'       : ':\%#',
-  "             \   'char'     : ':',
-  "             \   'input'    : '<BS>::',
-  "             \   'filetype' : ['cpp'],
-  "             \   })
-  "" s:: -> std::, b:: -> boost::
-  "" boost:: の補完
-  call smartinput#define_rule({
-    \   'at'       : '\<b:\%#',
-    \   'char'     : ':',
-    \   'input'    : '<BS>oost::',
-    \   'filetype' : ['cpp'],
-    \   })
-  " std:: の補完
-  call smartinput#define_rule({
-    \   'at'       : '\<s:\%#',
-    \   'char'     : ':',
-    \   'input'    : '<BS>td::',
-    \   'filetype' : ['cpp'],
-    \   })
-  " detail:: の補完
-  call smartinput#define_rule({
-    \   'at'       : '\%(\s\|::\)d:\%#',
-    \   'char'     : ':',
-    \   'input'    : '<BS>etail::',
-    \   'filetype' : ['cpp'],
-    \   })
-
-
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'Shougo/unite.vim'
-  let g:unite_source_history_yank_enable=1
-  nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-  nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-
-NeoBundle 'Shougo/neomru.vim'
-  let g:neomru#time_format = "[%Y%m%dT%H%M] "
-  let g:unite_source_file_mru_limit = 200
-  nnoremap <silent> ,ur :<C-u>Unite file_mru<CR>
-
-"" code highlight
-NeoBundleLazy 'vim-jp/cpp-vim', {
-      \ 'autoload': {'filetypes' : 'cpp'}
-      \ }
-
-augroup cpp-path
-    autocmd!
-    autocmd FileType cpp setlocal path=.,/usr/include,/usr/local/include,/usr/lib/c++/v1
-augroup END
-
-"" Install clang_complete
-" NeoBundle 'Rip-Rip/clang_complete'
-"   let g:clang_periodic_quickfix = 1
-"   let g:clang_complete_copen = 1
-"   let g:clang_use_library = 1
-"
-"   " this need to be updated on llvm update
-"   let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
-"   " specify compiler options
-"   let g:clang_user_options = '-std=c++11 -stdlib=libc++'
-
-" NeoBundle 'davidhalter/jedi-vim'
-
-NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
-NeoBundle 'thinca/vim-fontzoom' " change font size easy
-NeoBundle 'kana/vim-smartchr'
-NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
-NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
-  "" vim-indent-guides'
-  let g:indent_guides_enable_on_vim_startup = 1
-  let g:indent_guides_start_level = 2 " start indent column
-  let g:indent_guides_auto_colors = 0
-  "" 奇数インデントのカラー
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=gray
-  "" 偶数インデントのカラー
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=yellow " darkgray
-  let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
-  let g:indent_guides_guide_size = 1 " indent guide size
-
-" NeoBundle "osyo-manga/vim-over"
-
-"" text edit
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'Align'
-NeoBundle 'YankRing.vim'
-
-NeoBundle 'tyru/open-browser'
-NeoBundle 'kannokanno/previm'
-NeoBundle 'plasticboy/vim-markdown'
-
-
-
-NeoBundle 'autodate.vim'
-  let autodate_keyword_pre="(Last update:"
-  let autodate_keyword_post=")"
-  let autodate_format="%Y-%m-%dT%H:%M+09:00"
-  let autodate_lines=10
-
-NeoBundle 'lamsh/autofname.vim'
-  let autofname_keyword_pre="(File name:"
-  let autofname_keyword_post=")"
-  let autofname_lines=10
-
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-  \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
-  \    'cygwin' : 'make -f make_cygwin.mak',
-  \    'mac' : 'make -f make_mac.mak',
-  \    'unix' : 'make -f make_unix.mak',
-  \   },
-  \ }
-
-NeoBundle 'thinca/vim-quickrun' " quick run in vim
-  let g:quickrun_config = {"_": {'runner' : 'vimproc'}}
-  let g:quickrun_config={'fortran': {'cmdopt': '-Wall -static'}}
-  let g:quickrun_config={'cpp': {'cmdopt': '-Wall'}}
-
-  let g:quickrun_config={'_': {'split': ''}} " 規定の画面分割を上下にする。
-  set splitbelow
-  set splitright
-
-NeoBundle 'gtags.vim'
-NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'tyru/caw.vim' " comment out
-  " コメントアウトを切り替えるマッピング
-  " \c でカーソル行をコメントアウト  再度 \c でコメントアウトを解除
-  nmap \c <Plug>(caw:i:toggle)
-  vmap \c <Plug>(caw:i:toggle)
-
-  " \C でコメントアウトの解除
-  nmap \C <Plug>(caw:I:uncomment)
-  vmap \C <Plug>(caw:I:uncomment)
-
-NeoBundle 'Lokaltog/vim-easymotion' " cursor
-  let g:EasyMotion_do_mapping = 0
-  nmap s <Plug>(easymotion-s2)
-  xmap s <Plug>(easymotion-s2)
-  omap z <Plug>(easymotion-s2)
-  " Turn on case sensitive feature
-  let g:EasyMotion_smartcase = 1
-  " `JK` Motions: Extend line motions
-  map <Leader>j <Plug>(easymotion-j)
-  map <Leader>k <Plug>(easymotion-k)
-  " keep cursor column with `JK` motions
-  let g:EasyMotion_startofline = 0
-  map f <Plug>(easymotion-fl)
-  " =======================================
-  " General Configuration
-  " =======================================
-  let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTASDGZXCVBJF'
-  " Show target key with upper case to improve readability
-  let g:EasyMotion_use_upper = 1
-  " Jump to first match with enter & space
-  let g:EasyMotion_enter_jump_first = 1
-  let g:EasyMotion_space_jump_first = 1
-
-  " =======================================
-  " Search Motions
-  " =======================================
-  " Extend search motions with vital-over command line interface
-  " Incremental highlight of all the matches
-  " Now, you don't need to repetitively press `n` or `N` with EasyMotion feature
-  " `<Tab>` & `<S-Tab>` to scroll up/down a page with next match
-  " :h easymotion-command-line
-  nmap g/ <Plug>(easymotion-sn)
-  xmap g/ <Plug>(easymotion-sn)
-  omap g/ <Plug>(easymotion-tn)
-
-  map t <Plug>(easymotion-tl)
-  map F <Plug>(easymotion-Fl)
-  map T <Plug>(easymotion-Tl)
-
-filetype indent on " required
-
-
-""" vimfiler
-"" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
-"" IDE explore on startup
-"let g:vimfiler_as_default_explorer  = 1 
-"let g:vimfiler_safe_mode_by_default = 0
-"let g:netrw_liststyle=3
-
+filetype plugin indent on " valid vim plugin
 
 "" my variable
 let $TODAY=strftime('%Y%m%d')
