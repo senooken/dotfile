@@ -486,15 +486,7 @@ augroup vimrcEx
   \ exe "normal g`\"" | endif
 augroup END
 
-
 set nrformats=   " deal as decimal for number
-
-
-"" language
-""" Fortran
-  let fortran_free_source=1
-  let fortran_fold=1
-  au! BufRead,BufNewFile *.f90 let b:fortran_do_enddo=1
 
 "" show special character
 set lcs=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
