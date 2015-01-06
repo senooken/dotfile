@@ -74,11 +74,12 @@ fi
 # Set Shell variable
 WORDCHARS=$WORDCHARS:s,/,, # C-wのときに/で区切る
 ## history
-HISTSIZE=9999 HISTFILE=~/.zhistory SAVEHIST=$HISTSIZE
+HISTSIZE=100000 HISTFILE=~/.zhistory SAVEHIST=$HISTSIZE
 setopt extended_history
-setopt hist_ignore_dups
+setopt hist_ignore_dups # 重複した履歴は無視
 setopt inc_append_history
 setopt hist_ignore_space
+setopt share_history
 
 # Set shell options
 # http://voidy21.hatenablog.jp/entry/20090902/1251918174
