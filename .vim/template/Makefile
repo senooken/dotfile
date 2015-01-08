@@ -1,6 +1,6 @@
-## (File name: )
+## (File name: Makefile)
 ## Author: SENOO, Ken
-## (Last update: )
+## (Last update: 2015-01-08T18:38+09:00)
 
 FC=# gfortran
 CC=# gcc
@@ -43,7 +43,7 @@ ${TARGET}: ${OBJ}
 	${FC} ${LDFLAGS} -c $<
 %.o: %.c
 	${CC} ${LDFLAGS} -c $<
-%.o: %.cpp 
+%.o: %.cpp
 	${CXX} ${LDFLAGS} -c $<
 
 
