@@ -1,13 +1,13 @@
 ## (File name: Makefile)
 ## Author: SENOO, Ken
-## (Last update: 2015-01-08T18:38+09:00)
+## (Last update: 2015-01-08T23:15+09:00)
 
 FC=# gfortran
 CC=# gcc
 CXX= g++
 COMPILER+=$(FC) $(CC) $(CXX)
 ## flag (compile option) and library
-LDFLAGS= -g -MMD -MP -mcmodel=large
+LDFLAGS= -g -MMD -MP -mcmodel=large -Wall
 
 TARGET=out.exe
 
