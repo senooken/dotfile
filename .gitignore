@@ -4,6 +4,7 @@ Thumbs.db
 *.exe
 *.mod
 *.[ao]
+*.obj
 .netrwhist
 *~
 *.swp
