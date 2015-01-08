@@ -1,7 +1,7 @@
 ## path
 ### system path
 export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
-export CPATH="/usr/local/include:/usr/include:$CPATH"
+# export CPATH="/usr/local/include:/usr/include:$CPATH"
 
 ### local install path
 LOCAL="${HOME}/local"
