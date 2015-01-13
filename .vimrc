@@ -442,10 +442,12 @@ set showmode	" 現在のモードを表示
 " set cursorcolumn " カーソル列をハイライト
 set cursorline	" カーソル行をハイライト
 
-"" other 
+"" other
+""" メニュー補完
 set wildmenu
+set wildmode=list:longest,full " 1回目で共通部分，2回目で順番に補完
 
-" color 
+" color
 colorscheme default
 
 ""	my config
