@@ -2,8 +2,8 @@
 # Author: SENOO, Ken
 
 ## choose target compiler
-# FC = gfortran
-# CC = gcc
+FC = gfortran
+CC = gcc
 CXX = g++
 
 ## unset non target compiler
