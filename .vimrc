@@ -5,7 +5,7 @@ set nocompatible " viとの互換をとらない
 
 "Charset, Line ending
 set encoding=utf-8
-set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis,cp932
+set fileencodings=iso-2022-jp,euc-jp,sjis,cp932,utf-8
 set fileformats=unix,dos,mac
 
 if has('vim_starting')
