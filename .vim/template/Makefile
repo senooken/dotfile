@@ -1,38 +1,46 @@
-## (File name: Makefile)
-## Author: SENOO, Ken
-## (Last update: 2015-01-08T23:15+09:00)
+# (File name: Makefile)
+# Author: SENOO, Ken
 
-FC=# gfortran
-CC=# gcc
-CXX= g++
-COMPILER+=$(FC) $(CC) $(CXX)
-## flag (compile option) and library
-LDFLAGS= -g -MMD -MP -mcmodel=large -Wall
+## choose target compiler
+# FC = gfortran
+# CC = gcc
+CXX = g++
 
-TARGET=out.exe
+## unset non target compiler
+FC =
+CC =
+# CXX =
+
+COMPILER = $(FC) $(CC) $(CXX)
+
+## global flag (compile option) and library
+LDFLAGS = -g -MMD -MP -mcmodel=large -Wall
+
+TARGET = out.exe
 
 ifdef FC
-	SRC:=$(wildcard *.f90)
-	OBJ:=$(SRC:%.f90=%.o)
-	DEP:=$(SRC:%.f90=%.d)
-  MOD:=$(wildcard *.mod)
-	FFLAGS=-cpp
+	SRC := $(wildcard *.f90)
+	OBJ := $(SRC:%.f90=%.o)
+	DEP := $(SRC:%.f90=%.d)
+	MOD := $(wildcard *.mod)
+	FFLAGS += -cpp
 endif
 ifdef CC
-	SRC:=$(wildcard *.c)
-	OBJ:=$(SRC:%.c=%.o)
-	DEP:=$(SRC:%.c=%.d)
-	CFLAGS=
+	SRC := $(wildcard *.c)
+	OBJ := $(SRC:%.c=%.o)
+	DEP := $(SRC:%.c=%.d)
+	CFLAGS += -lm
 endif
 ifdef CXX
-	SRC:=$(wildcard *.cpp)
-	OBJ:=$(SRC:%.cpp=%.o)
-	DEP:=$(SRC:%.cpp=%.d)
-	CXXFLAGS=
+	SRC := $(wildcard *.cpp)
+	OBJ := $(SRC:%.cpp=%.o)
+	DEP := $(SRC:%.cpp=%.d)
+	CXXFLAGS +=
 endif
 
-LDFLAGS+=$(FFLAGS) ${CFLAGS} ${CPPFLAGS}
-
+ifeq (${OS}, Windows_NT) # for Windows
+	CFLAGS += --exec-charset=sjis
+endif
 
 all: ${TARGET}
 
@@ -40,15 +48,14 @@ ${TARGET}: ${OBJ}
 	${COMPILER} -o $@ ${LDFLAGS} $^
 
 %.o: %.f90
-	${FC} ${LDFLAGS} -c $<
+	${FC} ${LDFLAGS} ${FFLAGS} -c $<
 %.o: %.c
-	${CC} ${LDFLAGS} -c $<
+	${CC} ${LDFLAGS} ${CFLAGS} -c $<
 %.o: %.cpp
-	${CXX} ${LDFLAGS} -c $<
-
+	${CXX} ${LDFLAGS} ${CXXFLAGS} -c $<
 
 clean:
-	rm -f ${TARGET} ${OBJ} ${MOD}
+	${RM} ${TARGET} ${OBJ} ${DEP} ${MOD}
 
 -include $(DEP)
 .PHONY: all clean
