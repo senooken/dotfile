@@ -1,6 +1,6 @@
 #!/bin/bash
 # @author: SENOO, Ken
-# (Last Update: 2014-12-16T16:28+09:00)
+# (Last Update: 2015-01-19T09:51+09:00)
 
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
@@ -13,6 +13,8 @@ do
     do
       if echo $dotfile | grep -q $winconf; then
         ln -sfd $dotfile $USERPROFILE/
+      else
+        ln -sfd $dotfile ~/
       fi
     done
   else
