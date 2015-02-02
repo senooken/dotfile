@@ -29,7 +29,7 @@ ifdef CC
 	SRC := $(wildcard *.c)
 	OBJ := $(SRC:%.c=%.o)
 	DEP := $(SRC:%.c=%.d)
-	CFLAGS += -lm
+	CFLAGS +=
 endif
 ifdef CXX
 	SRC := $(wildcard *.cpp)
