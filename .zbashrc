@@ -79,6 +79,7 @@ alias gf='gfortran -Wall -static'
 [ "`command -v xstow`" ] && alias stow=xstow
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
+alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
 GREP_OPTIONS="--color=auto --binary-files=without-match" ## grep 2.21
 alias grep="grep $GREP_OPTIONS"
