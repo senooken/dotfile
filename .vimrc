@@ -380,7 +380,7 @@ set textwidth=0 " Prevent auto line break
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4 
 
 "" vim auto creating file
-" set noswapfile
+set noswapfile
 " set directory=~/.vim/tmp
 set nobackup
 set backupdir=~/.vim/tmp

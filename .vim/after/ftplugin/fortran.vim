@@ -1,7 +1,6 @@
 " (File name: fortran.vim)
 " Author: SENOO, Ken
-" (Last update: 2015-01-06T18:12+09:00)
-" Lincense: MIT
+" Lincense: CC0
 
 "" 新規作成時の構文ハイライトに固定形式か自由形式のどちらを使うかの判定
 let s:ext = expand("%:e")
