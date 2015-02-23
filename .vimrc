@@ -444,6 +444,7 @@ set cursorline	" カーソル行をハイライト
 
 "" other
 """ メニュー補完
+set wildignorecase " ファイル名とディレクトリの補完で大文字小文字無視
 set wildmenu
 set wildmode=list:longest,full " 1回目で共通部分，2回目で順番に補完
 

@@ -2,8 +2,8 @@
 # copyright and related and neighboring rights to this software to the 
 # public domain worldwide. This software is distributed without any warranty. 
 # You should have received a copy of the CC0 Public Domain Dedication along 
-# with this software. 
-# If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
+# with this software.
+# If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 # base-files version 4.1-1
 
@@ -46,6 +46,9 @@ set meta-flag on
 set convert-meta off
 set input-meta on
 set output-meta on
+# 日本語入力に必要らしい？
+set kanji-code utf-8
+
 #$if Bash
   # Don't ring bell on completion
   #set bell-style none
@@ -54,11 +57,21 @@ set output-meta on
   #set bell-style visible
 
   # Filename completion/expansion
-  #set completion-ignore-case on
-  #set show-all-if-ambiguous on
+  # 補完候補が大量にある時ベルを鳴らさずいきなり一覧。onにしないと一旦ベル鳴らす
+  set show-all-if-ambiguous on
+  set show-all-if-unmodified on
+
+# 補間時大文字小文字無視
+set completion-ignore-case on
+# 補間時に"-"と"_"を同じとみなす
+set completion-map-case on
+# SHIFT-TABで順番補完
+"\e[Z": menu-complete
+# "\C-m": menu-complete
+
 
   # Expand homedir name
-  #set expand-tilde on
+  # set expand-tilde on
 
   # Append "/" to all dirnames
   #set mark-directories on
@@ -73,12 +86,11 @@ set output-meta on
   #Space: magic-space
 #$endif
 
-# 補間時大文字小文字無視
-set completion-ignore-case on
 # ベル無
 set bell-style none
 # 入力候補リストのディレクトリや実行可能ファイルに印をつける
 set visible-stats on
+
 
 $if Bash
     # スペースで特殊変数がその場で展開
