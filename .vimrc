@@ -339,7 +339,7 @@ set showmatch
 set laststatus=2
 " ステータスラインに表示する情報の指定
 "set statusline=%y%{GetStatusEx()}%F%m%r%=<%c:%l>
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'.'['.&ft.']'}%=%l,%c%V%8P
 " ステータスラインの色
 hi StatusLine   term=NONE cterm=NONE ctermfg=black ctermbg=white
 " ハイライト
@@ -373,11 +373,7 @@ set softtabstop=0
 "set noexpandtab
 " オートインデントを有効にする
 set cindent
-
 set textwidth=0 " Prevent auto line break
-
-"" tab config for each languages
-autocmd! FileType python setlocal shiftwidth=4 tabstop=4 
 
 "" vim auto creating file
 set noswapfile
@@ -501,11 +497,16 @@ highlight ZenkakuSpace ctermbg=red guibg=#666666
 au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 
+
+"" language config
+autocmd BufNewFile,BufRead *.bas setlocal filetype=vb " for Visual Basic
+
+autocmd! FileType python setlocal shiftwidth=4 tabstop=4
+
 "" folding
 " autocmd FileType python :set foldmethod=indent
 autocmd FileType python :set foldlevel=1
 autocmd FileType python :set foldnestmax=2
-
 autocmd FileType * setlocal formatoptions-=ro
 
 "" 閉じタグの自動補完
