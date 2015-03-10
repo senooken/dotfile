@@ -7,6 +7,7 @@ set nocompatible " viとの互換をとらない
 set encoding=utf-8
 set fileencodings=iso-2022-jp,euc-jp,sjis,cp932,utf-8,ucs-bom
 set fileformats=unix,dos,mac
+set ambiwidth=double " 全角記号をきちんと表示
 
 if has('vim_starting')
   "runtimepathにneobundle.vimをインストールしたディレクトリを指定
