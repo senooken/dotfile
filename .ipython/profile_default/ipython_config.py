@@ -281,6 +281,7 @@ c = get_config()
 
 # Set the color scheme (NoColor, Linux, or LightBG).
 # c.TerminalInteractiveShell.colors = 'Linux'
+c.TerminalInteractiveShell.colors = 'LightBG'
 
 # Deprecated, use PromptManager.justify
 # c.TerminalInteractiveShell.prompts_pad_left = True
