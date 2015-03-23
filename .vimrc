@@ -501,7 +501,7 @@ au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 
 "" language config
 """ for Visual Basic
-autocmd BufNewFile,BufRead *.bas setlocal filetype=vb
+autocmd BufNewFile,BufRead *.bas setlocal filetype=vb shiftwidth=4 tabstop=4
 autocmd BufWritePre *.bas setlocal fileencoding=sjis
 
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4
