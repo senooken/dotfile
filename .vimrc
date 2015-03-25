@@ -325,6 +325,9 @@ set history=50
 "set number
 set nonumber
 
+" set columns=78 " 行数
+
+
 " タイトルをウインドウ枠に表示 
 " notitleにすることで「vimを使ってくれてありがとう」を非表示にする
 set notitle
@@ -338,9 +341,12 @@ set showcmd
 set showmatch
 " ステータスラインを常に表示
 set laststatus=2
+
 " ステータスラインに表示する情報の指定
-"set statusline=%y%{GetStatusEx()}%F%m%r%=<%c:%l>
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'.'['.&ft.']'}%=%l,%c%V%8P
+set statusline=%<%f\ %m%r%h%w " ファイル名
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'.'['.&ft.']'} " 改行コードなど
+set statusline+=%=%l/%L,\ %c%V%8P " 現在位置の情報
+
 " ステータスラインの色
 hi StatusLine   term=NONE cterm=NONE ctermfg=black ctermbg=white
 " ハイライト
@@ -489,9 +495,14 @@ augroup END
 set nrformats=   " deal as decimal for number
 
 "" show special character
-set lcs=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
+set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
 " set lcs=tab:►\ ,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
 set list
+
+"" 折り返し
+set linebreak " 空白などいい感じの場所で折り返し
+set showbreak=+\  " 折り返し後の行頭記号
+set breakindent " 折り返された部分もインデント
 
 """ 全角スペースの表示
 highlight ZenkakuSpace ctermbg=red guibg=#666666
