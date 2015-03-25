@@ -325,9 +325,6 @@ set history=50
 "set number
 set nonumber
 
-" set columns=78 " 行数
-
-
 " タイトルをウインドウ枠に表示 
 " notitleにすることで「vimを使ってくれてありがとう」を非表示にする
 set notitle
