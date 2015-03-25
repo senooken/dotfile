@@ -499,7 +499,9 @@ set list
 "" 折り返し
 set linebreak " 空白などいい感じの場所で折り返し
 set showbreak=+\  " 折り返し後の行頭記号
-set breakindent " 折り返された部分もインデント
+if (v:version == 704 && has("patch338")) || v:version >= 705
+  set breakindent " 折り返された部分もインデント
+endif
 
 """ 全角スペースの表示
 highlight ZenkakuSpace ctermbg=red guibg=#666666
