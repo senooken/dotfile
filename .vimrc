@@ -5,7 +5,7 @@ set nocompatible " viとの互換をとらない
 
 "Charset, Line ending
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,cp932,utf-8,ucs-bom
+set fileencodings=iso-2022-jp,utf-8,euc-jp,cp932,ucs-bom
 set fileformats=unix,dos,mac
 set ambiwidth=double " 全角記号をきちんと表示
 
@@ -89,7 +89,7 @@ NeoBundle 'Shougo/neosnippet'
   " Tell Neosnippet about the other snippets
   "let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
   let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
-  " Plugin key-mappings.  " <C-k>でsnippetの展開
+  " Plugin key-mappings.  " <C-f>でsnippetの展開
   "imap <C-k> <Plug>(neosnippet_expand_or_jump)
   " imap <expr><CR> !pumvisible()? "" : neosnippet#expandable() ? "\<Plug>(neosnippet_expand)": neocomplete#close_popup()
   imap <C-f> <Plug>(neosnippet_expand_or_jump)
@@ -502,7 +502,7 @@ au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 "" language config
 """ for Visual Basic
 autocmd BufNewFile,BufRead *.bas setlocal filetype=vb shiftwidth=4 tabstop=4
-autocmd BufWritePre *.bas setlocal fileencoding=sjis
+autocmd BufWritePre *.bas setlocal fileencoding=cp932
 
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4
 
