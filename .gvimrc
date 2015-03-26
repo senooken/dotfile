@@ -22,5 +22,5 @@ set foldmethod=manual
 
 
 colorscheme morning
-set guioptions+=b " nowrapのときに横スクロールバー
+" set guioptions+=b " nowrapのときに横スクロールバー
 

@@ -508,6 +508,9 @@ highlight ZenkakuSpace ctermbg=red guibg=#666666
 au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 
+""" ドラッグドロップで新しいタブでファイルを開く
+autocmd VimEnter * tab all
+autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
 "" language config
 """ for Visual Basic
