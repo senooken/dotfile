@@ -7,3 +7,4 @@ Charset=UTF-8
 Transparency=low
 Rows=36
 FontHeight=8
+Term=xterm-256color
