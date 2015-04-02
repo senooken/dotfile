@@ -160,7 +160,7 @@ NeoBundle 'kana/vim-smartinput'
     \   })
 
 
-NeoBundle 'mattn/emmet-vim'
+" NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Shougo/unite.vim'
   let g:unite_source_history_yank_enable=1
   nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
@@ -196,7 +196,29 @@ augroup END
 
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
 NeoBundle 'thinca/vim-fontzoom' " change font size easy
+
 NeoBundle 'kana/vim-smartchr'
+NeoBundle 'kana/vim-submode'
+  "" ウィンドウサイズ変更
+  call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+  call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+  call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
+  call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
+  call submode#map('winsize', 'n', '', '>', '<C-w>>')
+  call submode#map('winsize', 'n', '', '<', '<C-w><')
+  call submode#map('winsize', 'n', '', '+', '<C-w>-')
+  call submode#map('winsize', 'n', '', '-', '<C-w>+')
+  "" タブページ切り替え
+  call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
+  call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
+  call submode#map('changetab', 'n', '', 't', 'gt')
+  call submode#map('changetab', 'n', '', 'T', 'gT')
+  "" undo/redoを巡る
+  call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
+  call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
+  call submode#map('undo/redo', 'n', '', '-', 'g-')
+  call submode#map('undo/redo', 'n', '', '+', 'g+')
+
 NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
 NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
   "" vim-indent-guides'
