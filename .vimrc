@@ -232,14 +232,14 @@ NeoBundle 'lamsh/autofname.vim'
   let autofname_keyword_post=")"
   let autofname_lines=10
 
-" NeoBundle 'Shougo/vimproc', {
-"   \ 'build' : {
-"   \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
-"   \    'cygwin' : 'make -f make_cygwin.mak',
-"   \    'mac' : 'make -f make_mac.mak',
-"   \    'unix' : 'make -f make_unix.mak',
-"   \   },
-"   \ }
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+  \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
+  \    'cygwin' : 'make -f make_cygwin.mak',
+  \    'mac' : 'make -f make_mac.mak',
+  \    'unix' : 'make -f make_unix.mak',
+  \   },
+  \ }
 
 NeoBundle 'thinca/vim-quickrun' " quick run in vim
   let g:quickrun_config = {"_": {'runner' : 'vimproc'}}
