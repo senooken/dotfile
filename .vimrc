@@ -332,6 +332,7 @@ NeoBundle 'Lokaltog/vim-easymotion' " cursor
 "let g:netrw_liststyle=3
 
 
+
 "" my variable
 let $TODAY=strftime('%Y%m%d')
 
@@ -535,6 +536,10 @@ au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
 "" language config
+""" AsciiDoc
+NeoBundle 'asciidoc.vim'
+autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
+
 """ for Visual Basic
 autocmd BufNewFile,BufRead *.bas setlocal filetype=vb shiftwidth=4 tabstop=4
 autocmd BufWritePre *.bas setlocal fileencoding=cp932
