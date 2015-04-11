@@ -5,9 +5,7 @@
 @charset "utf-8";
 
 /* こちらの節番号のほうが望ましい */
-body {
-  counter-reset: heading1;
-}
+body { counter-reset: heading1; }
 section>h1 {
   counter-increment: heading1; counter-reset: heading2 table figure;}
 section>h1::before {
@@ -54,10 +52,8 @@ figcaption::before {
 
 
 /* 節番号の設定 */
-body {
-  counter-reset: section1;
-}
-h1 {counter-increment: section1; counter-reset: section2　table figure;}
+/* body { counter-reset: section1; } */
+h1 {counter-increment: section1; counter-reset: section2 table figure;}
 h1:before {content: counter(section1) " ";}
 
 h2 {counter-increment: section2; counter-reset: section3;}
