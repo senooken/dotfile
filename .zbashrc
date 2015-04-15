@@ -75,7 +75,7 @@ alias ipy3='ipython3'
 alias rb='ruby'
 alias gp='g++ -Wall -std=c++1y'
 alias gc='gcc -Wall -std=gnu11'
-alias gf='gfortran -Wall -static'
+alias gf='gfortran -Wall -O3 -static'
 [ "`command -v xstow`" ] && alias stow=xstow
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
