@@ -264,13 +264,21 @@ NeoBundle 'Shougo/vimproc', {
   \ }
 
 NeoBundle 'thinca/vim-quickrun' " quick run in vim
-  let g:quickrun_config = {"_": {'runner' : 'vimproc'}}
-  let g:quickrun_config={'fortran': {'cmdopt': '-Wall -static'}}
-  let g:quickrun_config={'cpp': {'cmdopt': '-Wall'}}
+  let g:quickrun_config = {} " initialization
+  "" default option
+  let g:quickrun_config._ = {
+  \ 'runner' : 'vimproc',
+  \ 'runner/vimproc/updatetime': 10,
+  \ 'split': '',
+  \ }
 
-  let g:quickrun_config={'_': {'split': ''}} " 規定の画面分割を上下にする。
+  let g:quickrun_config.fortran = {'cmdopt': '-Wall -O3 -static'}
+  let g:quickrun_config.cpp = {'cmdopt': '-Wall'}
+  let g:quickrun_config.c = {'cmdopt': '-Wall -std=gnu11'}
+
   set splitbelow
-  set splitright
+  " set splitright
+
 
 NeoBundle 'gtags.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
