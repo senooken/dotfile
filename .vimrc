@@ -507,6 +507,11 @@ map! <Esc>OF <End>
 
 " inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
 
+"" short cut for help
+nnoremap <C-h> :<C-u>help<Space>
+" nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR> " search word in help
+
+
 "" move window
 nnoremap <ESC>h <C-w>h
 nnoremap <ESC>j <C-w>j

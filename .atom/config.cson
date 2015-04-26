@@ -1,26 +1,33 @@
 'global':
   '*':
     '*':
+      '*':
+        'exception-reporting':
+          'userId': 'fc952bc5-7f12-3006-ffb4-dc97bd8219c3'
+        'welcome':
+          'showOnStartup': false
+        'editor':
+          'fontFamily': '"Migu 1M"'
+          'fontSize': 12
+          'softWrap': true
+          'showIndentGuide': true
+        'core':
+          'destroyEmptyPanes': false
       'exception-reporting':
-        'userId': 'fc952bc5-7f12-3006-ffb4-dc97bd8219c3'
+        'userId': 'f8a3b1a5-57d8-6260-fede-3f8be7bbbc92'
       'welcome':
         'showOnStartup': false
       'editor':
-        'fontFamily': '"Migu 1M"'
-        'fontSize': 12
-        'softWrap': true
+        'fontFamily': 'Migu\\ 1m'
         'showIndentGuide': true
-      'core':
-        'destroyEmptyPanes': false
+        'softWrap': true
     'exception-reporting':
-      'userId': 'f8a3b1a5-57d8-6260-fede-3f8be7bbbc92'
+      'userId': '53091d93-10da-e0d9-65eb-09bcf0a782fd'
     'welcome':
       'showOnStartup': false
     'editor':
       'fontFamily': 'Migu\\ 1m'
-      'showIndentGuide': true
-      'softWrap': true
   'exception-reporting':
-    'userId': '53091d93-10da-e0d9-65eb-09bcf0a782fd'
+    'userId': 'ea40ad7d-a8ad-14ec-9074-edc9006f355c'
   'welcome':
     'showOnStartup': false
