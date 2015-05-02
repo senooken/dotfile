@@ -22,6 +22,9 @@ else
   export PYTHONPATH="${LOCAL/\/[a-z]/}/lib/python3.4/site-packages"
 fi
 
+export DEBFULLNAME="Ken SENOO"
+export DEBEMAIL="mslamsh20131029@outlook.jp"
+
 ## locale
 export LANG=ja_JP.UTF-8
 export LANGUAGE=en_US.UTF-8
