@@ -109,7 +109,7 @@ export LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋�
 export PAGER="less"
 [ "`command -v lv`" ] && export PAGER=lv
 export LV="-c -l"
-export LESS="-imr"
+export LESS="-imR"
 
 
 ## for other individual setting
