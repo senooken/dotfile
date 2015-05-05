@@ -126,16 +126,16 @@ zstyle ':completion:*' group-name ''
 autoload -U compinit && compinit -u
 
 ### Global aliases 
-alias -g A="| awk"
-alias -g G="| grep"
+alias -g A="|& awk"
+alias -g G="|& grep"
 alias -g GE="| grep -i error"
 alias -g GV="| grep -v"
-alias -g H="| head"
-alias -g L="| $PAGER"
+alias -g H="|& head"
+alias -g L="|& $PAGER"
 alias -g N="2>&1 > /dev/null"
 alias -g R="| ruby -e"
-alias -g S="| sed"
-alias -g T="| tail"
+alias -g S="|& sed"
+alias -g T="|& tail"
 alias -g V="| vim -R -"
 alias -g U=' --help | head'
 alias -g P=" --help | $PAGER"
