@@ -43,7 +43,7 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
     zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitive
     # bindkey '^m' zaw
     bindkey "^r" zaw-history
-    bindkey "^j^j" zaw-cdr
+    bindkey "^m^m" zaw-cdr
   #
   #
   # # antigen-bundle hchbaw/auto-fu.zsh # need unsetopt sh_word_split

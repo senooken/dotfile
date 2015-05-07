@@ -373,6 +373,7 @@ set laststatus=2
 " ステータスラインに表示する情報の指定
 set statusline=%<%f\ %m%r%h%w " ファイル名
 set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'.'['.&ft.']'} " 改行コードなど
+set statusline+=[\%04.4B] " カーソル行の16進数文字コード
 set statusline+=%=%l/%L,\ %c%V%8P " 現在位置の情報
 
 " ステータスラインの色
