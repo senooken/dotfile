@@ -60,9 +60,9 @@ snippet dir
 	OUTDIR=${3:outdir}
 
 snippet get_encode
-	## $B%U%!%$%k$N%(%s%3!<%I<+F0H=JL(B
+	## ファイルの文字エンコーディング自動判別
 	def get_encode(filepath):
-		encs = "iso-2022-jp utf-8 euc-jp cp932 ucs-bom".split()
+		encs = "iso-2022-jp utf-8-sig euc-jp cp932".split()
 		for enc in encs:
 			with open(filepath, encoding=enc) as fr:
 				try:

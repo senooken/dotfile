@@ -5,7 +5,7 @@ set nocompatible " viとの互換をとらない
 
 "Charset, Line ending
 set encoding=utf-8
-set fileencodings=iso-2022-jp,utf-8,euc-jp,cp932,ucs-bom
+set fileencodings=iso-2022-jp,ucs-bom,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
 set ambiwidth=double " 全角記号をきちんと表示
 
