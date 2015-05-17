@@ -11,112 +11,192 @@
     <!-- <meta name="keywords" contents=""> -->
     <!-- <link rel="stylesheet" type="text/css" href="default.css"> -->
     <style>
+    </style>
+  </head>
+  <body>
 @charset "utf-8";
 
-/* こちらの節番号のほうが望ましい */
-body {
-  counter-reset: heading1;
+/* 節番号の設定 */
+body { counter-reset: heading1; }
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6
+{
+  counter-increment: heading1; counter-reset: heading2 table figure;
 }
-section>h1 {
-  counter-increment: heading1; counter-reset: heading2 table figure;}
-section>h1::before {
-  content: counter(heading1) " ";}
+body h1::before,
+body h2::before,
+body h3::before,
+body h4::before,
+body h5::before,
+body h6::before
+{
+  content: counter(heading1) " ";
+}
 
-section>section>h1 {
-  counter-increment: heading2; counter-reset: heading3;}
-section>section>h1::before {
-  content: counter(heading1) "." counter(heading2) " ";}
+body section>h1,
+body section>h2,
+body section>h3,
+body section>h4,
+body section>h5,
+body section>h6
+{
+  counter-increment: heading2; counter-reset: heading3;
+}
 
-section>section>section>h1 {
-  counter-increment: heading3; counter-reset: heading4;}
-section>section>section>h1::before{
-  content: counter(heading1) "." counter(heading2) "." counter(heading3) " ";}
+body section>h1::before,
+body section>h2::before,
+body section>h3::before,
+body section>h4::before,
+body section>h5::before,
+body section>h6::before
+{
+  content: counter(heading1) "." counter(heading2) " ";
+}
 
-section>section>section>section>h1 {
-  counter-increment: heading4; counter-reset: heading5;}
-section>section>section>section>h1::before {
+body section>section>h1,
+body section>section>h2,
+body section>section>h3,
+body section>section>h4,
+body section>section>h5,
+body section>section>h6
+{
+  counter-increment: heading3; counter-reset: heading4;
+}
+body section>section>h1::before,
+body section>section>h2::before,
+body section>section>h3::before,
+body section>section>h4::before,
+body section>section>h5::before,
+body section>section>h6::before
+{
+  content: counter(heading1) "." counter(heading2) "." counter(heading3) " ";
+}
+
+body section>section>section>h1,
+body section>section>section>h2,
+body section>section>section>h3,
+body section>section>section>h4,
+body section>section>section>h5,
+body section>section>section>h6
+{
+  counter-increment: heading4; counter-reset: heading5;
+}
+body section>section>section>h1::before,
+body section>section>section>h2::before,
+body section>section>section>h3::before,
+body section>section>section>h4::before,
+body section>section>section>h5::before,
+body section>section>section>h6::before
+{
   content: counter(heading1) "." counter(heading2) "." counter(heading3)
-       "." counter(heading4) " ";}
+"." counter(heading4) " ";
+}
 
-section>section>section>section>section>h1 {
-  counter-increment: heading5; counter-reset: heading6;}
-section>section>section>section>section>h1::before {
+body section>section>section>section>h1,
+body section>section>section>section>h2,
+body section>section>section>section>h3,
+body section>section>section>section>h4,
+body section>section>section>section>h5,
+body section>section>section>section>h6
+{
+  counter-increment: heading5; counter-reset: heading6;
+}
+body section>section>section>section>h1::before,
+body section>section>section>section>h2::before,
+body section>section>section>section>h3::before,
+body section>section>section>section>h4::before,
+body section>section>section>section>h5::before,
+body section>section>section>section>h6::before
+{
   content: counter(heading1) "." counter(heading2) "." counter(heading3)
-       "." counter(heading4) "." counter(heading5) " ";}
+"." counter(heading4) "." counter(heading5) " ";
+}
 
-section>section>section>section>section>section>h1 {
-  counter-increment: heading6;}
-section>section>section>section>section>section>h1::before {
+body section>section>section>section>section>h1,
+body section>section>section>section>section>h2,
+body section>section>section>section>section>h3,
+body section>section>section>section>section>h4,
+body section>section>section>section>section>h5,
+body section>section>section>section>section>h6
+{
+  counter-increment: heading6;
+}
+body section>section>section>section>section>h1::before,
+body section>section>section>section>section>h2::before,
+body section>section>section>section>section>h3::before,
+body section>section>section>section>section>h4::before,
+body section>section>section>section>section>h5::before,
+body section>section>section>section>section>h6::before
+{
   content: counter(heading1) "." counter(heading2) "." counter(heading3)
-       "." counter(heading4) "." counter(heading5) "." counter(heading6) " ";}
+"." counter(heading4) "." counter(heading5) "." counter(heading6) " ";
+}
+
 
 /* caption */
 caption::before {
   counter-increment: table;
   content: "表" counter(heading1) "." counter(table) " ";
 }
-
 figcaption::before {
   counter-increment: figure;
   content: "図" counter(heading1) "." counter(figure) " ";
 }
-
-
-/* 節番号の設定 */
-/* body { counter-reset: section1; } */
-h1 {counter-increment: section1; counter-reset: section2　table figure;}
-h1:before {content: counter(section1) " ";}
-
-h2 {counter-increment: section2; counter-reset: section3;}
-h2:before {content: counter(section1) "." counter(section2) " ";}
-
-h3 {counter-increment: section3; counter-reset: section4;}
-h3:before {content: counter(section1) "." counter(section2) "." counter(section3) " ";}
-
-h4 {counter-increment: section4; counter-reset: section5;}
-h4:before {content: counter(section1) "." counter(section2) "." counter(section3)
-                "." counter(section4) " "}
-
-h5 {counter-increment: section5; counter-reset: section6;}
-h5:before {content: counter(section1) "." counter(section2) "." counter(section3)
-                "." counter(section4) "." counter(section5) " ";}
-
-h6 {counter-increment: section6;}
-h6:before {content: counter(section1) "." counter(section2) "." counter(section3)
-                "." counter(section4) "." counter(section5) "." counter(section6) " ";}
-
-caption::before {
-  counter-increment: table;
-  content: "表" counter(section1) "." counter(table) " ";
-}
-body {counter-reset: figure;}
-figcaption::before {
-  counter-increment: figure;
-  content: "図" counter(section1) "." counter(figure) " ";
-}
-
-/* list */
-ol {
-  counter-reset: enum;
-}
-ol li {
-        list-style-type: none;
-}
-ol li::before {
-  counter-increment: enum;
-  content: counters(enum, ".") ". ";
-}
-
-/* caption */
 body {counter-reset: listing;}
 figcaption[id^="lis:"]::before {
   counter-increment: listing;
-  content: "リスト" counter(section1) "." counter(listing) " ";
+  content: "リスト" counter(heading1) "." counter(listing) " ";
 }
 figcaption[class^="lis"]::before {
   counter-increment: listing;
   content: "リスト" counter(section1) "." counter(listing) " ";
 }
+
+
+/* list */
+/* listが見出し設定の後にあると見出し番号がリセットされる? */
+/* ol { counter-reset: enum; } */
+/* ol li { list-style-type: none; } */
+/* ol li::before {                    */
+/* counter-increment: enum;           */
+/* content: counters(enum, ".") ". "; */
+/* }                                  */
+ol { counter-reset: enum1; }
+li { list-style-type: none; }
+ol li::before {
+counter-increment: enum1;
+content: counter(enum1) ". ";
+}
+ol ol{ counter-reset: enum2;}
+li li::before {
+counter-increment: enum2;
+content: counter(enum1) "." counter(enum2) ". ";
+}
+ol ol ol{ counter-reset: enum3;}
+li li li::before {
+counter-increment: enum3;
+content: counter(enum1) "." counter(enum2) "." counter(enum3) ". ";
+}
+ol ol ol ol{ counter-reset: enum4;}
+li li li li::before {
+counter-increment: enum4;
+content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) ". ";
+}
+ol ol ol ol ol{ counter-reset: enum5;}
+li li li li li::before {
+counter-increment: enum5;
+content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) ". ";
+}
+ol ol ol ol ol ol{ counter-reset: enum6;}
+li li li li li li::before {
+counter-increment: enum6;
+content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) "." counter(enum6) ". ";
+}
+
 
 /* table */
 table {
@@ -207,9 +287,6 @@ pre {
   background-color: #e6ffe6;
   overflow: auto;
 }
-    </style>
-  </head>
-  <body>
 
   </body>
 </html>
