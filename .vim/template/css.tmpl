@@ -33,7 +33,7 @@ figcaption[class^="lis"]::before {
 /* content: counters(enum, ".") ". "; */
 /* }                                  */
 ol { counter-reset: enum1; }
-li { list-style-type: none; }
+ol li { list-style-type: none; }
 ol li::before {
 counter-increment: enum1;
 content: counter(enum1) ". ";
