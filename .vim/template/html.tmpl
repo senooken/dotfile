@@ -11,6 +11,10 @@
     <!-- <meta name="keywords" contents=""> -->
     <!-- <link rel="stylesheet" type="text/css" href="default.css"> -->
     <style>
+    </style>
+  </head>
+  <body>
+
 @charset "utf-8";
 
 /* caption */
@@ -32,6 +36,15 @@ figcaption[class^="lis"]::before {
   content: "リスト" counter(section1) "." counter(listing) " ";
 }
 
+body section>h1::before,
+body section>h2::before,
+body section>h3::before,
+body section>h4::before,
+body section>h5::before,
+body section>h6::before
+{
+  content: counter(heading1) "." counter(heading2) " ";
+}
 
 /* list */
 /* listが見出し設定の後にあると見出し番号がリセットされる? */
@@ -196,8 +209,6 @@ section>section>section>section>section>section>h6::before
 }
 
 
-
-
 /* table */
 table {
   border-collapse: collapse;
@@ -287,8 +298,6 @@ pre {
   background-color: #e6ffe6;
   overflow: auto;
 }
-    </style>
-  </head>
-  <body>
+
   </body>
 </html>

@@ -23,6 +23,15 @@ figcaption[class^="lis"]::before {
   content: "リスト" counter(section1) "." counter(listing) " ";
 }
 
+body section>h1::before,
+body section>h2::before,
+body section>h3::before,
+body section>h4::before,
+body section>h5::before,
+body section>h6::before
+{
+  content: counter(heading1) "." counter(heading2) " ";
+}
 
 /* list */
 /* listが見出し設定の後にあると見出し番号がリセットされる? */
@@ -185,8 +194,6 @@ section>section>section>section>section>section>h6::before
   content: counter(heading1) "." counter(heading2) "." counter(heading3)
 "." counter(heading4) "." counter(heading5) "." counter(heading5) " ";
 }
-
-
 
 
 /* table */
