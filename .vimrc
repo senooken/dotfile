@@ -558,6 +558,9 @@ autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
 autocmd BufNewFile,BufRead *.bas setlocal filetype=vb shiftwidth=4 tabstop=4
 autocmd BufWritePre *.bas setlocal fileencoding=cp932
 
+""" for bat file
+autocmd BufWritePre *.bat setlocal fileformat=dos
+
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4
 
 "" folding
