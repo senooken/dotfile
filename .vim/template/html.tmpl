@@ -48,27 +48,27 @@ counter-increment: enum1;
 content: counter(enum1) ". ";
 }
 ol ol{ counter-reset: enum2;}
-li li::before {
+ol li li::before {
 counter-increment: enum2;
 content: counter(enum1) "." counter(enum2) ". ";
 }
 ol ol ol{ counter-reset: enum3;}
-li li li::before {
+ol li li li::before {
 counter-increment: enum3;
 content: counter(enum1) "." counter(enum2) "." counter(enum3) ". ";
 }
 ol ol ol ol{ counter-reset: enum4;}
-li li li li::before {
+ol li li li li::before {
 counter-increment: enum4;
 content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) ". ";
 }
 ol ol ol ol ol{ counter-reset: enum5;}
-li li li li li::before {
+ol li li li li li::before {
 counter-increment: enum5;
 content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) ". ";
 }
 ol ol ol ol ol ol{ counter-reset: enum6;}
-li li li li li li::before {
+ol li li li li li li::before {
 counter-increment: enum6;
 content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) "." counter(enum6) ". ";
 }
