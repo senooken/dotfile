@@ -1,8 +1,6 @@
 "" (File name: .vimrc)
 "" Author: SENOO, Ken
 
-set nocompatible " viとの互換をとらない
-
 "Charset, Line ending
 set encoding=utf-8
 set fileencodings=iso-2022-jp,ucs-bom,utf-8,euc-jp,cp932
@@ -519,12 +517,32 @@ nnoremap <ESC>j <C-w>j
 nnoremap <ESC>k <C-w>k
 nnoremap <ESC>l <C-w>l
 
+"" Allow saving of files as sudo
+" cabbrev w!! %!sudo tee > /dev/null %
+cnoremap w!! %!sudo tee > /dev/null %
+
+"" コマンドラインモードでEmacのキー移動
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-d> <Del>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
+
+" cnoremap <expr> / (getcmdtype() == '/') '\/' : '/'
+
 
 "" move last file position
-augroup vimrcEx
+augroup vimrcEx/d
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
 augroup END
+
+"" 開いたファイルの場所を現在ディレクトリにする
+autocmd BufEnter * execute ":lcd " .expand("%:p:h")
 
 set nrformats=   " deal as decimal for number
 
