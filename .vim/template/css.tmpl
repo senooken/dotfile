@@ -33,35 +33,35 @@ figcaption[class^="lis"]::before {
 /* content: counters(enum, ".") ". "; */
 /* }                                  */
 ol { counter-reset: enum1; }
-ol li { list-style-type: none; }
-ol li::before {
-counter-increment: enum1;
-content: counter(enum1) ". ";
+ol>li { list-style-type: none; }
+ol>li::before {
+  counter-increment: enum1;
+  content: counter(enum1) ". ";
 }
-ol ol{ counter-reset: enum2;}
-ol li li::before {
-counter-increment: enum2;
-content: counter(enum1) "." counter(enum2) ". ";
+ol>li>ol{ counter-reset: enum2;}
+ol>li>ol>li::before {
+  counter-increment: enum2;
+  content: counter(enum1) "." counter(enum2) ". ";
 }
-ol ol ol{ counter-reset: enum3;}
-ol li li li::before {
-counter-increment: enum3;
-content: counter(enum1) "." counter(enum2) "." counter(enum3) ". ";
+ol>li>ol>li>ol{ counter-reset: enum3;}
+ol>li>ol>li>ol>li::before {
+  counter-increment: enum3;
+  content: counter(enum1) "." counter(enum2) "." counter(enum3) ". ";
 }
-ol ol ol ol{ counter-reset: enum4;}
-ol li li li li::before {
-counter-increment: enum4;
-content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) ". ";
+ol>li>ol>li>ol>li>ol{ counter-reset: enum4;}
+ol>li>ol>li>ol>li>ol>li>ol>li::before {
+  counter-increment: enum4;
+  content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) ". ";
 }
-ol ol ol ol ol{ counter-reset: enum5;}
-ol li li li li li::before {
-counter-increment: enum5;
-content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) ". ";
+ol>li>ol>li>ol>li>ol>li>ol{ counter-reset: enum5;}
+ol>li>ol>li>ol>li>ol>li>ol>li::before {
+  counter-increment: enum5;
+  content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) ". ";
 }
-ol ol ol ol ol ol{ counter-reset: enum6;}
-ol li li li li li li::before {
-counter-increment: enum6;
-content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) "." counter(enum6) ". ";
+ol>li>ol>li>ol>li>ol>li>ol>li>ol{ counter-reset: enum6;}
+ol>li>ol>li>ol>li>ol>li>ol>li>ol>li::before {
+  counter-increment: enum6;
+  content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) "." counter(enum6) ". ";
 }
 
 /* 節番号の設定 */
