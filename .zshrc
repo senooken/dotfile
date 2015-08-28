@@ -262,7 +262,7 @@ function _pip_completion {
 compctl -K _pip_completion pip
 ## pip zsh completion end
 
-export WINEARCH=win32
+# export WINEARCH=win32
 
 # リモートから起動するコマンド用の環境変数を設定(必要なら)
 export RSYNC_RSH=ssh
