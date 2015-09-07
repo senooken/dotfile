@@ -17,7 +17,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
   " Let NeoBundle manage NeoBundle
   NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
 filetype plugin indent on " valid vim plugin
 
 "" list installing plugins
@@ -105,57 +104,57 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
-NeoBundle 'kana/vim-smartinput'
-  "" 空白文字以外のときは勝手に補間させない
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': '(', 'input': '(' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': ')', 'input': ')' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': '[', 'input': '[' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': ']', 'input': ']' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': '{', 'input': '{' })
-  call smartinput#define_rule({
-    \ 'at': '\%#\S', 'char': '}', 'input': '}' })
-
-  "" C++でstruct, class, enum+{の入力後に;を追記
-  call smartinput#define_rule({
-    \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
-    \   'char'     : '{',
-    \   'input'    : '{};<Left><Left>',
-    \   'filetype' : ['cpp'],
-    \   })
-  call smartinput#map_to_trigger('i', ':', ':', ':')
-  " call smartinput#define_rule({
-  "             \   'at'       : ':\%#',
-  "             \   'char'     : ':',
-  "             \   'input'    : '<BS>::',
-  "             \   'filetype' : ['cpp'],
-  "             \   })
-  "" s:: -> std::, b:: -> boost::
-  "" boost:: の補完
-  call smartinput#define_rule({
-    \   'at'       : '\<b:\%#',
-    \   'char'     : ':',
-    \   'input'    : '<BS>oost::',
-    \   'filetype' : ['cpp'],
-    \   })
-  " std:: の補完
-  call smartinput#define_rule({
-    \   'at'       : '\<s:\%#',
-    \   'char'     : ':',
-    \   'input'    : '<BS>td::',
-    \   'filetype' : ['cpp'],
-    \   })
-  " detail:: の補完
-  call smartinput#define_rule({
-    \   'at'       : '\%(\s\|::\)d:\%#',
-    \   'char'     : ':',
-    \   'input'    : '<BS>etail::',
-    \   'filetype' : ['cpp'],
-    \   })
+" NeoBundle 'kana/vim-smartinput'
+"   "" 空白文字以外のときは勝手に補間させない
+"   call smartinput#define_rule({
+"     \ 'at': '\%#\S', 'char': '(', 'input': '(' })
+"   call smartinput#define_rule({
+"     \ 'at': '\%#\S', 'char': ')', 'input': ')' })
+"   call smartinput#define_rule({
+"     \ 'at': '\%#\S', 'char': '[', 'input': '[' })
+"   call smartinput#define_rule({
+"     \ 'at': '\%#\S', 'char': ']', 'input': ']' })
+"   call smartinput#define_rule({
+"     \ 'at': '\%#\S', 'char': '{', 'input': '{' })
+"   call smartinput#define_rule({
+"     \ 'at': '\%#\S', 'char': '}', 'input': '}' })
+"
+"   "" C++でstruct, class, enum+{の入力後に;を追記
+"   call smartinput#define_rule({
+"     \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
+"     \   'char'     : '{',
+"     \   'input'    : '{};<Left><Left>',
+"     \   'filetype' : ['cpp'],
+"     \   })
+"   call smartinput#map_to_trigger('i', ':', ':', ':')
+"   " call smartinput#define_rule({
+"   "             \   'at'       : ':\%#',
+"   "             \   'char'     : ':',
+"   "             \   'input'    : '<BS>::',
+"   "             \   'filetype' : ['cpp'],
+"   "             \   })
+"   "" s:: -> std::, b:: -> boost::
+"   "" boost:: の補完
+"   call smartinput#define_rule({
+"     \   'at'       : '\<b:\%#',
+"     \   'char'     : ':',
+"     \   'input'    : '<BS>oost::',
+"     \   'filetype' : ['cpp'],
+"     \   })
+"   " std:: の補完
+"   call smartinput#define_rule({
+"     \   'at'       : '\<s:\%#',
+"     \   'char'     : ':',
+"     \   'input'    : '<BS>td::',
+"     \   'filetype' : ['cpp'],
+"     \   })
+"   " detail:: の補完
+"   call smartinput#define_rule({
+"     \   'at'       : '\%(\s\|::\)d:\%#',
+"     \   'char'     : ':',
+"     \   'input'    : '<BS>etail::',
+"     \   'filetype' : ['cpp'],
+"     \   })
 
 
 " NeoBundle 'mattn/emmet-vim'
@@ -196,26 +195,26 @@ NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
 NeoBundle 'thinca/vim-fontzoom' " change font size easy
 
 NeoBundle 'kana/vim-smartchr'
-NeoBundle 'kana/vim-submode'
-  "" ウィンドウサイズ変更
-  call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-  call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-  call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
-  call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
-  call submode#map('winsize', 'n', '', '>', '<C-w>>')
-  call submode#map('winsize', 'n', '', '<', '<C-w><')
-  call submode#map('winsize', 'n', '', '+', '<C-w>-')
-  call submode#map('winsize', 'n', '', '-', '<C-w>+')
-  "" タブページ切り替え
-  call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
-  call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
-  call submode#map('changetab', 'n', '', 't', 'gt')
-  call submode#map('changetab', 'n', '', 'T', 'gT')
-  "" undo/redoを巡る
-  call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
-  call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
-  call submode#map('undo/redo', 'n', '', '-', 'g-')
-  call submode#map('undo/redo', 'n', '', '+', 'g+')
+" NeoBundle 'kana/vim-submode'
+"   "" ウィンドウサイズ変更
+"   call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+"   call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+"   call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
+"   call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
+"   call submode#map('winsize', 'n', '', '>', '<C-w>>')
+"   call submode#map('winsize', 'n', '', '<', '<C-w><')
+"   call submode#map('winsize', 'n', '', '+', '<C-w>-')
+"   call submode#map('winsize', 'n', '', '-', '<C-w>+')
+"   "" タブページ切り替え
+"   call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
+"   call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
+"   call submode#map('changetab', 'n', '', 't', 'gt')
+"   call submode#map('changetab', 'n', '', 'T', 'gT')
+"   "" undo/redoを巡る
+"   call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
+"   call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
+"   call submode#map('undo/redo', 'n', '', '-', 'g-')
+"   call submode#map('undo/redo', 'n', '', '+', 'g+')
 
 NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
 NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
@@ -235,9 +234,9 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'Align'
 NeoBundle 'YankRing.vim'
 
-NeoBundle 'tyru/open-browser'
-NeoBundle 'kannokanno/previm'
-NeoBundle 'plasticboy/vim-markdown'
+" NeoBundle 'tyru/open-browser'
+" NeoBundle 'kannokanno/previm'
+" NeoBundle 'plasticboy/vim-markdown'
 
 
 
@@ -252,30 +251,30 @@ NeoBundle 'lamsh/autofname.vim'
   let autofname_keyword_post=")"
   let autofname_lines=10
 
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-  \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
-  \    'cygwin' : 'make -f make_cygwin.mak',
-  \    'mac' : 'make -f make_mac.mak',
-  \    'unix' : 'make -f make_unix.mak',
-  \   },
-  \ }
+" NeoBundle 'Shougo/vimproc', {
+"   \ 'build' : {
+"   \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
+"   \    'cygwin' : 'make -f make_cygwin.mak',
+"   \    'mac' : 'make -f make_mac.mak',
+"   \    'unix' : 'make -f make_unix.mak',
+"   \   },
+"   \ }
 
 " NeoBundle 'thinca/vim-quickrun' " quick run in vim
-"   let g:quickrun_config = {} " initialization
-"   "" default option
-"   let g:quickrun_config._ = {
-"   \ 'runner' : 'vimproc',
-"   \ 'runner/vimproc/updatetime': 10,
-"   \ 'split': '',
-"   \ }
-"
-"   let g:quickrun_config.fortran = {'cmdopt': '-Wall -O3 -static'}
-"   let g:quickrun_config.cpp = {'cmdopt': '-Wall'}
-"   let g:quickrun_config.c = {'cmdopt': '-Wall -std=gnu11'}
-"
-"   set splitbelow
-"   " set splitright
+  let g:quickrun_config = {} " initialization
+  "" default option
+  let g:quickrun_config._ = {
+  \ 'runner' : 'vimproc',
+  \ 'runner/vimproc/updatetime': 10,
+  \ 'split': '',
+  \ }
+
+  let g:quickrun_config.fortran = {'cmdopt': '-Wall -O3 -static'}
+  let g:quickrun_config.cpp = {'cmdopt': '-Wall'}
+  let g:quickrun_config.c = {'cmdopt': '-Wall -std=gnu11'}
+
+  set splitbelow
+  " set splitright
 
 
 NeoBundle 'gtags.vim'
@@ -572,6 +571,7 @@ au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 "" language config
 """ AsciiDoc
 NeoBundle 'asciidoc.vim'
+call neobundle#end()
 autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
 
 """ for Visual Basic
