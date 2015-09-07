@@ -261,21 +261,21 @@ NeoBundle 'Shougo/vimproc', {
   \   },
   \ }
 
-NeoBundle 'thinca/vim-quickrun' " quick run in vim
-  let g:quickrun_config = {} " initialization
-  "" default option
-  let g:quickrun_config._ = {
-  \ 'runner' : 'vimproc',
-  \ 'runner/vimproc/updatetime': 10,
-  \ 'split': '',
-  \ }
-
-  let g:quickrun_config.fortran = {'cmdopt': '-Wall -O3 -static'}
-  let g:quickrun_config.cpp = {'cmdopt': '-Wall'}
-  let g:quickrun_config.c = {'cmdopt': '-Wall -std=gnu11'}
-
-  set splitbelow
-  " set splitright
+" NeoBundle 'thinca/vim-quickrun' " quick run in vim
+"   let g:quickrun_config = {} " initialization
+"   "" default option
+"   let g:quickrun_config._ = {
+"   \ 'runner' : 'vimproc',
+"   \ 'runner/vimproc/updatetime': 10,
+"   \ 'split': '',
+"   \ }
+"
+"   let g:quickrun_config.fortran = {'cmdopt': '-Wall -O3 -static'}
+"   let g:quickrun_config.cpp = {'cmdopt': '-Wall'}
+"   let g:quickrun_config.c = {'cmdopt': '-Wall -std=gnu11'}
+"
+"   set splitbelow
+"   " set splitright
 
 
 NeoBundle 'gtags.vim'
@@ -329,6 +329,8 @@ NeoBundle 'Lokaltog/vim-easymotion' " cursor
   map F <Plug>(easymotion-Fl)
   map T <Plug>(easymotion-Tl)
 
+"" Extend default Vim %
+  source $VIMRUNTIME/macros/matchit.vim
 
 """ vimfiler
 "" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
