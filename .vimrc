@@ -1,4 +1,4 @@
-"" (File name: .vimrc)
+"" (File .vimrc)
 "" Author: SENOO, Ken
 
 "Charset, Line ending
@@ -241,14 +241,14 @@ NeoBundle 'YankRing.vim'
 
 
 NeoBundle 'autodate.vim'
-  let autodate_keyword_pre="(Last update:"
-  let autodate_keyword_post=")"
+  let autodate_keyword_pre='\\date'
+  let autodate_keyword_post='$'
   let autodate_format="%Y-%m-%dT%H:%M+09:00"
   let autodate_lines=10
 
 NeoBundle 'lamsh/autofname.vim'
-  let autofname_keyword_pre="(File name:"
-  let autofname_keyword_post=")"
+  let autofname_keyword_pre='\\file'
+  let autofname_keyword_post='$'
   let autofname_lines=10
 
 " NeoBundle 'Shougo/vimproc', {
