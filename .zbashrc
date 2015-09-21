@@ -111,6 +111,8 @@ export PAGER="less"
 export LV="-c -l"
 export LESS="-imR"
 
+export WINEARCH=win32
+export WINEPREFIX=~/.wine32
 
 ## for other individual setting
 [ -f ~/.otherrc ] && source ~/.otherrc

@@ -1,0 +1,8 @@
+snippet var fso
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	
+snippet ifpath
+	if(!fso.FolderExists(${1:dir})){
+		fso.CreateFolder($1);
+	}
+	
