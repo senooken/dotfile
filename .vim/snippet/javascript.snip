@@ -6,3 +6,10 @@ snippet ifpath
 		fso.CreateFolder($1);
 	}
 	
+snippet try close
+	try {
+		${0};
+	}finally {
+		.close();
+	}
+	
