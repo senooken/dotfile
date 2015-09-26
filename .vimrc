@@ -1,11 +1,26 @@
-"" (File .vimrc)
-"" Author: SENOO, Ken
+"" \file .vimrc
+"" \author SENOO, Ken
 
-"Charset, Line ending
+"" Charset, Line ending
 set encoding=utf-8
-set fileencodings=iso-2022-jp,ucs-bom,utf-8,euc-jp,cp932
+set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
 set ambiwidth=double " 全角記号をきちんと表示
+
+" Fix 'fileencoding' to use 'encoding'
+" if the buffer only contains 7-bit characters.
+" Note that if the buffer is not 'modifiable',
+" its 'fileencoding' cannot be changed, so that such buffers are skipped.
+autocmd BufReadPost *
+  \   if &modifiable && !search('[^\x00-\x7F]', 'cnw')
+  \ |   setlocal fileencoding=
+  \ | endif
+
+"" 文字エンコーディングUTF-16のときはbombを付ける
+autocmd BufWritePre *
+  \   if &fileencoding =~? 'utf-16*'
+  \ |   setlocal bomb
+  \ | endif
 
 if has('vim_starting')
   "runtimepathにneobundle.vimをインストールしたディレクトリを指定
