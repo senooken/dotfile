@@ -15,16 +15,10 @@
 # Modifying /etc/skel/.bashrc directly will prevent
 # setup from updating it.
 
-# The copy in your home directory (~/.bashrc) is yours, please
-# feel free to customise it to create a shell
-# environment to your liking.  If you feel a change
-# would be benifitial to all, please feel free to send
-# a patch to the cygwin mailing list.
-
 # User dependent .bashrc file
 
 # If not running interactively, don't do anything
-[[ "$-" != *i* ]] && return
+# [[ "$-" != *i* ]] && return
 
 # Shell Options
 #
@@ -225,7 +219,6 @@ function share_history {  # 以下の内容を関数として定義
 PROMPT_COMMAND='share_history'  # 上記関数をプロンプト毎に自動実施
 shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 
-
 ## run Gnu screen 4.1 (130413)
 #if [ "$WINDOW" = '' ]; then
 #    screen-4.1.0.exe -d -R
@@ -233,4 +226,4 @@ shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 #fi
 
 ## for shared shell setting
-[ -e ~/.zbashrc ] && source ~/.zbashrc
+[ -f ~/.zbashrc ] && source ~/.zbashrc

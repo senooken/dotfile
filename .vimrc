@@ -118,7 +118,9 @@ NeoBundle 'Shougo/neosnippet'
 
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
+
 NeoBundle 'garbas/vim-snipmate'
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
 
 " NeoBundle 'kana/vim-smartinput'
 "   "" 空白文字以外のときは勝手に補間させない
