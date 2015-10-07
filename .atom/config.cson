@@ -31,7 +31,13 @@
     userId: "ea40ad7d-a8ad-14ec-9074-edc9006f355c"
   welcome:
     showOnStartup: false
-  core: {}
+  core:
+    themes: [
+      "one-dark-ui"
+      "atom-light-syntax"
+    ]
   editor:
     invisibles: {}
     fontFamily: "Migu\\ 1m"
+    softWrap: true
+    softWrapAtPreferredLineLength: true
