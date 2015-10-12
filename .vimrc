@@ -599,6 +599,9 @@ autocmd BufWritePre *.bas setlocal fileencoding=cp932
 """ for bat file
 autocmd BufWritePre *.bat setlocal fileformat=dos fileencoding=cp932
 
+""" for snippet file
+autocmd BufNewFile,BufRead *.snip setlocal noexpandtab
+
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4
 
 "" folding

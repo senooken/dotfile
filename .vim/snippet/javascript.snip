@@ -1,11 +1,21 @@
 snippet var fso
+alias fso
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
 	
-snippet ifpath
+snippet var excel
+	var excel = new ActiveXObject("Excel.Application");
+	
+snippet var pwd
+alias pwd
+	var pwd = fso.GetAbsolutePathName("");
+	
+snippet if-path
 	if(!fso.FolderExists(${1:dir})){
 		fso.CreateFolder($1);
 	}
 	
+	${2}
+
 snippet try close
 	try {
 		${0};
@@ -16,3 +26,35 @@ snippet try close
 snippet split line break
 options word
 	split(/\r\n|\r|\n/)
+
+snippet WScript Echo
+options word
+	WScript.Echo(${1});
+	${2}
+
+snippet for collection
+	for (; !${1:collection}.atEnd(); $1.moveNext()){
+		${2} = $1.item();
+		${3}
+	}
+	
+snippet var fsr OpenTextFile
+alias fsr
+	var fs = fso.OpenTextFile(${1:path});
+	var text = fs.ReadAll().split(/\r\n|\r|\n/);
+	fs.Close();
+	
+	${2}
+
+snippet var fsw CreateTextFile
+alias fsw
+	var fs = fso.CreateTextFile(${1:path}, true);
+	fs.Write(${2:text});
+	fs.Close();
+	
+	${3}
+
+snippet function enumFiles
+	// 指定ディレクトリのファイル全部を配列形式で取得
+	function enumFiles(e){var t=new ActiveXObject("Scripting.FileSystemObject");if(t.FileExists(e))return[e];if(!t.FolderExists(e))return[];for(var r=[],i=t.GetFolder(e),n=new Enumerator(i.Files);!n.atEnd();n.moveNext()){var s=n.item();r.push(s.Path)}return r}
+	
