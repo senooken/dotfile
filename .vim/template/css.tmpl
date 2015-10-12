@@ -49,7 +49,7 @@ ol>li>ol>li>ol>li::before {
   content: counter(enum1) "." counter(enum2) "." counter(enum3) ". ";
 }
 ol>li>ol>li>ol>li>ol{ counter-reset: enum4;}
-ol>li>ol>li>ol>li>ol>li>ol>li::before {
+ol>li>ol>li>ol>li>ol>li::before {
   counter-increment: enum4;
   content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) ". ";
 }
