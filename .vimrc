@@ -1,10 +1,24 @@
 "" \file .vimrc
 "" \author SENOO, Ken
 
+"" platform
+let s:is_windows = has('win16') || has('win32') || has('win64')
+let s:is_cygwin = has('win32unix')
+let s:is_msys = has('win32unix')
+let s:is_mac = !s:is_windows && !s:is_cygwin
+      \ && (has('mac') || has('macunix') || has('gui_macvim') ||
+      \    (!executable('xdg-open') &&
+      \    system('uname') =~? '^darwin'))
+let s:is_linux = !s:is_mac && has('unix')
+
 "" Charset, Line ending
 set encoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
+if s:is_msys || s:is_cygwin
+  set termencoding=cp932
+endif
+
 set ambiwidth=double " 全角記号をきちんと表示
 
 " Fix 'fileencoding' to use 'encoding'
