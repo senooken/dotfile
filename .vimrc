@@ -15,9 +15,9 @@ let s:is_linux = !s:is_mac && has('unix')
 set encoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
-if s:is_msys || s:is_cygwin
-  set termencoding=cp932
-endif
+" if s:is_msys || s:is_cygwin
+"   set termencoding=cp932
+" endif
 
 set ambiwidth=double " 全角記号をきちんと表示
 
