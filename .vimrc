@@ -1,7 +1,5 @@
-"" \file .vimrc
+"" \file.vimrc
 "" \author SENOO, Ken
-
-set nocompatible
 
 "" constant variable
 let s:FALSE = 0
@@ -47,6 +45,7 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+let s:is_neobundle_installed = s:TRUE
 try
   " プラグインをインストールする基準となるパスを指定
   call neobundle#begin(expand('~/.vim/bundle/'))
@@ -55,6 +54,10 @@ catch /^Vim\%((\a\+)\)\=:E117/	" catch error E117: Unkown function
   set title
   set titlestring="NeoBundle is not installed."
 endtry
+
+function! s:neobundled(bundle)
+  return s:is_neobundle_installed && neobundle#tap(a:bundle)
+endfunction
 
 if s:is_neobundle_installed
     " Let NeoBundle manage NeoBundle
@@ -292,10 +295,6 @@ if s:is_neobundle_installed
     let autodate_lines=10
 
   NeoBundle 'lamsh/autofname.vim'
-    let autofname_keyword_pre='\\file'
-    let autofname_keyword_post='$'
-    let autofname_lines=10
-
   " NeoBundle 'Shougo/vimproc', {
   "   \ 'build' : {
   "   \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
@@ -306,6 +305,22 @@ if s:is_neobundle_installed
   "   \ }
 
   " NeoBundle 'thinca/vim-quickrun' " quick run in vim
+
+  NeoBundle 'gtags.vim'
+  NeoBundle 'vim-jp/vimdoc-ja'
+  NeoBundle 'tyru/caw.vim' " comment out
+  NeoBundle 'Lokaltog/vim-easymotion' " cursor
+  NeoBundle 'asciidoc.vim'
+  call neobundle#end()
+endif
+
+if s:neobundled('autofname.vim')
+    let autofname_keyword_pre='\\file'
+    let autofname_keyword_post='$'
+    let autofname_lines=10
+endif
+
+if s:neobundled('vim-quickrun')
     let g:quickrun_config = {} " initialization
     "" default option
     let g:quickrun_config._ = {
@@ -320,11 +335,11 @@ if s:is_neobundle_installed
 
     set splitbelow
     " set splitright
+endif
 
 
-  NeoBundle 'gtags.vim'
-  NeoBundle 'vim-jp/vimdoc-ja'
-  NeoBundle 'tyru/caw.vim' " comment out
+
+if s:neobundled('caw.vim')
     " コメントアウトを切り替えるマッピング
     " \c でカーソル行をコメントアウト  再度 \c でコメントアウトを解除
     nmap \c <Plug>(caw:i:toggle)
@@ -333,8 +348,9 @@ if s:is_neobundle_installed
     " \C でコメントアウトの解除
     nmap \C <Plug>(caw:I:uncomment)
     vmap \C <Plug>(caw:I:uncomment)
+endif
 
-  NeoBundle 'Lokaltog/vim-easymotion' " cursor
+if s:neobundled('vim-easymotion')
     let g:EasyMotion_do_mapping = 0
     nmap s <Plug>(easymotion-s2)
     xmap s <Plug>(easymotion-s2)
@@ -372,6 +388,7 @@ if s:is_neobundle_installed
     map t <Plug>(easymotion-tl)
     map F <Plug>(easymotion-Fl)
     map T <Plug>(easymotion-Tl)
+endif
 
   "" Extend default Vim %
     source $VIMRUNTIME/macros/matchit.vim
@@ -615,9 +632,6 @@ if s:is_neobundle_installed
 
   "" language config
   """ AsciiDoc
-  NeoBundle 'asciidoc.vim'
-  call neobundle#end()
-endif
 
 autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
 
