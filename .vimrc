@@ -329,8 +329,6 @@ if s:neobundled('vim-quickrun')
     " set splitright
 endif
 
-
-
 if s:neobundled('caw.vim')
     " コメントアウトを切り替えるマッピング
     " \c でカーソル行をコメントアウト  再度 \c でコメントアウトを解除
@@ -382,248 +380,244 @@ if s:neobundled('vim-easymotion')
     map T <Plug>(easymotion-Tl)
 endif
 
-  "" Extend default Vim %
-    source $VIMRUNTIME/macros/matchit.vim
+"" Extend default Vim %
+source $VIMRUNTIME/macros/matchit.vim
 
-  """ vimfiler
-  "" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
-  "" IDE explore on startup
-  "let g:vimfiler_as_default_explorer  = 1 
-  "let g:vimfiler_safe_mode_by_default = 0
-  "let g:netrw_liststyle=3
+""" vimfiler
+"" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
+"" IDE explore on startup
+"let g:vimfiler_as_default_explorer  = 1 
+"let g:vimfiler_safe_mode_by_default = 0
+"let g:netrw_liststyle=3
 
 
+"2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
+"-----------------------------------------------------------------------------
+" 一般
+"
+" コマンド、検索パターンを50個まで履歴に残す
+set history=50
+" 装飾関連
+"
+"行番号を表示/非表示
+"set number
+set nonumber
 
-  "" my variable
-  let $TODAY=strftime('%Y%m%d')
+" タイトルをウインドウ枠に表示 
+" notitleにすることで「vimを使ってくれてありがとう」を非表示にする
+set notitle
+" ルーラーを表示
+set ruler
+" タブや改行を表示しない
+set nolist
+" 入力中のコマンドをステータスに表示する
+set showcmd
+" 括弧入力時の対応する括弧を表示
+set showmatch
+" ステータスラインを常に表示
+set laststatus=2
 
-  "2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
-  "-----------------------------------------------------------------------------
-  " 一般
-  "
-  " コマンド、検索パターンを50個まで履歴に残す
-  set history=50
-  " 装飾関連
-  "
-  "行番号を表示/非表示
-  "set number
-  set nonumber
+" ステータスラインに表示する情報の指定
+set statusline=%<%f\ %m%r%h%w " ファイル名
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'.'['.&ft.']'} " 改行コードなど
+set statusline+=[\%04.4B] " カーソル行の16進数文字コード
+set statusline+=%=%l/%L,\ %c%V%8P " 現在位置の情報
 
-  " タイトルをウインドウ枠に表示 
-  " notitleにすることで「vimを使ってくれてありがとう」を非表示にする
-  set notitle
-  " ルーラーを表示
-  set ruler
-  " タブや改行を表示しない
-  set nolist
-  " 入力中のコマンドをステータスに表示する
-  set showcmd
-  " 括弧入力時の対応する括弧を表示
-  set showmatch
-  " ステータスラインを常に表示
-  set laststatus=2
+" ステータスラインの色
+hi StatusLine   term=NONE cterm=NONE ctermfg=black ctermbg=white
+" ハイライト
+if &t_Co > 2 || has("gui_running")
+  " シンタックスハイライトを有効にする
+  syntax on
+  " 検索結果文字列のハイライトを有効にする
+  set hlsearch
+endif
+"-----------------------------------------------------------------------------
+" 編集、文書整形関連
+"
+" backspaceキーの挙動を設定する
+" indent	: 行頭の空白の削除を許す
+" eol		: 改行の削除を許す
+" start		: 挿入モードの開始位置での削除を許す
+set backspace=indent,eol,start
+" 新しい行を直前の行と同じインデントにする
+set autoindent
+" tabが挿入されるとときにshiftwidthを使う
+set smarttab
+set expandtab
+" Tab文字を画面上の見た目で何文字幅にするか設定
+set tabstop=2
+" cindentやautoindent時に挿入されるタブの幅
+set shiftwidth=2
+" Tabキー使用時にTabでは無くホワイトスペースを入れたい時に使用する
+" この値が0以外の時はtabstopの設定が無効になる
+set softtabstop=0
+" Tab文字を空白に置き換えない
+"set noexpandtab
+" オートインデントを有効にする
+set cindent
+set textwidth=0 " Prevent auto line break
 
-  " ステータスラインに表示する情報の指定
-  set statusline=%<%f\ %m%r%h%w " ファイル名
-  set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'.'['.&ft.']'} " 改行コードなど
-  set statusline+=[\%04.4B] " カーソル行の16進数文字コード
-  set statusline+=%=%l/%L,\ %c%V%8P " 現在位置の情報
+"" vim auto creating file
+set noswapfile
+" set directory=~/.vim/tmp
+set nobackup
+set backupdir=~/.vim/tmp
+set noundofile
+set undodir=~/.vim/tmp
 
-  " ステータスラインの色
-  hi StatusLine   term=NONE cterm=NONE ctermfg=black ctermbg=white
-  " ハイライト
-  if &t_Co > 2 || has("gui_running")
-    " シンタックスハイライトを有効にする
-    syntax on
-    " 検索結果文字列のハイライトを有効にする
-    set hlsearch
-  endif
-  "-----------------------------------------------------------------------------
-  " 編集、文書整形関連
-  "
-  " backspaceキーの挙動を設定する
-  " indent	: 行頭の空白の削除を許す
-  " eol		: 改行の削除を許す
-  " start		: 挿入モードの開始位置での削除を許す
-  set backspace=indent,eol,start
-  " 新しい行を直前の行と同じインデントにする
-  set autoindent
-  " tabが挿入されるとときにshiftwidthを使う
-  set smarttab
-  set expandtab
-  " Tab文字を画面上の見た目で何文字幅にするか設定
-  set tabstop=2
-  " cindentやautoindent時に挿入されるタブの幅
-  set shiftwidth=2
-  " Tabキー使用時にTabでは無くホワイトスペースを入れたい時に使用する
-  " この値が0以外の時はtabstopの設定が無効になる
-  set softtabstop=0
-  " Tab文字を空白に置き換えない
-  "set noexpandtab
-  " オートインデントを有効にする
-  set cindent
-  set textwidth=0 " Prevent auto line break
+"File
+set autoread	" 更新時自動読み込み
+set hidden		" 編集中でも他のファイルを開けるようにする
+syntax on		" シンタックスカラーリングオン
+set autoindent smartindent	" 自動インデント、スマートインデント
+set backspace=indent,eol,start	" バックスペースで特殊記号も削除可能に
+set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらないようにする
+"set clipboard=unnamed,autoselect	" バッファにクリップオードを利用する
 
-  "" vim auto creating file
-  set noswapfile
-  " set directory=~/.vim/tmp
-  set nobackup
-  set backupdir=~/.vim/tmp
-  set noundofile
-  set undodir=~/.vim/tmp
+"" template file
+autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
+autocmd BufNewFile * silent! :0r  ~/.vim/template/%:e.tmpl " 拡張子付きのファイルはテンプレから新規作成
+autocmd BufNewFile Makefile silent! :0r  ~/.vim/template/Makefile
 
-  "File
-  set autoread	" 更新時自動読み込み
-  set hidden		" 編集中でも他のファイルを開けるようにする
-  syntax on		" シンタックスカラーリングオン
-  set autoindent smartindent	" 自動インデント、スマートインデント
-  set backspace=indent,eol,start	" バックスペースで特殊記号も削除可能に
-  set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらないようにする
-  "set clipboard=unnamed,autoselect	" バッファにクリップオードを利用する
-
-  "" template file
-  autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
-  autocmd BufNewFile * silent! :0r  ~/.vim/template/%:e.tmpl " 拡張子付きのファイルはテンプレから新規作成
-  autocmd BufNewFile Makefile silent! :0r  ~/.vim/template/Makefile
-
-  "" shebangのあるファイルには自動で実行権限を付加
-  autocmd BufWritePost * :call AddExecmod()
-  function AddExecmod()
-    let line = getline(1)
-    if strpart(line, 0, 2) == "#!"
-      if has('win32') || has('win64')
-        call system("icacls " . expand("%") . " /grant " . $USERNAME . ":(X)")
-      else
-        call system("chmod +x ". expand("%"))
-      endif
+"" shebangのあるファイルには自動で実行権限を付加
+autocmd BufWritePost * :call AddExecmod()
+function AddExecmod()
+  let line = getline(1)
+  if strpart(line, 0, 2) == "#!"
+    if has('win32') || has('win64')
+      call system("icacls " . expand("%") . " /grant " . $USERNAME . ":(X)")
+    else
+      call system("chmod +x ". expand("%"))
     endif
-  endfunction
-
-  if has("win32") || has("win64")
-    set shell=cmd
-    set shellcmdflag=/c
   endif
+endfunction
 
-  "" open browser by double click
-  "function! Browser () 
-  "    let line = getline (".") 
-  "    let line = matchstr (line, "http[^ ]*") 
-  "    exec "!start \"C:\\Program Files\\Mozilla Firefox\\firefox.exe\"" line 
-  "endfunction 
-  "map <2-LeftMouse> :echo "double click"<CR> 
+if has("win32") || has("win64")
+  set shell=cmd
+  set shellcmdflag=/c
+endif
 
-
-
-  " Search
-  "set wrapscan	" 省略形ws。検索が末尾まで進んだら先頭から再建策。既定値。
-  set nowrapscan		" 省略形nows。wrapscanをオフにする。
-  set ignorecase
-  set smartcase
-
-  " View
-  set showmatch	" 括弧の対応をハイライト
-  set showcmd		" 入力中のコマンドを表示
-  set showmode	" 現在のモードを表示
-  " set cursorcolumn " カーソル列をハイライト
-  set cursorline	" カーソル行をハイライト
-
-  "" other
-  """ メニュー補完
-  set wildignorecase " ファイル名とディレクトリの補完で大文字小文字無視
-  set wildmenu
-  set wildmode=list:longest,full " 1回目で共通部分，2回目で順番に補完
-
-  " color
-  colorscheme default
-
-  ""	my config
-  " Command mode keybind.
-  "map <c-a> <HOME>
-  noremap <c-e> <END>
-  noremap <m-d> dw
-  "map <c-u> d0
-  "map <c-k> d$
-  " When insert mode, enable hjkl and go to home/end.
-  inoremap <c-e> <END>
-  inoremap <c-a> <HOME>
-  inoremap <c-h> <LEFT>
-  inoremap <c-j> <DOWN>
-  inoremap <c-k> <UP>
-  inoremap <c-l> <RIGHT>
-  inoremap <c-d> <delete>
-  inoremap <c-b> <c-g>u<c-h>
-
-  "" Handle tmux HOME and End key in vim
-  map <Esc>OH <Home>
-  map! <Esc>OH <Home>
-  map <Esc>OF <End>
-  map! <Esc>OF <End>
-
-  " inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
-
-  "" short cut for help
-  nnoremap <C-h> :<C-u>help<Space>
-  " nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR> " search word in help
+"" open browser by double click
+"function! Browser () 
+"    let line = getline (".") 
+"    let line = matchstr (line, "http[^ ]*") 
+"    exec "!start \"C:\\Program Files\\Mozilla Firefox\\firefox.exe\"" line 
+"endfunction 
+"map <2-LeftMouse> :echo "double click"<CR> 
 
 
-  "" move window
-  nnoremap <ESC>h <C-w>h
-  nnoremap <ESC>j <C-w>j
-  nnoremap <ESC>k <C-w>k
-  nnoremap <ESC>l <C-w>l
 
-  "" Allow saving of files as sudo
-  " cabbrev w!! %!sudo tee > /dev/null %
-  cnoremap w!! %!sudo tee > /dev/null %
+" Search
+"set wrapscan	" 省略形ws。検索が末尾まで進んだら先頭から再建策。既定値。
+set nowrapscan		" 省略形nows。wrapscanをオフにする。
+set ignorecase
+set smartcase
 
-  "" コマンドラインモードでEmacのキー移動
-  cnoremap <C-a> <Home>
-  cnoremap <C-b> <Left>
-  cnoremap <C-d> <Del>
-  cnoremap <C-e> <End>
-  cnoremap <C-f> <Right>
-  cnoremap <C-n> <Down>
-  cnoremap <C-p> <Up>
-  cnoremap <M-b> <S-Left>
-  cnoremap <M-f> <S-Right>
+" View
+set showmatch	" 括弧の対応をハイライト
+set showcmd		" 入力中のコマンドを表示
+set showmode	" 現在のモードを表示
+" set cursorcolumn " カーソル列をハイライト
+set cursorline	" カーソル行をハイライト
 
-  " cnoremap <expr> / (getcmdtype() == '/') '\/' : '/'
+"" other
+""" メニュー補完
+set wildignorecase " ファイル名とディレクトリの補完で大文字小文字無視
+set wildmenu
+set wildmode=list:longest,full " 1回目で共通部分，2回目で順番に補完
+
+" color
+colorscheme default
+
+""	my config
+" Command mode keybind.
+"map <c-a> <HOME>
+noremap <c-e> <END>
+noremap <m-d> dw
+"map <c-u> d0
+"map <c-k> d$
+" When insert mode, enable hjkl and go to home/end.
+inoremap <c-e> <END>
+inoremap <c-a> <HOME>
+inoremap <c-h> <LEFT>
+inoremap <c-j> <DOWN>
+inoremap <c-k> <UP>
+inoremap <c-l> <RIGHT>
+inoremap <c-d> <delete>
+inoremap <c-b> <c-g>u<c-h>
+
+"" Handle tmux HOME and End key in vim
+map <Esc>OH <Home>
+map! <Esc>OH <Home>
+map <Esc>OF <End>
+map! <Esc>OF <End>
+
+" inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
+
+"" short cut for help
+nnoremap <C-h> :<C-u>help<Space>
+" nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR> " search word in help
 
 
-  "" move last file position
-  augroup vimrcEx/d
-    au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-    \ exe "normal g`\"" | endif
-  augroup END
+"" move window
+nnoremap <ESC>h <C-w>h
+nnoremap <ESC>j <C-w>j
+nnoremap <ESC>k <C-w>k
+nnoremap <ESC>l <C-w>l
 
-  "" 開いたファイルの場所を現在ディレクトリにする
-  autocmd BufEnter * execute ":lcd " .expand("%:p:h")
+"" Allow saving of files as sudo
+" cabbrev w!! %!sudo tee > /dev/null %
+cnoremap w!! %!sudo tee > /dev/null %
 
-  set nrformats=   " deal as decimal for number
+"" コマンドラインモードでEmacのキー移動
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-d> <Del>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
 
-  "" show special character
-  set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
-  " set lcs=tab:►\ ,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
-  set list
+" cnoremap <expr> / (getcmdtype() == '/') '\/' : '/'
 
-  "" 折り返し
-  set linebreak " 空白などいい感じの場所で折り返し
-  set showbreak=+\  " 折り返し後の行頭記号
-  if (v:version == 704 && has("patch338")) || v:version >= 705
-    set breakindent " 折り返された部分もインデント
-  endif
 
-  """ 全角スペースの表示
-  highlight ZenkakuSpace ctermbg=red guibg=#666666
-  au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
-  au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
+"" move last file position
+augroup vimrcEx/d
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
 
-  " """ ドラッグドロップで新しいタブでファイルを開く
-  " autocmd VimEnter * tab all
-  " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
+"" 開いたファイルの場所を現在ディレクトリにする
+autocmd BufEnter * execute ":lcd " .expand("%:p:h")
 
-  "" language config
-  """ AsciiDoc
+set nrformats=   " deal as decimal for number
+
+"" show special character
+set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
+" set lcs=tab:►\ ,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
+set list
+
+"" 折り返し
+set linebreak " 空白などいい感じの場所で折り返し
+set showbreak=+\  " 折り返し後の行頭記号
+if (v:version == 704 && has("patch338")) || v:version >= 705
+  set breakindent " 折り返された部分もインデント
+endif
+
+""" 全角スペースの表示
+highlight ZenkakuSpace ctermbg=red guibg=#666666
+au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
+au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
+
+" """ ドラッグドロップで新しいタブでファイルを開く
+" autocmd VimEnter * tab all
+" autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
+
+"" language config
+""" AsciiDoc
 
 autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
 
