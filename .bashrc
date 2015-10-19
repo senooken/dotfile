@@ -227,3 +227,4 @@ shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 
 ## for shared shell setting
 [ -f ~/.zbashrc ] && source ~/.zbashrc
+# source /opt/OpenFOAM/OpenFOAM-2.3.x/etc/bashrc.win
