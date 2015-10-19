@@ -8,16 +8,10 @@
     <title></title>
     <meta name="author" content="SENOO, Ken" />
     <meta charset="UTF-8" />
-    <!-- <meta name="description" contents=""> -->
-    <!-- <meta name="keywords" contents=""> -->
-    <!-- <link rel="stylesheet" type="text/css" href="default.css"> -->
+    <!-- <meta name="description" contents="" /> -->
+    <!-- <meta name="keywords" contents="" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="default.css" /> -->
     <style>
-@charset "utf-8";
-
-/* (File name: css.tmpl)
-  Author: SENOO, Ken
-*/
-
 @charset "utf-8";
 
 /* caption */
@@ -65,7 +59,7 @@ ol>li>ol>li>ol>li::before {
   content: counter(enum1) "." counter(enum2) "." counter(enum3) ". ";
 }
 ol>li>ol>li>ol>li>ol{ counter-reset: enum4;}
-ol>li>ol>li>ol>li>ol>li>ol>li::before {
+ol>li>ol>li>ol>li>ol>li::before {
   counter-increment: enum4;
   content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) ". ";
 }
