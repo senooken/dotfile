@@ -51,8 +51,7 @@ try
   call neobundle#begin(expand('~/.vim/bundle/'))
 catch /^Vim\%((\a\+)\)\=:E117/	" catch error E117: Unkown function
   let s:is_neobundle_installed = s:FALSE
-  set title
-  set titlestring="NeoBundle is not installed."
+  set title titlestring="NeoBundle is not installed."
 endtry
 
 function! s:neobundled(bundle)
@@ -62,82 +61,119 @@ endfunction
 if s:is_neobundle_installed
     " Let NeoBundle manage NeoBundle
     NeoBundleFetch 'Shougo/neobundle.vim'
-  filetype plugin indent on " valid vim plugin
 
   "" list installing plugins
   if has("lua")
     NeoBundle 'Shougo/neocomplete'
-      let g:neocomplete#enable_at_startup = 1
-      let g:neocomplete#enable_ignore_case = 1
-      let g:neocomplete#enable_smart_case = 1
-      if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-      endif
-      let g:neocomplete#keyword_patterns._ = '\h\w*'
   else
     NeoBundle 'Shougo/neocomplcache'
-      let g:neocomplcache_enable_at_startup = 1
-      let g:neocomplcache_enable_ignore_case = 1
-      let g:neocomplcache_enable_smart_case = 1
-      if !exists('g:neocomplcache_keyword_patterns')
-        let g:neocomplcache_keyword_patterns = {}
-      endif
-      let g:neocomplcache_keyword_patterns._ = '\h\w*'
-      let g:neocomplcache_enable_camel_case_completion = 1
-      let g:neocomplcache_enable_underbar_completion = 1
   endif
-    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-    "" C++
-    if !exists('g:neocomplete#force_omni_input_patterns')
-      let g:neocomplete#force_omni_input_patterns = {}
-    endif
-    let g:neocomplete#force_omni_input_patterns.cpp =
-          \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-
-  " NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
-  "   if neobundle#is_installed('neocomplete')
-  "     " neocomplete用設定
-  "     let g:neocomplete#enable_at_startup = 1
-  "     let g:neocomplete#enable_ignore_case = 1
-  "     let g:neocomplete#enable_smart_case = 1
-  "     if !exists('g:neocomplete#keyword_patterns')
-  "       let g:neocomplete#keyword_patterns = {}
-  "     endif
-  "     let g:neocomplete#keyword_patterns._ = '\h\w*'
-  "   elseif neobundle#is_installed('neocomplcache')
-  "     " neocomplcache用設定
-  "     let g:neocomplcache_enable_at_startup = 1
-  "     let g:neocomplcache_enable_ignore_case = 1
-  "     let g:neocomplcache_enable_smart_case = 1
-  "     if !exists('g:neocomplcache_keyword_patterns')
-  "       let g:neocomplcache_keyword_patterns = {}
-  "     endif
-  "     let g:neocomplcache_keyword_patterns._ = '\h\w*'
-  "     let g:neocomplcache_enable_camel_case_completion = 1
-  "     let g:neocomplcache_enable_underbar_completion = 1
-  "   endif
-    " inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-    " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-    " "" C++
-    " if !exists('g:neocomplete#force_omni_input_patterns')
-    "   let g:neocomplete#force_omni_input_patterns = {}
-    " endif
-    " let g:neocomplete#force_omni_input_patterns.cpp =
-    "       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-
 
   NeoBundle 'Shougo/neosnippet'
-    " Tell Neosnippet about the other snippets
-    "let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-    let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
-    " Plugin key-mappings.  " <C-f>でsnippetの展開
-    "imap <C-k> <Plug>(neosnippet_expand_or_jump)
-    " imap <expr><CR> !pumvisible()? "" : neosnippet#expandable() ? "\<Plug>(neosnippet_expand)": neocomplete#close_popup()
-    imap <C-f> <Plug>(neosnippet_expand_or_jump)
-    smap <C-f> <Plug>(neosnippet_expand_or_jump)
-    xmap <C-f> <Plug>(neosnippet_expand_target)
-    " SuperTab like snippets bEHAVIr.
+  NeoBundle 'Shougo/neosnippet-snippets'
+  NeoBundle 'honza/vim-snippets'
+  NeoBundle 'garbas/vim-snipmate'
+  NeoBundle 'MarcWeber/vim-addon-mw-utils'
+
+  " NeoBundle 'kana/vim-smartinput'
+
+  " NeoBundle 'mattn/emmet-vim'
+  NeoBundle 'Shougo/unite.vim'
+  NeoBundle 'Shougo/neomru.vim'
+
+  "" code highlight
+  NeoBundleLazy 'vim-jp/cpp-vim', {
+        \ 'autoload': {'filetypes' : 'cpp'}
+        \ }
+
+  "" Install clang_complete
+  " NeoBundle 'Rip-Rip/clang_complete'
+  " NeoBundle 'davidhalter/jedi-vim'
+
+  NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
+  NeoBundle 'thinca/vim-fontzoom' " change font size easy
+
+  NeoBundle 'kana/vim-smartchr'
+  " NeoBundle 'kana/vim-submode'
+
+  NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
+  NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
+
+  "" text edit
+  NeoBundle 'tpope/vim-surround'
+  NeoBundle 'Align'
+  NeoBundle 'YankRing.vim'
+
+  " NeoBundle 'tyru/open-browser'
+  " NeoBundle 'kannokanno/previm'
+  " NeoBundle 'plasticboy/vim-markdown'
+
+  NeoBundle 'autodate.vim'
+  NeoBundle 'lamsh/autofname.vim'
+  " NeoBundle 'Shougo/vimproc', {
+  "   \ 'build' : {
+  "   \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
+  "   \    'cygwin' : 'make -f make_cygwin.mak',
+  "   \    'mac' : 'make -f make_mac.mak',
+  "   \    'unix' : 'make -f make_unix.mak',
+  "   \   },
+  "   \ }
+
+  " NeoBundle 'thinca/vim-quickrun' " quick run in vim
+
+  NeoBundle 'gtags.vim'
+  NeoBundle 'vim-jp/vimdoc-ja'
+  NeoBundle 'tyru/caw.vim' " comment out
+  NeoBundle 'Lokaltog/vim-easymotion' " cursor
+  NeoBundle 'asciidoc.vim'
+  call neobundle#end()
+  filetype plugin indent on " valid vim plugin
+  NeoBundleCheck
+endif
+
+if s:neobundled('neocomplete')
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_ignore_case = 1
+  let g:neocomplete#enable_smart_case = 1
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns._ = '\h\w*'
+  "" C++
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.cpp =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+endif
+
+if s:neobundled('neocomplcache')
+  let g:neocomplcache_enable_at_startup = 1
+  let g:neocomplcache_enable_ignore_case = 1
+  let g:neocomplcache_enable_smart_case = 1
+  if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+  endif
+  let g:neocomplcache_keyword_patterns._ = '\h\w*'
+  let g:neocomplcache_enable_camel_case_completion = 1
+  let g:neocomplcache_enable_underbar_completion = 1
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+  inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+endif
+
+if s:neobundled('neosnippet')
+  " Tell Neosnippet about the other snippets
+  "let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+  let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
+  " Plugin key-mappings.  " <C-f>でsnippetの展開
+  "imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  " imap <expr><CR> !pumvisible()? "" : neosnippet#expandable() ? "\<Plug>(neosnippet_expand)": neocomplete#close_popup()
+  imap <C-f> <Plug>(neosnippet_expand_or_jump)
+  smap <C-f> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-f> <Plug>(neosnippet_expand_target)
+  " SuperTab like snippets bEHAVIr.
     imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
     smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
@@ -145,14 +181,9 @@ if s:is_neobundle_installed
     if has('conceal')
       set conceallevel=2 concealcursor=i
     endif
+  endif
 
-  NeoBundle 'Shougo/neosnippet-snippets'
-  NeoBundle 'honza/vim-snippets'
-
-  NeoBundle 'garbas/vim-snipmate'
-  NeoBundle 'MarcWeber/vim-addon-mw-utils'
-
-  " NeoBundle 'kana/vim-smartinput'
+if s:neobundled('vim-smartinput')
   "   "" 空白文字以外のときは勝手に補間させない
   "   call smartinput#define_rule({
   "     \ 'at': '\%#\S', 'char': '(', 'input': '(' })
@@ -203,31 +234,26 @@ if s:is_neobundle_installed
   "     \   'input'    : '<BS>etail::',
   "     \   'filetype' : ['cpp'],
   "     \   })
+endif
 
-
-  " NeoBundle 'mattn/emmet-vim'
-  NeoBundle 'Shougo/unite.vim'
+if s:neobundled('unite.vim')
     let g:unite_source_history_yank_enable=1
     nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
     nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+endif
 
-  NeoBundle 'Shougo/neomru.vim'
+if s:neobundled('neomru.vim')
     let g:neomru#time_format = "[%Y%m%dT%H%M] "
     let g:unite_source_file_mru_limit = 200
     nnoremap <silent> ,ur :<C-u>Unite file_mru<CR>
-
-  "" code highlight
-  NeoBundleLazy 'vim-jp/cpp-vim', {
-        \ 'autoload': {'filetypes' : 'cpp'}
-        \ }
+endif
 
   augroup cpp-path
       autocmd!
       autocmd FileType cpp setlocal path=.,/usr/include,/usr/local/include,/usr/lib/c++/v1
   augroup END
 
-  "" Install clang_complete
-  " NeoBundle 'Rip-Rip/clang_complete'
+if s:neobundled('vim-submode')
   "   let g:clang_periodic_quickfix = 1
   "   let g:clang_complete_copen = 1
   "   let g:clang_use_library = 1
@@ -236,14 +262,9 @@ if s:is_neobundle_installed
   "   let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
   "   " specify compiler options
   "   let g:clang_user_options = '-std=c++11 -stdlib=libc++'
+endif
 
-  " NeoBundle 'davidhalter/jedi-vim'
-
-  NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'} " file manage
-  NeoBundle 'thinca/vim-fontzoom' " change font size easy
-
-  NeoBundle 'kana/vim-smartchr'
-  " NeoBundle 'kana/vim-submode'
+if s:neobundled('vim-submode')
   "   "" ウィンドウサイズ変更
   "   call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
   "   call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
@@ -263,9 +284,9 @@ if s:is_neobundle_installed
   "   call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
   "   call submode#map('undo/redo', 'n', '', '-', 'g-')
   "   call submode#map('undo/redo', 'n', '', '+', 'g+')
+endif
 
-  NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
-  NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
+if s:neobundled('vim-indent-guides')
     "" vim-indent-guides'
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_start_level = 2 " start indent column
@@ -276,42 +297,13 @@ if s:is_neobundle_installed
     autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=yellow " darkgray
     let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
     let g:indent_guides_guide_size = 1 " indent guide size
+endif
 
-  "" text edit
-  NeoBundle 'tpope/vim-surround'
-  NeoBundle 'Align'
-  NeoBundle 'YankRing.vim'
-
-  " NeoBundle 'tyru/open-browser'
-  " NeoBundle 'kannokanno/previm'
-  " NeoBundle 'plasticboy/vim-markdown'
-
-
-
-  NeoBundle 'autodate.vim'
+if s:neobundled('autodate.vim')
     let autodate_keyword_pre='\\date'
     let autodate_keyword_post='$'
     let autodate_format="%Y-%m-%dT%H:%M+09:00"
     let autodate_lines=10
-
-  NeoBundle 'lamsh/autofname.vim'
-  " NeoBundle 'Shougo/vimproc', {
-  "   \ 'build' : {
-  "   \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
-  "   \    'cygwin' : 'make -f make_cygwin.mak',
-  "   \    'mac' : 'make -f make_mac.mak',
-  "   \    'unix' : 'make -f make_unix.mak',
-  "   \   },
-  "   \ }
-
-  " NeoBundle 'thinca/vim-quickrun' " quick run in vim
-
-  NeoBundle 'gtags.vim'
-  NeoBundle 'vim-jp/vimdoc-ja'
-  NeoBundle 'tyru/caw.vim' " comment out
-  NeoBundle 'Lokaltog/vim-easymotion' " cursor
-  NeoBundle 'asciidoc.vim'
-  call neobundle#end()
 endif
 
 if s:neobundled('autofname.vim')
