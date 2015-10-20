@@ -91,8 +91,8 @@ alias rb='ruby'
 alias gp='g++ -Wall -std=c++1y'
 alias gc='gcc -Wall -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
-alias cs=cscript.exe -NoLogo
-alias ws=wscript.exe -NoLogo
+alias cs="cscript.exe -NoLogo"
+alias ws="wscript.exe -NoLogo"
 [ "`command -v xstow`" ] && alias stow=xstow
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
