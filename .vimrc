@@ -128,7 +128,7 @@ if s:is_neobundle_installed
   NeoBundle 'asciidoc.vim'
   call neobundle#end()
   filetype plugin indent on " valid vim plugin
-  NeoBundleCheck
+  " NeoBundleCheck " I'm not prefered checking.
 endif
 
 if s:neobundled('neocomplete')
