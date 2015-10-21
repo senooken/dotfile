@@ -66,120 +66,120 @@ ol>li>ol>li>ol>li>ol>li>ol>li>ol>li::before {
 /* 節番号の設定 */
 body { counter-reset: heading1; }
 
-section>h1,
-section>h2,
-section>h3,
-section>h4,
-section>h5,
-section>h6
+section>h1:first-child,
+section>h2:first-child,
+section>h3:first-child,
+section>h4:first-child,
+section>h5:first-child,
+section>h6:first-child
 {
   counter-increment: heading1; counter-reset: heading2 table figure;
 }
 
-section>h1::before,
-section>h2::before,
-section>h3::before,
-section>h4::before,
-section>h5::before,
-section>h6::before
+section>h1:first-child::before,
+section>h2:first-child::before,
+section>h3:first-child::before,
+section>h4:first-child::before,
+section>h5:first-child::before,
+section>h6:first-child::before
 {
   content: counter(heading1) " ";
 }
 
-section>section>h1,
-section>section>h2,
-section>section>h3,
-section>section>h4,
-section>section>h5,
-section>section>h6
+section>section>h1:first-child,
+section>section>h2:first-child,
+section>section>h3:first-child,
+section>section>h4:first-child,
+section>section>h5:first-child,
+section>section>h6:first-child
 {
   counter-increment: heading2; counter-reset: heading3;
 }
-section>section>h1::before,
-section>section>h2::before,
-section>section>h3::before,
-section>section>h4::before,
-section>section>h5::before,
-section>section>h6::before
+section>section>h1:first-child::before,
+section>section>h2:first-child::before,
+section>section>h3:first-child::before,
+section>section>h4:first-child::before,
+section>section>h5:first-child::before,
+section>section>h6:first-child::before
 {
   content: counter(heading1) "." counter(heading2)  " ";
 }
 
-section>section>section>h1,
-section>section>section>h2,
-section>section>section>h3,
-section>section>section>h4,
-section>section>section>h5,
-section>section>section>h6
+section>section>section>h1:first-child,
+section>section>section>h2:first-child,
+section>section>section>h3:first-child,
+section>section>section>h4:first-child,
+section>section>section>h5:first-child,
+section>section>section>h6:first-child
 {
   counter-increment: heading3; counter-reset: heading4;
 }
-section>section>section>h1::before,
-section>section>section>h2::before,
-section>section>section>h3::before,
-section>section>section>h4::before,
-section>section>section>h5::before,
-section>section>section>h6::before
+section>section>section>h1:first-child::before,
+section>section>section>h2:first-child::before,
+section>section>section>h3:first-child::before,
+section>section>section>h4:first-child::before,
+section>section>section>h5:first-child::before,
+section>section>section>h6:first-child::before
 {
   content: counter(heading1) "." counter(heading2) "." counter(heading3)
  " ";
 }
 
-section>section>section>section>h1,
-section>section>section>section>h2,
-section>section>section>section>h3,
-section>section>section>section>h4,
-section>section>section>section>h5,
-section>section>section>section>h6
+section>section>section>section>h1:first-child,
+section>section>section>section>h2:first-child,
+section>section>section>section>h3:first-child,
+section>section>section>section>h4:first-child,
+section>section>section>section>h5:first-child,
+section>section>section>section>h6:first-child
 {
   counter-increment: heading4; counter-reset: heading5;
 }
-section>section>section>section>h1::before,
-section>section>section>section>h2::before,
-section>section>section>section>h3::before,
-section>section>section>section>h4::before,
-section>section>section>section>h5::before,
-section>section>section>section>h6::before
+section>section>section>section>h1:first-child::before,
+section>section>section>section>h2:first-child::before,
+section>section>section>section>h3:first-child::before,
+section>section>section>section>h4:first-child::before,
+section>section>section>section>h5:first-child::before,
+section>section>section>section>h6:first-child::before
 {
   content: counter(heading1) "." counter(heading2) "." counter(heading3)
 "." counter(heading4)  " ";
 }
 
-section>section>section>section>section>h1,
-section>section>section>section>section>h2,
-section>section>section>section>section>h3,
-section>section>section>section>section>h4,
-section>section>section>section>section>h5,
-section>section>section>section>section>h6
+section>section>section>section>section>h1:first-child,
+section>section>section>section>section>h2:first-child,
+section>section>section>section>section>h3:first-child,
+section>section>section>section>section>h4:first-child,
+section>section>section>section>section>h5:first-child,
+section>section>section>section>section>h6:first-child
 {
   counter-increment: heading5; counter-reset: heading6;
 }
-section>section>section>section>section>h1::before,
-section>section>section>section>section>h2::before,
-section>section>section>section>section>h3::before,
-section>section>section>section>section>h4::before,
-section>section>section>section>section>h5::before,
-section>section>section>section>section>h6::before
+section>section>section>section>section>h1:first-child::before,
+section>section>section>section>section>h2:first-child::before,
+section>section>section>section>section>h3:first-child::before,
+section>section>section>section>section>h4:first-child::before,
+section>section>section>section>section>h5:first-child::before,
+section>section>section>section>section>h6:first-child::before
 {
   content: counter(heading1) "." counter(heading2) "." counter(heading3)
 "." counter(heading4) "." counter(heading5)  " ";
 }
 
-section>section>section>section>section>section>h1,
-section>section>section>section>section>section>h2,
-section>section>section>section>section>section>h3,
-section>section>section>section>section>section>h4,
-section>section>section>section>section>section>h5,
-section>section>section>section>section>section>h6
+section>section>section>section>section>section>h1:first-child,
+section>section>section>section>section>section>h2:first-child,
+section>section>section>section>section>section>h3:first-child,
+section>section>section>section>section>section>h4:first-child,
+section>section>section>section>section>section>h5:first-child,
+section>section>section>section>section>section>h6:first-child
 {
   counter-increment: heading5; counter-reset: heading6;
 }
-section>section>section>section>section>section>h1::before,
-section>section>section>section>section>section>h2::before,
-section>section>section>section>section>section>h3::before,
-section>section>section>section>section>section>h4::before,
-section>section>section>section>section>section>h5::before,
-section>section>section>section>section>section>h6::before
+section>section>section>section>section>section>h1:first-child::before,
+section>section>section>section>section>section>h2:first-child::before,
+section>section>section>section>section>section>h3:first-child::before,
+section>section>section>section>section>section>h4:first-child::before,
+section>section>section>section>section>section>h5:first-child::before,
+section>section>section>section>section>section>h6:first-child::before
 {
   content: counter(heading1) "." counter(heading2) "." counter(heading3)
 "." counter(heading4) "." counter(heading5) "." counter(heading5) " ";
