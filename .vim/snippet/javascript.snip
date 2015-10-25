@@ -5,9 +5,9 @@ alias fso
 snippet var excel
 	var excel = new ActiveXObject("Excel.Application");
 	
-snippet var pwd
-alias pwd
-	var pwd = fso.GetAbsolutePathName("");
+snippet var cwd
+alias cwd
+	var cwd = fso.GetAbsolutePathName("");
 	
 snippet if-path
 	if(!fso.FolderExists(${1:dir})){
