@@ -72,8 +72,10 @@ if s:is_neobundle_installed
   NeoBundle 'Shougo/neosnippet'
   NeoBundle 'Shougo/neosnippet-snippets'
   NeoBundle 'honza/vim-snippets'
-  NeoBundle 'garbas/vim-snipmate'
-  NeoBundle 'MarcWeber/vim-addon-mw-utils'
+  NeoBundle 'garbas/vim-snipmate' , {'depends' :
+        \ [ 'MarcWeber/vim-addon-mw-utils',
+        \   'tomtom/tlib_vim']
+        \ }
 
   " NeoBundle 'kana/vim-smartinput'
 
