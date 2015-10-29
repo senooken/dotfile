@@ -49,6 +49,23 @@ case $shell in
 esac
 
 ## alias
+
+### Windows character encoding convert
+if [ "${OS}" = "Windows_NT" ]; then
+  function wincmd(){
+    CMD=$1
+    shift
+    $CMD $* 2>&1 | iconv -f cp932 -t utf-8
+  }
+
+  alias ipconfig='wincmd ipconfig'
+  alias netstat='wincmd netstat'
+  alias netsh='wincmd netsh'
+  alias cs="wincmd cscript.exe -NoLogo"
+  alias ws="wincmd wscript.exe -NoLogo"
+fi
+
+### ls
 alias ls="ls -AFh --color=auto"
 alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l="ls -F"
@@ -91,8 +108,6 @@ alias rb='ruby'
 alias gp='g++ -Wall -std=c++1y'
 alias gc='gcc -Wall -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
-alias cs="cscript.exe -NoLogo"
-alias ws="wscript.exe -NoLogo"
 [ "`command -v xstow`" ] && alias stow=xstow
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
