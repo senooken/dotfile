@@ -2,32 +2,30 @@
 # \file dotfileLink.sh
 # \author SENOO, Ken
 
+shopt -s dotglob
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
 windir=".atom tecplot.cfg"
 homefile="tecplot.cfg"
 # .で始まるファイルとhomefileで指定したファイルを対象
 # windirで指定したファイルは$USERPROFILEにリンク
-for dotfile in ${script_dir}/{.??*,$homefile}; do
-  if [ "${OS}" != "Windows_NT" ]; then
-    ln -sfd  "${dotfile}"  ~/
-  elif [[ .*${windir} =~ ${dotfile##*/} ]]; then
-    ln -sfd "$dotfile" "${USERPROFILE}/"
-  elif [[ "${dotfile}" =~ .*mozc$ ]]; then
-    ln -sfd "${dotfile}" "${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input"
-  else
-    ln -sfd  "${dotfile}"  ~/
-  fi
-done
 
 if [ "$OS" == "Windows_NT" ]; then
-  for dotfile in ${script_dir}/windows/*; do
-    ln -sfd "${dotfile}" "${APPDATA}/"
+  ln -sfd ${script_dir}/windows/* "${APPDATA}/"
+  for dotfile in ${script_dir}/{.??*,$homefile}; do
+    if [[ .*${windir} =~ ${dotfile##*/} ]]; then
+      ln -sfd "$dotfile" "${USERPROFILE}/"
+    elif [[ "${dotfile}" =~ .*mozc$ ]]; then
+      dir="${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input/"
+      mkdir -p "${dir}"
+      ln -sfd ${dotfile}/* "${dir}"
+    else
+      ln -sfd  "${dotfile}"  ~/
+    fi
   done
-fi
-
-if [ "$OS" != "Windows_NT" ]; then
-  for dotfile in ${script_dir}/linux/.??*; do
-    ln -sfd "${dotfile}" ~/
+else
+  ln -sfd ${script_dir}/linux/* ~/
+  for dotfile in ${script_dir}/{.??*,$homefile}; do
+    ln -sfd  "${dotfile}"  ~/
   done
 fi
