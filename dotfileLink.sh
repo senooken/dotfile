@@ -15,6 +15,8 @@ for dotfile in ${script_dir}/{.??*,$homefile}; do
     ln -sfd "$dotfile" "${USERPROFILE}/"
   elif [[ "${dotfile}" =~ .*mozc$ ]]; then
     ln -sfd "${dotfile}" "${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input"
+  else
+    ln -sfd  "${dotfile}"  ~/
   fi
 done
 
