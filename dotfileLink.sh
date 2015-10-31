@@ -5,7 +5,7 @@
 shopt -s dotglob
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
-EXCLUDE=".git .gitmodule"
+EXCLUDE=".DS_Store .git .gitmodule"
 
 windir=".atom tecplot.cfg"
 homefile="tecplot.cfg"
@@ -13,9 +13,11 @@ homefile="tecplot.cfg"
 # windirで指定したファイルは$USERPROFILEにリンク
 
 if [ "$OS" == "Windows_NT" ]; then
-  ln -sfd ${script_dir}/windows/* "${APPDATA}/"
+  # ln -sfd ${script_dir}/windows/* "${APPDATA}/"
   for dotfile in ${script_dir}/{.??*,$homefile}; do
-    if [[ .*${windir} =~ ${dotfile##*/} ]]; then
+    [[ ${EXCLUDE} =~ .*${dotfile##*/}* ]] && continue
+    # if [[ .*${windir}.* =~ ${dotfile##*/} ]]; then
+    if [[ ${windir} =~ .*${dotfile##*/}* ]]; then
       ln -sfd "$dotfile" "${USERPROFILE}/"
     elif [[ "${dotfile}" =~ .*mozc$ ]]; then
       dir="${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input/"
@@ -28,6 +30,7 @@ if [ "$OS" == "Windows_NT" ]; then
 else
   ln -sfd ${script_dir}/linux/* ~/
   for dotfile in ${script_dir}/{.??*,$homefile}; do
+    [[ ${EXCLUDE} =~ .*${dotfile##*/}* ]] && continue
     ln -sfd  "${dotfile}"  ~/
   done
 fi

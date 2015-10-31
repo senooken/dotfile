@@ -1,0 +1,12 @@
+//! \file README.adoc
+//! \author SENOO, Ken
+
+= dotfile
+Ken SENOO
+
+
+TODO
+
+* NeoBundleとAntigenのインストール（git submodule init update）の自動化
+* NeoBundleでのインストールの自動化
+* Antigenでのプラグインのインストールの自動化

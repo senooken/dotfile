@@ -2,6 +2,7 @@
 Thumbs.db
 *.log
 *.exe
+*.dll
 *.mod
 *.[ao]
 *.obj
