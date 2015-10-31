@@ -276,7 +276,8 @@ zstyle ":completion:*default"  list-colors ""
 # case insensitive completion
 zstyle ':completion:*' matcher-list "m:{a-zA-A}={A-Za-z}"
 
+## terminal title
 precmd() {eval "${PROMPT_COMMAND}"}
 
 ## for shared shell setting
-[ -e ~/.zbashrc ] && source ~/.zbashrc
+[ -f ~/.zbashrc ] && source ~/.zbashrc
