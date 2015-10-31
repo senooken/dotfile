@@ -58,10 +58,11 @@ function! s:neobundled(bundle)
 endfunction
 
 if s:is_neobundle_installed
-    " Let NeoBundle manage NeoBundle
-    NeoBundleFetch 'Shougo/neobundle.vim'
+  "" Let NeoBundle manage NeoBundle
+  NeoBundleFetch 'Shougo/neobundle.vim'
 
   "" list installing plugins
+  """ completion
   if has("lua")
     NeoBundle 'Shougo/neocomplete'
   else
@@ -93,7 +94,7 @@ if s:is_neobundle_installed
   NeoBundle 'thinca/vim-fontzoom' " change font size easy
 
   NeoBundle 'kana/vim-smartchr'
-  " NeoBundle 'kana/vim-submode'
+  NeoBundle 'kana/vim-submode'
 
   if has('gui_running')
     NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
@@ -122,7 +123,7 @@ if s:is_neobundle_installed
 
   NeoBundle 'thinca/vim-quickrun' " quick run in vim
 
-  NeoBundle 'gtags.vim'
+  " NeoBundle 'gtags.vim'
   NeoBundle 'vim-jp/vimdoc-ja'
   NeoBundle 'tyru/caw.vim' " comment out
   NeoBundle 'Lokaltog/vim-easymotion' " cursor
@@ -164,9 +165,10 @@ if s:neobundled('neocomplcache')
 endif
 
 if s:neobundled('neosnippet')
+  " Enable snipMate compatibility feature.
+  let g:neosnippet#enable_snipmate_compatibility = 1
   " Tell Neosnippet about the other snippets
-  "let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-  let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets'
+  let g:neosnippet#snippets_directory='~/.vim/snippet,~/.vim/bundle/vim-snippets/snippets'
   " Plugin key-mappings.  " <C-f>でsnippetの展開
   "imap <C-k> <Plug>(neosnippet_expand_or_jump)
   " imap <expr><CR> !pumvisible()? "" : neosnippet#expandable() ? "\<Plug>(neosnippet_expand)": neocomplete#close_popup()
@@ -253,37 +255,37 @@ endif
       autocmd FileType cpp setlocal path=.,/usr/include,/usr/local/include,/usr/lib/c++/v1
   augroup END
 
-if s:neobundled('vim-submode')
-  "   let g:clang_periodic_quickfix = 1
-  "   let g:clang_complete_copen = 1
-  "   let g:clang_use_library = 1
-  "
-  "   " this need to be updated on llvm update
-  "   let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
-  "   " specify compiler options
-  "   let g:clang_user_options = '-std=c++11 -stdlib=libc++'
+if s:neobundled('clang_complete')
+    let g:clang_periodic_quickfix = 1
+    let g:clang_complete_copen = 1
+    let g:clang_use_library = 1
+
+    " this need to be updated on llvm update
+    let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
+    " specify compiler options
+    let g:clang_user_options = '-std=c++11 -stdlib=libc++'
 endif
 
 if s:neobundled('vim-submode')
-  "   "" ウィンドウサイズ変更
-  "   call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-  "   call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-  "   call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
-  "   call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
-  "   call submode#map('winsize', 'n', '', '>', '<C-w>>')
-  "   call submode#map('winsize', 'n', '', '<', '<C-w><')
-  "   call submode#map('winsize', 'n', '', '+', '<C-w>-')
-  "   call submode#map('winsize', 'n', '', '-', '<C-w>+')
-  "   "" タブページ切り替え
-  "   call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
-  "   call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
-  "   call submode#map('changetab', 'n', '', 't', 'gt')
-  "   call submode#map('changetab', 'n', '', 'T', 'gT')
-  "   "" undo/redoを巡る
-  "   call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
-  "   call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
-  "   call submode#map('undo/redo', 'n', '', '-', 'g-')
-  "   call submode#map('undo/redo', 'n', '', '+', 'g+')
+    "" ウィンドウサイズ変更
+    call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+    call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+    call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
+    call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
+    call submode#map('winsize', 'n', '', '>', '<C-w>>')
+    call submode#map('winsize', 'n', '', '<', '<C-w><')
+    call submode#map('winsize', 'n', '', '+', '<C-w>-')
+    call submode#map('winsize', 'n', '', '-', '<C-w>+')
+    "" タブページ切り替え
+    call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
+    call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
+    call submode#map('changetab', 'n', '', 't', 'gt')
+    call submode#map('changetab', 'n', '', 'T', 'gT')
+    "" undo/redoを巡る
+    call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
+    call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
+    call submode#map('undo/redo', 'n', '', '-', 'g-')
+    call submode#map('undo/redo', 'n', '', '+', 'g+')
 endif
 
 if s:neobundled('vim-indent-guides')
@@ -380,15 +382,18 @@ if s:neobundled('vim-easymotion')
     map T <Plug>(easymotion-Tl)
 endif
 
+if s:neobundled('vimfiler')
+  """ vimfiler
+  "" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
+  "" IDE explore on startup
+  let g:vimfiler_as_default_explorer  = 1
+  let g:vimfiler_safe_mode_by_default = 0
+  let g:netrw_liststyle=3
+endif
+
 "" Extend default Vim %
 source $VIMRUNTIME/macros/matchit.vim
 
-""" vimfiler
-"" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
-"" IDE explore on startup
-"let g:vimfiler_as_default_explorer  = 1 
-"let g:vimfiler_safe_mode_by_default = 0
-"let g:netrw_liststyle=3
 
 
 "2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
