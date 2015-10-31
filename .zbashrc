@@ -61,6 +61,7 @@ if [ "${OS}" = "Windows_NT" ]; then
   alias ipconfig='wincmd ipconfig'
   alias netstat='wincmd netstat'
   alias netsh='wincmd netsh'
+  alias taskkill='wincmd taskkill'
   alias cs="wincmd cscript.exe -NoLogo"
   alias ws="wincmd wscript.exe -NoLogo"
 fi
