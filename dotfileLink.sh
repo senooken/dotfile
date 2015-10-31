@@ -5,6 +5,8 @@
 shopt -s dotglob
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
+EXCLUDE=".git .gitmodule"
+
 windir=".atom tecplot.cfg"
 homefile="tecplot.cfg"
 # .で始まるファイルとhomefileで指定したファイルを対象

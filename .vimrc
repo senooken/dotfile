@@ -112,14 +112,16 @@ if s:is_neobundle_installed
 
   NeoBundle 'autodate.vim'
   NeoBundle 'lamsh/autofname.vim'
-  " NeoBundle 'Shougo/vimproc', {
-  "   \ 'build' : {
-  "   \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
-  "   \    'cygwin' : 'make -f make_cygwin.mak',
-  "   \    'mac' : 'make -f make_mac.mak',
-  "   \    'unix' : 'make -f make_unix.mak',
-  "   \   },
-  "   \ }
+  if executable('make')
+    NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \    'windows': 'echo "Sorry, cannot update vimproc binary file in Windows."',
+      \    'cygwin' : 'make -f make_cygwin.mak',
+      \    'mac' : 'make -f make_mac.mak',
+      \    'unix' : 'make -f make_unix.mak',
+      \   },
+      \ }
+  endif
 
   NeoBundle 'thinca/vim-quickrun' " quick run in vim
 
