@@ -211,20 +211,13 @@ shopt -s nocaseglob # ignore case
 
 ## synchonization of bash history [130414]
 # url: http://iandeth.dyndns.org/mt/ian/archives/000651.html
-function share_history {  # 以下の内容を関数として定義
-  history -a  # .BASH_HISTORYに前回コマンドを1行追記
-  history -c  # 端末ローカルの履歴を一旦消去
-  history -r  # .BASH_HISTORYから履歴を読み込み直す
-}
-PROMPT_COMMAND='share_history'  # 上記関数をプロンプト毎に自動実施
-shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
-
-## run Gnu screen 4.1 (130413)
-#if [ "$WINDOW" = '' ]; then
-#    screen-4.1.0.exe -d -R
-#   screen -d -R
-#fi
-
+# function share_history {  # 以下の内容を関数として定義
+#   history -a  # .BASH_HISTORYに前回コマンドを1行追記
+#   history -c  # 端末ローカルの履歴を一旦消去
+#   history -r  # .BASH_HISTORYから履歴を読み込み直す
+# }
+# PROMPT_COMMAND='share_history'  # 上記関数をプロンプト毎に自動実施
+# shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 ## for shared shell setting
 [ -f ~/.zbashrc ] && source ~/.zbashrc
 # source /opt/OpenFOAM/OpenFOAM-2.3.x/etc/bashrc.win

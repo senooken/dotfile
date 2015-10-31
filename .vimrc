@@ -41,21 +41,20 @@ autocmd BufWritePre *
   \ | endif
 
 if has('vim_starting')
-  "runtimepathにneobundle.vimをインストールしたディレクトリを指定
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 let s:is_neobundle_installed = s:TRUE
 try
-  " プラグインをインストールする基準となるパスを指定
+  " specify plugin installation base directory.
   call neobundle#begin(expand('~/.vim/bundle/'))
 catch /^Vim\%((\a\+)\)\=:E117/	" catch error E117: Unkown function
   let s:is_neobundle_installed = s:FALSE
-  set title titlestring="NeoBundle is not installed."
+  set title titlestring=NeoBundle\ is\ not\ installed!
 endtry
 
 function! s:neobundled(bundle)
-  return s:is_neobundle_installed && neobundle#tap(a:bundle)
+  return s:is_neobundle_installed && neobundle#is_installed(a:bundle)
 endfunction
 
 if s:is_neobundle_installed
@@ -80,13 +79,11 @@ if s:is_neobundle_installed
   " NeoBundle 'kana/vim-smartinput'
 
   " NeoBundle 'mattn/emmet-vim'
-  NeoBundle 'Shougo/unite.vim'
   NeoBundle 'Shougo/neomru.vim'
 
   "" code highlight
-  NeoBundleLazy 'vim-jp/cpp-vim', {
-        \ 'autoload': {'filetypes' : 'cpp'}
-        \ }
+  NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload': {'filetypes' : 'cpp'}}
+  NeoBundleLazy 'asciidoc.vim', {"autoload" : {"filetypes" : "asciidoc"}}
 
   "" Install clang_complete
   " NeoBundle 'Rip-Rip/clang_complete'
@@ -98,7 +95,9 @@ if s:is_neobundle_installed
   NeoBundle 'kana/vim-smartchr'
   " NeoBundle 'kana/vim-submode'
 
-  NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
+  if has('gui_running')
+    NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
+  endif
   NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
 
   "" text edit
@@ -121,13 +120,12 @@ if s:is_neobundle_installed
   "   \   },
   "   \ }
 
-  " NeoBundle 'thinca/vim-quickrun' " quick run in vim
+  NeoBundle 'thinca/vim-quickrun' " quick run in vim
 
   NeoBundle 'gtags.vim'
   NeoBundle 'vim-jp/vimdoc-ja'
   NeoBundle 'tyru/caw.vim' " comment out
   NeoBundle 'Lokaltog/vim-easymotion' " cursor
-  NeoBundle 'asciidoc.vim'
   call neobundle#end()
   filetype plugin indent on " valid vim plugin
   " NeoBundleCheck " I'm not prefered checking.
@@ -405,9 +403,6 @@ set history=50
 "set number
 set nonumber
 
-" タイトルをウインドウ枠に表示 
-" notitleにすることで「vimを使ってくれてありがとう」を非表示にする
-set notitle
 " ルーラーを表示
 set ruler
 " タブや改行を表示しない

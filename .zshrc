@@ -26,7 +26,7 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   # antigen-bundle github
   # antigen-bundle gnu-utils
   # antigen-bundle python
-  
+
   ## cdr
     autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
     add-zsh-hook chpwd chpwd_recent_dirs
@@ -35,7 +35,7 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
     zstyle ':chpwd:*' recent-dirs-max 5000
     zstyle ':chpwd:*' recent-dirs-default yes
     zstyle ':chpwd:*' recent-dirs-pushd true
-  
+
   # antigen-bundle zsh-users/zaw # auto-fuより先に書く need unsetopt sh_word_split
     antigen bundle zsh-users/zaw.git
     # antigen-bundle nakamuray/zaw.git
@@ -64,7 +64,7 @@ if [ -f ~/.zsh/antigen/antigen.zsh ]; then
   # antigen-bundle zsh-users/zsh-syntax-highlighting 
   # antigen-bundle rupa/z
   #   compctl -U -K _z_zsh_tab_completion \${_Z_CMD:-z}
-  
+
   # antigen theme robbyrussell
   # antigen-apply
 fi
@@ -275,6 +275,8 @@ export CVS_RSH=ssh
 zstyle ":completion:*default"  list-colors ""
 # case insensitive completion
 zstyle ':completion:*' matcher-list "m:{a-zA-A}={A-Za-z}"
+
+precmd() {eval "${PROMPT_COMMAND}"}
 
 ## for shared shell setting
 [ -e ~/.zbashrc ] && source ~/.zbashrc

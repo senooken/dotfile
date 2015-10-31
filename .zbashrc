@@ -139,5 +139,11 @@ export LESS="-imR"
 export WINEARCH=win32
 export WINEPREFIX=~/.wine32
 
+case "${TERM}" in
+  kterm*|xterm*) PROMPT_COMMAND='echo -ne "\033]0;$0@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\007"';;
+  # screen*) PROMPT_COMMAND='printf "\033k@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\033\\"';;
+  # screen*) PROMPT_COMMAND='echo -ne "\033k@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\033\\"';;
+esac
+
 ## for other individual setting
 [ -f ~/.otherrc ] && source ~/.otherrc
