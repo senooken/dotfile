@@ -53,9 +53,6 @@ catch /^Vim\%((\a\+)\)\=:E117/	" catch error E117: Unkown function
   set title titlestring=NeoBundle\ is\ not\ installed!
 endtry
 
-function! s:neobundled(bundle)
-  return s:is_neobundle_installed && neobundle#is_installed(a:bundle)
-endfunction
 
 if s:is_neobundle_installed
   "" Let NeoBundle manage NeoBundle
@@ -129,10 +126,15 @@ if s:is_neobundle_installed
   NeoBundle 'vim-jp/vimdoc-ja'
   NeoBundle 'tyru/caw.vim' " comment out
   NeoBundle 'Lokaltog/vim-easymotion' " cursor
+
   call neobundle#end()
   filetype plugin indent on " valid vim plugin
   " NeoBundleCheck " I'm not prefered checking.
 endif
+
+function! s:neobundled(bundle)
+  return s:is_neobundle_installed && neobundle#is_installed(a:bundle)
+endfunction
 
 if s:neobundled('neocomplete')
   let g:neocomplete#enable_at_startup = 1
