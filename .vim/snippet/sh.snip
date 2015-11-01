@@ -10,20 +10,20 @@ options     head
 	
 snippet     if-command-[]
 options     head
-	[ "$(command -v ${1:cmd})" ] && $2
+	[ "$(command -v ${1:cmd})" ] && ${2}
 	
 snippet     if-command-fi
 abbr        if-command-fi
 options     head
 	if [ "$(command -v ${1:cmd})" ]; then
-		$2
+		${2}
 	fi
 	
 snippet     if-command-else
 options     head
 	if [ "$(command -v ${1:cmd})" ]; then
-		$2
+		${2}
 	else
-		$3
+		${3}
 	fi
 	
