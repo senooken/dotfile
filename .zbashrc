@@ -64,6 +64,7 @@ if [ "${OS}" = "Windows_NT" ]; then
   alias taskkill='wincmd taskkill'
   alias cs="wincmd cscript.exe -NoLogo"
   alias ws="wincmd wscript.exe -NoLogo"
+  alias choco="wincmd choco"
 fi
 
 ### ls
