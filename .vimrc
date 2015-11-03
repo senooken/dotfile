@@ -8,8 +8,8 @@ let s:TRUE = !s:FALSE
 "" platform
 let s:OSTYPE = executable("uname") ? system("uname -o") : ""
 let s:is_windows = has('win16') || has('win32') || has('win64')
-let s:is_cygwin = has('win32unix') && s:OSTYPE ==? 'cygwin'
-let s:is_msys = has('win32unix') && $MSYSTEM != ''
+let s:is_cygwin = has('win32unix') && s:OSTYPE =~# 'Cygwin'
+let s:is_msys = has('win32unix') && s:OSTYPE =~# 'Msys'
 let s:is_mac = !s:is_windows && !s:is_cygwin
       \ && (has('mac') || has('macunix') || has('gui_macvim') ||
       \    (!executable('xdg-open') &&
@@ -110,17 +110,13 @@ if s:is_neobundle_installed
 
   NeoBundle 'autodate.vim'
   NeoBundle 'lamsh/autofname.vim'
-  if executable('make') && executable('gcc')
+  if executable('make') && executable('gcc') && executable('cc')
     if s:is_linux || s:is_mac
       let g:vimproc_build = 'make'
     elseif s:is_unix
       let g:vimproc_build = 'gmake'
-    elseif s:is_cygwin
+    elseif s:is_cygwin || s:is_msys
       let g:vimproc_build = 'make -f make_cygwin.mak'
-    elseif s:is_msys && ($MSYSTEM ==? 'MINGW64')
-      let g:vimproc_build = 'make -f make_mingw64.mak'
-    elseif s:is_msys
-      let g:vimproc_build = 'make -f make_mingw32.mak'
     endif
 
     NeoBundle 'Shougo/vimproc', {'build' : { 'all': g:vimproc_build}}

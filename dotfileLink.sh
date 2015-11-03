@@ -13,7 +13,7 @@ homefile="tecplot.cfg"
 # windirで指定したファイルは$USERPROFILEにリンク
 
 if [ "$OS" == "Windows_NT" ]; then
-  # ln -sfd ${script_dir}/windows/* "${APPDATA}/"
+  ln -sfd ${script_dir}/windows/* "${APPDATA}/"
   for dotfile in ${script_dir}/{.??*,$homefile}; do
     [[ ${EXCLUDE} =~ .*${dotfile##*/}* ]] && continue
     # if [[ .*${windir}.* =~ ${dotfile##*/} ]]; then
