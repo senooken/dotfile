@@ -80,7 +80,8 @@ if s:is_neobundle_installed
   " NeoBundle 'mattn/emmet-vim'
   NeoBundle 'Shougo/neomru.vim'
 
-  "" code highlight
+  "" language
+  NeoBundleLazy 'c.vim', { 'autoload': {'filetypes' : ['cpp', 'c']}}
   NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload': {'filetypes' : 'cpp'}}
   NeoBundleLazy 'asciidoc.vim', {"autoload" : {"filetypes" : "asciidoc"}}
 
