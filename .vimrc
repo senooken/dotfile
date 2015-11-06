@@ -119,7 +119,11 @@ if s:is_neobundle_installed
       let g:vimproc_build = 'make -f make_cygwin.mak'
     endif
 
-    NeoBundle 'Shougo/vimproc', {'build' : { 'all': g:vimproc_build}}
+    NeoBundle 'Shougo/vimproc'
+    call neobundle#config('vimproc', {'build' : { 'all': g:vimproc_build}})
+    if $MSYSTEM == 'MINGW64'
+      call neobundle#config('vimproc', {'build' : { 'windows': 'make -f make_mingw64.mak'}})
+    endif
   endif
 
   NeoBundle 'thinca/vim-quickrun' " quick run in vim
