@@ -1,0 +1,10 @@
+snippet     readall
+abbr        read all text from file.
+options     head
+	size_t len;
+	char *text;
+	FILE *fp = fopen(${1:file}, "r");
+	getdelim(&text, *size_t len, EOF, fp);
+	fclose(fp);
+	
+	${0}
