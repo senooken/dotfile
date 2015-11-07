@@ -9,12 +9,12 @@ options     head
 
 	${0}
 snippet     split
+alias       for-split
 abbr        split string
 options     head
 	char *token;
-	char *saveptr = ${1:str};
-	while((token = strtok_r(saveptr, ${1:" ,"}, &saveptr))){
-		${:TARGET}
+	for (char *p = ${1:str}; (token = strtok_r(p, ${2:"\\n"}, &p)); ){
+		${3:TARGET}
 	}
 
 	${0}
