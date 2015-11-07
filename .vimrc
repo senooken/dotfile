@@ -76,7 +76,7 @@ if s:is_neobundle_installed
   NeoBundle 'Shougo/neomru.vim'
 
   "" language
-  NeoBundleLazy 'c.vim', { 'autoload': {'filetypes' : ['cpp', 'c']}}
+  " NeoBundleLazy 'c.vim', { 'autoload': {'filetypes' : ['cpp', 'c']}}
   NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload': {'filetypes' : 'cpp'}}
   NeoBundleLazy 'asciidoc.vim', {"autoload" : {"filetypes" : "asciidoc"}}
 
