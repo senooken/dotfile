@@ -594,8 +594,8 @@ augroup vimrcEx/d
   \ exe "normal g`\"" | endif
 augroup END
 
-"" 開いたファイルの場所を現在ディレクトリにする
-autocmd BufEnter * execute ":lcd " .expand("%:p:h")
+"" cd editting file directory.
+autocmd BufEnter * lcd `=expand("%:p:h")`
 
 set nrformats=   " deal as decimal for number
 

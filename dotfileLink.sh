@@ -20,8 +20,7 @@ if [ "$OS" == "Windows_NT" ]; then
     if [[ ${windir} =~ .*${dotfile##*/}* ]]; then
       ln -sfd "$dotfile" "${USERPROFILE}/"
     elif [[ "${dotfile}" =~ .*mozc$ ]]; then
-      dir="${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input/"
-      mkdir -p "${dir}"
+      mkdir -p "${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input/"
       ln -sfd ${dotfile}/* "${dir}"
     else
       ln -sfd  "${dotfile}"  ~/
