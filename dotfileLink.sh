@@ -9,7 +9,7 @@ script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 EXCLUDE=".DS_Store .git .gitmodule"
 [ "$OS" == "Windows_NT" ] && is_windows="TRUE" || is_windows=""
 
-for dotfile in ${script_dir}/{.??*}; do
+for dotfile in "${script_dir}"/.??*; do
   [[ ${EXCLUDE} =~ .*${dotfile##*/}* ]] && continue
   [ $is_windows ] && ln -sfd ${script_dir}/windows/* "${APPDATA}/"
   [ ! $is_windows ] && ln -sfd ${script_dir}/linux/* ~/
@@ -25,7 +25,7 @@ for dotfile in ${script_dir}/specific/*; do
     ln -sf ${dotfile}/* "${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input/"
   elif [ "${basename}" == '.disruptive innovations sarl' ]; then
     if [ $is_windows ]; then
-      ln -sf "${dotfile}/bluegriffon/xxxxxxxx.defalut/"* "${AppData}/Disruptive Innovations SARL/BlueGriffon/Profiles/"*.defalut/*
+      ln -sf "${dotfile}/bluegriffon/xxxxxxxx.defaullt/"* "${USERPROFILE}/AppData/Roaming/Disruptive Innovations SARL/BlueGriffon/Profiles/"*.default/
     else
       ln -sf "${dotfile}/bluegriffon/xxxxxxxx.defalut/"* "${HOME}/.disruptive innovations sarl/bluegriffon/"*.default/
     fi
