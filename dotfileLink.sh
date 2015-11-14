@@ -1,35 +1,43 @@
 #!/bin/bash
 # \file dotfileLink.sh
 # \author SENOO, Ken
+# \license CC0
 
 shopt -s dotglob
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
 EXCLUDE=".DS_Store .git .gitmodule"
+[ "$OS" == "Windows_NT" ] && is_windows="TRUE" || is_windows=""
 
-windir=".atom tecplot.cfg"
-homefile="tecplot.cfg"
-# .で始まるファイルとhomefileで指定したファイルを対象
-# windirで指定したファイルは$USERPROFILEにリンク
+for dotfile in ${script_dir}/{.??*}; do
+  [[ ${EXCLUDE} =~ .*${dotfile##*/}* ]] && continue
+  [ $is_windows ] && ln -sfd ${script_dir}/windows/* "${APPDATA}/"
+  [ ! $is_windows ] && ln -sfd ${script_dir}/linux/* ~/
+  ln -sfd  "${dotfile}"  ~/
+done
 
-if [ "$OS" == "Windows_NT" ]; then
-  ln -sfd ${script_dir}/windows/* "${APPDATA}/"
-  for dotfile in ${script_dir}/{.??*,$homefile}; do
-    [[ ${EXCLUDE} =~ .*${dotfile##*/}* ]] && continue
-    # if [[ .*${windir}.* =~ ${dotfile##*/} ]]; then
-    if [[ ${windir} =~ .*${dotfile##*/}* ]]; then
-      ln -sfd "$dotfile" "${USERPROFILE}/"
-    elif [[ "${dotfile}" =~ .*mozc$ ]]; then
-      mkdir -p "${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input/"
-      ln -sfd ${dotfile}/* "${dir}"
+## OS specific configuration
+### mozilla系ソフトはプロファイル管理が特殊なので注意
+for dotfile in ${script_dir}/specific/*; do
+  basename="${dotfile##*/}"
+  if [ $is_windows ] && [ "${basename}" == ".mozc" ]; then
+    mkdir -p "${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input/"
+    ln -sf ${dotfile}/* "${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input/"
+  elif [ "${basename}" == '.disruptive innovations sarl' ]; then
+    if [ $is_windows ]; then
+      ln -sf "${dotfile}/bluegriffon/xxxxxxxx.defalut/"* "${AppData}/Disruptive Innovations SARL/BlueGriffon/Profiles/"*.defalut/*
     else
-      ln -sfd  "${dotfile}"  ~/
+      ln -sf "${dotfile}/bluegriffon/xxxxxxxx.defalut/"* "${HOME}/.disruptive innovations sarl/bluegriffon/"*.default/
     fi
-  done
-else
-  ln -sfd ${script_dir}/linux/* ~/
-  for dotfile in ${script_dir}/{.??*,$homefile}; do
-    [[ ${EXCLUDE} =~ .*${dotfile##*/}* ]] && continue
-    ln -sfd  "${dotfile}"  ~/
-  done
-fi
+  elif [ "$basename" == 'tecplot.cfg' ]; then
+    [ $is_windows ] && ln -sf "$dotfile" "${USERPROFILE}/" || ln -sf "$dotfile" ~/
+  elif [ $is_windows ] && [ "$basename" == ".atom" ]; then
+    mkdir -p "${USERPROFILE}"/.atom && ln -sfd ${dotfile}/* "${USERPROFILE}/"
+  elif [ "$basename" == "tecplot.cfg" ]; then
+    [ $is_windows ] && ln -sf "${USERPROFILE}/"
+    [ ! $is_windows ] && ln -sf ~/
+  else
+    mkdir -p "${basename}" ~/"${basename}"/
+    ln -sfd "${dotfile}"/* ~/"$basename"/
+  fi
+done
