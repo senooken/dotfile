@@ -25,9 +25,9 @@ for dotfile in ${script_dir}/specific/*; do
     ln -sf ${dotfile}/* "${USERPROFILE}/AppData/LocalLow/Google/Google Japanese Input/"
   elif [ "${basename}" == '.disruptive innovations sarl' ]; then
     if [ $is_windows ]; then
-      ln -sf "${dotfile}/bluegriffon/xxxxxxxx.defaullt/"* "${USERPROFILE}/AppData/Roaming/Disruptive Innovations SARL/BlueGriffon/Profiles/"*.default/
+      ln -sf "${dotfile}/bluegriffon/xxxxxxxx.default/"* "${USERPROFILE}/AppData/Roaming/Disruptive Innovations SARL/BlueGriffon/Profiles/"*.default/
     else
-      ln -sf "${dotfile}/bluegriffon/xxxxxxxx.defalut/"* "${HOME}/.disruptive innovations sarl/bluegriffon/"*.default/
+      ln -sf "${dotfile}/bluegriffon/xxxxxxxx.default/"* "${HOME}/.disruptive innovations sarl/bluegriffon/"*.default/
     fi
   elif [ "$basename" == 'tecplot.cfg' ]; then
     [ $is_windows ] && ln -sf "$dotfile" "${USERPROFILE}/" || ln -sf "$dotfile" ~/
