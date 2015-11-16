@@ -34,10 +34,10 @@ for dotfile in ${script_dir}/specific/*; do
   elif [ $is_windows ] && [ "$basename" == ".atom" ]; then
     mkdir -p "${USERPROFILE}"/.atom && ln -sfd ${dotfile}/* "${USERPROFILE}/"
   elif [ "$basename" == "tecplot.cfg" ]; then
-    [ $is_windows ] && ln -sf "${USERPROFILE}/"
-    [ ! $is_windows ] && ln -sf ~/
+    [ $is_windows ] && ln -sf "${dotfile}" "${USERPROFILE}/"
+    [ ! $is_windows ] && ln -sf "${dotfile}" ~/
   else
-    mkdir -p "${basename}" ~/"${basename}"/
-    ln -sfd "${dotfile}"/* ~/"$basename"/
+    mkdir -p  ~/"${basename}"/
+    ln -sf "${dotfile}"/* ~/"$basename"/
   fi
 done
