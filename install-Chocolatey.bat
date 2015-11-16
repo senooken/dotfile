@@ -3,6 +3,8 @@
 :: \copyright CC0
 
 PKG="
+keepass
+fastcopy
 chromium
 thunderbird
 libreoffice
@@ -12,6 +14,10 @@ GoogleJapaneseInput
 LinkShellExtension
 winmerge-jp
 qttabbar
+FoxitReader
+adobereader
 "
+
 @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+upgrade chocolatey
 choco install -y %PKG%
