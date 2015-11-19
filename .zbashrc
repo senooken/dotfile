@@ -121,7 +121,7 @@ alias grep="grep $GREP_OPTIONS"
 alias vim="vim -X"
 [ "`command -v vim`" ] && export EDITOR=vim
 export SVN_EDITOR=$EDITOR
-export GNUPLOT_LIB=""		# data or script path
+export GNUPLOT_LIB=""  # data or script path
 export CYGWIN="nodosfilewarning winsymlinks:nativestrict"
 export MSYS="winsymlinks:nativestrict"
 
@@ -144,6 +144,9 @@ export WINEPREFIX=~/.wine32
 case "${TERM}" in
   ?term*|rxvt*|screen) PROMPT_COMMAND='echo -ne "\033]0;$0@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\007"';;
 esac
+
+## invalid stty keybind
+stty -ixon
 
 ## for other individual setting
 [ -f ~/.otherrc ] && source ~/.otherrc

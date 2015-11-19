@@ -395,8 +395,8 @@ endif
 
 "" Extend default Vim %
 source $VIMRUNTIME/macros/matchit.vim
-
-
+"" MS Windows like keybind
+source $VIMRUNTIME/mswin.vim
 
 "2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
 "-----------------------------------------------------------------------------
@@ -537,19 +537,20 @@ colorscheme default
 ""	my config
 " Command mode keybind.
 "map <c-a> <HOME>
-noremap <c-e> <END>
+noremap <C-e> <END>
 noremap <m-d> dw
 "map <c-u> d0
 "map <c-k> d$
 " When insert mode, enable hjkl and go to home/end.
-inoremap <c-e> <END>
-inoremap <c-a> <HOME>
-inoremap <c-h> <LEFT>
-inoremap <c-j> <DOWN>
-inoremap <c-k> <UP>
-inoremap <c-l> <RIGHT>
-inoremap <c-d> <delete>
-inoremap <c-b> <c-g>u<c-h>
+inoremap <C-e> <END>
+inoremap <C-a> <HOME>
+inoremap <ESC>h <LEFT>
+inoremap <ESC>j <DOWN>
+inoremap <ESC>k <UP>
+inoremap <ESC>l <RIGHT>
+
+inoremap <C-d> <delete>
+inoremap <C-b> <C-g>u<C-h>
 
 "" Handle tmux HOME and End key in vim
 map <Esc>OH <Home>
