@@ -395,8 +395,6 @@ endif
 
 "" Extend default Vim %
 source $VIMRUNTIME/macros/matchit.vim
-"" MS Windows like keybind
-source $VIMRUNTIME/mswin.vim
 
 "2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
 "-----------------------------------------------------------------------------
@@ -544,10 +542,10 @@ noremap <m-d> dw
 " When insert mode, enable hjkl and go to home/end.
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
-inoremap <ESC>h <LEFT>
-inoremap <ESC>j <DOWN>
-inoremap <ESC>k <UP>
-inoremap <ESC>l <RIGHT>
+inoremap <M-h> <LEFT>
+inoremap <M-j> <DOWN>
+inoremap <M-k> <UP>
+inoremap <M-l> <RIGHT>
 
 inoremap <C-d> <delete>
 inoremap <C-b> <C-g>u<C-h>

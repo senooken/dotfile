@@ -23,6 +23,9 @@ if [[ "$-" = *i* ]]; then
   # else
   #   export PYTHONPATH="${LOCAL/\/[a-z]/}/lib/python3.4/site-packages"
   # fi
+
+  ## invalid stty keybind
+  stty start undef
 fi
 
 export DEBFULLNAME="Ken SENOO"
@@ -144,9 +147,6 @@ export WINEPREFIX=~/.wine32
 case "${TERM}" in
   ?term*|rxvt*|screen) PROMPT_COMMAND='echo -ne "\033]0;$0@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\007"';;
 esac
-
-## invalid stty keybind
-stty -ixon
 
 ## for other individual setting
 [ -f ~/.otherrc ] && source ~/.otherrc
