@@ -44,7 +44,7 @@ let s:is_neobundle_installed = s:TRUE
 try
   " specify plugin installation base directory.
   call neobundle#begin(expand('~/.vim/bundle/'))
-catch /^Vim\%((\a\+)\)\=:E117/	" catch error E117: Unkown function
+catch /^Vim\%((\a\+)\)\=:E117/  " catch error E117: Unkown function
   let s:is_neobundle_installed = s:FALSE
   set title titlestring=NeoBundle\ is\ not\ installed!
 endtry
@@ -90,9 +90,7 @@ if s:is_neobundle_installed
   NeoBundle 'kana/vim-smartchr'
   NeoBundle 'kana/vim-submode'
 
-  if has('gui_running')
-    NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
-  endif
+  NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
   NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
 
   "" text edit
@@ -106,6 +104,7 @@ if s:is_neobundle_installed
 
   NeoBundle 'autodate.vim'
   NeoBundle 'lamsh/autofname.vim'
+
   if executable('make') && executable('gcc') && executable('cc')
     NeoBundle 'Shougo/vimproc.vim', {
     \ 'build' : {

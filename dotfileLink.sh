@@ -3,20 +3,44 @@
 # \author SENOO, Ken
 # \license CC0
 
+function make_recursive_link(){
+  dirname="${1%/*}"
+  dest_dir="$2"
+  find "$1" | while read target; do
+    if [ -d "$target" ]; then
+      mkdir -p "$dest_dir/${target##$dirname}"
+    elif [[ "$target" =~ .*lnk ]]; then
+      cp "$target" "$dest_dir/${target##$dirname}"
+    else
+      ln -sfd "$target" "$dest_dir/${target##$dirname}"
+    fi
+  done
+}
+
 shopt -s dotglob
 script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
 EXCLUDE=".DS_Store .git .gitmodule"
 [ "$OS" == "Windows_NT" ] && is_windows="TRUE" || is_windows=""
 
+## shared configuration
 for dotfile in "${script_dir}"/.??*; do
   [[ ${EXCLUDE} =~ .*${dotfile##*/}* ]] && continue
-  [ $is_windows ] && ln -sfd ${script_dir}/windows/* "${APPDATA}/"
-  [ ! $is_windows ] && ln -sfd ${script_dir}/linux/* ~/
   ln -sfd  "${dotfile}"  ~/
 done
 
 ## OS specific configuration
+if [ $is_windows ]; then
+  for dotfile in "${script_dir}"/windows/*; do
+    make_recursive_link $dotfile $APPDATA
+  done
+else
+  for dotfile in "${script_dir}"/linux/*; do
+    make_recursive_link $dotfile ~/
+  done
+fi
+
+## shared special OS configuration
 ### mozilla系ソフトはプロファイル管理が特殊なので注意
 for dotfile in ${script_dir}/specific/*; do
   basename="${dotfile##*/}"
