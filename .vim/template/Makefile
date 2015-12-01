@@ -1,4 +1,4 @@
-# \file Makefile
+# \file   Makefile
 # \author SENOO, Ken
 
 ## choose target compiler
