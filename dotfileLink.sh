@@ -56,7 +56,7 @@ for dotfile in ${script_dir}/specific/*; do
   elif [ "$basename" == 'tecplot.cfg' ]; then
     [ $is_windows ] && ln -sf "$dotfile" "${USERPROFILE}/" || ln -sf "$dotfile" ~/
   elif [ $is_windows ] && [ "$basename" == ".atom" ]; then
-    mkdir -p "${USERPROFILE}"/.atom && ln -sfd ${dotfile}/* "${USERPROFILE}/"
+    mkdir -p "${USERPROFILE}"/.atom && ln -sfd ${dotfile}/* "${USERPROFILE}/.atom/"
   elif [ "$basename" == "tecplot.cfg" ]; then
     [ $is_windows ] && ln -sf "${dotfile}" "${USERPROFILE}/"
     [ ! $is_windows ] && ln -sf "${dotfile}" ~/
