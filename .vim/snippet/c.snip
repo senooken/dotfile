@@ -1,8 +1,8 @@
 snippet     readall
 abbr        read all text from file.
 options     head
-	size_t len;
-	char *text;
+	size_t len = 0;
+	char *text = NULL;
 	FILE *fp = fopen(${1:file}, "r");
 	getdelim(&text, *size_t len, EOF, fp);
 	fclose(fp);
@@ -12,7 +12,7 @@ snippet     split
 alias       for-split
 abbr        split string
 options     head
-	for (char i = 0, *p = ${1:str}, *ptoken; (ptoken = strtok_r(p, ${2:"\\n"}, &p)); i++){
+	for (char i = 0, *p = ${1:str}, *ptoken = NULL; (ptoken = strtok_r(p, ${2:"\\n"}, &p)); i++){
 		${3:array}[(int)i] = *ptoken;
 	}
 
@@ -32,6 +32,8 @@ options     head
 	${0}
 snippet     malloc
 abbr        malloc
-	malloc(sizeof ${1:*p});
+	malloc(sizeof(${1:*p}));
 	${0}
-
+snippet     sizeof-array
+abbr        sizeof
+	sizeof(${1:array})/sizeof($1[0])${0}
