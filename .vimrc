@@ -9,15 +9,17 @@ let s:TRUE = !s:FALSE
 let s:is_windows = has('win16') || has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
 let s:is_mac = has('mac') || has('macunix') || has('gui_macvim')
-let s:is_linux = !s:is_mac && has('unix') && !s:is_cygwin
+let s:is_linux = has('unix') && !s:is_mac && !s:is_cygwin
 
 "" Charset, Line ending
 set encoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
-" if s:is_msys || s:is_cygwin
-"   set termencoding=cp932
-" endif
+
+"" Windowsのコマンドプロンプトの日本語文字化け対策
+if s:is_windows
+  set termencoding=cp932
+endif
 
 set ambiwidth=double " 全角記号をきちんと表示
 
