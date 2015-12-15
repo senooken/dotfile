@@ -3,6 +3,5 @@
 :: \copyright CC0
 :: \date      created date: <+DATE+>
 :: \date      updated date: 
-:: \file      bat.tmpl
 
 <+CURSOR+>
