@@ -480,7 +480,8 @@ set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらな�
 
 "" template file
 autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
-autocmd BufNewFile * silent! :0r  ~/.vim/template/%:e.tmpl " 拡張子付きのファイルはテンプレから新規作成
+" autocmd BufNewFile * silent! :0r  ~/.vim/template/%:e.tmpl " 拡張子付きのファイルはテンプレから新規作成
+autocmd BufNewFile * silent! :0r  ~/.vim/template/*.%:e " 拡張子付きのファイルはテンプレから新規作成
 autocmd BufNewFile Makefile silent! :0r  ~/.vim/template/Makefile
 
 "" shebangのあるファイルには自動で実行権限を付加

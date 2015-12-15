@@ -1,7 +1,8 @@
-/*! \file      cpp.tmpl
- *  \author    SENOO, Ken
- *  \copyright CC0
- *  \date      
+/**************************************************************************** 
+ \file      cpp.tmpl
+ \author    SENOO, Ken
+ \copyright CC0
+ \date      
  ****************************************************************************/
 
 #include <iostream>
