@@ -1,9 +1,10 @@
 #!/bin/bash
-# \file      sh.tmpl
+# \file      template.sh
 # \author    SENOO, Ken
 # \copyright CC0
-# \date      
+# \date      created date: <+DATE+>
+# \date      updated date: 
 
 set -u
 
-
+<+CURSOR+>

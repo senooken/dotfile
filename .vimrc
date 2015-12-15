@@ -43,8 +43,7 @@ if has('vim_starting')
 endif
 
 let s:is_neobundle_installed = s:TRUE
-try
-  " specify plugin installation base directory.
+try " specify plugin installation base directory.
   call neobundle#begin(expand('~/.vim/bundle/'))
 catch /^Vim\%((\a\+)\)\=:E117/  " catch error E117: Unkown function
   let s:is_neobundle_installed = s:FALSE
@@ -120,6 +119,7 @@ if s:is_neobundle_installed
   endif
 
   NeoBundle 'thinca/vim-quickrun' " quick run in vim
+  NeoBundle 'thinca/vim-template'
 
   " NeoBundle 'gtags.vim'
   NeoBundle 'vim-jp/vimdoc-ja'
@@ -305,7 +305,7 @@ if s:neobundled('vim-indent-guides')
 endif
 
 if s:neobundled('autodate.vim')
-    let autodate_keyword_pre='\\date'
+    let autodate_keyword_pre='updated date: '
     let autodate_keyword_post='$'
     let autodate_format="%Y-%m-%dT%H:%M+09:00"
     let autodate_lines=10
@@ -394,6 +394,25 @@ if s:neobundled('vimfiler')
   let g:netrw_liststyle=3
 endif
 
+"" template file
+if s:neobundled('vim-template')
+  " テンプレート中に含まれる特定文字列を置換
+  autocmd User plugin-template-loaded call s:template_keywords()
+  function! s:template_keywords()
+      silent! %s/<+DATE+>/\=strftime('%Y-%m-%dT%H:%M+09:00')/g
+  endfunction
+  " テンプレート中に含まれる'<+CURSOR+>'にカーソルを移動
+  autocmd User plugin-template-loaded
+      \   if search('<+CURSOR+>')
+      \ |   silent! execute 'normal! "_da>'
+      \ | endif
+else
+  " 拡張子付きのファイルはテンプレートから新規作成
+  autocmd BufNewFile * silent! :0r  ~/.vim/template/*.%:e
+endif
+autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
+autocmd BufNewFile Makefile  silent! :0r  ~/.vim/template/Makefile
+
 "" Extend default Vim %
 source $VIMRUNTIME/macros/matchit.vim
 
@@ -478,18 +497,13 @@ set backspace=indent,eol,start	" バックスペースで特殊記号も削除�
 set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらないようにする
 "set clipboard=unnamed,autoselect	" バッファにクリップオードを利用する
 
-"" template file
-autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
-" autocmd BufNewFile * silent! :0r  ~/.vim/template/%:e.tmpl " 拡張子付きのファイルはテンプレから新規作成
-autocmd BufNewFile * silent! :0r  ~/.vim/template/*.%:e " 拡張子付きのファイルはテンプレから新規作成
-autocmd BufNewFile Makefile silent! :0r  ~/.vim/template/Makefile
 
 "" shebangのあるファイルには自動で実行権限を付加
 autocmd BufWritePost * :call AddExecmod()
 function AddExecmod()
   let line = getline(1)
   if strpart(line, 0, 2) == "#!"
-    if has('win32') || has('win64')
+    if s:is_windows
       call system("icacls " . expand("%") . " /grant " . $USERNAME . ":(X)")
     else
       call system("chmod +x ". expand("%"))
@@ -497,7 +511,7 @@ function AddExecmod()
   endif
 endfunction
 
-if has("win32") || has("win64")
+if s:is_windows
   set shell=cmd
   set shellcmdflag=/c
 endif

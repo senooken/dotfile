@@ -1,6 +1,8 @@
-:: \file      bat.tmpl
+:: \file      template.bat
 :: \author    SENOO, Ken
 :: \copyright CC0
-:: \date      
+:: \date      created date: <+DATE+>
+:: \date      updated date: 
+:: \file      bat.tmpl
 
-
+<+CURSOR+>

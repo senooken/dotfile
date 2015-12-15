@@ -1,5 +1,7 @@
-" (File name: vim.tmpl)
-" Author: SENOO, Ken
-" Lincense: CC0
-" (Last update: )
+" \file      template.vim
+" \author    SENOO, Ken
+" \copyright CC0
+" \date      created date: <+DATE+>
+" \date      updated date: 
 
+<+CURSOR+>

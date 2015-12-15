@@ -1,5 +1,6 @@
-\# \file   md.tmpl
-\# \author SENOO, Ken
-\# \date   
+\# \file      template.md
+\# \author    SENOO, Ken
+\# \date      created date: <+DATE+>
+\# \date      updated date: 
 
-
+<+CURSOR+>

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
-## \file      py.tmpl
+## \file      template.py
 #  \author    SENOO, Ken
 #  \copyright CC0
-#  \date      
+#  \date      created date: <+DATE+>
+#  \date      updated date: 
 
-
+<+CURSOR+>

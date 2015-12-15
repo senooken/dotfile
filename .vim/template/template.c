@@ -1,10 +1,11 @@
 /****************************************************************************
- \file      c.tmpl
+ \file      template.c
  \author    SENOO, Ken
  \copyright CC0
- \date      
+ \date      created date: <+DATE+>
+ \date      updated date: 
  ****************************************************************************/
-
+<+CURSOR+>
 #include <stdio.h>
 
 int main(){

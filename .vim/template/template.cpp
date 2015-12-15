@@ -1,10 +1,11 @@
 /**************************************************************************** 
- \file      cpp.tmpl
+ \file      template.cpp
  \author    SENOO, Ken
  \copyright CC0
- \date      
+ \date      created date: <+DATE+>
+ \date      updated date: 
  ****************************************************************************/
-
+<+CURSOR+>
 #include <iostream>
 #include <fstream>
 #include <sstream>

@@ -1,10 +1,11 @@
-!> \file f90.tmpl
-!! \author SENOO, Ken
+!> \file      template.f90
+!! \author    SENOO, Ken
 !! \copyright CC0
-!! \date 2015-09-21T03:03+09:00
+!! \date      created date: <+DATE+>
+!! \date      updated date: 
 
 implicit none
-
+<+CURSOR+>
 
 
 end

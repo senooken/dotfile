@@ -1,7 +1,9 @@
-//! \file adoc.tmpl
-//! \author SENOO, Ken
-//! \date 
+//! \file      template.adoc
+//! \author    SENOO, Ken
+//! \copyright CC0
+//! \date      created date: <+DATE+>
+//! \date      updated date: 
 
-= 
+= <+CURSOR+> 
 Ken SENOO
 

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-  \file xml.tmpl
-  \author SENOO, Ken
-  \date 
+ \file      template.xml
+ \author    SENOO, Ken
+ \copyright CC0
+ \date      created date: <+DATE+>
+ \date      updated date: 
 -->
+<+CURSOR+>
 <!-- <?xml-stylesheet type="text/xsl" href="basic.xsl" ?> -->
 

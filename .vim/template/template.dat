@@ -1,5 +1,6 @@
-\file   dat.tmpl
-\author SENOO, Ken
-\date 
+\file      template.dat
+\author    SENOO, Ken
+\date      created date: <+DATE+>
+\date      updated date: 
 
-
+<+CURSOR+>

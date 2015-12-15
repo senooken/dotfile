@@ -1,7 +1,11 @@
-/*! \file css.tmpl
- *  \author SENOO, Ken
- */
-
+/****************************************************************************
+ \file      template.css
+ \author    SENOO, Ken
+ \copyright CC0
+ \date      created date: <+DATE+>
+ \date      updated date: 
+ ****************************************************************************/
+<+CURSOR+>
 @charset "utf-8";
 
 /* caption */

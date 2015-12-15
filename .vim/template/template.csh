@@ -1,8 +1,10 @@
 #!/bin/csh
-# \file csh.tmpl
-# \author SENOO, Ken
+## \file     template.csh
+# \author    SENOO, Ken
 # \copyright CC0
-# \date 
+# \date      created date: <+DATE+>
+# \date      updated date: 
 
 set -u
 
+<+CURSOR+>
