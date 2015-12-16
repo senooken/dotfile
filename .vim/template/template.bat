@@ -1,7 +1,7 @@
-:: \file      template.bat
-:: \author    SENOO, Ken
-:: \copyright CC0
-:: \date      created date: <+DATE+>
-:: \date      updated date: 
+REM \file      template.bat
+REM \author    SENOO, Ken
+REM \copyright CC0
+REM \date      created date: <+DATE+>
+REM \date      updated date: 
 
 <+CURSOR+>
