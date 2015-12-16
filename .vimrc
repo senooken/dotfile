@@ -408,7 +408,7 @@ if s:neobundled('vim-template')
       \ | endif
 else
   " 拡張子付きのファイルはテンプレートから新規作成
-  autocmd BufNewFile * silent! :0r  ~/.vim/template/*.%:e
+  autocmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
 endif
 autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
 autocmd BufNewFile Makefile  silent! :0r  ~/.vim/template/Makefile
