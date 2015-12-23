@@ -31,7 +31,23 @@ snippet WScript Echo
 options word
 	WScript.Echo(${1});
 	${2}
-
+snippet WScript Quit
+options word
+	WScript.Quit();
+	
+snippet WScript Sleep
+options word
+	WScript.Sleep(${1:ms});
+	${2}
+snippet WScript Arguments
+options word
+	WScript.Arguments
+snippet WScript ScriptFullName
+options word
+	WScript.ScriptFullName
+snippet WScript ScriptName
+options word
+	WScript.ScriptName
 snippet for collection
 	for (; !${1:collection}.atEnd(); $1.moveNext()){
 		${2} = $1.item();
