@@ -585,6 +585,9 @@ nnoremap <ESC>j <C-w>j
 nnoremap <ESC>k <C-w>k
 nnoremap <ESC>l <C-w>l
 
+"" insert breakline on cursor
+nnoremap <CR> i<CR><ESC>
+
 "" Allow saving of files as sudo
 " cabbrev w!! %!sudo tee > /dev/null %
 cnoremap w!! %!sudo tee > /dev/null %
