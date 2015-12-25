@@ -1,5 +1,6 @@
-"" \file.vimrc
-"" \author SENOO, Ken
+"" \file      .vimrc
+"" \author    SENOO, Ken
+"" \copyright CC0
 
 "" constant variable
 let s:FALSE = 0
@@ -525,7 +526,6 @@ endif
 "map <2-LeftMouse> :echo "double click"<CR> 
 
 
-
 " Search
 "set wrapscan	" 省略形ws。検索が末尾まで進んだら先頭から再建策。既定値。
 set nowrapscan		" 省略形nows。wrapscanをオフにする。
@@ -640,7 +640,6 @@ au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 
 "" language config
 """ AsciiDoc
-
 autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
 
 """ for Visual Basic
@@ -664,8 +663,8 @@ autocmd FileType * setlocal formatoptions-=ro
 "" 閉じタグの自動補完
 augroup MyXML
   autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype xml   inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html  inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
 

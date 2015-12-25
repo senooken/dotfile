@@ -1,6 +1,9 @@
-" (File name: fortran.vim)
-" Author: SENOO, Ken
-" Lincense: CC0
+" \file      fortran.vim
+" \author    SENOO, Ken
+" \copyright CC0
+
+if exists("b:did_ftplugin_fortran") | finish | endif
+let b:did_ftplugin_fortran = 1
 
 "" 新規作成時の構文ハイライトに固定形式か自由形式のどちらを使うかの判定
 let s:ext = expand("%:e")
