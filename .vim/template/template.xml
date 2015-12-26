@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  \file      template.xml
  \author    SENOO, Ken
@@ -6,6 +6,7 @@
  \date      created date: <+DATE+>
  \date      updated date: 
 -->
-<+CURSOR+>
+
 <!-- <?xml-stylesheet type="text/xsl" href="basic.xsl" ?> -->
 
+<+CURSOR+>
