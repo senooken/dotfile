@@ -6,5 +6,19 @@
  \date      created date: <+DATE+>
  \date      updated date: 
 -->
-
-<+CURSOR+>
+<package>
+  <job>
+    <?job error="true" debug="true"?>
+    <runtime>
+      <description></description>
+      <example></example>
+      <named />
+      <unnamed />
+    </runtime>
+    <script language="JScript">
+    <![CDATA[
+      <+CURSOR+>
+    ]]>
+    </script>
+ </job>
+</package>
