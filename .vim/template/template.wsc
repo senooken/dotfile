@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?component error="true" debug="true"?>
+
 <!--
- \file      template.wsf
+ \file      template.wsc
  \author    SENOO, Ken
  \copyright CC0
  \date      created date: <+DATE+>
  \date      updated date: 
 -->
 
-<+CURSOR+>
+<package>
+  <component>
+    <public>
+      <!-- <event name="" /> -->
+      <!-- <method name="" /> -->
+      <!-- <property name=""/> -->
+    </public>
+
+    <!-- getResource(<id>)関数でresource要素の値を取得可能。 -->
+    <!-- <resource id=""></resource> -->
+
+    <script language="JScript">
+    <![CDATA[
+      <+CURSOR+>
+    ]]>
+    </script>
+
+  </component>
+</package>
