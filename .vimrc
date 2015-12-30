@@ -72,6 +72,7 @@ if s:is_neobundle_installed
         \   'tomtom/tlib_vim']
         \ }
 
+  NeoBundle 'syngan/vim-clurin'
   " NeoBundle 'kana/vim-smartinput'
 
   " NeoBundle 'mattn/emmet-vim'
@@ -240,6 +241,29 @@ if s:neobundled('vim-smartinput')
   "     \   'input'    : '<BS>etail::',
   "     \   'filetype' : ['cpp'],
   "     \   })
+endif
+
+if s:neobundled('vim-clurin')
+  nmap + <Plug>(clurin-next)
+  nmap - <Plug>(clurin-prev)
+  vmap + <Plug>(clurin-next)
+  vmap - <Plug>(clurin-prev)
+  function! g:default_pm(cnt) abort
+    if a:cnt >= 0
+      execute 'normal!'   a:cnt  . "j0"
+    else
+      execute 'normal!' (-a:cnt) . "k0"
+    endif
+  endfunction
+  let g:clurin = {
+  \   '-': {
+  \     'nomatch': function('g:default_pm'),
+  \     'def': [
+  \       [
+  \       ]
+  \     ]
+  \   }
+  \ }
 endif
 
 if s:neobundled('unite.vim')
@@ -413,6 +437,9 @@ else
 endif
 autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
 autocmd BufNewFile Makefile  silent! :0r  ~/.vim/template/Makefile
+if s:neobundled('autodate.vim')
+  autocmd BufWritePre template.*  silent! :AutodateOFF
+endif
 
 "" Extend default Vim %
 source $VIMRUNTIME/macros/matchit.vim
