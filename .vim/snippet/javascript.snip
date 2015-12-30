@@ -1,3 +1,25 @@
+" \file      javascript.snip
+" \author    SENOO, Ken
+" \copyright CC0
+
+"" Object
+snippet new_ActiveXOBject
+options word
+	new ActiveXObject("${1}");
+	${0}
+snippet new_Array
+options word
+	new Array(${1:});
+ ${0}
+snippet new_Date
+options word
+	new Date(${1:});
+ ${0}
+snippet new_Object
+options word
+	new Object();
+	
+
 snippet var fso
 alias fso
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
@@ -14,7 +36,7 @@ snippet if-path
 		fso.CreateFolder($1);
 	}
 	
-	${2}
+	${0}
 
 snippet try close
 	try {
@@ -30,7 +52,7 @@ options word
 snippet WScript Echo
 options word
 	WScript.Echo(${1});
-	${2}
+	${0}
 snippet WScript Quit
 options word
 	WScript.Quit();
@@ -38,7 +60,7 @@ options word
 snippet WScript Sleep
 options word
 	WScript.Sleep(${1:ms});
-	${2}
+	${0}
 snippet WScript Arguments
 options word
 	WScript.Arguments
@@ -51,7 +73,7 @@ options word
 snippet for collection
 	for (; !${1:collection}.atEnd(); $1.moveNext()){
 		${2} = $1.item();
-		${3}
+		${0}
 	}
 	
 snippet var fsr OpenTextFile
@@ -60,7 +82,7 @@ alias fsr
 	var text = fs.ReadAll().split(/\r\n|\r|\n/);
 	fs.Close();
 	
-	${2}
+	${0}
 
 snippet var fsw CreateTextFile
 alias fsw
@@ -68,7 +90,7 @@ alias fsw
 	fs.Write(${2:text});
 	fs.Close();
 	
-	${3}
+	${0}
 
 snippet function enumFiles
 	// 指定ディレクトリのファイル全部を配列形式で取得
