@@ -133,11 +133,11 @@ if s:is_neobundle_installed
   " NeoBundleCheck " I'm not prefered checking.
 endif
 
-function! s:neobundled(bundle)
+function! s:Neobundled(bundle)
   return s:is_neobundle_installed && neobundle#is_installed(a:bundle)
 endfunction
 
-if s:neobundled('neocomplete')
+if s:Neobundled('neocomplete')
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_ignore_case = 1
   let g:neocomplete#enable_smart_case = 1
@@ -155,7 +155,7 @@ if s:neobundled('neocomplete')
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 endif
 
-if s:neobundled('neocomplcache')
+if s:Neobundled('neocomplcache')
   let g:neocomplcache_enable_at_startup = 1
   let g:neocomplcache_enable_ignore_case = 1
   let g:neocomplcache_enable_smart_case = 1
@@ -169,7 +169,7 @@ if s:neobundled('neocomplcache')
   inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 endif
 
-if s:neobundled('neosnippet')
+if s:Neobundled('neosnippet')
   " Enable snipMate compatibility feature.
   let g:neosnippet#enable_snipmate_compatibility = 1
   " Tell Neosnippet about the other snippets
@@ -190,7 +190,7 @@ if s:neobundled('neosnippet')
     endif
   endif
 
-if s:neobundled('vim-smartinput')
+if s:Neobundled('vim-smartinput')
   "   "" 空白文字以外のときは勝手に補間させない
   "   call smartinput#define_rule({
   "     \ 'at': '\%#\S', 'char': '(', 'input': '(' })
@@ -243,12 +243,12 @@ if s:neobundled('vim-smartinput')
   "     \   })
 endif
 
-if s:neobundled('vim-clurin')
+if s:Neobundled('vim-clurin')
   nmap + <Plug>(clurin-next)
   nmap - <Plug>(clurin-prev)
   vmap + <Plug>(clurin-next)
   vmap - <Plug>(clurin-prev)
-  function! s:default_pm(cnt) abort
+  function! s:Default_pm(cnt) abort
     if a:cnt >= 0
       execute 'normal!'   a:cnt  . "j0"
     else
@@ -257,22 +257,58 @@ if s:neobundled('vim-clurin')
   endfunction
   let g:clurin = {
   \   '-': {
-  \     'nomatch': function('s:default_pm'),
+  \     'nomatch': function('s:Default_pm'),
   \     'def': [
-  \       ['TRUE', 'FALSE'],
-  \       ['True', 'False'],
+  \       [
+  \         {'pattern': '''\(\k\+\)''' , 'replace':  '''\1''' },
+  \         {'pattern':  '"\(\k\+\)"'  , 'replace':   '"\1"'  },
+  \       ],
+  \       ['TRUE', 'FALSE'], ['True', 'False'],
+  \       ['ON', 'OFF'], ['on', 'off'], ['On', 'Off'],
+  \       ['>', '<'], ['>=','<='], ['>>', '<<'],
+  \       ['+', '-'], ['*','/'], ['==', '!='],
+  \       ['&&', '||'], ['and', 'or'], ['AND', 'OR'],
+  \       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+  \       ['first', 'second', 'third', 'fourth', 'fifth'],
+  \       ['FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH'],
+  \       ['First', 'Second', 'Third', 'Fourth', 'Fifth'],
+  \       ['foo', 'bar', 'baz'], ['FOO', 'BAR', 'BAZ'], ['Foo', 'Bar', 'Baz'],
+  \       ['hoge', 'piyo', 'fuga'], ['HOGE', 'PIYO', 'FUGA'],['Hoge', 'Piyo', 'Fuga'],
+  \       ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+  \       ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'],
+  \       ['月', '火', '水', '木', '金', '土', '日'],
+  \       ['（月）', '（火）', '（水）', '（木）', '（金）', '（土）', '（日）'],
+  \       ['月曜', '火曜', '水曜', '木曜', '金曜', '土曜', '日曜'],
+  \       ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'],
+  \       ['open', 'close'], ['OPEN', 'CLOSE'], ['Open', 'Close'],
+  \       ['yes', 'no'], ['YES', 'NO'], ['Yes', 'No'], ['OK', 'NG'],
+  \       ['begin', 'end'], ['BEGIN', 'END'], ['Begin', 'End'],
+  \       ['first', 'last'], ['FIRST', 'LAST'], ['First', 'Last'],
+  \       ['top', 'bottom'], ['TOP', 'BOTTOM'], ['Top', 'Bottom'],
+  \       ['left', 'right'], ['LEFT', 'RIGHT'], ['Left', 'Right'],
+  \       ['start', 'stop'], ['START', 'STOP'], ['Start', 'Stop'],
+  \       ['north', 'south', 'east', 'west'],
+  \       ['NORTH', 'SOUTH', 'EAST', 'WEST'],
+  \       ['North', 'South', 'East', 'West'],
+  \       ['N', 'S', 'E', 'W'],
+  \       ['max', 'min'], ['MAX', 'MIN'], ['Max', 'Min'],
+  \       ['in', 'out'], ['IN', 'OUT'], ['In', 'Out'],
+  \       ['old', 'new'], ['OLD', 'NEW'], ['Old', 'New'],
+  \       ['up', 'down'], ['UP', 'DOWN'], ['Up', 'Down'],
+  \       ['read', 'write'], ['READ', 'WRITE'], ['Read', 'Write'],
+  \       ['next', 'previous'], ['NEXT', 'PREVIOUS'], ['Next', 'Previous'],
   \     ]
   \   }
   \ }
 endif
 
-if s:neobundled('unite.vim')
+if s:Neobundled('unite.vim')
     let g:unite_source_history_yank_enable=1
     nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
     nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 endif
 
-if s:neobundled('neomru.vim')
+if s:Neobundled('neomru.vim')
     let g:neomru#time_format = "[%Y%m%dT%H%M] "
     let g:unite_source_file_mru_limit = 200
     nnoremap <silent> ,ur :<C-u>Unite file_mru<CR>
@@ -283,7 +319,7 @@ endif
       autocmd FileType cpp setlocal path=.,/usr/include,/usr/local/include,/usr/lib/c++/v1
   augroup END
 
-if s:neobundled('clang_complete')
+if s:Neobundled('clang_complete')
     let g:clang_periodic_quickfix = 1
     let g:clang_complete_copen = 1
     let g:clang_use_library = 1
@@ -294,7 +330,7 @@ if s:neobundled('clang_complete')
     let g:clang_user_options = '-std=c++11 -stdlib=libc++'
 endif
 
-if s:neobundled('vim-submode')
+if s:Neobundled('vim-submode')
     "" ウィンドウサイズ変更
     call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
     call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
@@ -316,7 +352,7 @@ if s:neobundled('vim-submode')
     call submode#map('undo/redo', 'n', '', '+', 'g+')
 endif
 
-if s:neobundled('vim-indent-guides')
+if s:Neobundled('vim-indent-guides')
     "" vim-indent-guides'
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_start_level = 2 " start indent column
@@ -329,20 +365,20 @@ if s:neobundled('vim-indent-guides')
     let g:indent_guides_guide_size = 1 " indent guide size
 endif
 
-if s:neobundled('autodate.vim')
+if s:Neobundled('autodate.vim')
     let autodate_keyword_pre='updated date: '
     let autodate_keyword_post='$'
     let autodate_format="%Y-%m-%dT%H:%M+09:00"
     let autodate_lines=10
 endif
 
-if s:neobundled('autofname.vim')
+if s:Neobundled('autofname.vim')
     let autofname_keyword_pre='\\file'
     let autofname_keyword_post='$'
     let autofname_lines=10
 endif
 
-if s:neobundled('vim-quickrun')
+if s:Neobundled('vim-quickrun')
     let g:quickrun_config = {} " initialization
     "" default option
     let g:quickrun_config._ = {
@@ -359,7 +395,7 @@ if s:neobundled('vim-quickrun')
     " set splitright
 endif
 
-if s:neobundled('caw.vim')
+if s:Neobundled('caw.vim')
     " コメントアウトを切り替えるマッピング
     " \c でカーソル行をコメントアウト  再度 \c でコメントアウトを解除
     nmap \c <Plug>(caw:i:toggle)
@@ -370,7 +406,7 @@ if s:neobundled('caw.vim')
     vmap \C <Plug>(caw:I:uncomment)
 endif
 
-if s:neobundled('vim-easymotion')
+if s:Neobundled('vim-easymotion')
     let g:EasyMotion_do_mapping = 0
     nmap s <Plug>(easymotion-s2)
     xmap s <Plug>(easymotion-s2)
@@ -410,7 +446,7 @@ if s:neobundled('vim-easymotion')
     map T <Plug>(easymotion-Tl)
 endif
 
-if s:neobundled('vimfiler')
+if s:Neobundled('vimfiler')
   """ vimfiler
   "" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
   "" IDE explore on startup
@@ -420,10 +456,10 @@ if s:neobundled('vimfiler')
 endif
 
 "" template file
-if s:neobundled('vim-template')
+if s:Neobundled('vim-template')
   " テンプレート中に含まれる特定文字列を置換
-  autocmd User plugin-template-loaded call s:template_keywords()
-  function! s:template_keywords()
+  autocmd User plugin-template-loaded call s:Template_keywords()
+  function! s:Template_keywords()
       silent! %s/<+DATE+>/\=strftime('%Y-%m-%dT%H:%M+09:00')/g
   endfunction
   " テンプレート中に含まれる'<+CURSOR+>'にカーソルを移動
@@ -437,7 +473,7 @@ else
 endif
 autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
 autocmd BufNewFile Makefile  silent! :0r  ~/.vim/template/Makefile
-if s:neobundled('autodate.vim')
+if s:Neobundled('autodate.vim')
   autocmd BufWritePre template.*  silent! :AutodateOFF
 endif
 
@@ -527,8 +563,8 @@ set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらな�
 
 
 "" shebangのあるファイルには自動で実行権限を付加
-autocmd BufWritePost * :call s:add_execmod()
-function s:add_execmod()
+autocmd BufWritePost * :call s:Add_execmod()
+function! s:Add_execmod()
   let line = getline(1)
   if strpart(line, 0, 2) == "#!"
     if s:is_windows
