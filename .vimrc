@@ -248,7 +248,7 @@ if s:neobundled('vim-clurin')
   nmap - <Plug>(clurin-prev)
   vmap + <Plug>(clurin-next)
   vmap - <Plug>(clurin-prev)
-  function! g:default_pm(cnt) abort
+  function! s:default_pm(cnt) abort
     if a:cnt >= 0
       execute 'normal!'   a:cnt  . "j0"
     else
@@ -257,10 +257,10 @@ if s:neobundled('vim-clurin')
   endfunction
   let g:clurin = {
   \   '-': {
-  \     'nomatch': function('g:default_pm'),
+  \     'nomatch': function('s:default_pm'),
   \     'def': [
-  \       [
-  \       ]
+  \       ['TRUE', 'FALSE'],
+  \       ['True', 'False'],
   \     ]
   \   }
   \ }
@@ -527,8 +527,8 @@ set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらな�
 
 
 "" shebangのあるファイルには自動で実行権限を付加
-autocmd BufWritePost * :call AddExecmod()
-function AddExecmod()
+autocmd BufWritePost * :call s:add_execmod()
+function s:add_execmod()
   let line = getline(1)
   if strpart(line, 0, 2) == "#!"
     if s:is_windows
