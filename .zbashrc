@@ -33,7 +33,7 @@ export DEBEMAIL="mslamsh20131029@outlook.jp"
 
 ## locale
 export LANG=ja_JP.UTF-8
-export LANGUAGE=en_US.UTF-8
+export LANGUAGE=en
 export LC_TIME=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 
@@ -131,7 +131,7 @@ export MSYS="winsymlinks:nativestrict"
 ## compile
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
 export LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋め込み
-[ "`command -v wx-config`" ] && export WXCONFIG="`wx-config --cppflags --libs | tr \"\n\" ' '`" # wxwidgetsのコンパイルフラグ
+# [ "`command -v wx-config`" ] && export WXCONFIG="`wx-config --cppflags --libs | tr \"\n\" ' '`" # wxwidgetsのコンパイルフラグ
 
 ## Pager
 export PAGER="less"

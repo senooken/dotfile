@@ -567,15 +567,15 @@ set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらな�
 "set clipboard=unnamed,autoselect	" バッファにクリップオードを利用する
 
 
-"" shebangのあるファイルには自動で実行権限を付加
+"" shebangのあるファイルかDesktopファイルには自動で実行権限を付加
 autocmd BufWritePost * :call s:Add_execmod()
 function! s:Add_execmod()
   let line = getline(1)
-  if strpart(line, 0, 2) == "#!"
+  if strpart(line, 0, 2) == "#!" || strpart(line, 0) == '[Desktop Entry]'
     if s:is_windows
       call system("icacls " . expand("%") . " /grant " . $USERNAME . ":(X)")
     else
-      call system("chmod +x ". expand("%"))
+      call system("chmod +x " . expand("%"))
     endif
   endif
 endfunction
@@ -595,17 +595,17 @@ endif
 
 
 " Search
-"set wrapscan	" 省略形ws。検索が末尾まで進んだら先頭から再建策。既定値。
-set nowrapscan		" 省略形nows。wrapscanをオフにする。
+"set wrapscan   " 省略形ws。検索が末尾まで進んだら先頭から再建策。既定値。
+set nowrapscan  " 省略形nows。wrapscanをオフにする。
 set ignorecase
 set smartcase
 
 " View
-set showmatch	" 括弧の対応をハイライト
-set showcmd		" 入力中のコマンドを表示
-set showmode	" 現在のモードを表示
+set showmatch   " 括弧の対応をハイライト
+set showcmd     " 入力中のコマンドを表示
+set showmode    " 現在のモードを表示
 " set cursorcolumn " カーソル列をハイライト
-set cursorline	" カーソル行をハイライト
+set cursorline  " カーソル行をハイライト
 
 "" other
 """ メニュー補完
@@ -616,7 +616,6 @@ set wildmode=list:longest,full " 1回目で共通部分，2回目で順番に補
 " color
 colorscheme default
 
-""	my config
 " Command mode keybind.
 "map <c-a> <HOME>
 noremap <C-e> <END>
