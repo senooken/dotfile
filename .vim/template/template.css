@@ -6,7 +6,7 @@
  \date      updated date: 
  ****************************************************************************/
 
-@charset "utf-8";
+@charset "UTF-8";
 
 /* caption */
 caption::before {
@@ -307,4 +307,22 @@ pre>code::before, pre>samp::before {
   word-wrap: break-word;
   overflow-y: hidden;
   border-right: 1px solid;
+}
+
+/* blockquote */
+blockquote{
+  background-color:#ddd;
+  padding: 0.5em;
+  padding-left:3em;
+  position:relative;
+}
+blockquote::before{
+  content:"“";
+  font-size: 600%;
+  line-height: 1em;
+  font-family: sans-serif;
+  color: #999;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
