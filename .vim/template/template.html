@@ -9,7 +9,7 @@
     <!-- <meta name="keywords" contents="" /> -->
     <!-- <link rel="stylesheet" type="text/css" href="default.css" /> -->
     <style>
-@charset "utf-8";
+@charset "UTF-8";
 
 /* caption */
 caption::before {
@@ -38,36 +38,70 @@ figcaption[class^="lis"]::before {
 /* counter-increment: enum;           */
 /* content: counters(enum, ".") ". "; */
 /* }                                  */
-ol { counter-reset: enum1; }
-ol>li { list-style-type: none; }
+ol {
+  counter-reset: enum1;
+  padding-left: 1em;
+}
+ol>li {
+  list-style-type: none;
+  padding-left: 1em;
+  text-indent: -1em;
+}
 ol>li::before {
   counter-increment: enum1;
   content: counter(enum1) ". ";
 }
-ol>li>ol{ counter-reset: enum2;}
+ol>li>ol{
+  counter-reset: enum2;
+  padding-left: 1em;
+  text-indent: -1em;
+}
 ol>li>ol>li::before {
   counter-increment: enum2;
   content: counter(enum1) "." counter(enum2) ". ";
 }
-ol>li>ol>li>ol{ counter-reset: enum3;}
+ol>li>ol>li>ol{
+  counter-reset: enum3;
+  padding-left: 1em;
+  text-indent: -1em;
+}
 ol>li>ol>li>ol>li::before {
   counter-increment: enum3;
   content: counter(enum1) "." counter(enum2) "." counter(enum3) ". ";
 }
-ol>li>ol>li>ol>li>ol{ counter-reset: enum4;}
+ol>li>ol>li>ol>li>ol{
+  counter-reset: enum4;
+  padding-left: 1em;
+  text-indent: -1em;
+}
 ol>li>ol>li>ol>li>ol>li::before {
   counter-increment: enum4;
   content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) ". ";
 }
-ol>li>ol>li>ol>li>ol>li>ol{ counter-reset: enum5;}
+ol>li>ol>li>ol>li>ol>li>ol{
+  counter-reset: enum5;
+  padding-left: 1em;
+  text-indent: -1em;
+}
 ol>li>ol>li>ol>li>ol>li>ol>li::before {
   counter-increment: enum5;
   content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) ". ";
 }
-ol>li>ol>li>ol>li>ol>li>ol>li>ol{ counter-reset: enum6;}
+ol>li>ol>li>ol>li>ol>li>ol>li>ol{
+  counter-reset: enum6;
+  padding-left: 1em;
+  text-indent: -1em;
+}
 ol>li>ol>li>ol>li>ol>li>ol>li>ol>li::before {
   counter-increment: enum6;
   content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) "." counter(enum6) ". ";
+}
+
+
+/* title */
+body>h1:first-child {
+  text-align: center;
+  font-size: xx-large;
 }
 
 /* 節番号の設定 */
@@ -252,7 +286,7 @@ p {
   text-indent: 1em;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "TeX Gyre Heros", "MigMix 1P", sans-serif;
+  font-family: "TeX Gyre Heros", "Migu 1P", sans-serif;
   background-color: #e6e6ff;
 }
 
@@ -304,7 +338,25 @@ pre>code::before, pre>samp::before {
   overflow-y: hidden;
   border-right: 1px solid;
 }
-</style>
+
+/* blockquote */
+blockquote{
+  background-color:#ddd;
+  padding: 0.5em;
+  padding-left: 3em;
+  position: relative;
+}
+blockquote::before{
+  content:"“";
+  font-size: 600%;
+  line-height: 1em;
+  font-family: serif;
+  color: #999;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+    </style>
   </head>
   <body>
 
