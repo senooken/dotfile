@@ -9,15 +9,20 @@ options word
 	${0}
 snippet new_Array
 options word
-	new Array(${1:});
+	new Array(${1:#:array});
 	${0}
 snippet new_Date
 options word
-	new Date(${1:});
+	new Date(${1:#:date});
 	${0}
 snippet new_Object
 options word
 	new Object();
+	${0}
+"" JScript
+snippet new_Enumerator
+options word
+	new Enumerator(${1:collection});
 	${0}
 
 snippet var fso
@@ -28,8 +33,10 @@ snippet var excel
 	var excel = new ActiveXObject("Excel.Application");
 	${0}
 snippet var cwd
-alias cwd
 	var cwd = fso.GetAbsolutePathName("");
+	${0}
+snippet var args
+	var args = WScript.Arguments;
 	${0}
 snippet if-path
 	if(!fso.FolderExists(${1:dir})){
@@ -40,7 +47,7 @@ snippet if-path
 
 snippet try close
 	try {
-		${0};
+		${0}
 	}finally {
 		.close();
 	}
@@ -49,6 +56,10 @@ snippet split line break
 options word
 	split(/\r\n|\r|\n/)
 
+snippet print
+options word
+	WScript.Echo(${1});
+	${0}
 snippet WScript Echo
 options word
 	WScript.Echo(${1});
