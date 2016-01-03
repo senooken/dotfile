@@ -10,27 +10,27 @@ options word
 snippet new_Array
 options word
 	new Array(${1:});
- ${0}
+	${0}
 snippet new_Date
 options word
 	new Date(${1:});
- ${0}
+	${0}
 snippet new_Object
 options word
 	new Object();
-	
+	${0}
 
 snippet var fso
 alias fso
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
-	
+	${0}
 snippet var excel
 	var excel = new ActiveXObject("Excel.Application");
-	
+	${0}
 snippet var cwd
 alias cwd
 	var cwd = fso.GetAbsolutePathName("");
-	
+	${0}
 snippet if-path
 	if(!fso.FolderExists(${1:dir})){
 		fso.CreateFolder($1);
