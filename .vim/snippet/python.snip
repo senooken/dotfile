@@ -82,7 +82,7 @@ snippet dir
 snippet get_encode
 	## ファイルの文字エンコーディング自動判別
 	def get_encode(filepath):
-		encs = "iso-2022-jp utf-8-sig euc-jp cp932".split()
+		encs = "iso-2022-jp utf-8-sig euc-jp utf-16 utf-32 cp932".split()
 		for enc in encs:
 			with open(filepath, encoding=enc) as fs:
 				try:
