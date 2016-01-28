@@ -16,8 +16,27 @@ snippet importmap
 
 snippet ifpath
 	if not os.path.exists(${1:dir}): os.makedirs($1)
-	${2}
+	${0}
 
+snippet     open_r
+options word
+	open(${1:path}, encoding="utf-8-sig")${0}
+snippet     open_w
+options word
+	open(${1:path}, "w", encoding="utf-8", newline="\n")${0}
+
+snippet     with_fsr
+alias       fsr
+options     head
+	with open(${1:path}, encoding="utf-8-sig") as fs:
+		text = fs.read().splitlines()
+	
+snippet     with_fsw
+alias       fsw
+options     head
+	with open(${1:path}, "w", encoding="utf-8", newline="\n") as fs:
+		fs.write(${2:text})
+	
 snippet params
 	PARAMS={
 			"lines.linewidth": 2,
@@ -29,7 +48,7 @@ snippet params
 
 snippet font_replace
 	def font_replace():
-		PROP=fm.FontProperties(fname="/cygdrive/c/Windows/Fonts/ipaexg.ttf")
+		PROP=fm.FontProperties(fname="C:/Windows/Fonts/ipaexg.ttf")
 		fig=plt.gcf()
 		for o in fig.findobj(text.Text):
 			o.set_fontproperties(PROP)
@@ -65,9 +84,9 @@ snippet get_encode
 	def get_encode(filepath):
 		encs = "iso-2022-jp utf-8-sig euc-jp cp932".split()
 		for enc in encs:
-			with open(filepath, encoding=enc) as fr:
+			with open(filepath, encoding=enc) as fs:
 				try:
-					fr = fr.read()
+					fs.read()
 				except UnicodeDecodeError:
 					continue
 			return enc
