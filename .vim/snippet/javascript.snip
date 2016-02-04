@@ -86,9 +86,16 @@ snippet WScript ScriptName
 options word
 	WScript.ScriptName
 snippet for collection
+options head
 	for (; !${1:collection}.atEnd(); $1.moveNext()){
 		${2} = $1.item();
 		${0}
+	}
+	
+snippet for
+options head
+	for (var ${1:i}=0; i < ${2}.length; $1++){
+		${0:TARGET}
 	}
 	
 snippet var fsr OpenTextFile
