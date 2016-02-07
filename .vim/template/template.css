@@ -338,14 +338,14 @@ pre>code::before, pre>samp::before {
 
 /* blockquote */
 blockquote{
-  background-color:#ddd;
+  background-color: #eee;
   padding: 1.0em;
   padding-left: 3em;
   position: relative;
 }
 blockquote::before{
   content:"“";
-  font-size: 500%;
+  font-size: 600%;
   line-height: 1em;
   font-family: serif;
   color: #999;
