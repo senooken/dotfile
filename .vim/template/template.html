@@ -231,22 +231,43 @@ section>section>section>section>section>section>h6:first-child::before
 table {
   border-collapse: collapse;
   border: none;
-  /* centering */
+  /** centering **/
   margin-left: auto;
   margin-right: auto;
 }
-tr:nth-child(odd) {
-  background:#ffffe6;
+/** table color **/
+tbody>tr:nth-child(even) {
+  background: #ffffaa;
 }
+thead>tr {
+  background: #ffcc99;
+  text-align: center;
+  font-weight: bold
+}
+/** column margin **/
+td {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+/** table border **/
 tr td {
-  border: none;
+  border-style: none;
 }
-tr:first-child td {
-  border-top: solid;
-  border-bottom: solid;
+thead>tr:first-child {
+  border-top-style: solid;
+  border-top-width: medium;
 }
-tr:last-child td {
-  border-bottom: solid;
+thead>tr:last-child {
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+}
+tbody>tr:first-child {
+  border-top-style: solid;
+  border-top-width: thin;
+}
+tbody>tr:last-child {
+  border-bottom-style: solid;
+  border-bottom-width: medium;
 }
 
 /* cross reference */
@@ -341,14 +362,14 @@ pre>code::before, pre>samp::before {
 
 /* blockquote */
 blockquote{
-  background-color:#ddd;
-  padding: 1em;
+  background-color: #eee;
+  padding: 1.0em;
   padding-left: 3em;
   position: relative;
 }
 blockquote::before{
   content:"“";
-  font-size: 500%;
+  font-size: 600%;
   line-height: 1em;
   font-family: serif;
   color: #999;
