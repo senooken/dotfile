@@ -266,7 +266,7 @@ if s:Neobundled('vim-clurin')
   \       ['TRUE', 'FALSE'], ['True', 'False'],
   \       ['ON', 'OFF'], ['on', 'off'], ['On', 'Off'],
   \       ['>', '<'], ['>=','<='], ['>>', '<<'],
-  \       ['+', '-'], ['*','/'], ['==', '!='],
+  \       ['+', '-'], ['*','/'], ['==', '!='], ['++', '--'],
   \       ['&&', '||'], ['and', 'or'], ['AND', 'OR'],
   \       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
   \       ['first', 'second', 'third', 'fourth', 'fifth'],
@@ -288,20 +288,23 @@ if s:Neobundled('vim-clurin')
   \       ['open', 'close'], ['OPEN', 'CLOSE'], ['Open', 'Close'],
   \       ['yes', 'no'], ['YES', 'NO'], ['Yes', 'No'], ['OK', 'NG'],
   \       ['begin', 'end'], ['BEGIN', 'END'], ['Begin', 'End'],
+  \       ['start', 'stop'], ['START', 'STOP'], ['Start', 'Stop'],
   \       ['first', 'last'], ['FIRST', 'LAST'], ['First', 'Last'],
   \       ['top', 'bottom'], ['TOP', 'BOTTOM'], ['Top', 'Bottom'],
+  \       ['before', 'after'], ['BEFORE', 'AFTER'], ['Before', 'After'],
   \       ['left', 'right'], ['LEFT', 'RIGHT'], ['Left', 'Right'],
-  \       ['start', 'stop'], ['START', 'STOP'], ['Start', 'Stop'],
   \       ['north', 'south', 'east', 'west'],
   \       ['NORTH', 'SOUTH', 'EAST', 'WEST'],
   \       ['North', 'South', 'East', 'West'],
   \       ['N', 'S', 'E', 'W'],
   \       ['max', 'min'], ['MAX', 'MIN'], ['Max', 'Min'],
+  \       ['least', 'most'], ['LEAST', 'MOST'], ['Least', 'Most'],
   \       ['in', 'out'], ['IN', 'OUT'], ['In', 'Out'],
   \       ['old', 'new'], ['OLD', 'NEW'], ['Old', 'New'],
   \       ['up', 'down'], ['UP', 'DOWN'], ['Up', 'Down'],
   \       ['read', 'write'], ['READ', 'WRITE'], ['Read', 'Write'],
   \       ['next', 'previous'], ['NEXT', 'PREVIOUS'], ['Next', 'Previous'],
+  \       ['English', 'Japanese'], ['en', 'ja'], ['US', 'JP'], ['us', 'jp']
   \     ]
   \   }
   \ }
