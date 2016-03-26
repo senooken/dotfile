@@ -80,8 +80,8 @@ if s:is_neobundle_installed
 
   "" language
   " NeoBundleLazy 'c.vim', { 'autoload': {'filetypes' : ['cpp', 'c']}}
-  NeoBundleLazy 'vim-jp/cpp-vim', { 'autoload': {'filetypes' : 'cpp'}}
   NeoBundleLazy 'asciidoc.vim', {"autoload" : {"filetypes" : "asciidoc"}}
+  NeoBundle 'sheerun/vim-polyglot'
 
   "" Install clang_complete
   " NeoBundle 'Rip-Rip/clang_complete'
