@@ -406,12 +406,12 @@ endif
 if s:Neobundled('caw.vim')
     " コメントアウトを切り替えるマッピング
     " \c でカーソル行をコメントアウト  再度 \c でコメントアウトを解除
-    nmap \c <Plug>(caw:i:toggle)
-    vmap \c <Plug>(caw:i:toggle)
+    nmap \c <Plug>(caw:tildepos:toggle)
+    vmap \c <Plug>(caw:tildepos:toggle)
 
     " \C でコメントアウトの解除
-    nmap \C <Plug>(caw:I:uncomment)
-    vmap \C <Plug>(caw:I:uncomment)
+    nmap \C <Plug>(caw:zeropos:uncomment)
+    vmap \C <Plug>(caw:zeropos:uncomment)
 endif
 
 if s:Neobundled('vim-easymotion')
