@@ -236,7 +236,7 @@ table {
 tbody>tr:nth-child(even) {
   background: #ffffaa;
 }
-thead>tr {
+thead>th {
   background: #ffcc99;
   text-align: center;
   font-weight: bold
@@ -247,10 +247,11 @@ td {
   padding-right: 0.5em;
 }
 /** table border **/
-tr td {
+th tr td {
   border-style: none;
 }
-thead>tr:first-child {
+thead>tr:first-child,
+thead>th:first-child {
   border-top-style: solid;
   border-top-width: medium;
 }
@@ -373,4 +374,40 @@ blockquote::before{
   position: absolute;
   left: 0;
   top: 0;
+}
+
+dt {
+  font-weight: bold;
+  padding-left: 0.5em;
+}
+dt, dd {
+  line-height: 1.5em;
+}
+
+figure dl {
+  border-radius: 0.4em;
+  border: solid  thin rgb(10%,10%,10%);
+  background-color: rgb(90%,90%,90%);
+}
+figure dt {
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+  color: white;
+  background-color: rgb(30%,30%,30%);
+}
+figure dd {
+  padding-left: 0.5em;
+  margin: auto;
+}
+figure dl dd:nth-child(n+3) {
+  border-top-style: dashed;
+  border-top-width: thin;
+}
+
+body>dl>dt, main>dl>dt {
+  float: left;
+  width: 20%;
+}
+body>dl>dd, main>dl>dd {
+  margin-left: 22%;
 }
