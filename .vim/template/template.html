@@ -239,7 +239,7 @@ table {
 tbody>tr:nth-child(even) {
   background: #ffffaa;
 }
-thead>th {
+thead>tr>th {
   background: #ffcc99;
   text-align: center;
   font-weight: bold
@@ -250,11 +250,11 @@ td {
   padding-right: 0.5em;
 }
 /** table border **/
-th tr td {
+td, th {
   border-style: none;
 }
-thead>tr:first-child,
-thead>th:first-child {
+
+thead>tr:first-child {
   border-top-style: solid;
   border-top-width: medium;
 }
@@ -387,6 +387,14 @@ dt, dd {
   line-height: 1.5em;
 }
 
+:not(figure)>dl>dt {
+  float: left;
+  width: 20%;
+}
+:not(figure)>dl>dd {
+  margin-left: 22%;
+}
+
 figure dl {
   border-radius: 0.4em;
   border: solid  thin rgb(10%,10%,10%);
@@ -402,17 +410,9 @@ figure dd {
   padding-left: 0.5em;
   margin: auto;
 }
-figure dl dd:nth-child(n+3) {
+figure dl dd:nth-of-type(n+2) {
   border-top-style: dashed;
   border-top-width: thin;
-}
-
-body>dl>dt, main>dl>dt {
-  float: left;
-  width: 20%;
-}
-body>dl>dd, main>dl>dd {
-  margin-left: 22%;
 }
     </style>
   </head>
