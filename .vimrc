@@ -374,7 +374,7 @@ if s:Neobundled('vim-indent-guides')
 endif
 
 if s:Neobundled('autodate.vim')
-    let autodate_keyword_pre='updated date: '
+    let autodate_keyword_pre='last  updated date:'
     let autodate_keyword_post='$'
     let autodate_format="%Y-%m-%dT%H:%M+09:00"
     let autodate_lines=10

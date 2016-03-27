@@ -2,8 +2,8 @@
  \file      template.cpp
  \author    SENOO, Ken
  \copyright CC0
- \date      created date: <+DATE+>
- \date      updated date: 
+ \date      first created date: <+DATE+>
+ \date      last  updated date: 
  ****************************************************************************/
 <+CURSOR+>
 #include <iostream>

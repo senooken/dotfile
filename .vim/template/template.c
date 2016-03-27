@@ -2,12 +2,12 @@
  \file      template.c
  \author    SENOO, Ken
  \copyright CC0
- \date      created date: <+DATE+>
- \date      updated date: 
+ \date      first created date: <+DATE+>
+ \date      last  updated date: 
  ****************************************************************************/
-<+CURSOR+>
-#include <stdio.h>
 
+#include <stdio.h>
+<+CURSOR+>
 int main(){
 
   return 0;

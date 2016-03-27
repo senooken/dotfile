@@ -1,8 +1,8 @@
 #!/usr/bin/env perl
-# (File name: )
-# Author: SENOO, Ken
-# (Last Update: )
-# Lincense: CC0
+# \file      template.pl
+# \author    SENOO, Ken
+# \copyright CC0
+# \date      first created date: <+DATE+>
+# \date      last  updated date: 
 
-
-
+<+CURSOR+>

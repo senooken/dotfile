@@ -1,6 +1,7 @@
 \file      template.txt
 \author    SENOO, Ken
-\date      created date: <+DATE+>
-\date      updated date: 
+\copyright CC0
+\date      first created date: <+DATE+>
+\date      last  updated date: 
 
 <+CURSOR+>

@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
-# (File name: rb.tmpl)
-# Author: SENOO, Ken
-# License: CC0
-# (Last update: )
+# \file      template.rb
+# \author    SENOO, Ken
+# \copyright CC0
+# \date      first created date: <+DATE+>
+# \date      last  updated date:
 
+<+CURSOR+>
