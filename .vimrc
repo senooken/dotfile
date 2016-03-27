@@ -406,8 +406,8 @@ endif
 if s:Neobundled('caw.vim')
     " コメントアウトを切り替えるマッピング
     " \c でカーソル行をコメントアウト  再度 \c でコメントアウトを解除
-    nmap \c <Plug>(caw:tildepos:toggle)
-    vmap \c <Plug>(caw:tildepos:toggle)
+    nmap \c <Plug>(caw:hatpos:toggle)
+    vmap \c <Plug>(caw:hatpos:toggle)
 
     " \C でコメントアウトの解除
     nmap \C <Plug>(caw:zeropos:uncomment)
