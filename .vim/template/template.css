@@ -308,6 +308,13 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "TeX Gyre Heros", "Migu 1P", sans-serif;
   background-color: #e6e6ff;
 }
+em, strong {
+  color: red;
+  font-weight: bold;
+}
+strong {
+  background-color: yellow;
+}
 
 /* PC語句 */
 kbd, code, samp, var {

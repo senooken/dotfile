@@ -1,0 +1,24 @@
+CACHE MANIFEST
+##############################################################################
+# \file      template.appcache
+# \author    SENOO, Ken
+# \copyright CC0
+# \date      first created date: <+DATE+>
+# \date      last  updated date: 
+##############################################################################
+
+## キャッシュするファイルを列挙する。相対パスと絶対パスのどちらでも可能。
+CACHE:
+<+CURSOR+># index.html
+
+## オンラインなら常にネットワークから取得するファイルを指定する。
+NETWORK:
+# *
+
+## ローカルにキャッシュされたファイルが存在しない場合の代替ファイルを指定。
+FALLBACK:
+# * offline.html
+
+## キャッシュ利用方法を指定。prefer-online以外は常にキャッシュ利用。
+SETTINGS:
+prefer-online
