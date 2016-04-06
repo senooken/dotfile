@@ -13,8 +13,7 @@ defflow off
 #term xterm-256color
 
 # set command key to C-j (default: C-a)
-#escape ^@^@
-escape ^jj
+escape ^nn
 
 autodetach on
 altscreen on
