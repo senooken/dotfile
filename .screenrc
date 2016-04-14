@@ -10,7 +10,7 @@ vbell off # trun off flash
 defflow off
 
 # use 256 color 
-#term xterm-256color
+# term xterm-256color
 
 # set command key to C-j (default: C-a)
 escape ^jj
@@ -56,5 +56,8 @@ termcapinfo xterm "WS = \E[8;%d;%dt"
 termcapinfo xterm "li#100:co#100" # set default window size
 
 %?%F%{= gW}%:%{= Kk}%?%2n%f%07=%t%=
+
+## mouse
+defmousetrack on
 
 shell "zsh"
