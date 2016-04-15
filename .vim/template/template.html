@@ -425,6 +425,31 @@ figure dl dd:nth-of-type(n+2) {
   border-top-style: dashed;
   border-top-width: thin;
 }
+
+/* Page style */
+@page {
+  size: A4 portrait;
+  margin: 2cm;
+
+  @top-left {
+    content: "Chapter";
+  }
+  @top-center {
+    content: "Title";
+  }
+  @top-right {
+    content: "Section";
+  }
+  @bottom-left {
+    content: "SENOO, Ken";
+  }
+  @bottom-center {
+    content: "- " counter(page) "/" counter(pages) " -";
+  }
+  @bottom-right {
+    content: "Date";
+  }
+}
     </style>
   </head>
   <body>
