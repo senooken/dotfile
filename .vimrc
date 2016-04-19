@@ -476,11 +476,13 @@ if s:Neobundled('vim-template')
       \ |   silent! execute 'normal! "_da>'
       \ | endif
 else
-  " 拡張子付きのファイルはテンプレートから新規作成
-  autocmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
+  "" vim-templateが使えないときの設定
+  autocmd BufNewFile *         silent! :0r  ~/.vim/template/template.%:e
+  autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
+  autocmd BufNewFile Makefile  silent! :0r  ~/.vim/template/Makefile
 endif
-autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
-autocmd BufNewFile Makefile  silent! :0r  ~/.vim/template/Makefile
+
+"" templateの編集中はタイムスタンプが埋め込まれないように無効化
 if s:Neobundled('autodate.vim')
   autocmd BufWritePre template.*  silent! :AutodateOFF
 endif
