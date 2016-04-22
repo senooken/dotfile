@@ -37,3 +37,11 @@ abbr        malloc
 snippet     sizeof-array
 abbr        sizeof
 	sizeof(${1:array})/sizeof($1[0])${0}
+
+snippet     if-file-open-error
+options     head
+	if(!${1:fp}){
+		fprintf(stderr, "Cannot open file.\n");
+		return -1;
+	}
+	${0}
