@@ -747,11 +747,11 @@ augroup END
 augroup BinaryXXD
   autocmd!
   autocmd BufReadPre   *.bin let &binary=1
-  autocmd BufReadPost  *     if  &binary   | silent   %!xxd -g 1
-  autocmd BufReadPost  *     set ft=xxd    | endif
-  autocmd BufWritePre  *     if  &binary   | execute '%!xxd -r' | endif
-  autocmd BufWritePost *     if  &binary   | silent   %!xxd -g 1
-  autocmd BufWritePost *     set nomod     | endif
+  autocmd BufReadPost  *     if  &binary && &modifiable | silent %!xxd -g 1
+  autocmd BufReadPost  *     set filetype=xxd | endif
+  autocmd BufWritePre  *     if  &binary      | execute '%!xxd -r' | endif
+  autocmd BufWritePost *     if  &binary      | silent   %!xxd -g 1
+  autocmd BufWritePost *     set nomod        | endif
 augroup END
 
 "" mouse
