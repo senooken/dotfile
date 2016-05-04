@@ -764,6 +764,12 @@ nnoremap ]Q :clast<CR>
 "" Alt-Enter open new tab
 nnoremap  <C-W><CR><C-W>T
 
+"" buffer
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
 "" mouse
 set mouse=a
 set ttymouse=xterm2
