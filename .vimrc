@@ -358,6 +358,10 @@ if s:Neobundled('vim-submode')
     call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
     call submode#map('undo/redo', 'n', '', '-', 'g-')
     call submode#map('undo/redo', 'n', '', '+', 'g+')
+    "" Quickfix
+    call submode#enter_with('quickfix', 'n', '', '<Leader>q', '<Nop>')
+    call submode#map('quickfix', 'n', '', 'k', ':cprevious<CR>')
+    call submode#map('quickfix', 'n', '', 'j', ':cnext<CR>')
 endif
 
 if s:Neobundled('vim-indent-guides')
@@ -659,9 +663,6 @@ nnoremap <ESC>j <C-w>j
 nnoremap <ESC>k <C-w>k
 nnoremap <ESC>l <C-w>l
 
-"" insert breakline on cursor
-nnoremap <CR> i<CR><ESC>
-
 "" Allow saving of files as sudo
 " cabbrev w!! %!sudo tee > /dev/null %
 cnoremap w!! %!sudo tee > /dev/null %
@@ -753,6 +754,15 @@ augroup BinaryXXD
   autocmd BufWritePost *     if  &binary      | silent   %!xxd -g 1
   autocmd BufWritePost *     set nomod        | endif
 augroup END
+
+"" QuickFix
+autocmd QuickfixCmdPost make,grep,grepadd,vimgrep tab cwindow
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
+"" Alt-Enter open new tab
+nnoremap  <C-W><CR><C-W>T
 
 "" mouse
 set mouse=a
