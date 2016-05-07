@@ -1,4 +1,4 @@
-/**************************************************************************** 
+/****************************************************************************
  \file      template.cpp
  \author    SENOO, Ken
  \copyright CC0
@@ -15,7 +15,7 @@
 #include <boost/algorithm/string.hpp>//split(in,st,sep),trim/[_copy]_if(st,sep)
 #include <boost/lexical_cast.hpp> // boost::lexical_cast<type>(obj)
 
-int main() {
-  
+int main(void) {
+
   return 0;
 }

@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 <+CURSOR+>
-int main(){
+int main(void){
 
   return 0;
 }
