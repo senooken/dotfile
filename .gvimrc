@@ -1,9 +1,6 @@
 "" MS Windows like keybind
 source $VIMRUNTIME/mswin.vim
 
-"" insert breakline on cursor
-nnoremap <CR> i<CR><ESC>
-
 set number	" show line number
 "" font
 try
