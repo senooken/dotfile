@@ -680,6 +680,7 @@ cnoremap <M-f> <S-Right>
 
 " cnoremap <expr> / (getcmdtype() == '/') '\/' : '/'
 
+nnoremap <BS> X
 
 "" move last file position
 augroup vimrcEx/d
