@@ -498,6 +498,7 @@ source $VIMRUNTIME/macros/matchit.vim
 "-----------------------------------------------------------------------------
 " 一般
 "
+
 " コマンド、検索パターンを50個まで履歴に残す
 set history=50
 " 装飾関連
@@ -518,13 +519,22 @@ set showmatch
 set laststatus=2
 
 " ステータスラインに表示する情報の指定
-set statusline=%<%f\ %m%r%h%w " ファイル名
-set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']['.&ft.']'} " 改行コードなど
-set statusline+=[\%04.4B] " カーソル行の16進数文字コード
+set statusline=[%n]%<%f\ %m%r%h%w " ファイル名
+set statusline+=%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'} " 改行コードなど
+set statusline+=[%04B] " カーソル行の16進数文字コード
+set statusline+=[mode:%{mode()}]  " mode
 set statusline+=%=%l/%L,\ %c%V%8P " 現在位置の情報
 
+" set tabline+=[%n]
+
 " ステータスラインの色
-hi StatusLine   term=NONE cterm=NONE ctermfg=black ctermbg=white
+au ColorScheme * hi StatusLine term=NONE cterm=NONE ctermfg=white ctermbg=blue
+au InsertEnter * hi StatusLine term=NONE cterm=NONE ctermfg=white ctermbg=green
+au InsertLeave * hi StatusLine term=NONE cterm=NONE ctermfg=white ctermbg=blue
+
+" color
+colorscheme default
+
 " ハイライト
 if &t_Co > 2 || has("gui_running")
   " シンタックスハイライトを有効にする
@@ -624,8 +634,6 @@ endif
 set wildmenu
 set wildmode=list:longest,full " 1回目で共通部分，2回目で順番に補完
 
-" color
-colorscheme default
 
 " Command mode keybind.
 "map <c-a> <HOME>
@@ -682,10 +690,13 @@ cnoremap <M-f> <S-Right>
 
 nnoremap <BS> X
 
-"" move last file position
-augroup vimrcEx/d
-  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-  \ exe "normal g`\"" | endif
+"" move last file position by $VIMRUNTIME/vimrc_example.vim
+augroup vimrcEx
+  autocmd!
+  autocmd BufReadPost *
+  \  if line("'\"") > 1 && line("'\"") <= line("$") |
+  \    exe "normal g`\"" |
+  \  endif
 augroup END
 
 "" cd editting file directory.
@@ -775,8 +786,10 @@ nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
 "" mouse
-set mouse=a
-set ttymouse=xterm2
+if has('mouse')
+  set mouse=a
+  set ttymouse=xterm2
+endif
 
 "" 外部コマンドでaliasを使えるようにする
 if filereadable(glob('~/.zbashrc'))
