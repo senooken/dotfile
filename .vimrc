@@ -522,15 +522,19 @@ set laststatus=2
 set statusline=[%n]%<%f\ %m%r%h%w " ファイル名
 set statusline+=%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'} " 改行コードなど
 set statusline+=[%04B] " カーソル行の16進数文字コード
-set statusline+=[mode:%{mode()}]  " mode
+set statusline+=[%{mode()}]  " mode
 set statusline+=%=%l/%L,\ %c%V%8P " 現在位置の情報
 
 " set tabline+=[%n]
 
 " ステータスラインの色
-au ColorScheme * hi StatusLine term=NONE cterm=NONE ctermfg=white ctermbg=blue
-au InsertEnter * hi StatusLine term=NONE cterm=NONE ctermfg=white ctermbg=green
-au InsertLeave * hi StatusLine term=NONE cterm=NONE ctermfg=white ctermbg=blue
+highlight StatusLine ctermfg=white ctermbg=blue gui=bold guifg=white guibg=blue
+autocmd ColorScheme * hi StatusLine cterm=bold ctermfg=white ctermbg=blue
+autocmd ColorScheme * hi StatusLine gui=bold   guifg=white   guibg=blue
+autocmd InsertEnter * hi StatusLine cterm=bold ctermfg=white ctermbg=darkgreen
+autocmd InsertEnter * hi StatusLine gui=bold   guifg=white   guibg=darkgreen
+autocmd InsertLeave * hi StatusLine cterm=bold ctermfg=white ctermbg=blue
+autocmd InsertLeave * hi StatusLine gui=bold   guifg=white   guibg=blue
 
 " color
 colorscheme default
@@ -689,6 +693,7 @@ cnoremap <M-f> <S-Right>
 " cnoremap <expr> / (getcmdtype() == '/') '\/' : '/'
 
 nnoremap <BS> X
+nnoremap Q gq
 
 "" move last file position by $VIMRUNTIME/vimrc_example.vim
 augroup vimrcEx
