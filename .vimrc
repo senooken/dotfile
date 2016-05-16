@@ -705,7 +705,11 @@ augroup vimrcEx
 augroup END
 
 "" cd editting file directory.
-autocmd BufEnter * lcd `=expand("%:p:h")`
+if exists('+autochdir')
+  set autochdir
+else
+  autocmd BufEnter * lcd `=expand("%:p:h")`
+endif
 
 set nrformats=   " deal as decimal for number
 
@@ -778,8 +782,6 @@ nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
-"" Alt-Enter open new tab
-nnoremap  <C-W><CR><C-W>T
 
 "" insert line break. In quickfix, disable by qf.vim.
 nnoremap <CR> i<CR><ESC>
