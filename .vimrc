@@ -7,10 +7,12 @@ let s:FALSE = 0
 let s:TRUE = !s:FALSE
 
 "" platform
-let s:is_windows = has('win16') || has('win32') || has('win64')
-let s:is_cygwin = has('win32unix')
-let s:is_mac = has('mac') || has('macunix') || has('gui_macvim')
-let s:is_linux = has('unix') && !s:is_mac && !s:is_cygwin
+let s:is_windows = has('win64') || has('win32')   || has('win16')
+let s:is_cygwin  = has('win32unix')
+let s:is_mac     = has('mac')   || has('macunix') || has('gui_macvim')
+let s:is_linux   = has('unix') && !s:is_mac && !s:is_cygwin
+
+let s:is_windows_7 = s:is_windows && system('VER') =~# 'Version 6.1'
 
 "" Charset, Line ending
 set encoding=utf-8
@@ -18,9 +20,7 @@ set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
 
 "" Windowsのコマンドプロンプトの日本語文字化け対策
-if s:is_windows
-  set termencoding=cp932
-endif
+if s:is_windows | set termencoding=cp932 | endif
 
 set ambiwidth=double " 全角記号をきちんと表示
 
@@ -40,6 +40,7 @@ autocmd BufWritePre *
   \ | endif
 
 if has('vim_starting')
+  if s:is_windows | set runtimepath+=~/.vim/after/ | endif
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
@@ -476,9 +477,7 @@ if s:Neobundled('vim-template')
   endfunction
   " テンプレート中に含まれる'<+CURSOR+>'にカーソルを移動
   autocmd User plugin-template-loaded
-      \   if search('<+CURSOR+>')
-      \ |   silent! execute 'normal! "_da>'
-      \ | endif
+      \   if search('<+CURSOR+>') | silent! execute 'normal! "_da>' | endif
 else
   "" vim-templateが使えないときの設定
   autocmd BufNewFile *         silent! :0r  ~/.vim/template/template.%:e
@@ -497,7 +496,6 @@ source $VIMRUNTIME/macros/matchit.vim
 "2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
 "-----------------------------------------------------------------------------
 " 一般
-"
 
 " コマンド、検索パターンを50個まで履歴に残す
 set history=50
@@ -535,6 +533,14 @@ autocmd InsertEnter * hi StatusLine cterm=bold ctermfg=white ctermbg=darkgreen
 autocmd InsertEnter * hi StatusLine gui=bold   guifg=white   guibg=darkgreen
 autocmd InsertLeave * hi StatusLine cterm=bold ctermfg=white ctermbg=blue
 autocmd InsertLeave * hi StatusLine gui=bold   guifg=white   guibg=blue
+
+"" Windows 7のコマンドプロンプトでは白と黒が色名と逆なので個別対応
+if s:is_windows_7
+  highlight StatusLine ctermfg=black
+  autocmd ColorScheme * highlight StatusLine ctermfg=black
+  autocmd InsertEnter * highlight StatusLine ctermfg=black
+  autocmd InsertLeave * highlight StatusLine ctermfg=black
+endif
 
 " color
 colorscheme default
@@ -596,7 +602,7 @@ function! s:Add_execmod()
   let line = getline(1)
   if strpart(line, 0, 2) == "#!" || strpart(line, 0) == '[Desktop Entry]'
     if s:is_windows
-      call system("icacls " . expand("%") . " /grant " . $USERNAME . ":(X)")
+      call system("icacls "   . expand("%") . " /grant " . $USERNAME . ":(X)")
     else
       call system("chmod +x " . expand("%"))
     endif
@@ -699,9 +705,7 @@ nnoremap Q gq
 augroup vimrcEx
   autocmd!
   autocmd BufReadPost *
-  \  if line("'\"") > 1 && line("'\"") <= line("$") |
-  \    exe "normal g`\"" |
-  \  endif
+  \  if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 augroup END
 
 "" cd editting file directory.
@@ -727,8 +731,8 @@ endif
 
 """ 全角スペースの表示
 highlight ZenkakuSpace ctermbg=red guibg=#666666
-au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
-au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
+autocmd BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
+autocmd WinEnter *    let w:m3 = matchadd("ZenkakuSpace", '　')
 
 " """ ドラッグドロップで新しいタブでファイルを開く
 " autocmd VimEnter * tab all
@@ -799,6 +803,4 @@ if has('mouse')
 endif
 
 "" 外部コマンドでaliasを使えるようにする
-if filereadable(glob('~/.zbashrc'))
-  let $BASH_ENV=expand('~/.zbashrc')
-endif
+if filereadable(glob('~/.zbashrc')) | let $BASH_ENV=expand('~/.zbashrc') | endif
