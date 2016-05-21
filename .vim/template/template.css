@@ -113,7 +113,6 @@ section>h6:first-child
 {
   counter-increment: heading1; counter-reset: heading2 table figure;
   font-size: 2.0em;
-  background-color: #e6e6ff;
 }
 
 section>h1:first-child::before,
@@ -315,7 +314,9 @@ th, td {
 p {text-indent: 1em;}
 h1, h2, h3, h4, h5, h6 {
   font-family: "TeX Gyre Heros", "Migu 1P", sans-serif;
-  background-color: rgb(100%,80%,0%);
+  /* orange */
+  /* background-color: rgb(100%,80%,0%); */
+  background-color: #e6e6ff;
 }
 em, strong {
   color: red;
