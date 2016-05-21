@@ -102,7 +102,66 @@ ol>li>ol>li>ol>li>ol>li>ol>li>ol>li::before {
 body>h1:first-child {
   text-align: center;
   font-size: xx-large;
+  background-color: #e6e6ff;
 }
+
+section>h1,
+section>h2,
+section>h3,
+section>h4,
+section>h5,
+section>h6
+{
+  /* font-size: xx-large; */
+  font-size: 2.0em;
+  background-color: #e6e6ff;
+}
+section>section>h1,
+section>section>h2,
+section>section>h3,
+section>section>h4,
+section>section>h5,
+section>section>h6
+{
+  font-size: 1.83em;
+}
+section>section>section>h1,
+section>section>section>h2,
+section>section>section>h3,
+section>section>section>h4,
+section>section>section>h5,
+section>section>section>h6
+{
+  font-size: 1.67em;
+}
+section>section>section>section>h1,
+section>section>section>section>h2,
+section>section>section>section>h3,
+section>section>section>section>h4,
+section>section>section>section>h5,
+section>section>section>section>h6
+{
+  font-size: 1.50em;
+}
+section>section>section>section>section>h1,
+section>section>section>section>section>h2,
+section>section>section>section>section>h3,
+section>section>section>section>section>h4,
+section>section>section>section>section>h5,
+section>section>section>section>section>h6
+{
+  font-size: 1.33em;
+}
+section>section>section>section>section>section>h1,
+section>section>section>section>section>section>h2,
+section>section>section>section>section>section>h3,
+section>section>section>section>section>section>h4,
+section>section>section>section>section>section>h5,
+section>section>section>section>section>section>h6
+{
+  font-size: 1.17em;
+}
+
 
 /* 節番号の設定 */
 body { counter-reset: heading1; }
@@ -308,20 +367,15 @@ th, td {
 }
 
 /* フォント設定 */
-p {
-  text-indent: 1em;
-}
+p {text-indent: 1em;}
 h1, h2, h3, h4, h5, h6 {
   font-family: "TeX Gyre Heros", "Migu 1P", sans-serif;
-  background-color: #e6e6ff;
 }
 em, strong {
   color: red;
   font-weight: bold;
 }
-strong {
-  background-color: yellow;
-}
+strong {background-color: yellow;}
 
 /* PC語句 */
 kbd, code, samp, var {
@@ -341,7 +395,7 @@ samp {
   background-color: #e6e6e6;
 }
 var {
-  font-style: normal;
+  /* font-style: normal; */
   background-color: #e6ffff;
 }
 pre {
@@ -431,24 +485,12 @@ figure dl dd:nth-of-type(n+2) {
   size: A4 portrait;
   margin: 2cm;
 
-  @top-left {
-    content: "Chapter";
-  }
-  @top-center {
-    content: "Title";
-  }
-  @top-right {
-    content: "Section";
-  }
-  @bottom-left {
-    content: "SENOO, Ken";
-  }
-  @bottom-center {
-    content: "- " counter(page) "/" counter(pages) " -";
-  }
-  @bottom-right {
-    content: "Date";
-  }
+  @top-left {content: "Chapter";}
+  @top-center {content: "Title";}
+  @top-right {content: "Section";}
+  @bottom-left {content: "SENOO, Ken";}
+  @bottom-center {content: "- " counter(page) "/" counter(pages) " -";}
+  @bottom-right {content: "Date";}
 }
     </style>
   </head>
