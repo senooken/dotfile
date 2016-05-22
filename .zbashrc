@@ -73,7 +73,8 @@ fi
 ### ls
 alias ls="ls -AFh --color=auto"
 alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
-alias l="ls -F"
+alias l="ls"
+[ -r ~/.dir_colors ] && eval "$(dircolors ~/.dir_colors)"
 
 ### Default to human readable figures
 alias df='df -h'
@@ -138,6 +139,7 @@ export PAGER="less"
 [ "`command -v lv`" ] && export PAGER=lv
 export LV="-c -l"
 export LESS="-imR"
+alias info="info --vi-keys"
 
 ## for wine
 export WINEARCH=win32
@@ -149,4 +151,4 @@ case "${TERM}" in
 esac
 
 ## for other individual setting
-[ -f ~/.otherrc ] && source ~/.otherrc
+[ -r ~/.otherrc ] && source ~/.otherrc

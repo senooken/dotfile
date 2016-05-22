@@ -219,5 +219,5 @@ shopt -s nocaseglob # ignore case
 # PROMPT_COMMAND='share_history'  # 上記関数をプロンプト毎に自動実施
 # shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 ## for shared shell setting
-[ -f ~/.zbashrc ] && source ~/.zbashrc
+[ -r ~/.zbashrc ] && source ~/.zbashrc
 # source /opt/OpenFOAM/OpenFOAM-2.3.x/etc/bashrc.win
