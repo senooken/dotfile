@@ -118,12 +118,14 @@ alias gf='gfortran -Wall -O3 -static'
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
+GTK="$(pkg-config --cflags --libs gtk+-3.0)"
 
-GREP_OPTIONS="--color=auto --binary-files=without-match" ## grep 2.21
-alias grep="grep $GREP_OPTIONS"
+## grep 2.21 later, deprecated GREP_OPTIONS environmental variable
+GREP_OPTIONS="--color=auto -I --exclude-dir=.{,.,git,svn}"
+alias grep="grep ${GREP_OPTIONS}"
 
 alias vim="vim -X"
-[ "`command -v vim`" ] && export EDITOR=vim
+[ "$(command -v vim)" ] && export EDITOR=vim
 export SVN_EDITOR=$EDITOR
 export GNUPLOT_LIB=""  # data or script path
 export CYGWIN="nodosfilewarning winsymlinks:nativestrict"

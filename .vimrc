@@ -645,6 +645,7 @@ set wildmenu
 set wildmode=list:longest,full " 1回目で共通部分，2回目で順番に補完
 
 
+
 " Command mode keybind.
 "map <c-a> <HOME>
 noremap <C-e> <END>
@@ -786,6 +787,22 @@ nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
+
+autocmd QuickFixCmdPre *
+\ setlocal wildignore+=
+\..,*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
+\*.zip,*.gz,*.xz,*.7z,*.lha,*.tgz
+\*.pdf,*.png,*.jpg,*.gif,*.doc*,*.xls*,*ppt*
+
+autocmd QuickFixCmdPost *
+\ setlocal wildignore-=
+\..,*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
+\*.zip,*.gz,*.xz,*.7z,*.lha,*.tgz
+\*.pdf,*.png,*.jpg,*.gif,*.doc*,*.xls*,*ppt*
+
+if executable('grep')
+  set grepprg=grep\ -n\ -I\ --exclude-dir=.{,.,git,svn}\ -n\ \ $*\ /dev/null
+endif
 
 "" insert line break. In quickfix, disable by qf.vim.
 nnoremap <CR> i<CR><ESC>
