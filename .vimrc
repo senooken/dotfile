@@ -802,6 +802,8 @@ autocmd QuickFixCmdPost *
 
 if executable('grep')
   set grepprg=grep\ -n\ -I\ --exclude-dir=.{,.,git,svn}\ -n\ \ $*\ /dev/null
+else
+  set grepprg=findstr\ /n\ /p
 endif
 
 "" insert line break. In quickfix, disable by qf.vim.

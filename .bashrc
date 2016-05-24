@@ -202,7 +202,7 @@ shopt -s cdable_vars # enable cd <var>
 shopt -s cdspell # auto modify cd path in missing.
 shopt -s extglob # extentive regex. ?，*, +, @, !(1|2)
 # shopt -s direxpand # auto modify in completion # old bash not support
-shopt -s dotglob # include .dotfile in <command> *.
+# shopt -s dotglob # include .dotfile in <command> *.
 shopt -s hostcomplete # try host completion
 shopt -s globstar # **: match recursive subdirectory. **/: only 1 recursive.
 shopt -s nocaseglob # ignore case

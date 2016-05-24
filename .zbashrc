@@ -45,7 +45,7 @@ export LC_MESSAGES=en_US.UTF-8
 # export ftp_proxy="http://proxy.kuins.net:8080/"
 
 ## enable alias in non-interactive shell
-shell=`readlink /proc/$$/exe`
+shell=$(readlink /proc/$$/exe)
 case $shell in
   *bash) shopt -s expand_aliases;;
   # *zsh) setopt aliases;;
@@ -98,10 +98,10 @@ case "${OSTYPE}" in
 esac
 
 #### Copy to clipboard
-[ "`command -v clip`" ]    && alias clip="iconv -s -f UTF-8 -t SJIS | clip" # MSYS (Windows)
-[ "`command -v xsel`" ]    && alias clip="xsel -ib" # Linux
-[ "`command -v putclip`" ] && alias clip="putclip" # Cygwin
-[ "`command -v pbcopy`" ]  && alias clip="pbcopy" # Mac
+[ "$(command -v clip)" ]    && alias clip="iconv -s -f UTF-8 -t SJIS | clip" # MSYS (Windows)
+[ "$(command -v xsel)" ]    && alias clip="xsel -ib" # Linux
+[ "$(command -v putclip)" ] && alias clip="putclip" # Cygwin
+[ "$(command -v pbcopy)" ]  && alias clip="pbcopy" # Mac
 
 ### development
 alias py='python3'
@@ -114,7 +114,7 @@ alias rb='ruby'
 alias gp='g++ -Wall -std=c++1y'
 alias gc='gcc -Wall -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
-[ "`command -v xstow`" ] && alias stow=xstow
+[ "$(command -v xstow)" ] && alias stow=xstow
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
@@ -138,7 +138,7 @@ export LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋�
 
 ## Pager
 export PAGER="less"
-[ "`command -v lv`" ] && export PAGER=lv
+[ "$(command -v lv)" ] && export PAGER=lv
 export LV="-c -l"
 export LESS="-imR"
 alias info="info --vi-keys"

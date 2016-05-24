@@ -208,7 +208,7 @@ unsetopt equals # invalid = expansion for bash script [ == ].
 
 ## setting of completion
 unsetopt cdable_vars # invalid additional candidacy when cd completation
-setopt glob_dots # valid completion start from . file
+# setopt glob_dots # valid completion start from . file
 setopt magic_equal_subst # コマンドラインの引数で --prefix=/usrなど=以降でも補完
 setopt mark_dirs # append / when expansion file = directory
 setopt complete_in_word # 単語の途中でも補完を有効化
