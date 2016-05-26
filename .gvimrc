@@ -3,14 +3,11 @@ source $VIMRUNTIME/mswin.vim
 
 set number	" show line number
 "" font
-try
-  if has("gui_gtk2")
-    set guifont=Migu\ 1M\ 9
-  elseif has("gui_win32")
-    set guifont=Migu_1M:h9
-  endif
-catch /^Vim\%((\a\+)\)\=:E596/  " catch 'error E596: Invalid font(s):'
-endtry
+if has('gui_gtk2')
+  set guifont=Migu\ 1M\ 9
+elseif has('gui_win32')
+  set guifont=Migu_1M:h9,HGGothicM:h9
+endif
 
 set textwidth=0
 set formatoptions=q

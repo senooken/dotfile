@@ -518,10 +518,10 @@ set laststatus=2
 
 " ステータスラインに表示する情報の指定
 set statusline=[%n]%<%f\ %m%r%h%w " ファイル名
-set statusline+=%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'} " 改行コードなど
+set statusline+=%<%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'} " 改行コードなど
 set statusline+=[%04B] " カーソル行の16進数文字コード
-set statusline+=[%{mode()}]  " mode
-set statusline+=%=%l/%L,\ %c%V%8P " 現在位置の情報
+" set statusline+=[%{mode()}]  " mode
+set statusline+=%=\ %2c%2V\|%4l/%4L\|%4P " 現在位置の情報
 
 " set tabline+=[%n]
 
@@ -789,16 +789,14 @@ nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
 autocmd QuickFixCmdPre *
-\ setlocal wildignore+=
-\..,*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
-\*.zip,*.gz,*.xz,*.7z,*.lha,*.tgz
-\*.pdf,*.png,*.jpg,*.gif,*.doc*,*.xls*,*ppt*
+\ setlocal wildignore+=..,*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
+\ setlocal wildignore+=*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm
+\ setlocal wildignore+=*.pdf,*.png,*.jpg,*.gif,*.bmp,*.doc*,*.xls*,*.ppt*
 
 autocmd QuickFixCmdPost *
-\ setlocal wildignore-=
-\..,*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
-\*.zip,*.gz,*.xz,*.7z,*.lha,*.tgz
-\*.pdf,*.png,*.jpg,*.gif,*.doc*,*.xls*,*ppt*
+\ setlocal wildignore-=..,*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
+\ setlocal wildignore-=*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm
+\ setlocal wildignore-=*.pdf,*.png,*.jpg,*.gif,*.bmp,*.doc*,*.xls*,*.ppt*
 
 if executable('grep')
   set grepprg=grep\ -n\ -I\ --exclude-dir=.{,.,git,svn}\ -n\ \ $*\ /dev/null
