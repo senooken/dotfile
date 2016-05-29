@@ -11,5 +11,7 @@ nnoremap <buffer> <CR> <CR>
 "" open new tab
 nnoremap <buffer> t <C-W><CR><C-W>T
 
-" setlocal statusline=%t%<%{exists('w:quickfix_title')?''.w:quickfix_title\ :''}%=%-15(%l,%c%V%)%P
-setlocal statusline+=[%n]
+"" statusline
+setlocal statusline =[%n]%y%<
+setlocal statusline+=%{exists('w:quickfix_title')?''.w:quickfix_title\ :''}
+setlocal statusline+=%=\ %4l/%4L\|%3v\|%4P  " current line information

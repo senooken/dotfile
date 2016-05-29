@@ -521,7 +521,7 @@ set statusline=[%n]%<%f\ %m%r%h%w " ファイル名
 set statusline+=%<%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'} " 改行コードなど
 set statusline+=[%04B] " カーソル行の16進数文字コード
 " set statusline+=[%{mode()}]  " mode
-set statusline+=%=\ %2c%2V\|%4l/%4L\|%4P " 現在位置の情報
+set statusline+=%=\ %4l/%4L\|%3v\|%4P  " current line information
 
 " set tabline+=[%n]
 
@@ -789,17 +789,17 @@ nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
 autocmd QuickFixCmdPre *
-\ setlocal wildignore+=..,*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
-\ setlocal wildignore+=*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm
-\ setlocal wildignore+=*.pdf,*.png,*.jpg,*.gif,*.bmp,*.doc*,*.xls*,*.ppt*
+\  setlocal wildignore+=*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
+\| setlocal wildignore+=*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm
+\| setlocal wildignore+=*.pdf,*.png,*.jpg,*.gif,*.bmp,*.doc*,*.xls*,*.ppt*
 
 autocmd QuickFixCmdPost *
-\ setlocal wildignore-=..,*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
-\ setlocal wildignore-=*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm
-\ setlocal wildignore-=*.pdf,*.png,*.jpg,*.gif,*.bmp,*.doc*,*.xls*,*.ppt*
+\  setlocal wildignore-=*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
+\| setlocal wildignore-=*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm
+\| setlocal wildignore-=*.pdf,*.png,*.jpg,*.gif,*.bmp,*.doc*,*.xls*,*.ppt*
 
 if executable('grep')
-  set grepprg=grep\ -n\ -I\ --exclude-dir=.{,.,git,svn}\ -n\ \ $*\ /dev/null
+  set grepprg=grep\ -n\ $*
 else
   set grepprg=findstr\ /n\ /p
 endif
@@ -819,5 +819,5 @@ if has('mouse')
   set ttymouse=xterm2
 endif
 
-"" 外部コマンドでaliasを使えるようにする
+"" Enable alias for external command
 if filereadable(glob('~/.zbashrc')) | let $BASH_ENV=expand('~/.zbashrc') | endif
