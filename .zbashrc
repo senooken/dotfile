@@ -118,10 +118,11 @@ alias gf='gfortran -Wall -O3 -static'
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
-GTK="$(pkg-config --cflags --libs gtk+-3.0)"
+cmd="pkg-config --cflags --libs gtk+-3.0"
+eval ${cmd} > /dev/null 2>&1 && GTK="$(${cmd})"
 
 ## grep 2.21 later, deprecated GREP_OPTIONS environmental variable
-GREP_OPTIONS="--color=auto -I --exclude-dir=.{,.,git,svn}"
+# GREP_OPTIONS="--color=auto -I --exclude-dir=.{,.,git,svn}"
 alias grep="grep ${GREP_OPTIONS}"
 
 alias vim="vim -X"
@@ -134,7 +135,7 @@ export MSYS="winsymlinks:nativestrict"
 ## compile
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
 export LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋め込み
-# [ "`command -v wx-config`" ] && export WXCONFIG="`wx-config --cppflags --libs | tr \"\n\" ' '`" # wxwidgetsのコンパイルフラグ
+# [ "$(command -v wx-config)" ] && WXCONFIG="$(wx-config --cppflags --libs | tr \"\n\" ' ')" # wxwidgetsのコンパイルフラグ
 
 ## Pager
 export PAGER="less"
