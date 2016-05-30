@@ -6,7 +6,12 @@ Thumbs.db
 *.mod
 *.[ao]
 *.obj
+*.so
 .netrwhist
 *~
 *.swp
 tmp/
+tags
+GTAGS
+GRTAGS
+GPATH
