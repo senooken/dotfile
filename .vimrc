@@ -784,21 +784,23 @@ nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
-autocmd QuickFixCmdPre *
-\  setlocal wildignore+=*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
-\| setlocal wildignore+=*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm
-\| setlocal wildignore+=*.pdf,*.png,*.jpg,*.gif,*.bmp,*.doc*,*.xls*,*.ppt*
+"" ignore binary file on runnig vim grep
+let s:ignore_list  = ',*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak'
+let s:ignore_list .= ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm,*.iso'
+let s:ignore_list .= ',*.pdf,*.png,*.jpg,*.gif,*.bmp,*.mp*'
+let s:ignore_list .= ',*.od*,*.doc*,*.xls*,*.ppt*'
 
-autocmd QuickFixCmdPost *
-\  setlocal wildignore-=*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak
-\| setlocal wildignore-=*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm
-\| setlocal wildignore-=*.pdf,*.png,*.jpg,*.gif,*.bmp,*.doc*,*.xls*,*.ppt*
+autocmd QuickFixCmdPre  * execute 'setlocal wildignore+=' . s:ignore_list
+autocmd QuickFixCmdPost * execute 'setlocal wildignore-=' . s:ignore_list
 
 if executable('grep')
-  set grepprg=grep\ -n\ $*
+  set grepprg=grep\ -n
 else
   set grepprg=findstr\ /n\ /p
 endif
+
+"" tags
+set tags=./.tags;
 
 "" insert line break. In quickfix, disable by qf.vim.
 nnoremap <CR> i<CR><ESC>
