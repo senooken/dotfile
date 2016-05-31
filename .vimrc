@@ -800,7 +800,7 @@ else
 endif
 
 "" tags
-set tags=./.tags;
+set tags=./tags;
 
 "" insert line break. In quickfix, disable by qf.vim.
 nnoremap <CR> i<CR><ESC>
