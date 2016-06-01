@@ -1,3 +1,7 @@
+## \file      .screenrc
+## \author    SENOO, Ken
+## \copyright CC0
+
 # set start menu to off (default: on)
 startup_message off
 
@@ -19,21 +23,32 @@ autodetach on
 altscreen on
 #shell -$SHELL
 
+## ignore case searching in copy mode
+ignorecase on
+
 ## scroll back buffer
 # defscrollback 1000 # 1以上: vim実行中に画面を上下に3段以上広げて:sp -> crash
 
 hardstatus on
-hardstatus alwayslastline '%{= .g}%H%{-} %L=%-w%45L>%{=u g.}%n %t%{-}%+w %-17<%=%Y-%m-%dT%02c:%s'
+hardstatus alwayslastline '%{= .g}%H%{-} %L=%-w%45L>%{=u g.}%n %t%{-}%+w %-17<%=%Y-%m-%dT%02c'
 caption always '%?%F%{= gw}%:%{= wk}%?%2n%f%07=%t%='
 sorendition '+r .b'
 windowlist title  '%{u .g}Num Flags Title%030=Hardstatus%='
 windowlist string '%4n %f%011=%t%030=%h%='
 
+## reload
+bind R source ~/.screenrc
+
+## split horizontally and creating new window
+bind - eval split "focus down" screen
+## split vertically and creating new windw
+bind | eval "split -v" "focus right" screen
+
 ## http://yskwkzhr.blogspot.jp/2010/11/screenrc.html
 
 # continuous resize region
 # orverride default `r'(wrap) mapping.
-bind r eval 'echo "Resize window"' 'command -c cresize'
+bind r eval 'echo "Resize window"'  'command -c cresize'
 bind -c cresize j eval 'resize +1'  'command -c cresize'
 bind -c cresize k eval 'resize -1'  'command -c cresize'
 bind -c cresize J eval 'resize +10' 'command -c cresize'
@@ -55,9 +70,11 @@ termcapinfo xterm* ti@:te@
 termcapinfo xterm "WS = \E[8;%d;%dt"
 termcapinfo xterm "li#100:co#100" # set default window size
 
+## ?
 %?%F%{= gW}%:%{= Kk}%?%2n%f%07=%t%=
 
 ## mouse
-defmousetrack on
+mousetrack on
+# defmousetrack on
 
 shell "zsh"

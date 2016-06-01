@@ -465,7 +465,6 @@ if s:Neobundled('vimfiler')
   "" IDE explore on startup
   let g:vimfiler_as_default_explorer  = 1
   let g:vimfiler_safe_mode_by_default = 0
-  let g:netrw_liststyle=3
 endif
 
 "" template file
@@ -489,6 +488,9 @@ endif
 if s:Neobundled('autodate.vim')
   autocmd BufWritePre template.*  silent! :AutodateOFF
 endif
+
+"" Netrw
+let g:netrw_liststyle=3
 
 "" Extend default Vim %
 source $VIMRUNTIME/macros/matchit.vim
