@@ -66,15 +66,17 @@ bind b focus bottom
 bind h focus left
 bind l focus right
 
-termcapinfo xterm* ti@:te@
-termcapinfo xterm "WS = \E[8;%d;%dt"
-termcapinfo xterm "li#100:co#100" # set default window size
-
 ## ?
 %?%F%{= gW}%:%{= Kk}%?%2n%f%07=%t%=
 
 ## mouse
 mousetrack on
-# defmousetrack on
+defmousetrack on
+termcapinfo xterm* ti@:te@  # enable mouse wheel
+# termcapinfo xterm* 'hs:ts=\E]2;:fs=07:ds=\E]2;screen07'
 
-shell "zsh"
+## terminal size
+termcapinfo xterm "WS = \E[8;%d;%dt"
+termcapinfo xterm "li#100:co#100" # set default window size
+
+defshell ${MYSHELL}

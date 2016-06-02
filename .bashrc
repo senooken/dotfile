@@ -176,14 +176,12 @@ export HISTTIMEFORMAT="%Y%m%dT%H%M "
 # Source global definitions
 [ -f /etc/bashrc ] && . /etc/bashrc
 
-export SHELL=/bin/bash
 export TMPDIR=/tmp
 export TZ=JST-09
 export MAKE_MODE=unix
 
-PAGER=less
 JLESSCHARSET=japanese-sjis
-export PATH PAGER JLESSCHARSET
+export PATH JLESSCHARSET
 
 ## prompt
 PURPLE="\[\e[35m\]"

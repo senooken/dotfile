@@ -118,7 +118,7 @@ alias gf='gfortran -Wall -O3 -static'
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
-cmd="pkg-config --cflags --libs gtk+-3.0"
+cmd="pkg-config --silence-errors --cflags --libs gtk+-3.0"
 eval "${cmd}" > /dev/null 2>&1 && GTK="$(eval ${cmd})"
 
 ## grep 2.21 later, deprecated GREP_OPTIONS environmental variable
@@ -132,6 +132,9 @@ export SVN_EDITOR=$EDITOR
 export GNUPLOT_LIB=""  # data or script path
 export CYGWIN="nodosfilewarning winsymlinks:nativestrict"
 export MSYS="winsymlinks:nativestrict"
+
+cmd="$(command -v zsh)"
+[ "${cmd}" ] && export MYSHELL="${cmd##*/}" || export MYSHELL=${SHELL##*/}
 
 ## compile
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
