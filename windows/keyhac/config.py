@@ -6,17 +6,19 @@ def configure(keymap):
     keymap_global = keymap.defineWindowKeymap()
 
     # 変換キーを モディファイアキー(U0)に登録
-    keymap.defineModifier( 28, "User0") 
+    HENKAN = 28
+    keymap.defineModifier(HENKAN, "User0") 
     # keymap_global["O-U0"] = "28"
 
     ## 無変換キーをSandSの代用にする
     # ワンショットモディファイアとしてShiftを無変換に定義
-    keymap_global["O-Shift"] = "29"
+    MUHENKAN = "29"
+    keymap_global["O-Shift"] = MUHENKAN
     # 無変換キーをShiftにする
-    keymap.replaceKey("29", "Shift")
+    keymap.replaceKey(MUHENKAN, "Shift")
 
     # 範囲選択用に無変換キーをmodifierキーに定義
-    keymap.defineModifier(29, "User1")
+    keymap.defineModifier(MUHENKAN, "User1")
     #keymap.global["O-94"]="242"
     #keymap_global["242"] = "Apps"
     #eymap.defineModifier("242", "User2")
@@ -32,7 +34,7 @@ def configure(keymap):
     # SpaceにCtrlをもたせる
     keymap.defineModifier( "Space", "User3") 
     keymap.replaceKey("Space", "RCtrl")
-    keymap_global["O-RCtrl"] = "Space"
+    keymap_global["O-RCtrl"]   = "Space"
     keymap_global["Alt-RCtrl"] = "Alt-Space"
     # カタカナひらがなキーをmodifierキーに設定
     #keymap.defineModifier(242, "User2")
@@ -46,6 +48,8 @@ def configure(keymap):
     # 27: Esc
     # 29: 無変換
     # 28: 変換
+    keymap_global["LCtrl-O-RCtrl"] = "Ctrl-Space"
+
 
 
     ### ここからキーの割り当て
@@ -57,7 +61,7 @@ def configure(keymap):
 
     keymap_global["U0-U"] = "PageUp"
     keymap_global["U0-Semicolon"] = "PageUp"
-    keymap_global["U0-D"] = "PageDown"
+    keymap_global["U0-D"]     = "PageDown"
     keymap_global["U0-Slash"] = "PageDown"
 
     # EmacsのC-a, C-e
@@ -97,7 +101,7 @@ def configure(keymap):
 
     # Appsキーを押しやすい位置にし、よく使うF2を定義
     keymap_global["U0-I"] = "F2"
-    #keymap_global["O-Shift"] = "29"
+    #keymap_global["O-Shift"] = MUHENKAN
 
     # 表計算ソフトのタブ切替。Webのタブ切替などにも有効
     keymap_global["U0-O"] = "Ctrl-PageUp"
@@ -134,4 +138,4 @@ def configure(keymap):
     keymap_global["Alt-S-U0-L"] = "Alt-Shift-Right"
 
 # [変換]
-    keymap_global["O-(28)"] = "(28)"            # [変換]で日本語入力
+    keymap_global["O-"+HENKAN] = HENKAN            # [変換]で日本語入力
