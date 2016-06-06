@@ -804,6 +804,12 @@ endif
 "" tags
 set tags=./tags;
 
+nnoremap [t :tprevious<CR>
+nnoremap ]t :tnext<CR>
+nnoremap [T :tfirst<CR>
+nnoremap ]T :tlast<CR>
+
+
 "" insert line break. In quickfix, disable by qf.vim.
 nnoremap <CR> i<CR><ESC>
 
