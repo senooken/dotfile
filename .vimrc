@@ -498,11 +498,10 @@ source $VIMRUNTIME/macros/matchit.vim
 "2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
 "-----------------------------------------------------------------------------
 " 一般
-
 " コマンド、検索パターンを50個まで履歴に残す
 set history=50
 " 装飾関連
-"
+
 "行番号を表示/非表示
 "set number
 set nonumber
@@ -511,8 +510,7 @@ set nonumber
 set ruler
 " タブや改行を表示しない
 set nolist
-" 入力中のコマンドをステータスに表示する
-set showcmd
+set showcmd  " show inputting command and show counting visual mode
 " 括弧入力時の対応する括弧を表示
 set showmatch
 " ステータスラインを常に表示
@@ -554,7 +552,7 @@ if &t_Co > 2 || has("gui_running")
   " 検索結果文字列のハイライトを有効にする
   set hlsearch
 endif
-"-----------------------------------------------------------------------------
+
 " 編集、文書整形関連
 "
 " backspaceキーの挙動を設定する
@@ -602,11 +600,11 @@ set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらな�
 autocmd BufWritePost * :call s:Add_execmod()
 function! s:Add_execmod()
   let line = getline(1)
-  if strpart(line, 0, 2) == "#!" || strpart(line, 0) == '[Desktop Entry]'
+  if strpart(line, 0, 2) == '#!' || strpart(line, 0) == '[Desktop Entry]'
     if s:is_windows
-      call system("icacls "   . expand("%") . " /grant " . $USERNAME . ":(X)")
+      call system('icacls '   . expand('%') . ' /grant ' . $USERNAME . ':(X)')
     else
-      call system("chmod +x " . expand("%"))
+      call system('chmod +x ' . expand('%'))
     endif
   endif
 endfunction
