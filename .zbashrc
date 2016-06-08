@@ -37,7 +37,7 @@ export LANGUAGE=en
 export LC_TIME=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 
-[ ${DISPLAY} ] || export DISPLAY=:0  # if DISPLAY is none, then set.
+[ "${DISPLAY}" ] || export DISPLAY=:0  # if DISPLAY is none, then set.
 
 ## enable alias in non-interactive shell
 shell=$(readlink /proc/$$/exe)
