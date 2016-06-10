@@ -286,7 +286,6 @@ if s:Neobundled('vim-clurin')
   \       ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   \       ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
   \       ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'],
-  \       ['open', 'close'], ['OPEN', 'CLOSE'], ['Open', 'Close'],
   \       ['yes', 'no'], ['YES', 'NO'], ['Yes', 'No'], ['OK', 'NG'],
   \       ['begin', 'end'], ['BEGIN', 'END'], ['Begin', 'End'],
   \       ['start', 'stop'], ['START', 'STOP'], ['Start', 'Stop'],
@@ -294,15 +293,18 @@ if s:Neobundled('vim-clurin')
   \       ['top', 'bottom'], ['TOP', 'BOTTOM'], ['Top', 'Bottom'],
   \       ['before', 'after'], ['BEFORE', 'AFTER'], ['Before', 'After'],
   \       ['left', 'right'], ['LEFT', 'RIGHT'], ['Left', 'Right'],
+  \       ['up', 'down'], ['UP', 'DOWN'], ['Up', 'Down'],
   \       ['north', 'south', 'east', 'west'],
   \       ['NORTH', 'SOUTH', 'EAST', 'WEST'],
   \       ['North', 'South', 'East', 'West'],
   \       ['N', 'S', 'E', 'W'],
   \       ['max', 'min'], ['MAX', 'MIN'], ['Max', 'Min'],
   \       ['least', 'most'], ['LEAST', 'MOST'], ['Least', 'Most'],
+  \       ['less', 'more'], ['LESS', 'MORE'], ['Less', 'More'],
+  \       ['few', 'much'], ['FEW', 'MUCH'], ['Few', 'Much'],
   \       ['in', 'out'], ['IN', 'OUT'], ['In', 'Out'],
   \       ['old', 'new'], ['OLD', 'NEW'], ['Old', 'New'],
-  \       ['up', 'down'], ['UP', 'DOWN'], ['Up', 'Down'],
+  \       ['open', 'close'], ['OPEN', 'CLOSE'], ['Open', 'Close'],
   \       ['read', 'write'], ['READ', 'WRITE'], ['Read', 'Write'],
   \       ['next', 'previous'], ['NEXT', 'PREVIOUS'], ['Next', 'Previous'],
   \       ['English', 'Japanese'], ['en', 'ja'], ['US', 'JP'], ['us', 'jp']
@@ -785,14 +787,19 @@ nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
-"" ignore binary file on runnig vim grep
-let s:ignore_list  = ',*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak'
-let s:ignore_list .= ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.deb,*.rpm,*.iso'
-let s:ignore_list .= ',*.pdf,*.png,*.jpg,*.gif,*.bmp,*.mp*'
+"" vimgrep
+""" ignore files on runnig vimgrep
+let s:ignore_list  = ',.git/**,.svn/**,obj/**'
+let s:ignore_list .= ',tags,GTAGS,GRTAGS,GPATH'
+let s:ignore_list .= ',*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak'
+let s:ignore_list .= ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.lzh,*.deb,*.rpm,*.iso'
+let s:ignore_list .= ',*.pdf,*.png,*.jp*,*.gif,*.bmp,*.mp*'
 let s:ignore_list .= ',*.od*,*.doc*,*.xls*,*.ppt*'
 
-autocmd QuickFixCmdPre  * execute 'setlocal wildignore+=' . s:ignore_list
-autocmd QuickFixCmdPost * execute 'setlocal wildignore-=' . s:ignore_list
+if exists('+wildignore')
+  autocmd QuickFixCmdPre  * execute 'setlocal wildignore+=' . s:ignore_list
+  autocmd QuickFixCmdPost * execute 'setlocal wildignore-=' . s:ignore_list
+endif
 
 if executable('grep')
   set grepprg=grep\ -n
