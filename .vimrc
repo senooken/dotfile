@@ -787,8 +787,8 @@ nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
-"" vimgrep
-""" ignore files on runnig vimgrep
+"" vim grep
+""" ignored files in vimgrep
 let s:ignore_list  = ',.git/**,.svn/**,obj/**'
 let s:ignore_list .= ',tags,GTAGS,GRTAGS,GPATH'
 let s:ignore_list .= ',*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak'

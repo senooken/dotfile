@@ -116,7 +116,6 @@ section>h6:first-child
 {
   counter-increment: heading1; counter-reset: heading2 table figure;
   font-size: 2.0em;
-  background-color: #e6e6ff;
 }
 
 section>h1:first-child::before,
@@ -146,7 +145,7 @@ section>section>h4:first-child::before,
 section>section>h5:first-child::before,
 section>section>h6:first-child::before
 {
-  content: counter(heading1) "." counter(heading2)  " ";
+  content: counter(heading1) "." counter(heading2) " ";
 }
 
 section>section>section>h1:first-child,
@@ -166,8 +165,7 @@ section>section>section>h4:first-child::before,
 section>section>section>h5:first-child::before,
 section>section>section>h6:first-child::before
 {
-  content: counter(heading1) "." counter(heading2) "." counter(heading3)
- " ";
+  content: counter(heading1) "." counter(heading2) "." counter(heading3) " ";
 }
 
 section>section>section>section>h1:first-child,
@@ -187,8 +185,8 @@ section>section>section>section>h4:first-child::before,
 section>section>section>section>h5:first-child::before,
 section>section>section>section>h6:first-child::before
 {
-  content: counter(heading1) "." counter(heading2) "." counter(heading3)
-"." counter(heading4)  " ";
+  content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
+           counter(heading4) " ";
 }
 
 section>section>section>section>section>h1:first-child,
@@ -208,10 +206,10 @@ section>section>section>section>section>h4:first-child::before,
 section>section>section>section>section>h5:first-child::before,
 section>section>section>section>section>h6:first-child::before
 {
-  content: counter(heading1) "." counter(heading2) "." counter(heading3)
-"." counter(heading4) "." counter(heading5)  " ";
+  content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
+           counter(heading4) "." counter(heading5) " ";
 }
-
+/** heading6 だけカウンターが増えない？ */
 section>section>section>section>section>section>h1:first-child,
 section>section>section>section>section>section>h2:first-child,
 section>section>section>section>section>section>h3:first-child,
@@ -219,7 +217,7 @@ section>section>section>section>section>section>h4:first-child,
 section>section>section>section>section>section>h5:first-child,
 section>section>section>section>section>section>h6:first-child
 {
-  counter-increment: heading5; counter-reset: heading6;
+  counter-increment: heading6;
   font-size: 1.17em;
 }
 section>section>section>section>section>section>h1:first-child::before,
@@ -229,8 +227,8 @@ section>section>section>section>section>section>h4:first-child::before,
 section>section>section>section>section>section>h5:first-child::before,
 section>section>section>section>section>section>h6:first-child::before
 {
-  content: counter(heading1) "." counter(heading2) "." counter(heading3)
-"." counter(heading4) "." counter(heading5) "." counter(heading5) " ";
+  content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
+           counter(heading4) "." counter(heading5) "." counter(heading6) " ";
 }
 
 
@@ -318,7 +316,9 @@ th, td {
 p {text-indent: 1em;}
 h1, h2, h3, h4, h5, h6 {
   font-family: "TeX Gyre Heros", "Migu 1P", sans-serif;
-  background-color: rgb(100%,80%,0%);
+  /* orange */
+  /* background-color: rgb(100%,80%,0%); */
+  background-color: #e6e6ff;
 }
 em, strong {
   color: red;
