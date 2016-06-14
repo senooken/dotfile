@@ -1,7 +1,7 @@
 "" MS Windows like keybind
 source $VIMRUNTIME/mswin.vim
 
-set number	" show line number
+set number  " show line number
 "" font
 if has('gui_gtk2')
   set guifont=Migu\ 1M\ 9

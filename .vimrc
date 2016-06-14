@@ -461,13 +461,13 @@ endif
 "     map T <Plug>(easymotion-Tl)
 " endif
 
-if s:Neobundled('vimfiler')
-  """ vimfiler
-  "" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
-  "" IDE explore on startup
-  let g:vimfiler_as_default_explorer  = 1
-  let g:vimfiler_safe_mode_by_default = 0
-endif
+" if s:Neobundled('vimfiler')
+"   """ vimfiler
+"   "" autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit " look like
+"   "" IDE explore on startup
+"   let g:vimfiler_as_default_explorer  = 1
+"   let g:vimfiler_safe_mode_by_default = 0
+" endif
 
 "" template file
 if s:Neobundled('vim-template')
@@ -781,7 +781,8 @@ augroup BinaryXXD
 augroup END
 
 "" QuickFix
-autocmd QuickfixCmdPost make,grep,grepadd,vimgrep tab cwindow
+autocmd QuickfixCmdPost [^l]* tab cwindow
+autocmd QuickfixCmdPost    l*     lwindow
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
