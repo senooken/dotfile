@@ -123,6 +123,9 @@ if s:is_neobundle_installed
 
   NeoBundle 'thinca/vim-quickrun' " quick run in vim
   NeoBundle 'thinca/vim-template'
+  if executable('ctags')
+    NeoBundle 'taglist.vim'
+  endif
 
   " NeoBundle 'gtags.vim'
   NeoBundle 'vim-jp/vimdoc-ja'
@@ -780,13 +783,21 @@ augroup BinaryXXD
   autocmd BufWritePost *     set nomod        | endif
 augroup END
 
+
 "" QuickFix
 autocmd QuickfixCmdPost [^l]* tab cwindow
-autocmd QuickfixCmdPost    l*     lwindow
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
+
+"" Location list
+autocmd QuickfixCmdPre  l* tabnew
+autocmd QuickfixCmdPost l* lwindow
+nnoremap [l :lprevious<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [L :lfirst<CR>
+nnoremap ]L :llast<CR>
 
 "" vim grep
 """ ignored files in vimgrep
@@ -809,7 +820,7 @@ else
 endif
 
 "" tags
-set tags=./tags;
+if has('path_extra') | set tags+=tags; | endif
 
 nnoremap [t :tprevious<CR>
 nnoremap ]t :tnext<CR>
