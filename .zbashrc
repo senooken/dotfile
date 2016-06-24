@@ -38,6 +38,7 @@ export LC_TIME=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 
 export DISPLAY="${DISPLAY:=':0'}"  # if DISPLAY is none, then set.
+export HOME=${HOME:=~}  # for single bash
 
 ## enable alias in non-interactive shell
 shell=$(readlink /proc/$$/exe)
@@ -82,6 +83,7 @@ alias ps="ps w"
 alias gic="git commit -am"
 alias gia="git add"
 alias gim="git mv"
+alias git="git status"
 
 ### open
 alias o="open"

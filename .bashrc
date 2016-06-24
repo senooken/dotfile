@@ -180,32 +180,45 @@ export TMPDIR=/tmp
 export TZ=JST-09
 export MAKE_MODE=unix
 
-JLESSCHARSET=japanese-sjis
-export PATH JLESSCHARSET
+export JLESSCHARSET=japanese-sjis
 
 ## prompt
-PURPLE="\[\e[35m\]"
-RED="\[\e[31m\]"
-GREEN="\[\e[32m\]"
-CLEAR="\[\e[m\]"
+readonly PURPLE="\e[35m"
+readonly RED="\e[31m"
+readonly GREEN="\e[32m"
+readonly CLEAR="\e[m"
 
-# 階層 >= 8でプロンプトが2行になる
-PS1="\`if [[ \$(expr length \${PWD//[^\/]/}) > 7 ]]; then
-  echo '$PURPLE\u:$RED\w$PURPLE\n\$ $CLEAR'
-  else echo '$PURPLE\u:$RED\w$PURPLE\$ $CLEAR' ; fi\`"
+# Director depth >= 8, 2 line prompt.
+PS1='$([[ $(wc -m <<< ${PWD//[!\/]/}) > 8 ]] &&
+	printf "$PURPLE"'\\u'":$RED\w$PURPLE\n$ $CLEAR" ||
+	printf "$PURPLE"'\\u'":$RED\w$PURPLE$ $CLEAR")'
 
 ## shell option
-shopt -s autocd
-shopt -s cdable_vars # enable cd <var>
-shopt -s cdspell # auto modify cd path in missing.
-shopt -s extglob # extentive regex. ?，*, +, @, !(1|2)
-# shopt -s direxpand # auto modify in completion # old bash not support
-# shopt -s dotglob # include .dotfile in <command> *.
-shopt -s hostcomplete # try host completion
-shopt -s globstar # **: match recursive subdirectory. **/: only 1 recursive.
-shopt -s nocaseglob # ignore case
+[ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s autocd
+shopt -s cdable_vars  # enable cd <var>
+shopt -s cdspell  # auto modify cd path since 2.0
 
-[ ! -n "${TERM}" ] && TERM=cygwin
+if [ ${BASH_VERSINFO[0]} -ge 5 ] ||
+	 [ ${BASH_VERSINFO[0]} -ge 4 -a ${BASH_VERSINFO[1]} -ge 3 ]; then
+	shopt -s direxpand # auto modify in completion
+fi
+
+# shopt -s expand_aliases  # enable alias in shell script since 2.0
+[ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s dirspell
+shopt -s hostcomplete # try host completion
+
+shopt -s extglob  # extentive regex. ?，*, +, @, !(1|2) since 2.02
+shopt -s nocaseglob  # ignore case since 2.02
+
+# **: match recursive subdirectory. **/: only 1 recursive.
+[ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s globstar
+# shopt -s dotglob # include .dotfile in <command> *.
+
+# [ ${BASH_VERSINFO[0]} -ge 3 ] && shopt -s force_fignore
+# [ ${BASH_VERSINFO[0]} -ge 3 ] && shopt -s gnu_errfmt
+
+# shopt -s promptvars  # since 2.0
+# shopt -s progcomp  # since 2.04
 
 ## synchonization of bash history [130414]
 # url: http://iandeth.dyndns.org/mt/ian/archives/000651.html
