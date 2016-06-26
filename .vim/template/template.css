@@ -113,7 +113,7 @@ article>h4:first-of-type,
 article>h5:first-of-type,
 article>h6:first-of-type
 {
-  counter-reset: heading2 table figure;
+  counter-reset: heading1;
   font-size: 2.0em;
 }
 
