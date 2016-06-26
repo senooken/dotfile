@@ -96,7 +96,7 @@ ol>li>ol>li>ol>li>ol>li>ol>li>ol>li::before {
 
 
 /* title */
-body>h1:first-child {
+body>h1:first-of-type {
   text-align: center;
   font-size: xx-large;
 }
@@ -104,125 +104,138 @@ body>h1:first-child {
 /* 節番号の設定 */
 body { counter-reset: heading1; }
 
-section>h1:first-child,
-section>h2:first-child,
-section>h3:first-child,
-section>h4:first-child,
-section>h5:first-child,
-section>h6:first-child
+/** article要素の見出しでカウンターをリセット */
+/* article要素はそんなに入れ子にならないから最上位の見出しだけリセット */
+article>h1:first-of-type,
+article>h2:first-of-type,
+article>h3:first-of-type,
+article>h4:first-of-type,
+article>h5:first-of-type,
+article>h6:first-of-type
+{
+  counter-reset: heading2 table figure;
+  font-size: 2.0em;
+}
+
+section>h1:first-of-type,
+section>h2:first-of-type,
+section>h3:first-of-type,
+section>h4:first-of-type,
+section>h5:first-of-type,
+section>h6:first-of-type
 {
   counter-increment: heading1; counter-reset: heading2 table figure;
   font-size: 2.0em;
 }
 
-section>h1:first-child::before,
-section>h2:first-child::before,
-section>h3:first-child::before,
-section>h4:first-child::before,
-section>h5:first-child::before,
-section>h6:first-child::before
+section>h1:first-of-type::before,
+section>h2:first-of-type::before,
+section>h3:first-of-type::before,
+section>h4:first-of-type::before,
+section>h5:first-of-type::before,
+section>h6:first-of-type::before
 {
   content: counter(heading1) " ";
 }
 
-section>section>h1:first-child,
-section>section>h2:first-child,
-section>section>h3:first-child,
-section>section>h4:first-child,
-section>section>h5:first-child,
-section>section>h6:first-child
+section>section>h1:first-of-type,
+section>section>h2:first-of-type,
+section>section>h3:first-of-type,
+section>section>h4:first-of-type,
+section>section>h5:first-of-type,
+section>section>h6:first-of-type
 {
   counter-increment: heading2; counter-reset: heading3;
   font-size: 1.83em;
 }
-section>section>h1:first-child::before,
-section>section>h2:first-child::before,
-section>section>h3:first-child::before,
-section>section>h4:first-child::before,
-section>section>h5:first-child::before,
-section>section>h6:first-child::before
+section>section>h1:first-of-type::before,
+section>section>h2:first-of-type::before,
+section>section>h3:first-of-type::before,
+section>section>h4:first-of-type::before,
+section>section>h5:first-of-type::before,
+section>section>h6:first-of-type::before
 {
   content: counter(heading1) "." counter(heading2) " ";
 }
 
-section>section>section>h1:first-child,
-section>section>section>h2:first-child,
-section>section>section>h3:first-child,
-section>section>section>h4:first-child,
-section>section>section>h5:first-child,
-section>section>section>h6:first-child
+section>section>section>h1:first-of-type,
+section>section>section>h2:first-of-type,
+section>section>section>h3:first-of-type,
+section>section>section>h4:first-of-type,
+section>section>section>h5:first-of-type,
+section>section>section>h6:first-of-type
 {
   counter-increment: heading3; counter-reset: heading4;
   font-size: 1.67em;
 }
-section>section>section>h1:first-child::before,
-section>section>section>h2:first-child::before,
-section>section>section>h3:first-child::before,
-section>section>section>h4:first-child::before,
-section>section>section>h5:first-child::before,
-section>section>section>h6:first-child::before
+section>section>section>h1:first-of-type::before,
+section>section>section>h2:first-of-type::before,
+section>section>section>h3:first-of-type::before,
+section>section>section>h4:first-of-type::before,
+section>section>section>h5:first-of-type::before,
+section>section>section>h6:first-of-type::before
 {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) " ";
 }
 
-section>section>section>section>h1:first-child,
-section>section>section>section>h2:first-child,
-section>section>section>section>h3:first-child,
-section>section>section>section>h4:first-child,
-section>section>section>section>h5:first-child,
-section>section>section>section>h6:first-child
+section>section>section>section>h1:first-of-type,
+section>section>section>section>h2:first-of-type,
+section>section>section>section>h3:first-of-type,
+section>section>section>section>h4:first-of-type,
+section>section>section>section>h5:first-of-type,
+section>section>section>section>h6:first-of-type
 {
   counter-increment: heading4; counter-reset: heading5;
   font-size: 1.50em;
 }
-section>section>section>section>h1:first-child::before,
-section>section>section>section>h2:first-child::before,
-section>section>section>section>h3:first-child::before,
-section>section>section>section>h4:first-child::before,
-section>section>section>section>h5:first-child::before,
-section>section>section>section>h6:first-child::before
+section>section>section>section>h1:first-of-type::before,
+section>section>section>section>h2:first-of-type::before,
+section>section>section>section>h3:first-of-type::before,
+section>section>section>section>h4:first-of-type::before,
+section>section>section>section>h5:first-of-type::before,
+section>section>section>section>h6:first-of-type::before
 {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
            counter(heading4) " ";
 }
 
-section>section>section>section>section>h1:first-child,
-section>section>section>section>section>h2:first-child,
-section>section>section>section>section>h3:first-child,
-section>section>section>section>section>h4:first-child,
-section>section>section>section>section>h5:first-child,
-section>section>section>section>section>h6:first-child
+section>section>section>section>section>h1:first-of-type,
+section>section>section>section>section>h2:first-of-type,
+section>section>section>section>section>h3:first-of-type,
+section>section>section>section>section>h4:first-of-type,
+section>section>section>section>section>h5:first-of-type,
+section>section>section>section>section>h6:first-of-type
 {
   counter-increment: heading5; counter-reset: heading6;
   font-size: 1.33em;
 }
-section>section>section>section>section>h1:first-child::before,
-section>section>section>section>section>h2:first-child::before,
-section>section>section>section>section>h3:first-child::before,
-section>section>section>section>section>h4:first-child::before,
-section>section>section>section>section>h5:first-child::before,
-section>section>section>section>section>h6:first-child::before
+section>section>section>section>section>h1:first-of-type::before,
+section>section>section>section>section>h2:first-of-type::before,
+section>section>section>section>section>h3:first-of-type::before,
+section>section>section>section>section>h4:first-of-type::before,
+section>section>section>section>section>h5:first-of-type::before,
+section>section>section>section>section>h6:first-of-type::before
 {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
            counter(heading4) "." counter(heading5) " ";
 }
 /** heading6 だけカウンターが増えない？ */
-section>section>section>section>section>section>h1:first-child,
-section>section>section>section>section>section>h2:first-child,
-section>section>section>section>section>section>h3:first-child,
-section>section>section>section>section>section>h4:first-child,
-section>section>section>section>section>section>h5:first-child,
-section>section>section>section>section>section>h6:first-child
+section>section>section>section>section>section>h1:first-of-type,
+section>section>section>section>section>section>h2:first-of-type,
+section>section>section>section>section>section>h3:first-of-type,
+section>section>section>section>section>section>h4:first-of-type,
+section>section>section>section>section>section>h5:first-of-type,
+section>section>section>section>section>section>h6:first-of-type
 {
   counter-increment: heading6;
   font-size: 1.17em;
 }
-section>section>section>section>section>section>h1:first-child::before,
-section>section>section>section>section>section>h2:first-child::before,
-section>section>section>section>section>section>h3:first-child::before,
-section>section>section>section>section>section>h4:first-child::before,
-section>section>section>section>section>section>h5:first-child::before,
-section>section>section>section>section>section>h6:first-child::before
+section>section>section>section>section>section>h1:first-of-type::before,
+section>section>section>section>section>section>h2:first-of-type::before,
+section>section>section>section>section>section>h3:first-of-type::before,
+section>section>section>section>section>section>h4:first-of-type::before,
+section>section>section>section>section>section>h5:first-of-type::before,
+section>section>section>section>section>section>h6:first-of-type::before
 {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
            counter(heading4) "." counter(heading5) "." counter(heading6) " ";
@@ -238,7 +251,7 @@ table {
   margin-right: auto;
 }
 /** table color **/
-tbody>tr:nth-child(even) {
+tbody>tr:nth-of-type(even) {
   background: #ffffaa;
 }
 thead>tr>th {
@@ -256,19 +269,19 @@ td, th {
   border-style: none;
 }
 
-thead>tr:first-child {
+thead>tr:first-of-type {
   border-top-style: solid;
   border-top-width: medium;
 }
-thead>tr:last-child {
+thead>tr:last-of-type {
   border-bottom-style: solid;
   border-bottom-width: thin;
 }
-tbody>tr:first-child {
+tbody>tr:first-of-type {
   border-top-style: solid;
   border-top-width: thin;
 }
-tbody>tr:last-child {
+tbody>tr:last-of-type {
   border-bottom-style: solid;
   border-bottom-width: medium;
 }

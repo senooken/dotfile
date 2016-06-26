@@ -83,7 +83,7 @@ alias ps="ps w"
 alias gic="git commit -am"
 alias gia="git add"
 alias gim="git mv"
-alias git="git status"
+alias gis="git status"
 
 ### open
 alias o="open"
