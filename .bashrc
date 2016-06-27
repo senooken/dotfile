@@ -183,23 +183,24 @@ export MAKE_MODE=unix
 export JLESSCHARSET=japanese-sjis
 
 ## prompt
-readonly PURPLE="\e[35m"
-readonly RED="\e[31m"
-readonly GREEN="\e[32m"
-readonly CLEAR="\e[m"
+readonly PURPLE="\[\e[35m\]"
+readonly RED="\[\e[31m\]"
+readonly GREEN="\[\e[32m\]"
+readonly CLEAR="\[\e[m\]"
 
+# TODO: POSIX準拠でPS1を設定する。とくに\wのところ
 # Director depth >= 8, 2 line prompt.
-PS1='$([[ $(wc -m <<< ${PWD//[!\/]/}) > 8 ]] &&
-	printf "$PURPLE"'\\u'":$RED\w$PURPLE\n$ $CLEAR" ||
-	printf "$PURPLE"'\\u'":$RED\w$PURPLE$ $CLEAR")'
+PS1="\$([[ \$(wc -m <<< \${PWD//[!\/]/}) > 8 ]] &&
+	echo '$PURPLE$LOGNAME:$RED\w$PURPLE\n$ $CLEAR' ||
+	echo '$PURPLE$LOGNAME:$RED\w$PURPLE''$ $CLEAR')"
 
 ## shell option
 [ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s autocd
 shopt -s cdable_vars  # enable cd <var>
 shopt -s cdspell  # auto modify cd path since 2.0
 
-if [ ${BASH_VERSINFO[0]} -ge 5 ] ||
-	 [ ${BASH_VERSINFO[0]} -ge 4 -a ${BASH_VERSINFO[1]} -ge 3 ]; then
+if [[ ${BASH_VERSINFO[0]} -ge 5 ||
+	    ${BASH_VERSINFO[0]} -ge 4 && ${BASH_VERSINFO[1]} -ge 3 ]]; then
 	shopt -s direxpand # auto modify in completion
 fi
 

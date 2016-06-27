@@ -37,8 +37,8 @@ export LANGUAGE=en
 export LC_TIME=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 
-export DISPLAY="${DISPLAY:=':0'}"  # if DISPLAY is none, then set.
-export HOME=${HOME:=~}  # for single bash
+export DISPLAY="${DISPLAY:-':0'}"  # if DISPLAY is none, then set.
+export HOME=${HOME:-~}  # for single bash
 
 ## enable alias in non-interactive shell
 shell=$(readlink /proc/$$/exe)
