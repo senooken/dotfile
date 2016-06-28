@@ -182,18 +182,6 @@ export MAKE_MODE=unix
 
 export JLESSCHARSET=japanese-sjis
 
-## prompt
-readonly PURPLE="\[\e[35m\]"
-readonly RED="\[\e[31m\]"
-readonly GREEN="\[\e[32m\]"
-readonly CLEAR="\[\e[m\]"
-
-# TODO: POSIX準拠でPS1を設定する。とくに\wのところ
-# Director depth >= 8, 2 line prompt.
-PS1="\$([[ \$(wc -m <<< \${PWD//[!\/]/}) > 8 ]] &&
-	echo '$PURPLE$LOGNAME:$RED\w$PURPLE\n$ $CLEAR' ||
-	echo '$PURPLE$LOGNAME:$RED\w$PURPLE''$ $CLEAR')"
-
 ## shell option
 [ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s autocd
 shopt -s cdable_vars  # enable cd <var>

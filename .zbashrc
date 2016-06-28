@@ -41,14 +41,10 @@ export DISPLAY="${DISPLAY:-':0'}"  # if DISPLAY is none, then set.
 export HOME=${HOME:-~}  # for single bash
 
 ## enable alias in non-interactive shell
-shell=$(readlink /proc/$$/exe)
-case $shell in
-  *bash) shopt -s expand_aliases;;
-  # *zsh) setopt aliases;;
-esac
+[ -n "$BASH"     ] && shopt -s expand_aliases
+[ -n "$ZSH_NAME" ] && setopt aliases
 
 ## alias
-
 ### Windows character encoding convert
 if [ "${OS}" = "Windows_NT" ]; then
   function wincmd(){
@@ -153,6 +149,28 @@ export WINEPREFIX=~/.wine32
 case "${TERM}" in
   ?term*|rxvt*|screen) PROMPT_COMMAND='echo -ne "\033]0;$0@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\007"';;
 esac
+
+## POSIX conformed Prompt
+PURPLE="\033[35m"
+RED="\033[31m"
+CLEAR="\033[m"
+
+if [ -n "$BASH" ]; then
+  enclose_open="\\\["
+  enclose_close="\\\]"
+elif [ -n "$ZSH_NAME" ]; then
+  enclose_open="%%{"
+  enclose_close="%%}"
+fi
+
+for color in PURPLE RED CLEAR
+do
+  eval "${color}=${enclose_open}\$${color}${enclose_close}"
+done
+
+PS1="\$([ \$(echo \$PWD | sed 's/[^\/]//g' | wc -m) -gt 8 ] &&
+  printf '$PURPLE$LOGNAME:$RED'\${PWD#~}'$PURPLE\n$ $CLEAR' ||
+  printf '$PURPLE$LOGNAME:$RED'\${PWD#~}'$PURPLE''$ $CLEAR' )"
 
 ## for other individual setting
 [ -r ~/.otherrc ] && source ~/.otherrc
