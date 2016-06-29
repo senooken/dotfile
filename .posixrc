@@ -13,12 +13,15 @@ RED="\033[31m"
 CLEAR="\033[m"
 
 if [ -n "$BASH" ]; then
-  enclose_open="\\\["
-  enclose_close="\\\]"
+	enclose_open="\\\["
+	enclose_close="\\\]"
+	pwd="\w"
 elif [ -n "$ZSH_NAME" ]; then
-  enclose_open="%%{"
-  enclose_close="%%}"
+	enclose_open="%%{"
+	enclose_close="%%}"
 fi
+
+pwd=${pwd:-'$(echo "$PWD" | sed "s@$HOME@~@")'}
 
 for color in PURPLE RED CLEAR
 do
@@ -26,8 +29,8 @@ do
 done
 
 PS1="\$([ \$(echo \$PWD | sed 's/[^\/]//g' | wc -m) -gt 8 ] &&
-  printf '$PURPLE$LOGNAME:$RED'\${PWD#~}'$PURPLE\n$ $CLEAR' ||
-  printf '$PURPLE$LOGNAME:$RED'\${PWD#~}'$PURPLE''$ $CLEAR' )"
+  printf '$PURPLE$LOGNAME:$RED'${pwd}'$PURPLE\n$ $CLEAR' ||
+  printf '$PURPLE$LOGNAME:$RED'${pwd}'$PURPLE''$ $CLEAR' )"
 
 ## Environmental variables
 export DISPLAY="${DISPLAY:-':0'}"  # if DISPLAY is none, then set.
