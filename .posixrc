@@ -1,0 +1,105 @@
+#!/bin/sh
+##############################################################################
+# \file      .posixrc
+# \author    SENOO, Ken
+# \copyright CC0
+##############################################################################
+
+## \brief POSIX compatible shell configure
+
+## Prompt
+PURPLE="\033[35m"
+RED="\033[31m"
+CLEAR="\033[m"
+
+if [ -n "$BASH" ]; then
+  enclose_open="\\\["
+  enclose_close="\\\]"
+elif [ -n "$ZSH_NAME" ]; then
+  enclose_open="%%{"
+  enclose_close="%%}"
+fi
+
+for color in PURPLE RED CLEAR
+do
+  eval "${color}=${enclose_open}\$${color}${enclose_close}"
+done
+
+PS1="\$([ \$(echo \$PWD | sed 's/[^\/]//g' | wc -m) -gt 8 ] &&
+  printf '$PURPLE$LOGNAME:$RED'\${PWD#~}'$PURPLE\n$ $CLEAR' ||
+  printf '$PURPLE$LOGNAME:$RED'\${PWD#~}'$PURPLE''$ $CLEAR' )"
+
+## Environmental variables
+export DISPLAY="${DISPLAY:-':0'}"  # if DISPLAY is none, then set.
+export HOME=${HOME:-~}  # for MSYS
+
+## Alias
+### Windows character encoding convert
+if [ "${OS}" = "Windows_NT" ]; then
+  wincmd(){
+    CMD=$1
+    shift
+    $CMD $* 2>&1 | iconv -f cp932 -t utf-8
+  }
+
+  alias ipconfig='wincmd ipconfig'
+  alias netstat='wincmd netstat'
+  alias netsh='wincmd netsh'
+  alias taskkill='wincmd taskkill'
+  alias cs="wincmd cscript.exe -NoLogo"
+  alias ws="wincmd wscript.exe -NoLogo"
+  alias choco="wincmd choco"
+fi
+
+### ls
+alias ls="ls -AFh --color=auto"
+alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
+alias l="ls"
+[ -r ~/.dir_colors ] && eval "$(dircolors ~/.dir_colors)"
+
+### Default to human readable figures
+alias df='df -h'
+alias du='du -h'
+alias ps="ps w"
+
+### Git
+alias gic="git commit -am"
+alias gia="git add"
+alias gim="git mv"
+alias gis="git status"
+
+### open
+alias o="open"
+case "${OSTYPE}" in
+  freebsd*|darwin*) alias o="open" ;;
+  linux*)           alias open="xdg-open" ;; # alias open="gnome-open";;
+  cygwin*)          alias open="cygstart" ;;
+  msys*)            alias open="start";;
+esac
+
+#### Copy to clipboard
+[ "$(command -v clip)" ]    && alias clip="iconv -s -f UTF-8 -t SJIS | clip" # MSYS (Windows)
+[ "$(command -v xsel)" ]    && alias clip="xsel -ib" # Linux
+[ "$(command -v putclip)" ] && alias clip="putclip" # Cygwin
+[ "$(command -v pbcopy)" ]  && alias clip="pbcopy" # Mac
+
+### development
+alias py='python3'
+alias py2='python2'
+alias py3='python3'
+alias ipy='ipython3'
+alias ipy2='ipython2'
+alias ipy3='ipython3'
+alias rb='ruby'
+alias gp='g++ -Wall -std=c++1y'
+alias gc='gcc -Wall -std=gnu11'
+alias gf='gfortran -Wall -O3 -static'
+[ "$(command -v xstow)" ] && alias stow=xstow
+## stow conflict list
+# --ignore="dir|gschemas.compiled|icon-theme-cache"
+alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
+
+## grep 2.21 later, deprecated GREP_OPTIONS environmental variable
+GREP_OPTIONS="--color=auto -I --exclude-dir={.,..,.git,.svn,obj}"
+GREP_OPTIONS="${GREP_OPTIONS} --exclude={tags,GTAGS,GRTAGS,GPATH}"
+alias   grep="grep ${GREP_OPTIONS}"
