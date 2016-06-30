@@ -21,16 +21,17 @@ elif [ -n "$ZSH_NAME" ]; then
 	enclose_close="%%}"
 fi
 
-pwd=${pwd:-'$(echo "$PWD" | sed "s@$HOME@~@")'}
+: ${pwd:='$(echo "$PWD" | sed "s@$HOME@~@")'}
+: ${HOST:="$(uname -n)"}
 
 for color in PURPLE RED CLEAR
 do
   eval "${color}=${enclose_open}\$${color}${enclose_close}"
 done
 
-PS1="\$([ \$(echo \$PWD | sed 's/[^\/]//g' | wc -m) -gt 8 ] &&
-  printf '$PURPLE$LOGNAME:$RED'${pwd}'$PURPLE\n$ $CLEAR' ||
-  printf '$PURPLE$LOGNAME:$RED'${pwd}'$PURPLE''$ $CLEAR' )"
+PS1="\$([ \$(echo \$PWD | sed 's@[^/]@@g' | wc -m) -gt 8 ]   &&
+  printf '$PURPLE$LOGNAME@$HOST:$RED'$pwd'$PURPLE\n$ $CLEAR' ||
+  printf '$PURPLE$LOGNAME@$HOST:$RED'$pwd'$PURPLE''$ $CLEAR' )"
 
 ## Environmental variables
 export DISPLAY="${DISPLAY:-':0'}"  # if DISPLAY is none, then set.
