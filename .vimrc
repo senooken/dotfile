@@ -805,8 +805,8 @@ let s:ignore_list  = ',.git/**,.svn/**,obj/**'
 let s:ignore_list .= ',tags,GTAGS,GRTAGS,GPATH'
 let s:ignore_list .= ',*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak'
 let s:ignore_list .= ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.lzh,*.deb,*.rpm,*.iso'
-let s:ignore_list .= ',*.pdf,*.png,*.jp*,*.gif,*.bmp,*.mp*'
-let s:ignore_list .= ',*.od*,*.doc*,*.xls*,*.ppt*'
+let s:ignore_list .= ',*.png,*.jp*,*.gif,*.tif*,*.bmp,*.mp*'
+" let s:ignore_list .= ',*.pdf,*.od*,*.doc*,*.xls*,*.ppt*'
 
 if exists('+wildignore')
   autocmd QuickFixCmdPre  * execute 'setlocal wildignore+=' . s:ignore_list
