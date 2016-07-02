@@ -23,6 +23,7 @@ fi
 
 : ${pwd:='$(echo "$PWD" | sed "s@$HOME@~@")'}
 : ${HOST:="$(uname -n)"}
+: ${LOGNAME:="$(logname)"}  # for Windows shell
 
 for color in PURPLE RED CLEAR
 do
