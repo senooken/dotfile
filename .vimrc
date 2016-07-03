@@ -560,7 +560,7 @@ endif
 "" highlight cursorline
 " set cursorcolumn
 set cursorline  " hightlight cursor line
-if &t_Co > 255
+if &t_Co == 256
   highlight CursorLine cterm=NONE ctermbg=255
 else
   highlight CursorLine cterm=NONE ctermbg=LightGray
