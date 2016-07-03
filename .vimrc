@@ -513,6 +513,14 @@ set showcmd    " show inputting command and counting visual mode
 set showmatch  " 括弧入力時の対応する括弧を表示
 set showmode   " 現在のモードを表示
 
+"" Highlight
+if exists('+extra_search')
+  set hlsearch  " 検索結果文字列のハイライトを有効にする
+endif
+
+"" Color
+colorscheme default
+
 "" Statusline
 set laststatus=2
 
@@ -522,43 +530,42 @@ set statusline+=[%04B]  " character code
 " set statusline+=[%{mode()}]  " mode
 set statusline+=%=\ %4l/%4L\|%3v\|%4P  " current position information
 
+"" Tabpage
 " set tabline+=[%n]
 
 "" Statusline color
-highlight StatusLine ctermfg=white ctermbg=blue gui=bold guifg=white guibg=blue
-autocmd ColorScheme * hi StatusLine cterm=bold ctermfg=white ctermbg=blue
-autocmd ColorScheme * hi StatusLine gui=bold   guifg=white   guibg=blue
-autocmd InsertEnter * hi StatusLine cterm=bold ctermfg=white ctermbg=darkgreen
-autocmd InsertEnter * hi StatusLine gui=bold   guifg=white   guibg=darkgreen
-autocmd InsertLeave * hi StatusLine cterm=bold ctermfg=white ctermbg=blue
-autocmd InsertLeave * hi StatusLine gui=bold   guifg=white   guibg=blue
+highlight StatusLine cterm=bold ctermfg=White ctermbg=DarkBlue
+highlight StatusLine   gui=bold   guifg=White   guibg=DarkBlue
+autocmd ColorScheme * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkBlue
+autocmd ColorScheme * hi StatusLine   gui=bold   guifg=White   guibg=DarkBlue
+autocmd InsertEnter * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkGreen
+autocmd InsertEnter * hi StatusLine   gui=bold   guifg=White   guibg=DarkGreen
+autocmd InsertLeave * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkBlue
+autocmd InsertLeave * hi StatusLine   gui=bold   guifg=White   guibg=DarkBlue
 
 "" Windows 7のコマンドプロンプトでは白と黒が色名と逆なので個別対応
 if s:is_windows_7
-  highlight StatusLine ctermfg=black
-  autocmd ColorScheme * highlight StatusLine ctermfg=black
-  autocmd InsertEnter * highlight StatusLine ctermfg=black
-  autocmd InsertLeave * highlight StatusLine ctermfg=black
+  highlight StatusLine ctermfg=Black
+  autocmd ColorScheme * highlight StatusLine ctermfg=Black
+  autocmd InsertEnter * highlight StatusLine ctermfg=Black
+  autocmd InsertLeave * highlight StatusLine ctermfg=Black
 endif
 
 "" highglight 80 times column
-let &colorcolumn = join(range(80,400,80), ",")
-" highlight ColorColumn ctermbg=230 guibg=230
+if exists('+syntax')
+  let &colorcolumn = join(range(80,400,80), ",")
+  highlight ColorColumn ctermbg=LightRed guibg=LightRed
+endif
 
 "" highlight cursorline
-" set cursorcolumn " カーソル列をハイライト
+" set cursorcolumn
 set cursorline  " hightlight cursor line
-highlight CursorLine cterm=NONE ctermbg=255
-
-
-"" Color
-colorscheme default
-
-" ハイライト
-if &t_Co > 2 || has("gui_running")
-  syntax on     " シンタックスハイライトを有効にする
-  set hlsearch  " 検索結果文字列のハイライトを有効にする
+if &t_Co > 255
+  highlight CursorLine cterm=NONE ctermbg=255
+else
+  highlight CursorLine cterm=NONE ctermbg=LightGray
 endif
+
 
 " 編集、文書整形関連
 " backspaceキーの挙動を設定する
@@ -595,7 +602,6 @@ set undodir=~/.vim/tmp
 "" File
 set autoread  " 更新時自動読み込み
 set hidden    " 編集中でも他のファイルを開けるようにする
-syntax on     " シンタックスカラーリングオン
 set autoindent smartindent       " 自動インデント、スマートインデント
 set backspace=indent,eol,start   " バックスペースで特殊記号も削除可能に
 set whichwrap=b,s,h,l,<,>,[,],~  " カーソルを行頭、行末で止まらないようにする
