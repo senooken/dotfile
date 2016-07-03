@@ -503,34 +503,28 @@ source $VIMRUNTIME/macros/matchit.vim
 "2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
 "-----------------------------------------------------------------------------
 " 一般
-" コマンド、検索パターンを50個まで履歴に残す
-set history=50
-" 装飾関連
+set history=100 " Command and search history
 
-"行番号を表示/非表示
-"set number
-set nonumber
+"" View
+set nonumber   " 行番号を表示/非表示
+set ruler      " show ruler
+set nolist     " タブや改行を表示しない
+set showcmd    " show inputting command and counting visual mode
+set showmatch  " 括弧入力時の対応する括弧を表示
+set showmode   " 現在のモードを表示
 
-" ルーラーを表示
-set ruler
-" タブや改行を表示しない
-set nolist
-set showcmd  " show inputting command and show counting visual mode
-" 括弧入力時の対応する括弧を表示
-set showmatch
-" ステータスラインを常に表示
+"" Statusline
 set laststatus=2
 
-" ステータスラインに表示する情報の指定
-set statusline =[%n]%<%f\ %m%r%h%w " ファイル名
-set statusline+=%<%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'} " 改行コードなど
-set statusline+=[%04B] " カーソル行の16進数文字コード
+set statusline =[%n]%<%f\ %m%r%h%w  " file name
+set statusline+=%<%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " encoding
+set statusline+=[%04B]  " character code
 " set statusline+=[%{mode()}]  " mode
-set statusline+=%=\ %4l/%4L\|%3v\|%4P  " current line information
+set statusline+=%=\ %4l/%4L\|%3v\|%4P  " current position information
 
 " set tabline+=[%n]
 
-" ステータスラインの色
+"" Statusline color
 highlight StatusLine ctermfg=white ctermbg=blue gui=bold guifg=white guibg=blue
 autocmd ColorScheme * hi StatusLine cterm=bold ctermfg=white ctermbg=blue
 autocmd ColorScheme * hi StatusLine gui=bold   guifg=white   guibg=blue
@@ -547,19 +541,26 @@ if s:is_windows_7
   autocmd InsertLeave * highlight StatusLine ctermfg=black
 endif
 
-" color
+"" highglight 80 times column
+let &colorcolumn = join(range(80,400,80), ",")
+" highlight ColorColumn ctermbg=230 guibg=230
+
+"" highlight cursorline
+" set cursorcolumn " カーソル列をハイライト
+set cursorline  " hightlight cursor line
+highlight CursorLine cterm=NONE ctermbg=255
+
+
+"" Color
 colorscheme default
 
 " ハイライト
 if &t_Co > 2 || has("gui_running")
-  " シンタックスハイライトを有効にする
-  syntax on
-  " 検索結果文字列のハイライトを有効にする
-  set hlsearch
+  syntax on     " シンタックスハイライトを有効にする
+  set hlsearch  " 検索結果文字列のハイライトを有効にする
 endif
 
 " 編集、文書整形関連
-"
 " backspaceキーの挙動を設定する
 " indent	: 行頭の空白の削除を許す
 " eol		: 改行の削除を許す
@@ -591,17 +592,17 @@ set backupdir=~/.vim/tmp
 set noundofile
 set undodir=~/.vim/tmp
 
-"File
-set autoread	" 更新時自動読み込み
-set hidden		" 編集中でも他のファイルを開けるようにする
-syntax on		" シンタックスカラーリングオン
-set autoindent smartindent	" 自動インデント、スマートインデント
-set backspace=indent,eol,start	" バックスペースで特殊記号も削除可能に
-set whichwrap=b,s,h,l,<,>,[,],~	" カーソルを行頭、行末で止まらないようにする
-"set clipboard=unnamed,autoselect	" バッファにクリップオードを利用する
+"" File
+set autoread  " 更新時自動読み込み
+set hidden    " 編集中でも他のファイルを開けるようにする
+syntax on     " シンタックスカラーリングオン
+set autoindent smartindent       " 自動インデント、スマートインデント
+set backspace=indent,eol,start   " バックスペースで特殊記号も削除可能に
+set whichwrap=b,s,h,l,<,>,[,],~  " カーソルを行頭、行末で止まらないようにする
+"set clipboard=unnamed,autoselect " バッファにクリップオードを利用する
 
 
-"" shebangのあるファイルかDesktopファイルには自動で実行権限を付加
+"" Add executable permission for shebang and Desktop files
 autocmd BufWritePost * :call s:Add_execmod()
 function! s:Add_execmod()
   let line = getline(1)
@@ -623,32 +624,23 @@ endif
 "function! Browser () 
 "    let line = getline (".") 
 "    let line = matchstr (line, "http[^ ]*") 
-"    exec "!start \"C:\\Program Files\\Mozilla Firefox\\firefox.exe\"" line 
-"endfunction 
-"map <2-LeftMouse> :echo "double click"<CR> 
+"    exec "!start \"C:\\Program Files\\Mozilla Firefox\\firefox.exe\"" line
+"endfunction
+"map <2-LeftMouse> :echo "double click"<CR>
 
 
-" Search
+"" Search
 "set wrapscan   " 省略形ws。検索が末尾まで進んだら先頭から再建策。既定値。
 set nowrapscan  " 省略形nows。wrapscanをオフにする。
 set ignorecase
 set smartcase
 
-" View
-set showmatch   " 括弧の対応をハイライト
-set showcmd     " 入力中のコマンドを表示
-set showmode    " 現在のモードを表示
-" set cursorcolumn " カーソル列をハイライト
-set cursorline  " カーソル行をハイライト
-
-"" other
-""" メニュー補完
+"" Menu
 if exists('+wildignorecase')  " required 7.3.072+
-  set wildignorecase  " ファイル名とディレクトリの補完で大文字小文字無視
+  set wildignorecase         " ファイル名とディレクトリの補完で大文字小文字無視
 endif
 set wildmenu
-set wildmode=list:longest,full " 1回目で共通部分，2回目で順番に補完
-
+set wildmode=list:longest,full  " 1回目で共通部分，2回目で順番に補完
 
 
 " Command mode keybind.
@@ -727,7 +719,7 @@ set list
 "" 折り返し
 set linebreak " 空白などいい感じの場所で折り返し
 set showbreak=+\  " 折り返し後の行頭記号
-if (v:version == 704 && has("patch338")) || v:version >= 705
+if exists('+linebreak')  " version 7.4.338 or later
   set breakindent " 折り返された部分もインデント
 endif
 
@@ -844,4 +836,6 @@ if has('mouse')
 endif
 
 "" Enable alias for external command
-if filereadable(glob('~/.zbashrc')) | let $BASH_ENV=expand('~/.zbashrc') | endif
+if filereadable(glob('~/.zbashrc'))
+  let $BASH_ENV=expand('~/.zbashrc')
+endif
