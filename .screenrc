@@ -13,9 +13,6 @@ vbell off # trun off flash
 # for emacs C-s
 defflow off
 
-# use 256 color 
-# term xterm-256color
-
 # set command key to C-j (default: C-a)
 escape ^jj
 
@@ -79,4 +76,3 @@ termcapinfo xterm* ti@:te@  # enable mouse wheel
 termcapinfo xterm "WS = \E[8;%d;%dt"
 termcapinfo xterm "li#100:co#100" # set default window size
 
-defshell ${MYSHELL}

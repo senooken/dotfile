@@ -38,6 +38,20 @@ PS1="\$([ \$(echo \$PWD | sed 's@[^/]@@g' | wc -m) -gt 8 ]   &&
 export DISPLAY="${DISPLAY:-':0'}"  # if DISPLAY is none, then set.
 export HOME=${HOME:-~}  # for MSYS
 
+### locale
+export LANG=ja_JP.UTF-8
+export LANGUAGE=en
+export LC_TIME=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+
+### WIndows shell
+export CYGWIN="nodosfilewarning winsymlinks:nativestrict"
+export MSYS="winsymlinks:nativestrict"
+
+### for wine
+export WINEARCH=win32
+export WINEPREFIX=~/.wine32
+
 ## Alias
 ### Windows character encoding convert
 if [ "${OS}" = "Windows_NT" ]; then
@@ -73,6 +87,14 @@ alias gia="git add"
 alias gim="git mv"
 alias gis="git status"
 
+### Pager
+export PAGER="less"
+[ "$(command -v lv)" ] && export PAGER=lv
+export LV="-c -l"
+export LESS="-imR"
+alias info="info --vi-keys"
+
+
 ### open
 alias o="open"
 case "${OSTYPE}" in
@@ -83,7 +105,7 @@ case "${OSTYPE}" in
 esac
 
 #### Copy to clipboard
-[ "$(command -v clip)" ]    && alias clip="iconv -s -f UTF-8 -t SJIS | clip" # MSYS (Windows)
+[ "$(command -v clip)" ]    && alias clip="iconv -s -f UTF-8 -t cp932 | clip" # MSYS (Windows)
 [ "$(command -v xsel)" ]    && alias clip="xsel -ib" # Linux
 [ "$(command -v putclip)" ] && alias clip="putclip" # Cygwin
 [ "$(command -v pbcopy)" ]  && alias clip="pbcopy" # Mac
@@ -99,12 +121,19 @@ alias rb='ruby'
 alias gp='g++ -Wall -std=c++1y'
 alias gc='gcc -Wall -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
+
 [ "$(command -v xstow)" ] && alias stow=xstow
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
-## grep 2.21 later, deprecated GREP_OPTIONS environmental variable
+## grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
 GREP_OPTIONS="--color=auto -I --exclude-dir={.,..,.git,.svn,obj}"
 GREP_OPTIONS="${GREP_OPTIONS} --exclude={tags,GTAGS,GRTAGS,GPATH}"
 alias   grep="grep ${GREP_OPTIONS}"
+
+MYSHELL=$([ "$(command -v zsh)" ] && echo zsh || echo  bash)
+SCREEN_OPTIONS="-T $([ -z "${TERM##*256*}" ] &&
+								echo screen-256color || echo screen)"
+alias screen="screen $SCREEN_OPTIONS -s $MYSHELL"
+

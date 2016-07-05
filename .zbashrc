@@ -1,3 +1,4 @@
+#!/bin/bash
 ## path
 ### Only running interactively, valid local development PATH
 if [[ "$-" = *i* ]]; then
@@ -31,27 +32,13 @@ fi
 export DEBFULLNAME="Ken SENOO"
 export DEBEMAIL="mslamsh20131029@outlook.jp"
 
-## locale
-export LANG=ja_JP.UTF-8
-export LANGUAGE=en
-export LC_TIME=en_US.UTF-8
-export LC_MESSAGES=en_US.UTF-8
-
-
 ## enable alias in non-interactive shell
 [ -n "$BASH"     ] && shopt -s expand_aliases
 [ -n "$ZSH_NAME" ] && setopt aliases
 
-
 alias vim="vim -X"
 [ "$(command -v vim)" ] && export EDITOR=vim
 export SVN_EDITOR=$EDITOR
-export GNUPLOT_LIB=""  # data or script path
-export CYGWIN="nodosfilewarning winsymlinks:nativestrict"
-export MSYS="winsymlinks:nativestrict"
-
-cmd="$(command -v zsh)"
-[ "${cmd}" ] && export MYSHELL="${cmd##*/}" || export MYSHELL=${SHELL##*/}
 
 ## compile
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
@@ -59,17 +46,6 @@ export LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋�
 # [ "$(command -v wx-config)" ] && WXCONFIG="$(wx-config --cppflags --libs | tr \"\n\" ' ')" # wxwidgetsのコンパイルフラグ
 cmd="pkg-config --silence-errors --cflags --libs gtk+-3.0"
 eval "${cmd}" > /dev/null 2>&1 && GTK="$(eval ${cmd})"
-
-## Pager
-export PAGER="less"
-[ "$(command -v lv)" ] && export PAGER=lv
-export LV="-c -l"
-export LESS="-imR"
-alias info="info --vi-keys"
-
-## for wine
-export WINEARCH=win32
-export WINEPREFIX=~/.wine32
 
 ## terminal title
 case "${TERM}" in
