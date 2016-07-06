@@ -842,6 +842,6 @@ if has('mouse')
 endif
 
 "" Enable alias for external command
-if filereadable(glob('~/.zbashrc'))
-  let $BASH_ENV=expand('~/.zbashrc')
+if filereadable($ENV)
+  let $BASH_ENV=expand($ENV)
 endif

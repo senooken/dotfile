@@ -32,10 +32,6 @@ fi
 export DEBFULLNAME="Ken SENOO"
 export DEBEMAIL="mslamsh20131029@outlook.jp"
 
-## enable alias in non-interactive shell
-[ -n "$BASH"     ] && shopt -s expand_aliases
-[ -n "$ZSH_NAME" ] && setopt aliases
-
 alias vim="vim -X"
 [ "$(command -v vim)" ] && export EDITOR=vim
 export SVN_EDITOR=$EDITOR
@@ -53,7 +49,6 @@ case "${TERM}" in
 esac
 
 ## POSIX compatible configuration
-[ -r "$ENV" ] && . "$ENV"
-
+[ -f "$ENV"     ] && . "$ENV"
 ## for other individual setting
-[ -r ~/.otherrc ] && . ~/.otherrc
+[ -f ~/.otherrc ] && . ~/.otherrc

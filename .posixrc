@@ -34,9 +34,10 @@ PS1="\$([ \$(echo \$PWD | sed 's@[^/]@@g' | wc -m) -gt 8 ]   &&
   printf '$PURPLE$LOGNAME@$HOST:$RED'$pwd'$PURPLE\n$ $CLEAR' ||
   printf '$PURPLE$LOGNAME@$HOST:$RED'$pwd'$PURPLE''$ $CLEAR' )"
 
+
 ## Environmental variables
-export DISPLAY="${DISPLAY:-':0'}"  # if DISPLAY is none, then set.
-export HOME=${HOME:-~}  # for MSYS
+export DISPLAY=${DISPLAY:-:0}  # if DISPLAY is none, then set.
+export HOME=${HOME:-~}         # for MSYS
 
 ### locale
 export LANG=ja_JP.UTF-8
@@ -53,6 +54,10 @@ export WINEARCH=win32
 export WINEPREFIX=~/.wine32
 
 ## Alias
+### enable alias in non-interactive shell
+[ -n "$BASH"     ] && shopt -s expand_aliases
+[ -n "$ZSH_NAME" ] && setopt aliases
+
 ### Windows character encoding convert
 if [ "${OS}" = "Windows_NT" ]; then
   wincmd(){
