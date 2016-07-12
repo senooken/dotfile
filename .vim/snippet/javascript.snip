@@ -1,8 +1,8 @@
-" \file      javascript.snip
-" \author    SENOO, Ken
-" \copyright CC0
+# \file      javascript.snip
+# \author    SENOO, Ken
+# \copyright CC0
 
-"" Object
+## Object
 snippet new_ActiveXOBject
 options word
 	new ActiveXObject("${1}");
@@ -23,7 +23,7 @@ snippet new_RegExp
 options word
 	new RegExp(${1:regex});
 	${0}
-"" JScript
+
 snippet new_Enumerator
 options word
 	new Enumerator(${1:collection});
@@ -36,8 +36,10 @@ alias fso
 snippet var excel
 	var excel = new ActiveXObject("Excel.Application");
 	${0}
+snippet var shell
+	var shell = new ActiveXObject("WScript.Shell");
 snippet var cwd
-	var cwd = fso.GetAbsolutePathName("");
+	var cwd = shell.CurrentDirectory;
 	${0}
 snippet var args
 	var args = WScript.Arguments;
@@ -89,13 +91,21 @@ options word
 snippet WScript ScriptName
 options word
 	WScript.ScriptName
+
 snippet for collection
 options head
 	for (; !${1:collection}.atEnd(); $1.moveNext()){
 		${2} = $1.item();
 		${0}
 	}
-	
+
+snippet for array
+options head
+	for (var ${1:i} = 0, ${2:len} = ${3:array}.length; $1 < $2; ++$1){
+		${0}
+	}
+
+
 snippet var fsr OpenTextFile
 alias fsr
 	var fs = fso.OpenTextFile(${1:path});

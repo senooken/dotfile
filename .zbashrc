@@ -1,36 +1,4 @@
 #!/bin/bash
-## path
-### Only running interactively, valid local development PATH
-if [[ "$-" = *i* ]]; then
-  ### system path
-  export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
-  # export CPATH="/usr/local/include:/usr/include:$CPATH"
-
-  ### local install path
-  LOCAL="${HOME}/local"
-  export PATH="${LOCAL}/bin:$PATH"
-  export LD_LIBRARY_PATH="${LOCAL}/lib:$LD_LIBRARY_PATH"
-  export CPATH="${LOCAL}/include:$CPATH"
-  export MANPATH="${LOCAL}/man:${LOCAL}/share/man:$MANPATH"
-  export INFOPATH="${LOCAL}/info:${LOCAL}/share/info:$INFOPATH"
-
-  export PKG_CONFIG_PATH="${LOCAL}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-
-  export GEM_HOME="${LOCAL}" # ruby gem
-  export PYTHONUSERBASE="${LOCAL}" # python pip
-  ## MSYS2 local Python PATH
-  # if [ $PYTHONPATH ]; then
-  #   export PYTHONPATH="${LOCAL/\/[a-z]/}/lib/python3.4/site-packages:$PYTHONPATH"
-  # else
-  #   export PYTHONPATH="${LOCAL/\/[a-z]/}/lib/python3.4/site-packages"
-  # fi
-
-  ## invalid stty keybind
-  stty start undef
-fi
-
-export DEBFULLNAME="Ken SENOO"
-export DEBEMAIL="mslamsh20131029@outlook.jp"
 
 alias vim="vim -X"
 [ "$(command -v vim)" ] && export EDITOR=vim
@@ -38,7 +6,7 @@ export SVN_EDITOR=$EDITOR
 
 ## compile
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
-export LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋め込み
+LIBCPP="-static-libgcc -static-libstdc++" # 標準ライブラリの埋め込み
 # [ "$(command -v wx-config)" ] && WXCONFIG="$(wx-config --cppflags --libs | tr \"\n\" ' ')" # wxwidgetsのコンパイルフラグ
 cmd="pkg-config --silence-errors --cflags --libs gtk+-3.0"
 eval "${cmd}" > /dev/null 2>&1 && GTK="$(eval ${cmd})"
@@ -47,8 +15,3 @@ eval "${cmd}" > /dev/null 2>&1 && GTK="$(eval ${cmd})"
 case "${TERM}" in
   ?term*|rxvt*|screen) PROMPT_COMMAND='echo -ne "\033]0;$0@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\007"';;
 esac
-
-## POSIX compatible configuration
-[ -f "$ENV"     ] && . "$ENV"
-## for other individual setting
-[ -f ~/.otherrc ] && . ~/.otherrc
