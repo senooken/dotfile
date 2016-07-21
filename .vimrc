@@ -24,6 +24,10 @@ if s:is_windows | set termencoding=cp932 | endif
 
 set ambiwidth=double " 全角記号をきちんと表示
 
+if exists('+fixendofline')  " version 7.4.785+
+  set nofixendofline
+endif
+
 " Fix 'fileencoding' to use 'encoding'
 " if the buffer only contains 7-bit characters.
 " Note that if the buffer is not 'modifiable',
@@ -514,7 +518,7 @@ set showmatch  " 括弧入力時の対応する括弧を表示
 set showmode   " 現在のモードを表示
 
 "" Highlight
-if exists('+extra_search')
+if has('+extra_search')
   set hlsearch  " 検索結果文字列のハイライトを有効にする
 endif
 
@@ -552,7 +556,7 @@ if s:is_windows_7
 endif
 
 "" highglight 80 times column
-if exists('+syntax')
+if has('+syntax')
   let &colorcolumn = join(range(80,400,80), ",")
   highlight ColorColumn ctermbg=LightRed guibg=LightRed
 endif
@@ -725,7 +729,7 @@ set list
 "" 折り返し
 set linebreak " 空白などいい感じの場所で折り返し
 set showbreak=+\  " 折り返し後の行頭記号
-if exists('+linebreak')  " version 7.4.338 or later
+if exists('+breakindent')  " version 7.4.338 or later
   set breakindent " 折り返された部分もインデント
 endif
 

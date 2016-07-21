@@ -14,7 +14,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash, include .bashrc if it exists
-[ -n "$BASH" -a -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
-
 export ENV="$HOME/.posixrc"
+# [ -f "$ENV" ] && . "$ENV"
+
+# if running bash, include .bashrc if it exists
+[ -n "$BASH" ] && [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"

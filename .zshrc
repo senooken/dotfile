@@ -244,4 +244,5 @@ zstyle ':completion:*' matcher-list "m:{a-zA-A}={A-Za-z}"
 precmd() {eval "${PROMPT_COMMAND}"}
 
 ## for shared shell setting
+[ -f "$ENV"           ] && . "$ENV"
 [ -f "$HOME/.zbashrc" ] && . "$HOME/.zbashrc"
