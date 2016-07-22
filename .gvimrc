@@ -6,10 +6,13 @@ set number  " show line number
 if has('gui_win32')
   set guifont=Migu_1M:h9, HGGothicM:h9
 elseif has('gui_gtk2')
-  " set guifont=Migu\ 1M\ 9, TakaoGothic\ 9  " not work. bug?
-  set guifont=TakaoGothic\ 9
-  if system('fc-list | grep -c "Migu 1M"') > 0
+  " set guifont=Migu\ 1M\ 9, TakaoGothic\ 9 , VL\ Gothic\ 9 " not work. bug?
+  if     system('fc-list | grep -c "Migu 1M"'    ) > 0
     set guifont=Migu\ 1M\ 9
+  elseif system('fc-list | grep -c "TakaoGothic"') > 0
+    set guifont=TakaoGothic\ 9
+  elseif system('fc-list | grep -c "VL Gothic"'  ) > 0
+    set guifont=VL\ Gothic\ 9
   endif
 endif
 
