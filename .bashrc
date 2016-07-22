@@ -221,6 +221,5 @@ shopt -s nocaseglob  # ignore case since 2.02
 
 ## for shared shell setting
 export ENV="${ENV:-$HOME/.posixrc}"
-[ -f "$ENV"           ] && . "$ENV"
-[ -f "$HOME/.zbashrc" ] && . "$HOME/.zbashrc"
+[ -f "$ENV" ] && . "$ENV"
 # source /opt/OpenFOAM/OpenFOAM-2.3.x/etc/bashrc.win
