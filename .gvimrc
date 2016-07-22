@@ -3,10 +3,14 @@ source $VIMRUNTIME/mswin.vim
 
 set number  " show line number
 "" font
-if has('gui_gtk2')
-  set guifont=Migu\ 1M\ 9
-elseif has('gui_win32')
-  set guifont=Migu_1M:h9,HGGothicM:h9
+if has('gui_win32')
+  set guifont=Migu_1M:h9, HGGothicM:h9
+elseif has('gui_gtk2')
+  " set guifont=Migu\ 1M\ 9, TakaoGothic\ 9  " not work. bug?
+  set guifont=TakaoGothic\ 9
+  if system('fc-list | grep -c "Migu 1M"') > 0
+    set guifont=Migu\ 1M\ 9
+  endif
 endif
 
 set textwidth=0

@@ -10,13 +10,13 @@ let s:TRUE = !s:FALSE
 let s:is_windows = has('win64') || has('win32')   || has('win16')
 let s:is_cygwin  = has('win32unix')
 let s:is_mac     = has('mac')   || has('macunix') || has('gui_macvim')
-let s:is_linux   = has('unix') && !s:is_mac && !s:is_cygwin
+let s:is_linux   = has('unix')  && !s:is_mac      && !s:is_cygwin
 
 let s:is_windows_7 = s:is_windows && system('VER') =~# 'Version 6.1'
 
 "" Charset, Line ending
 set encoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932
+set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932,utf-16le,utf-16
 set fileformats=unix,dos,mac
 
 "" Windowsのコマンドプロンプトの日本語文字化け対策
@@ -556,7 +556,7 @@ if s:is_windows_7
 endif
 
 "" highglight 80 times column
-if has('+syntax')
+if has('syntax')
   let &colorcolumn = join(range(80,400,80), ",")
   highlight ColorColumn ctermbg=LightRed guibg=LightRed
 endif
@@ -564,12 +564,7 @@ endif
 "" highlight cursorline
 " set cursorcolumn
 set cursorline  " hightlight cursor line
-if &t_Co == 256
-  highlight CursorLine cterm=NONE ctermbg=255
-else
-  highlight CursorLine cterm=NONE ctermbg=LightGray
-endif
-
+highlight CursorLine cterm=NONE ctermbg=LightGray
 
 " 編集、文書整形関連
 " backspaceキーの挙動を設定する

@@ -27,39 +27,39 @@ fi
 
 for color in PURPLE RED CLEAR
 do
-  eval "${color}=${enclose_open}\$${color}${enclose_close}"
+	eval "${color}=${enclose_open}\$${color}${enclose_close}"
 done
 
-PS1="\$([ \$(echo \$PWD | sed 's@[^/]@@g' | wc -m) -gt 8 ]   &&
-  printf '$PURPLE$LOGNAME@$HOST:$RED'$pwd'\n$PURPLE$ $CLEAR' ||
-  printf '$PURPLE$LOGNAME@$HOST:$RED'$pwd'''$PURPLE$ $CLEAR' )"
+PS1="\$([ \$(echo \$PWD | sed 's@[^/]@@g' | wc -m) -gt 7 ]   &&
+	printf '$PURPLE$LOGNAME@$HOST:$RED'$pwd'\n$PURPLE$ $CLEAR' ||
+	printf '$PURPLE$LOGNAME@$HOST:$RED'$pwd'''$PURPLE$ $CLEAR' )"
 
 
 ## Environmental variables
 ### Interactive shell local development PATH
 if [ -z "${-##*i*}" ]; then
-  ### system path
-  # export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
-  # export CPATH="/usr/local/include:/usr/include:$CPATH"
+	### system path
+	# export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
+	# export CPATH="/usr/local/include:/usr/include:$CPATH"
 
-  ### local install path
-  LOCAL="$HOME/.local"
-  export PATH="$LOCAL/bin:$PATH"
-  export LD_LIBRARY_PATH="$LOCAL/lib:$LD_LIBRARY_PATH"
-  export CPATH="$LOCAL/include:$CPATH"
-  export MANPATH="$LOCAL/man:$LOCAL/share/man:$MANPATH"
-  export INFOPATH="$LOCAL/info:$LOCAL/share/info:$INFOPATH"
+	### local install path
+	LOCAL="$HOME/.local"
+	export PATH="$LOCAL/bin:$PATH"
+	export LD_LIBRARY_PATH="$LOCAL/lib:$LD_LIBRARY_PATH"
+	export CPATH="$LOCAL/include:$CPATH"
+	export MANPATH="$LOCAL/man:$LOCAL/share/man:$MANPATH"
+	export INFOPATH="$LOCAL/info:$LOCAL/share/info:$INFOPATH"
 
-  export PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:${PKG_CONFIG_PATH}"
+	export PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
-  export GEM_HOME="$LOCAL"       # ruby gem
-  export PYTHONUSERBASE="$LOCAL" # python pip
-  ## MSYS2 local Python PATH
-  # if [ $PYTHONPATH ]; then
-  #   export PYTHONPATH="${LOCAL/\/[a-z]/}/lib/python3.4/site-packages:$PYTHONPATH"
-  # else
-  #   export PYTHONPATH="${LOCAL/\/[a-z]/}/lib/python3.4/site-packages"
-  # fi
+	export GEM_HOME="$LOCAL"       # ruby gem
+	export PYTHONUSERBASE="$LOCAL" # python pip
+	## MSYS2 local Python PATH
+	# if [ $PYTHONPATH ]; then
+	#   export PYTHONPATH="${LOCAL/\/[a-z]/}/lib/python3.4/site-packages:$PYTHONPATH"
+	# else
+	#   export PYTHONPATH="${LOCAL/\/[a-z]/}/lib/python3.4/site-packages"
+	# fi
 
 	### locale
 	export LANG='ja_JP.UTF-8'
@@ -67,13 +67,12 @@ if [ -z "${-##*i*}" ]; then
 	export LC_TIME='en_US.UTF-8'
 	export LC_MESSAGES='en_US.UTF-8'
 
-  ## invalid stty keybind
-  # stty start undef
+	## invalid stty keybind
+	# stty start undef
 fi
 
 export DISPLAY=${DISPLAY:-:0}  # if DISPLAY is none, then set.
 export HOME=${HOME:-~}         # for MSYS
-
 
 ### WIndows shell
 export CYGWIN="nodosfilewarning winsymlinks:nativestrict"
@@ -101,26 +100,26 @@ fi
 
 ### Windows character encoding convert
 if [ "${OS}" = "Windows_NT" ]; then
-  wincmd(){
-    CMD=$1
-    shift
-    $CMD $* 2>&1 | iconv -f cp932 -t utf-8
-  }
+	wincmd(){
+	  CMD=$1
+	  shift
+	  $CMD $* 2>&1 | iconv -f CP932 -t UTF-8
+	}
 
-  alias ipconfig='wincmd ipconfig'
-  alias netstat='wincmd netstat'
-  alias netsh='wincmd netsh'
-  alias taskkill='wincmd taskkill'
-  alias cs="wincmd cscript.exe -NoLogo"
-  alias ws="wincmd wscript.exe -NoLogo"
-  alias choco="wincmd choco"
+	alias ipconfig='wincmd ipconfig'
+	alias netstat='wincmd netstat'
+	alias netsh='wincmd netsh'
+	alias taskkill='wincmd taskkill'
+	alias cs="wincmd cscript.exe -NoLogo"
+	alias ws="wincmd wscript.exe -NoLogo"
+	alias choco="wincmd choco"
 fi
 
 ### ls
 alias ls="ls -AFh --color=auto"
 alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l="ls"
-[ -r ~/.dir_colors ] && eval "$(dircolors ~/.dir_colors)"
+[ -f ~/.dir_colors ] && eval "$(dircolors ~/.dir_colors)"
 
 ### Default to human readable figures
 alias df='df -h'
@@ -135,7 +134,7 @@ alias gis="git status"
 
 ### Pager
 export PAGER="less"
-[ "$(command -v lv)" ] && export PAGER=lv
+[ "$(command -v lv)" ] && export PAGER='lv'
 export LV="-c -l"
 export LESS="-imR"
 alias info="info --vi-keys"
@@ -144,17 +143,17 @@ alias info="info --vi-keys"
 ### open
 alias o="open"
 case "${OSTYPE}" in
-  freebsd*|darwin*) alias o="open" ;;
-  linux*)           alias open="xdg-open" ;; # alias open="gnome-open";;
-  cygwin*)          alias open="cygstart" ;;
-  msys*)            alias open="start";;
+	freebsd*|darwin*) alias o="open" ;;
+	linux*)           alias open="xdg-open" ;; # alias open="gnome-open";;
+	cygwin*)          alias open="cygstart" ;;
+	msys*)            alias open="start";;
 esac
 
 #### Copy to clipboard
-[ "$(command -v clip)" ]    && alias clip="iconv -s -f UTF-8 -t cp932 | clip" # MSYS (Windows)
-[ "$(command -v xsel)" ]    && alias clip="xsel -ib" # Linux
+[ "$(command -v clip)"    ] && alias clip="iconv -s -f UTF-8 -t cp932 | clip" # MSYS (Windows)
+[ "$(command -v xsel)"    ] && alias clip="xsel -ib" # Linux
 [ "$(command -v putclip)" ] && alias clip="putclip" # Cygwin
-[ "$(command -v pbcopy)" ]  && alias clip="pbcopy" # Mac
+[ "$(command -v pbcopy)"  ] && alias clip="pbcopy" # Mac
 
 ### development
 alias py='python3'
@@ -168,10 +167,12 @@ alias gp='g++ -Wall -std=c++1y'
 alias gc='gcc -Wall -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
 
-[ "$(command -v xstow)" ] && alias stow=xstow
+[ "$(command -v xstow)" ] && alias stow='xstow'
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
+
+[ "$(command -v vim)" ] && alias vi='vim'
 
 ## grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
 GREP_OPTIONS="--color=auto -I --exclude-dir={.,..,.git,.svn,obj}"
