@@ -21,23 +21,25 @@ elif [ -n "$ZSH_NAME" ]; then
 	enclose_close="%%}"
 fi
 
-: ${pwd:='$(echo "$PWD" | sed "s@$HOME@~@")'}
-: ${HOST:="$(uname -n)"}
-: ${LOGNAME:="$(logname)"}  # for Windows shell
-
 for color in PURPLE RED CLEAR
 do
 	eval "${color}=${enclose_open}\$${color}${enclose_close}"
 done
 
-PS1="\$([ \$(echo \$PWD | sed 's@[^/]@@g' | wc -m) -gt 7 ]       &&
-	printf '$PURPLE$LOGNAME@$HOST:$RED'\"$pwd\"'\n$PURPLE$ $CLEAR' ||
-	printf '$PURPLE$LOGNAME@$HOST:$RED'\"$pwd\"'''$PURPLE$ $CLEAR' )"
+: ${pwd:='$(echo "$PWD" | sed "s@$HOME@~@")'}
+: ${HOST:="$(uname -n)"}
+: ${LOGNAME:="$(logname)"}  # for Windows shell
+: ${COLUMNS:=80}  # for sh
+PROMPT_NAME="$LOGNAME@$HOST:"
+
+PS1="\$([ \$((COLUMNS - \$(echo \"$PROMPT_NAME\$PWD\" | wc -m))) -lt 15 ] &&
+	printf '$PURPLE$PROMPT_NAME$RED'\"$pwd\"'\n$PURPLE$ $CLEAR' ||
+	printf '$PURPLE$PROMPT_NAME$RED'\"$pwd\"'''$PURPLE$ $CLEAR' )"
 
 ## TODO: enable posix compatible
 ## terminal title
 case "${TERM}" in
-  ?term*|rxvt*|screen) PROMPT_COMMAND='echo -ne "\033]0;$0@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\007"';;
+  ?term*|rxvt*|screen*) PROMPT_COMMAND='echo -ne "\033]0;$0@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\007"';;
 esac
 
 ## Environmental variables
