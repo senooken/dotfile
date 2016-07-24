@@ -3,16 +3,21 @@ source $VIMRUNTIME/mswin.vim
 
 set number  " show line number
 "" font
+let s:MYFONT = 'Migu 1M'
+let s:MYFS   = '9'
 if has('gui_win32')
-  set guifont=Migu_1M:h9, HGGothicM:h9
+  let &guifont     = s:MYFONT . ':h' . s:MYFS . ', Consolas:h'  . s:MYFS
+  let &guifontwide = s:MYFONT . ':h' . s:MYFS . ', MS_Gothic:h' . s:MYFS
 elseif has('gui_gtk2')
-  " set guifont=Migu\ 1M\ 9, TakaoGothic\ 9 , VL\ Gothic\ 9 " not work. bug?
-  if     system('fc-list | grep -c "Migu 1M"'    ) > 0
-    set guifont=Migu\ 1M\ 9
-  elseif system('fc-list | grep -c "TakaoGothic"') > 0
-    set guifont=TakaoGothic\ 9
-  elseif system('fc-list | grep -c "VL Gothic"'  ) > 0
-    set guifont=VL\ Gothic\ 9
+  " set guifont=Migu\ 1M\ 9, DejaVu\ Sans\ Mono\ 9  " not work. bug?
+  " set guifontwide=Migu\ 1M\ 9, TakaoGothic\ 9 , VL\ Gothic\ 9 " not work. bug?
+  let &guifont = 'DejaVu Sans Mono ' . s:MYFS
+  if     system('fc-list | grep -c ' . shellescape(s:MYFONT)) > 0
+    let &guifont = s:MYFONT . ' ' . s:MYFS
+  elseif system('fc-list | grep -c "TakaoGothic"'           ) > 0
+    let &guifontwide = 'TakaoGothic ' . s:MYFS
+  elseif system('fc-list | grep -c "VL Gothic"'             ) > 0
+    let &guifontwide = 'VL Gothic ' . s:MYFS
   endif
 endif
 
