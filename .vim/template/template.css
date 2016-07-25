@@ -325,7 +325,7 @@ th, td {
 /* フォント設定 */
 p {text-indent: 1em;}
 h1, h2, h3, h4, h5, h6 {
-  font-family: "TeX Gyre Heros", "Migu 1P", sans-serif;
+  font-family: "TeX Gyre Heros", "Migu 1P", "TakaoGothic", "VL Gothic", "Yu Gothic", "Meiryo UI", sans-serif;
   /* orange */
   /* background-color: rgb(100%,80%,0%); */
   background-color: #e6e6ff;
@@ -338,7 +338,7 @@ strong {background-color: yellow;}
 
 /* PC語句 */
 kbd, code, samp, var {
-  font-family: Inconsolata, "Migu 1M", monospace;
+  font-family: "Migu 1M", "Inconsolata", "DejaVu Sans Mono", "Consolas", "TakaoGothic", "VL Gothic", "MS Gothic",  monospace;
   border-width: thin;
   border-style: solid;
   border-color: #cccccc;
