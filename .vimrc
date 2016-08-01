@@ -488,9 +488,8 @@ if s:Neobundled('vim-template')
       \   if search('<+CURSOR+>') | silent! execute 'normal! "_da>' | endif
 else
   "" vim-templateが使えないときの設定
-  autocmd BufNewFile *         silent! :0r  ~/.vim/template/template.%:e
-  autocmd BufNewFile ifort.bat silent! :0r  ~/.vim/template/ifort.bat
-  autocmd BufNewFile Makefile  silent! :0r  ~/.vim/template/Makefile
+  autocmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
+  autocmd BufNewFile * silent! :0r  ~/.vim/template/%:t
 endif
 
 "" templateの編集中はタイムスタンプが埋め込まれないように無効化
@@ -564,7 +563,7 @@ endif
 "" highlight cursorline
 " set cursorcolumn
 set cursorline  " hightlight cursor line
-highlight CursorLine cterm=NONE ctermbg=LightGray
+highlight CursorLine cterm=NONE ctermbg=LightYellow guibg=LightYellow
 
 " 編集、文書整形関連
 " backspaceキーの挙動を設定する
@@ -717,8 +716,7 @@ autocmd BufEnter * lcd `=expand("%:p:h")`
 set nrformats=   " deal as decimal for number
 
 "" show special character
-set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
-" set lcs=tab:►\ ,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:>\ ,trail:_,extends:),precedes:(,nbsp:%
 set list
 
 "" 折り返し

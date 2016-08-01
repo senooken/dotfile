@@ -26,9 +26,6 @@ set formatoptions=q
 
 nnoremap <silent> ,F :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("tag ". word)<cr>
 
-"" 改行文字を表示
-set lcs=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
-
 "" disable foding in gvim
 set foldmethod=manual
 
