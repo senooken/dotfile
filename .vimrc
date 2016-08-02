@@ -716,7 +716,8 @@ autocmd BufEnter * lcd `=expand("%:p:h")`
 set nrformats=   " deal as decimal for number
 
 "" show special character
-set listchars=tab:>\ ,trail:_,extends:),precedes:(,nbsp:%
+set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
+" set listchars=tab:>\ ,trail:_,extends:),precedes:(,nbsp:%
 set list
 
 "" 折り返し
