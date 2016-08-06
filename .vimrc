@@ -11,7 +11,6 @@ let s:is_windows = has('win64') || has('win32')   || has('win16')
 let s:is_cygwin  = has('win32unix')
 let s:is_mac     = has('mac')   || has('macunix') || has('gui_macvim')
 let s:is_linux   = has('unix')  && !s:is_mac      && !s:is_cygwin
-
 let s:is_windows_7 = s:is_windows && system('VER') =~# 'Version 6.1'
 
 "" Charset, Line ending
@@ -522,7 +521,9 @@ if has('+extra_search')
 endif
 
 "" Color
-colorscheme default
+if has('gui_running')
+  colorscheme morning
+endif
 
 "" Statusline
 set laststatus=2
@@ -566,13 +567,6 @@ set cursorline  " hightlight cursor line
 highlight CursorLine cterm=NONE ctermbg=LightYellow guibg=LightYellow
 
 " 編集、文書整形関連
-" backspaceキーの挙動を設定する
-" indent	: 行頭の空白の削除を許す
-" eol		: 改行の削除を許す
-" start		: 挿入モードの開始位置での削除を許す
-set backspace=indent,eol,start
-" 新しい行を直前の行と同じインデントにする
-set autoindent
 " tabが挿入されるとときにshiftwidthを使う
 set smarttab
 set expandtab
@@ -585,8 +579,6 @@ set shiftwidth=2
 set softtabstop=0
 " Tab文字を空白に置き換えない
 "set noexpandtab
-" オートインデントを有効にする
-set cindent
 set textwidth=0 " Prevent auto line break
 
 "" vim auto creating file
@@ -601,16 +593,17 @@ set undodir=~/.vim/tmp
 set autoread  " 更新時自動読み込み
 set hidden    " 編集中でも他のファイルを開けるようにする
 set autoindent smartindent       " 自動インデント、スマートインデント
+" オートインデントを有効にする
+set cindent
 set backspace=indent,eol,start   " バックスペースで特殊記号も削除可能に
 set whichwrap=b,s,h,l,<,>,[,],~  " カーソルを行頭、行末で止まらないようにする
 "set clipboard=unnamed,autoselect " バッファにクリップオードを利用する
 
-
 "" Add executable permission for shebang and Desktop files
 autocmd BufWritePost * :call s:Add_execmod()
 function! s:Add_execmod()
-  let line = getline(1)
-  if strpart(line, 0, 2) == '#!' || strpart(line, 0) == '[Desktop Entry]'
+  let s:line = getline(1)
+  if strpart(s:line, 0, 2) == '#!' || strpart(s:line, 0) == '[Desktop Entry]'
     if s:is_windows
       call system('icacls '   . expand('%') . ' /grant ' . $USERNAME . ':(X)')
     else

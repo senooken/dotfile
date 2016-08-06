@@ -1,3 +1,7 @@
+"" \file      .gvimrc
+"" \author    SENOO, Ken
+"" \copyright CC0
+
 "" MS Windows like keybind
 source $VIMRUNTIME/mswin.vim
 
@@ -30,5 +34,4 @@ nnoremap <silent> ,F :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("
 "" disable foding in gvim
 set foldmethod=manual
 
-colorscheme morning
 " set guioptions+=b " nowrapのときに横スクロールバー
