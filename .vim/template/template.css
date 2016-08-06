@@ -114,7 +114,7 @@ article>h5:first-of-type,
 article>h6:first-of-type
 {
   counter-reset: heading1;
-  font-size: 2.0em;
+  font-size: 2.17em;
 }
 
 section>h1:first-of-type,
@@ -242,7 +242,7 @@ section>section>section>section>section>section>h6:first-of-type::before
 }
 
 
-/* table */
+/** Table */
 table {
   border-collapse: collapse;
   border: none;
@@ -250,7 +250,7 @@ table {
   margin-left: auto;
   margin-right: auto;
 }
-/** table color **/
+/** Table color **/
 tbody>tr:nth-of-type(even) {
   background: #ffffaa;
 }
@@ -259,12 +259,12 @@ thead>tr>th {
   text-align: center;
   font-weight: bold
 }
-/** column margin **/
+/** Column margin **/
 td {
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
-/** table border **/
+/** Table border **/
 td, th {
   border-style: none;
 }
@@ -290,7 +290,7 @@ th, td {
   word-wrap: break-all;
 }
 
-/* cross reference */
+/** Cross reference */
 [href^="#chap:"]::before {
   content: "第";
 }
@@ -322,10 +322,11 @@ th, td {
   content: "リスト";
 }
 
-/* フォント設定 */
+/** Font */
 p {text-indent: 1em;}
 h1, h2, h3, h4, h5, h6 {
   font-family: "TeX Gyre Heros", "Migu 1P", "TakaoGothic", "VL Gothic", "Yu Gothic", "Meiryo UI", sans-serif;
+  font-weight: bold;
   /* orange */
   /* background-color: rgb(100%,80%,0%); */
   background-color: #e6e6ff;
@@ -336,7 +337,7 @@ em, strong {
 }
 strong {background-color: yellow;}
 
-/* PC語句 */
+/** PC */
 kbd, code, samp, var {
   font-family: "Migu 1M", "Inconsolata", "DejaVu Sans Mono", "Consolas", "TakaoGothic", "VL Gothic", "HGGothicM", "MS Gothic",  monospace;
   border-width: thin;
@@ -354,7 +355,6 @@ samp {
   background-color: #e6e6e6;
 }
 var {
-  /* font-style: normal; */
   background-color: #e6ffff;
 }
 pre {
@@ -363,7 +363,7 @@ pre {
   overflow: auto;
 }
 
-/* line number for source code */
+/** Line number for source code */
 pre>code, pre>samp {
   display: block;
   border-style: none;
@@ -385,7 +385,7 @@ pre>code::before, pre>samp::before {
   border-right: 1px solid;
 }
 
-/* blockquote */
+/** Blockquote */
 blockquote{
   background-color: #eee;
   padding: 1.0em;
@@ -403,20 +403,27 @@ blockquote::before{
   top: 0;
 }
 
+/** Description element */
 dt {
   font-weight: bold;
   padding-left: 0.5em;
 }
 dt, dd {
   line-height: 1.5em;
+  word-wrap: break-word;
 }
 
-:not(figure)>dl>dt {
+dt {
   float: left;
   width: 20%;
 }
-:not(figure)>dl>dd {
+dd {
   margin-left: 22%;
+}
+dd::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 figure dl {
@@ -425,6 +432,8 @@ figure dl {
   background-color: rgb(90%,90%,90%);
 }
 figure dt {
+  display: block;
+  width: 99%;
   border-top-left-radius: 0.2em;
   border-top-right-radius: 0.2em;
   color: white;
@@ -439,7 +448,7 @@ figure dl dd:nth-of-type(n+2) {
   border-top-width: thin;
 }
 
-/* Page style */
+/** Page style */
 @page {
   size: A4 portrait;
   margin: 2cm;
