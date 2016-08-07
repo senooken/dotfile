@@ -4,8 +4,11 @@
 
 "" MS Windows like keybind
 source $VIMRUNTIME/mswin.vim
+"" for selection of last character
+nnoremap <2-LeftMouse> i
+inoremap <2-LeftMouse> <ESC>
 
-set number  " show line number
+set number
 "" font
 let s:MYFONT = 'Migu 1M'
 let s:MYFS   = '9'
@@ -35,3 +38,4 @@ nnoremap <silent> ,F :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("
 set foldmethod=manual
 
 " set guioptions+=b " nowrapのときに横スクロールバー
+
