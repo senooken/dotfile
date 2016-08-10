@@ -3,7 +3,7 @@
 # \author    SENOO, Ken
 # \copyright CC0
 # \date      first created date: 2016-04-17T14:35+09:00
-# \date      last  updated date: 2016-06-11T14:44+09:00
+# \date      last  updated date: 2016-08-11T02:33+09:00
 # \brief     設定を更新後，共有ディレクトリに更新された設定ファイルをコピーしてリンクを貼り直す。
 # 共有したいファイルを FILE 変数に空白区切りで記入する。
 # Dropboxなどで共有しているディレクトリにこのスクリプトを配置して実行する。
@@ -11,8 +11,8 @@
 # CygwinなどWindowsでの動作も考慮して，管理者権限が不要なハードリンクを使用。
 
 FILE="shortcuts.sqlite snippets.sqlite"
-OS_DIR=$(ls -d ~/".disruptive innovations sarl"/bluegriffon/????????.default)
-SHARE_DIR=.
+OS_DIR=$(ls -d "$HOME/.disruptive innovations sarl"/bluegriffon/????????.default | head -n 1)
+SHARE_DIR="$PWD"
 
 for f in ${FILE};
 do

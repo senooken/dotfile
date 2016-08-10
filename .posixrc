@@ -63,7 +63,7 @@ if [ -z "${-##*i*}" ]; then
 
 	export PYTHONUSERBASE="$LOCAL" # python pip
 	if [ "$(command -v python3)" ]; then
-		: ${PYTHONVERSION:=$(python3 -V | grep -E -o [0-9]+\.[0-9]+)}
+		: ${PYTHONVERSION:=$(python3 -V 2>&1 | grep -E -o [0-9]+\.[0-9]+)}
 	fi
 
 	### locale
@@ -182,12 +182,14 @@ alias vim="vim -X"
 [ "$(command -v vim)" ] && export EDITOR='vim'
 # export SVN_EDITOR=$EDITOR
 
+alias now="date +%Y%m%dT%H%M%S"
+
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
 # [ "$(command -v wx-config)" ] && WXCONFIG="$(wx-config --cppflags --libs | tr \"\n\" ' ')" # wxwidgetsのコンパイルフラグ
 LIBCPP="-static-libgcc -static-libstdc++"
 
 cmd="pkg-config --silence-errors --cflags --libs gtk+-3.0"
-[ "$(eval $cmd)" ] && GTK="$(eval $cmd)"
+[ "$(command -v pkg-config)" ] && [ "$(eval $cmd)" ] && GTK="$(eval $cmd)"
 
 ## grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
 GREP_OPTIONS="--color=auto -I --exclude-dir={.,..,.git,.svn,obj}"

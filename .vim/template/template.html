@@ -11,7 +11,7 @@
     <style>
 @charset "UTF-8";
 
-/* caption */
+/** caption */
 caption::before {
   counter-increment: table;
   content: "表" counter(heading1) "." counter(table) " ";
@@ -20,14 +20,10 @@ figcaption::before {
   counter-increment: figure;
   content: "図" counter(heading1) "." counter(figure) " ";
 }
-body {counter-reset: listing;}
-figcaption[id^="lis:"]::before {
+
+figure pre~figcaption::before {
   counter-increment: listing;
   content: "リスト" counter(heading1) "." counter(listing) " ";
-}
-figcaption[class^="lis"]::before {
-  counter-increment: listing;
-  content: "リスト" counter(section1) "." counter(listing) " ";
 }
 
 /* list */
@@ -127,7 +123,7 @@ section>h4:first-of-type,
 section>h5:first-of-type,
 section>h6:first-of-type
 {
-  counter-increment: heading1; counter-reset: heading2 table figure;
+  counter-increment: heading1; counter-reset: heading2 table figure listing;
   font-size: 2.0em;
 }
 
@@ -429,10 +425,19 @@ dd::after {
   clear: both;
 }
 
+/** figure */
+figure {
+  text-align: center;
+}
+
+figure pre {
+  text-align: left;
+}
 figure dl {
   border-radius: 0.4em;
   border: solid  thin rgb(10%,10%,10%);
   background-color: rgb(90%,90%,90%);
+  text-align: left;
 }
 figure dt {
   display: block;
@@ -450,6 +455,7 @@ figure dl dd:nth-of-type(n+2) {
   border-top-style: dashed;
   border-top-width: thin;
 }
+
 
 /** Page style */
 @page {

@@ -3,7 +3,7 @@
 # \author    SENOO, Ken
 # \copyright CC0
 # \date      first created date: 2016-04-17T14:35+09:00
-# \date      last  updated date: 2016-04-18T00:12+09:00
+# \date      last  updated date: 2016-08-11T02:34+09:00
 # \brief     mozcのIME設定を更新後，共有ディレクトリに更新された設定ファイルをコピーしてリンクを貼り直す。
 # 共有したいファイルを FILE 変数に空白区切りで記入する。
 # Dropboxなどで共有しているディレクトリにこのスクリプトを配置して実行する。
@@ -11,8 +11,8 @@
 # CygwinなどWindowsでの動作も考慮して，管理者権限が不要なハードリンクを使用。
 
 FILE="config1.db user_dictionary.db"
-OS_DIR=~/.mozc
-SHARE_DIR=.
+OS_DIR="$HOME/.mozc"
+SHARE_DIR="$PWD"
 
 for f in ${FILE};
 do
