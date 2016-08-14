@@ -22,6 +22,9 @@ figure pre~figcaption::before {
   counter-increment: listing;
   content: "リスト" counter(heading1) "." counter(listing) " ";
 }
+figure blockquote~figcaption::before {
+  content: "—";
+}
 
 /* list */
 /* listが見出し設定の後にあると見出し番号がリセットされる? */
@@ -382,14 +385,14 @@ pre>code::before, pre>samp::before {
 }
 
 /** Blockquote */
-blockquote{
+blockquote {
   background-color: #eee;
   padding: 1.0em;
   padding-left: 3em;
   position: relative;
 }
-blockquote::before{
-  content:"“";
+blockquote::before {
+  content: "“";
   font-size: 600%;
   line-height: 1em;
   font-family: serif;
@@ -397,6 +400,9 @@ blockquote::before{
   position: absolute;
   left: 0;
   top: 0;
+}
+blockquote p {
+  margin: 0;
 }
 
 /** Description element */
@@ -427,6 +433,12 @@ figure {
   text-align: center;
 }
 
+figure blockquote~figcaption {
+  text-align: right;
+}
+figure blockquote {
+  text-align: left;
+}
 figure pre {
   text-align: left;
 }
