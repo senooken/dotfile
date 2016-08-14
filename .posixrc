@@ -115,9 +115,13 @@ if [ "${OS}" = "Windows_NT" ]; then
 	alias netstat='wincmd netstat'
 	alias netsh='wincmd netsh'
 	alias taskkill='wincmd taskkill'
+	alias reg='wincmd reg'
 	alias cs="wincmd cscript.exe -NoLogo"
 	alias ws="wincmd wscript.exe -NoLogo"
 	alias choco="wincmd choco"
+else
+	alias cs="wine cscript.exe -NoLogo"
+	alias ws="wine wscript.exe -NoLogo"
 fi
 
 ### ls

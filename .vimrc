@@ -834,5 +834,5 @@ endif
 
 "" Enable alias for external command
 if filereadable($ENV)
-  let $BASH_ENV=expand($ENV)
+  let $BASH_ENV = expand($ENV)
 endif
