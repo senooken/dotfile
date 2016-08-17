@@ -140,6 +140,7 @@ alias gic="git commit -am"
 alias gia="git add"
 alias gim="git mv"
 alias gis="git status"
+alias glone="git clone"
 
 ### Pager
 export PAGER="less"

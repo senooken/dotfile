@@ -520,9 +520,11 @@ if has('+extra_search')
   set hlsearch  " 検索結果文字列のハイライトを有効にする
 endif
 
-"" Color
-if has('gui_running')
-  colorscheme morning
+"" Base color
+syntax enable
+"" In Windows 7, cmd.exe black color cannot work.
+if s:is_windows_7
+  highlight StatusLine ctermfg=DarkBlue  " for black color
 endif
 
 "" Statusline
@@ -547,16 +549,8 @@ autocmd InsertEnter * hi StatusLine   gui=bold   guifg=White   guibg=DarkGreen
 autocmd InsertLeave * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkBlue
 autocmd InsertLeave * hi StatusLine   gui=bold   guifg=White   guibg=DarkBlue
 
-"" Windows 7のコマンドプロンプトでは白と黒が色名と逆なので個別対応
-if s:is_windows_7
-  highlight StatusLine ctermfg=Black
-  autocmd ColorScheme * highlight StatusLine ctermfg=Black
-  autocmd InsertEnter * highlight StatusLine ctermfg=Black
-  autocmd InsertLeave * highlight StatusLine ctermfg=Black
-endif
-
 "" highglight 80 times column
-if has('syntax')
+if exists('+colorcolumn')
   let &colorcolumn = join(range(80,400,80), ",")
   highlight ColorColumn ctermbg=LightRed guibg=LightRed
 endif
@@ -564,7 +558,7 @@ endif
 "" highlight cursorline
 " set cursorcolumn
 set cursorline  " hightlight cursor line
-highlight CursorLine cterm=NONE ctermbg=LightYellow guibg=LightYellow
+highlight CursorLine cterm=NONE ctermbg=LightCyan guibg=LightCyan
 
 " 編集、文書整形関連
 " tabが挿入されるとときにshiftwidthを使う
@@ -631,6 +625,7 @@ endif
 set nowrapscan  " 省略形nows。wrapscanをオフにする。
 set ignorecase
 set smartcase
+set hlsearch
 
 "" Menu
 if exists('+wildignorecase')  " required 7.3.072+

@@ -38,4 +38,3 @@ nnoremap <silent> ,F :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("
 set foldmethod=manual
 
 " set guioptions+=b " nowrapのときに横スクロールバー
-
