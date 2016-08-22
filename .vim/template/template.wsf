@@ -12,8 +12,8 @@
     <runtime>
       <description></description>
       <example></example>
-      <named />
-      <unnamed />
+      <!-- <named /> -->
+      <!-- <unnamed /> -->
     </runtime>
     <script language="JScript">
     <![CDATA[

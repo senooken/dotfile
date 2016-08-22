@@ -825,7 +825,15 @@ nnoremap <silent> ]B :blast<CR>
 if has('mouse')
   set mouse=a
   set ttymouse=xterm2
+
+  "" for selection of last character
+  autocmd BufEnter *
+    \  if &modifiable
+    \|   nnoremap <buffer> <2-LeftMouse> i
+    \|   inoremap <buffer> <2-LeftMouse> <ESC>
+    \| endif
 endif
+
 
 "" Enable alias for external command
 if filereadable($ENV)

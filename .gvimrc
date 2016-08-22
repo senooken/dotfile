@@ -4,9 +4,6 @@
 
 "" MS Windows like keybind
 source $VIMRUNTIME/mswin.vim
-"" for selection of last character
-nnoremap <2-LeftMouse> i
-inoremap <2-LeftMouse> <ESC>
 
 set number
 "" font
