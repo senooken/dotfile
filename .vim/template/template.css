@@ -442,25 +442,26 @@ figure blockquote {
 figure pre {
   text-align: left;
 }
-figure dl {
+figure>dl {
   border-radius: 0.4em;
   border: solid  thin rgb(10%,10%,10%);
   background-color: rgb(90%,90%,90%);
   text-align: left;
 }
-figure dt {
+figure>dl>dt {
   display: block;
-  width: 99%;
+  width: 100%;
   border-top-left-radius: 0.2em;
   border-top-right-radius: 0.2em;
   color: white;
   background-color: rgb(30%,30%,30%);
+  box-sizing: border-box;
 }
-figure dd {
+figure>dl>dd {
   padding-left: 0.5em;
   margin: auto;
 }
-figure dl dd:nth-of-type(n+2) {
+figure>dl>dd:nth-of-type(n+2) {
   border-top-style: dashed;
   border-top-width: thin;
 }
