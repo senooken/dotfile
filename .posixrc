@@ -30,11 +30,12 @@ done
 : ${HOST:="$(uname -n)"}
 : ${LOGNAME:="$(logname)"}  # for Windows shell
 : ${COLUMNS:=80}  # for sh
+[ $(id -u) = 0 ] && : ${PROMPT_MARK:='#'} || : ${PROMPT_MARK:='$'}
 PROMPT_NAME="$LOGNAME@$HOST:"
 
 PS1="\$([ \$((COLUMNS - \$(echo \"$PROMPT_NAME\$PWD\" | wc -m))) -lt 15 ] &&
-	printf '$PURPLE$PROMPT_NAME$RED'\"$pwd\"'\n$PURPLE$ $CLEAR' ||
-	printf '$PURPLE$PROMPT_NAME$RED'\"$pwd\"'''$PURPLE$ $CLEAR' )"
+	printf '$PURPLE$PROMPT_NAME$RED'\"$pwd\"'\n$PURPLE$PROMPT_MARK $CLEAR' ||
+	printf '$PURPLE$PROMPT_NAME$RED'\"$pwd\"'''$PURPLE$PROMPT_MARK $CLEAR' )"
 
 ## TODO: enable posix compatible
 ## terminal title
