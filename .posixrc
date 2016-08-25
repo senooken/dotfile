@@ -26,21 +26,25 @@ do
 	eval "${color}=${enclose_open}\$${color}${enclose_close}"
 done
 
-: ${pwd:='$(echo "$PWD" | sed "s@$HOME@~@")'}
-: ${HOST:="$(uname -n)"}
 : ${LOGNAME:="$(logname)"}  # for Windows shell
-: ${COLUMNS:=80}  # for sh
-[ $(id -u) = 0 ] && : ${PROMPT_MARK:='#'} || : ${PROMPT_MARK:='$'}
-PROMPT_NAME="$LOGNAME@$HOST:"
+: ${COLUMNS:=80}            # for sh
+
+CWD='$(pwd | sed s@$HOME@~@)'
+USERNAME="$(id -nu)"
+HOST="$(uname -n)"
+[ $(id -u) = 0 ] && PROMPT_SIGN='#' || PROMPT_SIGN='$'
+PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
+PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
 
 PS1="\$([ \$((COLUMNS - \$(echo \"$PROMPT_NAME\$PWD\" | wc -m))) -lt 15 ] &&
-	printf '$PURPLE$PROMPT_NAME$RED'\"$pwd\"'\n$PURPLE$PROMPT_MARK $CLEAR' ||
-	printf '$PURPLE$PROMPT_NAME$RED'\"$pwd\"'''$PURPLE$PROMPT_MARK $CLEAR' )"
+	printf '$PROMPT_NAME'\"$CWD\"'\n$PROMPT_MARK' ||
+	printf '$PROMPT_NAME'\"$CWD\"'''$PROMPT_MARK' )"
 
 ## TODO: enable posix compatible
 ## terminal title
 case "${TERM}" in
-  ?term*|rxvt*|screen*) PROMPT_COMMAND='echo -ne "\033]0;$0@${HOSTNAME:=$(hostname)}: ${PWD/$HOME/"~"}\007"';;
+	?term*|rxvt*|screen*)
+		PROMPT_COMMAND='printf "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"';;
 esac
 
 ## Environmental variables
@@ -50,7 +54,7 @@ if [ -z "${-##*i*}" ]; then
 	# export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
 	# export CPATH="/usr/local/include:/usr/include:$CPATH"
 
-	### local install path
+	### Local installation path
 	LOCAL="$HOME/.local"
 	export PATH="$LOCAL/bin:$PATH"
 	export LD_LIBRARY_PATH="$LOCAL/lib:$LD_LIBRARY_PATH"

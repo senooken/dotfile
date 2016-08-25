@@ -408,6 +408,7 @@ blockquote p {
 /** Description element */
 dt {
   font-weight: bold;
+  font-family: sans-serif;
   padding-left: 0.5em;
 }
 dt, dd {
