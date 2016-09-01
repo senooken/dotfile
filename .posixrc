@@ -202,9 +202,13 @@ cmd="pkg-config --silence-errors --cflags --libs gtk+-3.0"
 [ "$(command -v pkg-config)" ] && [ "$(eval $cmd)" ] && GTK="$(eval $cmd)"
 
 ## grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
-GREP_OPTIONS="--color=auto -I --exclude-dir={.,..,.git,.svn,obj}"
+GREP_VERSION=$(grep -V | head -n 1 | sed -e 's/[^0-9.]//g' -e 's/\.[0-9]$//')
+GREP_OPTIONS="--color=auto -I"
+if [ "$(echo $GREP_VERSION > 2.5 | bc)" = 1 ]; then  #  v2.5.2 or later
+	GREP_OPTIONS="${GREP_OPTIONS} --exclude-dir={.,..,.git,.svn,obj}"
+fi
 GREP_OPTIONS="${GREP_OPTIONS} --exclude={tags,GTAGS,GRTAGS,GPATH}"
-alias   grep="grep ${GREP_OPTIONS}"
+alias grep="grep ${GREP_OPTIONS}"
 
 : ${MYSHELL:=$(command -v zsh )}
 : ${MYSHELL:=$(command -v bash)}
@@ -212,4 +216,3 @@ alias   grep="grep ${GREP_OPTIONS}"
 MYTERM=$([ -z "${TERM##*256*}" ] && echo screen-256color || echo screen)
 alias screen="screen -T $MYTERM -s $MYSHELL"
 alias tmux="SHELL=$MYSHELL tmux"
-

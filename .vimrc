@@ -542,23 +542,28 @@ set statusline+=%=\ %4l/%4L\|%3v\|%4P  " current position information
 "" Statusline color
 highlight StatusLine cterm=bold ctermfg=White ctermbg=DarkBlue
 highlight StatusLine   gui=bold   guifg=White   guibg=DarkBlue
-autocmd ColorScheme * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkBlue
-autocmd ColorScheme * hi StatusLine   gui=bold   guifg=White   guibg=DarkBlue
-autocmd InsertEnter * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkGreen
-autocmd InsertEnter * hi StatusLine   gui=bold   guifg=White   guibg=DarkGreen
-autocmd InsertLeave * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkBlue
-autocmd InsertLeave * hi StatusLine   gui=bold   guifg=White   guibg=DarkBlue
+
+if exists('##ColorScheme')
+  autocmd ColorScheme * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkBlue
+  autocmd ColorScheme * hi StatusLine   gui=bold   guifg=White   guibg=DarkBlue
+  autocmd InsertEnter * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkGreen
+  autocmd InsertEnter * hi StatusLine   gui=bold   guifg=White   guibg=DarkGreen
+  autocmd InsertLeave * hi StatusLine cterm=bold ctermfg=White ctermbg=DarkBlue
+  autocmd InsertLeave * hi StatusLine   gui=bold   guifg=White   guibg=DarkBlue
+endif
 
 "" highglight 80 times column
 if exists('+colorcolumn')
-  let &colorcolumn = join(range(80,400,80), ",")
+  let &colorcolumn = '80,160,240,320,400'  " join(range(80,400,80), ',')
   highlight ColorColumn ctermbg=LightRed guibg=LightRed
 endif
 
 "" highlight cursorline
 " set cursorcolumn
-set cursorline  " hightlight cursor line
-highlight CursorLine cterm=NONE ctermbg=LightCyan guibg=LightCyan
+if exists('+cursorline')
+  set cursorline  " hightlight cursor line
+  highlight CursorLine cterm=NONE ctermbg=LightCyan guibg=LightCyan
+endif
 
 " 編集、文書整形関連
 " tabが挿入されるとときにshiftwidthを使う
@@ -580,8 +585,11 @@ set noswapfile
 " set directory=~/.vim/tmp
 set nobackup
 set backupdir=~/.vim/tmp
-set noundofile
-set undodir=~/.vim/tmp
+
+if has('persistent_undo')
+  set noundofile
+  set undodir=~/.vim/tmp
+endif
 
 "" File
 set autoread  " 更新時自動読み込み
@@ -699,13 +707,16 @@ augroup vimrcEx
 augroup END
 
 "" cd editting file directory.
-autocmd BufEnter * lcd `=expand("%:p:h")`
+autocmd BufEnter * lcd %:p:h
 
 set nrformats=   " deal as decimal for number
 
 "" show special character
-set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
-" set listchars=tab:>\ ,trail:_,extends:),precedes:(,nbsp:%
+if v:version > 700
+  set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
+else
+  set listchars=tab:>-,trail:_,extends:),precedes:(
+endif
 set list
 
 "" 折り返し
@@ -769,32 +780,34 @@ augroup END
 
 
 "" QuickFix
-autocmd QuickfixCmdPost [^l]* tab cwindow
-nnoremap [q :cprevious<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
+if exists('##QuickfixCmdPre')
+  autocmd QuickfixCmdPost [^l]* tab cwindow
+  nnoremap [q :cprevious<CR>
+  nnoremap ]q :cnext<CR>
+  nnoremap [Q :cfirst<CR>
+  nnoremap ]Q :clast<CR>
 
-"" Location list
-autocmd QuickfixCmdPre  l* tabnew
-autocmd QuickfixCmdPost l* lwindow
-nnoremap [l :lprevious<CR>
-nnoremap ]l :lnext<CR>
-nnoremap [L :lfirst<CR>
-nnoremap ]L :llast<CR>
+  "" Location list
+  autocmd QuickfixCmdPre  l* tabnew
+  autocmd QuickfixCmdPost l* lwindow
+  nnoremap [l :lprevious<CR>
+  nnoremap ]l :lnext<CR>
+  nnoremap [L :lfirst<CR>
+  nnoremap ]L :llast<CR>
 
-"" vim grep
-""" ignored files in vimgrep
-let s:ignore_list  = ',.git/**,.svn/**,obj/**'
-let s:ignore_list .= ',tags,GTAGS,GRTAGS,GPATH'
-let s:ignore_list .= ',*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak'
-let s:ignore_list .= ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.lzh,*.deb,*.rpm,*.iso'
-let s:ignore_list .= ',*.png,*.jp*,*.gif,*.tif*,*.bmp,*.mp*'
-" let s:ignore_list .= ',*.pdf,*.od*,*.doc*,*.xls*,*.ppt*'
+  "" vim grep
+  """ ignored files in vimgrep
+  let s:ignore_list  = ',.git/**,.svn/**,obj/**'
+  let s:ignore_list .= ',tags,GTAGS,GRTAGS,GPATH'
+  let s:ignore_list .= ',*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak'
+  let s:ignore_list .= ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.lzh,*.deb,*.rpm,*.iso'
+  let s:ignore_list .= ',*.png,*.jp*,*.gif,*.tif*,*.bmp,*.mp*'
+  " let s:ignore_list .= ',*.pdf,*.od*,*.doc*,*.xls*,*.ppt*'
 
-if exists('+wildignore')
-  autocmd QuickFixCmdPre  * execute 'setlocal wildignore+=' . s:ignore_list
-  autocmd QuickFixCmdPost * execute 'setlocal wildignore-=' . s:ignore_list
+  if exists('+wildignore')
+    autocmd QuickFixCmdPre  * execute 'setlocal wildignore+=' . s:ignore_list
+    autocmd QuickFixCmdPost * execute 'setlocal wildignore-=' . s:ignore_list
+  endif
 endif
 
 if executable('grep')
