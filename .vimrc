@@ -24,7 +24,7 @@ if s:IS_WINDOWS | set termencoding=cp932 | endif
 set ambiwidth=double " 全角記号をきちんと表示
 
 if exists('+fixendofline')  " version 7.4.785+
-  set nofixendofline
+  autocmd BufWritePre * set nofixendofline
 endif
 
 " Fix 'fileencoding' to use 'encoding'
