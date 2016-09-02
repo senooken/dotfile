@@ -36,7 +36,7 @@ HOST="$(uname -n)"
 PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
 PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
 
-PS1="\$([ \$((COLUMNS - \$(echo \"$PROMPT_NAME\$PWD\" | wc -m))) -lt 15 ] &&
+PS1="\$([ \$((COLUMNS - \$(echo \"$USERNAME@$HOST:$CWD$\" | wc -m))) -le 15 ] &&
 	printf '$PROMPT_NAME'\"$CWD\"'\n$PROMPT_MARK' ||
 	printf '$PROMPT_NAME'\"$CWD\"'''$PROMPT_MARK' )"
 
@@ -202,12 +202,14 @@ cmd="pkg-config --silence-errors --cflags --libs gtk+-3.0"
 [ "$(command -v pkg-config)" ] && [ "$(eval $cmd)" ] && GTK="$(eval $cmd)"
 
 ## grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
-GREP_VERSION=$(grep -V | head -n 1 | sed -e 's/[^0-9.]//g' -e 's/\.[0-9]$//')
-GREP_OPTIONS="--color=auto -I"
-if [ "$(echo $GREP_VERSION > 2.5 | bc)" = 1 ]; then  #  v2.5.2 or later
+# GREP_VERSION=$(grep -V | head -n 1 | sed -e 's/[^0-9.]//g' -e 's/\.[0-9]$//')
+GREP_VERSION=$(grep -V | grep -om 1 '[0-9].*$' |
+               sed -e 's/\.\([0-9]*\)\.[0-9]*/\1/' -e 's/\.//')
+
+GREP_OPTIONS="--color=auto -I --exclude={tags,GTAGS,GRTAGS,GPATH}"
+if [ "$GREP_VERSION" -gt 25 ]; then  #  v2.5.2 or later
 	GREP_OPTIONS="${GREP_OPTIONS} --exclude-dir={.,..,.git,.svn,obj}"
 fi
-GREP_OPTIONS="${GREP_OPTIONS} --exclude={tags,GTAGS,GRTAGS,GPATH}"
 alias grep="grep ${GREP_OPTIONS}"
 
 : ${MYSHELL:=$(command -v zsh )}

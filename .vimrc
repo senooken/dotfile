@@ -7,11 +7,11 @@ let s:FALSE = 0
 let s:TRUE = !s:FALSE
 
 "" platform
-let s:is_windows = has('win64') || has('win32')   || has('win16')
-let s:is_cygwin  = has('win32unix')
-let s:is_mac     = has('mac')   || has('macunix') || has('gui_macvim')
-let s:is_linux   = has('unix')  && !s:is_mac      && !s:is_cygwin
-let s:is_windows_7 = s:is_windows && system('VER') =~# 'Version 6.1'
+let s:IS_WINDOWS = has('win64') || has('win32')   || has('win16')
+let s:IS_CYGWIN  = has('win32unix')
+let s:IS_MAC     = has('mac')   || has('macunix') || has('gui_macvim')
+let s:IS_LINUX   = has('unix')  && !s:IS_MAC      && !s:IS_CYGWIN
+let s:IS_WINDOWS_7 = s:IS_WINDOWS && system('VER') =~# 'Version 6.1'
 
 "" Charset, Line ending
 set encoding=utf-8
@@ -19,7 +19,7 @@ set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932,utf-16le,utf-16
 set fileformats=unix,dos,mac
 
 "" Windowsのコマンドプロンプトの日本語文字化け対策
-if s:is_windows | set termencoding=cp932 | endif
+if s:IS_WINDOWS | set termencoding=cp932 | endif
 
 set ambiwidth=double " 全角記号をきちんと表示
 
@@ -43,7 +43,9 @@ autocmd BufWritePre *
   \ | endif
 
 if has('vim_starting')
-  if s:is_windows | set runtimepath+=~/.vim/after/ | endif
+  if s:IS_WINDOWS
+    set runtimepath+=~/.vim/after/
+  endif
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
@@ -523,7 +525,7 @@ endif
 "" Base color
 syntax enable
 "" In Windows 7, cmd.exe black color cannot work.
-if s:is_windows_7
+if s:IS_WINDOWS_7
   highlight StatusLine ctermfg=DarkBlue  " for black color
 endif
 
@@ -606,7 +608,7 @@ autocmd BufWritePost * :call s:Add_execmod()
 function! s:Add_execmod()
   let s:line = getline(1)
   if strpart(s:line, 0, 2) == '#!' || strpart(s:line, 0) == '[Desktop Entry]'
-    if s:is_windows
+    if s:IS_WINDOWS
       call system('icacls '   . expand('%') . ' /grant ' . $USERNAME . ':(X)')
     else
       call system('chmod +x ' . expand('%'))
@@ -614,7 +616,7 @@ function! s:Add_execmod()
   endif
 endfunction
 
-if s:is_windows
+if s:IS_WINDOWS
   set shell=cmd
   set shellcmdflag=/c
 endif
@@ -712,7 +714,7 @@ autocmd BufEnter * lcd %:p:h
 set nrformats=   " deal as decimal for number
 
 "" show special character
-if v:version > 700
+if v:version >= 700
   set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
 else
   set listchars=tab:>-,trail:_,extends:),precedes:(
@@ -797,11 +799,12 @@ if exists('##QuickfixCmdPre')
 
   "" vim grep
   """ ignored files in vimgrep
-  let s:ignore_list  = ',.git/**,.svn/**,obj/**'
-  let s:ignore_list .= ',tags,GTAGS,GRTAGS,GPATH'
-  let s:ignore_list .= ',*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.a,*.out,*.jar,*.pak'
-  let s:ignore_list .= ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.lzh,*.deb,*.rpm,*.iso'
-  let s:ignore_list .= ',*.png,*.jp*,*.gif,*.tif*,*.bmp,*.mp*'
+  let s:ignore_list = ',.git/**,.svn/**,obj/**'
+  let s:ignore_list = s:ignore_list . ',tags,GTAGS,GRTAGS,GPATH'
+  let s:ignore_list = s:ignore_list . ',*.o,*.obj,*.exe,*.dll,*.bin,*.so'
+  let s:ignore_list = s:ignore_list . ',*.a,*.out,*.jar,*.pak,*.deb,*.rpm,*.iso'
+  let s:ignore_list = s:ignore_list . ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.lzh'
+  let s:ignore_list = s:ignore_list . ',*.png,*.jp*,*.gif,*.tif*,*.bmp,*.mp*'
   " let s:ignore_list .= ',*.pdf,*.od*,*.doc*,*.xls*,*.ppt*'
 
   if exists('+wildignore')
@@ -817,7 +820,9 @@ else
 endif
 
 "" tags
-if has('path_extra') | set tags+=tags; | endif
+if has('path_extra')
+  set tags+=tags;
+endif
 
 nnoremap [t :tprevious<CR>
 nnoremap ]t :tnext<CR>
