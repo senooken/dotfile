@@ -26,12 +26,12 @@ do
 	eval "${color}=${enclose_open}\$${color}${enclose_close}"
 done
 
-: ${LOGNAME:="$(logname)"}  # for Windows shell
+: ${LOGNAME:=$(logname)}  # for Windows shell
 : ${COLUMNS:=80}            # for sh
 
 CWD='$(pwd | sed s@$HOME@~@)'
-USERNAME="$(id -nu)"
-HOST="$(uname -n)"
+USERNAME=$(id -nu)
+HOST=$(uname -n)
 [ $(id -u) = 0 ] && PROMPT_SIGN='#' || PROMPT_SIGN='$'
 PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
 PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
@@ -42,14 +42,13 @@ PS1="\$([ \$((COLUMNS - \$(echo \"$USERNAME@$HOST:$CWD$\" | wc -m))) -le 15 ] &&
 
 ## TODO: enable posix compatible
 ## terminal title
-case "${TERM}" in
-	?term*|rxvt*|screen*)
-		PROMPT_COMMAND='printf "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"';;
+case "$TERM" in ?term*|rxvt*|screen*)
+	PROMPT_COMMAND='printf "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"'
 esac
 
 ## Environmental variables
 ### Interactive shell local development PATH
-if [ -z "${-##*i*}" ]; then
+case "$-" in *i*)
 	### system path
 	# export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
 	# export CPATH="/usr/local/include:/usr/include:$CPATH"
@@ -67,9 +66,10 @@ if [ -z "${-##*i*}" ]; then
 	export GEM_HOME="$LOCAL"       # ruby gem
 
 	export PYTHONUSERBASE="$LOCAL" # python pip
-	if [ "$(command -v python3)" ]; then
+	if command -v python3 >&-; then
 		: ${PYTHONVERSION:=$(python3 -V 2>&1 | grep -E -o '[0-9]+\.[0-9]+')}
 	fi
+
 
 	### locale
 	export LANG='ja_JP.UTF-8'
@@ -79,16 +79,16 @@ if [ -z "${-##*i*}" ]; then
 
 	## invalid stty keybind
 	# stty start undef
-fi
+esac
 
-export DISPLAY=${DISPLAY:-:0}  # if DISPLAY is none, then set.
-export HOME=${HOME:-~}         # for MSYS
+: ${DISPLAY:=:0}  # if DISPLAY is none, then set.
+: ${HOME:=~}      # for MSYS
 
-### WIndows shell
-export CYGWIN="nodosfilewarning winsymlinks:nativestrict"
-export MSYS="winsymlinks:nativestrict"
+### Windows shell
+export CYGWIN='nodosfilewarning winsymlinks:nativestrict'
+export MSYS='winsymlinks:nativestrict'
 
-### for wine
+### For wine
 export WINEARCH='win32'
 export WINEPREFIX="$HOME/.wine32"
 
@@ -96,10 +96,10 @@ export WINEPREFIX="$HOME/.wine32"
 export DEBFULLNAME='Ken SENOO'
 export DEBEMAIL='mslamsh20131029@outlook.jp'
 
-### for unzip encoding
-if [ -f /etc/os-release ] && grep -q -i 'debian' /etc/os-release; then
-	export UNZIP="-O cp932"
-	export ZIPINFO="-O cp932"
+### For unzip encoding
+if grep -sq 'debian' /etc/os-release; then
+	export UNZIP='-O cp932'
+	export ZIPINFO='-O cp932'
 fi
 
 
@@ -109,7 +109,7 @@ fi
 [ -n "$ZSH_NAME" ] && setopt aliases
 
 ### Windows character encoding convert
-if [ "${OS}" = "Windows_NT" ]; then
+if [ "$OS" = "Windows_NT" ]; then
 	wincmd(){
 	  CMD=$1
 	  shift
@@ -121,54 +121,54 @@ if [ "${OS}" = "Windows_NT" ]; then
 	alias netsh='wincmd netsh'
 	alias taskkill='wincmd taskkill'
 	alias reg='wincmd reg'
-	alias cs="wincmd cscript.exe -NoLogo"
-	alias ws="wincmd wscript.exe -NoLogo"
-	alias choco="wincmd choco"
+	alias cs='wincmd cscript.exe -NoLogo'
+	alias ws='wincmd wscript.exe -NoLogo'
+	alias choco='wincmd choco'
 else
-	alias cs="wine cscript.exe -NoLogo"
-	alias ws="wine wscript.exe -NoLogo"
+	alias cs='wine cscript.exe -NoLogo'
+	alias ws='wine wscript.exe -NoLogo'
 fi
 
 ### ls
-alias ls="ls -AFh --color=auto"
+alias ls='ls -AFh --color=auto'
 alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
-alias l="ls"
+alias l='ls'
 [ -f ~/.dir_colors ] && eval "$(dircolors ~/.dir_colors)"
 
 ### Default to human readable figures
 alias df='df -h'
 alias du='du -h'
-alias ps="ps w"
+alias ps='ps w'
 
 ### Git
-alias gic="git commit -am"
-alias gia="git add"
-alias gim="git mv"
-alias gis="git status"
-alias glone="git clone"
+alias gic='git commit -am'
+alias gia='git add'
+alias gim='git mv'
+alias gis='git status'
+alias glone='git clone'
 
 ### Pager
-export PAGER="less"
-[ "$(command -v lv)" ] && export PAGER='lv'
-export LV="-c -l"
-export LESS="-imR"
-alias info="info --vi-keys"
+export PAGER='less'
+command -v lv >&- && export PAGER='lv'
+export LV='-c -l'
+export LESS='-imR'
+alias info='info --vi-keys'
 
 
 ### open
-alias o="open"
+alias o='open'
 case "${OSTYPE}" in
-	freebsd*|darwin*) alias o="open" ;;
-	linux*)           alias open="xdg-open" ;; # alias open="gnome-open";;
-	cygwin*)          alias open="cygstart" ;;
-	msys*)            alias open="start";;
+	freebsd*|darwin*) alias o='open' ;;
+	linux*)           alias open='xdg-open' ;; # alias open="gnome-open";;
+	cygwin*)          alias open='cygstart' ;;
+	msys*)            alias open='start';;
 esac
 
 #### Copy to clipboard
-[ "$(command -v clip)"    ] && alias clip="iconv -s -f UTF-8 -t cp932 | clip" # MSYS (Windows)
-[ "$(command -v xsel)"    ] && alias clip="xsel -ib" # Linux
-[ "$(command -v putclip)" ] && alias clip="putclip" # Cygwin
-[ "$(command -v pbcopy)"  ] && alias clip="pbcopy" # Mac
+command -v clip    >&- && alias clip='iconv -s -f UTF-8 -t cp932 | clip' # MSYS (Windows)
+command -v xsel    >&- && alias clip='xsel -ib' # Linux
+command -v putclip >&- && alias clip='putclip' # Cygwin
+command -v pbcopy  >&- && alias clip='pbcopy' # Mac
 
 ### development
 alias py='python3'
@@ -182,31 +182,33 @@ alias gp='g++ -Wall -Wextra -pedantic -std=c++1y'
 alias gc='gcc -Wall -Wextra -pedantic -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
 
-[ "$(command -v xstow)" ] && alias stow='xstow'
+command -v xstow >&- && alias stow='xstow'
+
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
-[ "$(command -v vim)" ] && alias vi='vim'
-alias vim="vim -X"
-[ "$(command -v vim)" ] && export EDITOR='vim'
+if command -v vim >&-; then
+	alias vi='vim'
+	alias vim='vim -X'
+	export EDITOR='vim'
+fi
 # export SVN_EDITOR=$EDITOR
 
-alias now="date +%Y%m%dT%H%M%S"
+alias now='date +%Y%m%dT%H%M%S'
 
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
-# [ "$(command -v wx-config)" ] && WXCONFIG="$(wx-config --cppflags --libs | tr \"\n\" ' ')" # wxwidgetsのコンパイルフラグ
-LIBCPP="-static-libgcc -static-libstdc++"
-
-cmd="pkg-config --silence-errors --cflags --libs gtk+-3.0"
-[ "$(command -v pkg-config)" ] && [ "$(eval $cmd)" ] && GTK="$(eval $cmd)"
+# command -v wx-config >&-  && WXCONFIG="$(wx-config --cppflags --libs | tr \"\n\" ' ')" # wxwidgetsのコンパイルフラグ
+WXCONFIG=$(command -v wx-config >&- && wx-config --cppflags --libs 2>&-)
+GTK=$(command -v pkg-config >&- && pkg-config --cflags --libs gtk+-3.0 2>&-)
+LIBCPP='-static-libgcc -static-libstdc++'
 
 ## grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
 # GREP_VERSION=$(grep -V | head -n 1 | sed -e 's/[^0-9.]//g' -e 's/\.[0-9]$//')
 GREP_VERSION=$(grep -V | grep -om 1 '[0-9].*$' |
                sed -e 's/\.\([0-9]*\)\.[0-9]*/\1/' -e 's/\.//')
 
-GREP_OPTIONS="--color=auto -I --exclude={tags,GTAGS,GRTAGS,GPATH}"
+GREP_OPTIONS='--color=auto -I --exclude={tags,GTAGS,GRTAGS,GPATH}'
 if [ "$GREP_VERSION" -gt 25 ]; then  #  v2.5.2 or later
 	GREP_OPTIONS="${GREP_OPTIONS} --exclude-dir={.,..,.git,.svn,obj}"
 fi

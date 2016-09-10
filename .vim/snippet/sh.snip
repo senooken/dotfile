@@ -8,18 +8,18 @@ snippet     script_dir
 abbr        script_dir
 	script_dir="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 	
-snippet     if-command-[]
-	[ "$(command -v ${1:cmd})" ] && ${2}
+snippet     if-command-inline
+	command -v ${1:cmd} >&- && ${2}
 	
-snippet     if-command-fi
+snippet     if-command-block
 options     head
-	if [ "$(command -v ${1:cmd})" ]; then
+	if command -v ${1:cmd} >&-; then
 		${2}
 	fi
 	
 snippet     if-command-else
 options     head
-	if [ "$(command -v ${1:cmd})" ]; then
+	if command -v ${1:cmd} >&-; then
 		${2}
 	else
 		${3}
