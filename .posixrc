@@ -8,17 +8,17 @@
 ## \brief POSIX compatible shell configure
 
 ## Prompt
-PURPLE="\033[35m"
-RED="\033[31m"
-CLEAR="\033[m"
+PURPLE='\033[35m'
+RED='\033[31m'
+CLEAR='\033[m'
 
 if [ -n "$BASH" ]; then
-	enclose_open="\\\["
-	enclose_close="\\\]"
+	enclose_open='\\\['
+	enclose_close='\\\]'
 	pwd="\w"
 elif [ -n "$ZSH_NAME" ]; then
-	enclose_open="%%{"
-	enclose_close="%%}"
+	enclose_open='%%{'
+	enclose_close='%%}'
 fi
 
 for color in PURPLE RED CLEAR
@@ -49,35 +49,43 @@ esac
 ## Environmental variables
 ### Interactive shell local development PATH
 case "$-" in *i*)
-	### system path
-	# export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
-	# export CPATH="/usr/local/include:/usr/include:$CPATH"
+	### System path
+	[ -n "${PATH##*sbin*}" ] &&
+		export PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
+	# [ -n "${LD_LIBRARY_PATH##*lib*}" ] &&
+	# 	export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
+	# [ -n "${CPATH##*include*}" ] &&
+	# 	export CPATH="/usr/local/include:/usr/include:$CPATH"
+	# [ -n "${MANPATH##*man*}" ] &&
+	# 	export MANPATH="/usr/local/share/man:/usr/share/man:$MANPATH"
+	# [ -n "${INFOPATH##*info*}" ] &&
+	# 	export INFOPATH="/usr/local/share/info:/usr/share/info:$INFOPATH"
+	# [ -n "${PKG_CONFIG_PATH##*pkgconfig*}" ] &&
+	# 	export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 	### Local installation path
 	LOCAL="$HOME/.local"
-	export PATH="$LOCAL/bin:$PATH"
-	export LD_LIBRARY_PATH="$LOCAL/lib:$LD_LIBRARY_PATH"
-	export CPATH="$LOCAL/include:$CPATH"
-	export MANPATH="$LOCAL/man:$LOCAL/share/man:$MANPATH"
-	export INFOPATH="$LOCAL/info:$LOCAL/share/info:$INFOPATH"
+	case "$PATH" in "$LOCAL");; *)
+		export PATH="$LOCAL/bin:$PATH"
+		export LD_LIBRARY_PATH="$LOCAL/lib:$LD_LIBRARY_PATH"
+		export CPATH="$LOCAL/include:$CPATH"
+		export MANPATH="$LOCAL/share/man:$MANPATH"
+		export INFOPATH="$LOCAL/share/info:$INFOPATH"
+		export PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
-	export PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:${PKG_CONFIG_PATH}"
-
-	export GEM_HOME="$LOCAL"       # ruby gem
-
-	export PYTHONUSERBASE="$LOCAL" # python pip
-	if command -v python3 >&-; then
+		export GEM_HOME="$LOCAL"       # ruby gem
+		export PYTHONUSERBASE="$LOCAL" # python pip
 		: ${PYTHONVERSION:=$(python3 -V 2>&1 | grep -E -o '[0-9]+\.[0-9]+')}
-	fi
+	esac
 
 
-	### locale
+	### Locale
 	export LANG='ja_JP.UTF-8'
 	export LANGUAGE='en'
 	export LC_TIME='en_US.UTF-8'
 	export LC_MESSAGES='en_US.UTF-8'
 
-	## invalid stty keybind
+	## Invalid stty keybind
 	# stty start undef
 esac
 
@@ -92,7 +100,7 @@ export MSYS='winsymlinks:nativestrict'
 export WINEARCH='win32'
 export WINEPREFIX="$HOME/.wine32"
 
-### for .deb package
+### For .deb package
 export DEBFULLNAME='Ken SENOO'
 export DEBEMAIL='mslamsh20131029@outlook.jp'
 
@@ -104,7 +112,7 @@ fi
 
 
 ## Alias
-### enable alias in non-interactive shell
+### Enable alias in non-interactive shell
 [ -n "$BASH"     ] && shopt -s expand_aliases
 [ -n "$ZSH_NAME" ] && setopt aliases
 
@@ -155,7 +163,7 @@ export LESS='-imR'
 alias info='info --vi-keys'
 
 
-### open
+### Open
 alias o='open'
 case "${OSTYPE}" in
 	freebsd*|darwin*) alias o='open' ;;
@@ -165,7 +173,7 @@ case "${OSTYPE}" in
 esac
 
 #### Copy to clipboard
-command -v clip    >&- && alias clip='iconv -s -f UTF-8 -t cp932 | clip' # MSYS (Windows)
+command -v clip    >&- && alias clip='iconv -s -f UTF-8 -t CP932 | clip' # MSYS (Windows)
 command -v xsel    >&- && alias clip='xsel -ib' # Linux
 command -v putclip >&- && alias clip='putclip' # Cygwin
 command -v pbcopy  >&- && alias clip='pbcopy' # Mac
@@ -198,25 +206,27 @@ fi
 alias now='date +%Y%m%dT%H%M%S'
 
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
-# command -v wx-config >&-  && WXCONFIG="$(wx-config --cppflags --libs | tr \"\n\" ' ')" # wxwidgetsのコンパイルフラグ
-WXCONFIG=$(command -v wx-config >&- && wx-config --cppflags --libs 2>&-)
-GTK=$(command -v pkg-config >&- && pkg-config --cflags --libs gtk+-3.0 2>&-)
+# WXCONFIG=$(wx-config --cppflags --libs 2>&- | tr \"\n\" ' ') # wxwidgetsのコンパイルフラグ
+WXCONFIG=$(wx-config --cppflags --libs 2>&-)
+GTKCONFIG=$(pkg-config --cflags --libs gtk+-3.0 2>&-)
 LIBCPP='-static-libgcc -static-libstdc++'
 
 ## grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
-# GREP_VERSION=$(grep -V | head -n 1 | sed -e 's/[^0-9.]//g' -e 's/\.[0-9]$//')
-GREP_VERSION=$(grep -V | grep -om 1 '[0-9].*$' |
-               sed -e 's/\.\([0-9]*\)\.[0-9]*/\1/' -e 's/\.//')
-
 GREP_OPTIONS='--color=auto -I --exclude={tags,GTAGS,GRTAGS,GPATH}'
+GREP_VERSION=$(grep -V | sed -n '1s/[^0-9]*\([0-9]*\)\.\([0-9]*\).*/\1\2/p')
 if [ "$GREP_VERSION" -gt 25 ]; then  #  v2.5.2 or later
 	GREP_OPTIONS="${GREP_OPTIONS} --exclude-dir={.,..,.git,.svn,obj}"
 fi
 alias grep="grep ${GREP_OPTIONS}"
 
-: ${MYSHELL:=$(command -v zsh )}
-: ${MYSHELL:=$(command -v bash)}
+: ${SCREEN_SHELL:=$(command -v zsh )}
+: ${SCREEN_SHELL:=$(command -v bash)}
 
-MYTERM=$([ -z "${TERM##*256*}" ] && echo screen-256color || echo screen)
-alias screen="screen -T $MYTERM -s $MYSHELL"
-alias tmux="SHELL=$MYSHELL tmux"
+## For not having screen-256color, but having xterm-256color support.
+case "$(toe -a 2>&-)" in
+	*screen-256color*) SCREEN_TERM='screen-256color';;
+	                *) SCREEN_TERM="$TERM"          ;;
+esac
+
+alias screen="screen -T $SCREEN_TERM -s $SCREEN_SHELL"
+alias tmux="SHELL=$SCREE_SHELL tmux"
