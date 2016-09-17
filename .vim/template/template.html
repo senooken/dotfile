@@ -229,7 +229,8 @@ section>section>section>section>section>section>h4:first-of-type,
 section>section>section>section>section>section>h5:first-of-type,
 section>section>section>section>section>section>h6:first-of-type
 {
-  counter-increment: heading6;
+  /* 使っていなくてもheading7をリセットしないとheading6が増えないっぽい */
+  counter-increment: heading6; counter-reset: heading7;
   font-size: 1.17em;
 }
 section>section>section>section>section>section>h1:first-of-type::before,
@@ -332,6 +333,8 @@ h1, h2, h3, h4, h5, h6 {
   /* orange */
   /* background-color: rgb(100%,80%,0%); */
   background-color: #e6e6ff;
+  margin-top: 0em;
+  margin-bottom: 0em;
 }
 em, strong {
   color: red;
@@ -470,21 +473,21 @@ figure>dl>dd:nth-of-type(n+2) {
   border-top-style: dashed;
   border-top-width: thin;
 }
-figure>.column-2 {
+.column-2 {
   width: 45%;
   display: inline-block;
   vertical-align: top;
   margin-left: 1em;
   margin-right: 1em;
 }
-figure>.column-3 {
+.column-3 {
   width: 30%;
   display: inline-block;
   vertical-align: top;
   margin-left: 1em;
   margin-right: 1em;
 }
-figure>.column-4 {
+.column-4 {
   width: 20%;
   display: inline-block;
   vertical-align: top;
