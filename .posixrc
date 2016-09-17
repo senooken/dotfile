@@ -65,7 +65,7 @@ case "$-" in *i*)
 
 	### Local installation path
 	LOCAL="$HOME/.local"
-	case "$PATH" in "$LOCAL");; *)
+	case "$PATH" in *"$LOCAL"*);; *)
 		export PATH="$LOCAL/bin:$PATH"
 		export LD_LIBRARY_PATH="$LOCAL/lib:$LD_LIBRARY_PATH"
 		export CPATH="$LOCAL/include:$CPATH"
@@ -229,4 +229,4 @@ case "$(toe -a 2>&-)" in
 esac
 
 alias screen="screen -T $SCREEN_TERM -s $SCREEN_SHELL"
-alias tmux="SHELL=$SCREE_SHELL tmux"
+alias tmux="SHELL=$SCREEN_SHELL tmux"
