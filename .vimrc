@@ -483,6 +483,7 @@ if s:Neobundled('vim-template')
   autocmd User plugin-template-loaded call s:Template_keywords()
   function! s:Template_keywords()
       silent! %s/<+DATE+>/\=strftime('%Y-%m-%dT%H:%M+09:00')/g
+      silent! 1s/^ ::/::/  " for template.bat
   endfunction
   " テンプレート中に含まれる'<+CURSOR+>'にカーソルを移動
   autocmd User plugin-template-loaded
@@ -582,11 +583,15 @@ set softtabstop=0
 "set noexpandtab
 set textwidth=0 " Prevent auto line break
 
-"" vim auto creating file
-set noswapfile
-" set directory=~/.vim/tmp
+"" Auto creating file
+""" Swap file
+if s:IS_WINDOWS
+  set directory=$TMP//,.
+else
+  set directory=/tmp//,~/tmp//,.
+endif
+
 set nobackup
-set backupdir=~/.vim/tmp
 
 if has('persistent_undo')
   set noundofile
@@ -674,6 +679,9 @@ map! <Esc>OF <End>
 nnoremap <C-h> :<C-u>help<Space>
 " nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR> " search word in help
 
+"" Insert line break by Enter
+autocmd BufEnter * if &modifiable | nnoremap <buffer> <CR> i<CR><ESC> | endif
+
 
 "" move window
 nnoremap <ESC>h <C-w>h
@@ -683,7 +691,7 @@ nnoremap <ESC>l <C-w>l
 
 "" Allow saving of files as sudo
 " cabbrev w!! %!sudo tee > /dev/null %
-cnoremap w!! %!sudo tee > /dev/null %
+cnoremap w!! %!sudo tee >&- %
 
 "" コマンドラインモードでEmacのキー移動
 cnoremap <C-a> <Home>
@@ -829,11 +837,10 @@ nnoremap ]t :tnext<CR>
 nnoremap [T :tfirst<CR>
 nnoremap ]T :tlast<CR>
 
+nnoremap <buffer> <2-LeftMouse> i
+inoremap <buffer> <2-LeftMouse> <ESC>
 
-"" insert line break. In quickfix, disable by qf.vim.
-nnoremap <CR> i<CR><ESC>
-
-"" buffer
+"" Buffer
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
@@ -843,15 +850,14 @@ nnoremap <silent> ]B :blast<CR>
 if has('mouse')
   set mouse=a
   set ttymouse=xterm2
-
-  "" for selection of last character
-  autocmd BufEnter *
-    \  if &modifiable
-    \|   nnoremap <buffer> <2-LeftMouse> i
-    \|   inoremap <buffer> <2-LeftMouse> <ESC>
-    \| endif
 endif
 
+"" For pasting after end of line character
+autocmd BufEnter *
+  \  if &modifiable && has('mouse')
+  \|   nnoremap <buffer> <2-LeftMouse> i
+  \|   inoremap <buffer> <2-LeftMouse> <ESC>
+  \| endif
 
 "" Enable alias for external command
 if filereadable($ENV)

@@ -13,17 +13,16 @@ RED='\033[31m'
 CLEAR='\033[m'
 
 if [ -n "$BASH" ]; then
-	enclose_open='\\\['
-	enclose_close='\\\]'
-	pwd="\w"
+	ENCLOSE_OPEN='\\\['
+	ENCLOSE_CLOSE='\\\]'
 elif [ -n "$ZSH_NAME" ]; then
-	enclose_open='%%{'
-	enclose_close='%%}'
+	ENCLOSE_OPEN='%%{'
+	ENCLOSE_CLOSE='%%}'
 fi
 
 for color in PURPLE RED CLEAR
 do
-	eval "${color}=${enclose_open}\$${color}${enclose_close}"
+	eval "${color}=${ENCLOSE_OPEN}\$${color}${ENCLOSE_CLOSE}"
 done
 
 : ${LOGNAME:=$(logname)}  # for Windows shell
@@ -41,7 +40,7 @@ PS1="\$([ \$((COLUMNS - \$(echo \"$USERNAME@$HOST:$CWD$\" | wc -m))) -le 15 ] &&
 	printf '$PROMPT_NAME'\"$CWD\"'''$PROMPT_MARK' )"
 
 ## TODO: enable posix compatible
-## terminal title
+## Terminal title
 case "$TERM" in ?term*|rxvt*|screen*)
 	PROMPT_COMMAND='printf "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"'
 esac
@@ -50,17 +49,17 @@ esac
 ### Interactive shell local development PATH
 case "$-" in *i*)
 	### System path
-	[ -n "${PATH##*sbin*}" ] &&
+	[ -n "${PATH%%sbin*}" ] &&
 		export PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
-	# [ -n "${LD_LIBRARY_PATH##*lib*}" ] &&
+	# [ -n "${LD_LIBRARY_PATH%%*lib*}" ] &&
 	# 	export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
-	# [ -n "${CPATH##*include*}" ] &&
+	# [ -n "${CPATH%%*include*}" ] &&
 	# 	export CPATH="/usr/local/include:/usr/include:$CPATH"
-	# [ -n "${MANPATH##*man*}" ] &&
+	# [ -n "${MANPATH%%*man*}" ] &&
 	# 	export MANPATH="/usr/local/share/man:/usr/share/man:$MANPATH"
-	# [ -n "${INFOPATH##*info*}" ] &&
+	# [ -n "${INFOPATH%%*info*}" ] &&
 	# 	export INFOPATH="/usr/local/share/info:/usr/share/info:$INFOPATH"
-	# [ -n "${PKG_CONFIG_PATH##*pkgconfig*}" ] &&
+	# [ -n "${PKG_CONFIG_PATH%%*pkgconfig*}" ] &&
 	# 	export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 	### Local installation path
@@ -87,9 +86,9 @@ case "$-" in *i*)
 
 	## Invalid stty keybind
 	# stty start undef
+export DISPLAY="${DISPLAY:-:0}"  # if DISPLAY is none, then set.
 esac
 
-: ${DISPLAY:=:0}  # if DISPLAY is none, then set.
 : ${HOME:=~}      # for MSYS
 
 ### Windows shell
@@ -216,6 +215,8 @@ GREP_OPTIONS='--color=auto -I --exclude={tags,GTAGS,GRTAGS,GPATH}'
 GREP_VERSION=$(grep -V | sed -n '1s/[^0-9]*\([0-9]*\)\.\([0-9]*\).*/\1\2/p')
 if [ "$GREP_VERSION" -gt 25 ]; then  #  v2.5.2 or later
 	GREP_OPTIONS="${GREP_OPTIONS} --exclude-dir={.,..,.git,.svn,obj}"
+else  # --exclude=*dir* option is only available when --exclude-dir disabled
+	GREP_OPTIONS="${GREP_OPTIONS} --exclude={..*,*.git*,*.svn*}"
 fi
 alias grep="grep ${GREP_OPTIONS}"
 
