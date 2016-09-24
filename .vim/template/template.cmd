@@ -4,6 +4,8 @@
 :: \date      first created date: <+DATE+>
 :: \date      last  updated date: 
 
+@echo off
+
 :: Change current directory for network directory
 pushd %~dp0
 

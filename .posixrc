@@ -140,7 +140,11 @@ fi
 alias ls='ls -AFh --color=auto'
 alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l='ls'
-[ -f ~/.dir_colors ] && eval "$(dircolors ~/.dir_colors)"
+
+### ls color
+if command -v dircolors >&-; then
+	[ -f "${d:=~/.dir_colors}" ] && eval $(dircolors "$d") || eval $(dircolors -b)
+fi
 
 ### Default to human readable figures
 alias df='df -h'
