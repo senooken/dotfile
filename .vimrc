@@ -621,11 +621,6 @@ function! s:Add_execmod()
   endif
 endfunction
 
-if s:IS_WINDOWS
-  set shell=cmd
-  set shellcmdflag=/c
-endif
-
 "" open browser by double click
 "function! Browser () 
 "    let line = getline (".") 
