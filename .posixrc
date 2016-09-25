@@ -143,7 +143,7 @@ alias l='ls'
 
 ### ls color
 if command -v dircolors >&-; then
-	[ -f "${d:=~/.dir_colors}" ] && eval $(dircolors "$d") || eval $(dircolors -b)
+	[ -f "${d:=~/.dir_colors}" ] && eval $(dircolors "$d") || eval $(dircolors)
 fi
 
 ### Default to human readable figures

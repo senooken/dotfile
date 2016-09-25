@@ -323,7 +323,12 @@ th, td {
 }
 
 /** Font */
-p {text-indent: 1em;}
+body {
+  font-family: "TeX Gyre Termes", "FreeSerif", "IPAexMincho", "TakaoExMincho", serif;
+}
+p {
+  text-indent: 1em;
+}
 h1, h2, h3, h4, h5, h6 {
   font-family: "TeX Gyre Heros", "Migu 1P", "TakaoGothic", "VL Gothic", "Yu Gothic", "Meiryo UI", sans-serif;
   font-weight: bold;
