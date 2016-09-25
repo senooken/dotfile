@@ -324,7 +324,7 @@ th, td {
 
 /** Font */
 body {
-  font-family: "TeX Gyre Termes", "FreeSerif", "IPAexMincho", "TakaoExMincho", serif;
+  font-family: "TeX Gyre Heros", "FreeSans", "IPAexGothic", "TakaoExGothic", sans-serif;
 }
 p {
   text-indent: 1em;
