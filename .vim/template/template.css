@@ -13,12 +13,29 @@ caption::before {
   counter-increment: table;
   content: "表" counter(heading1) "." counter(table) " ";
 }
-figcaption::before {
+figure>figcaption::before {
   counter-increment: figure;
   content: "図" counter(heading1) "." counter(figure) " ";
 }
+/* subfigureの開始時だけリセット */
+figure>figure:first-of-type {
+  counter-reset: subfigure;
+}
+/* そのままやると，subfigureの番号が先に登場するのでfigureと番号が不一致 */
+/* だから，subfigure内ではfigureの番号を増加させ，抜けるときに減らす */
+figure>figure>figcaption::before {
+  counter-increment: figure subfigure;
+  counter-reset: subsubfigure;
+  content: "図" counter(heading1) "." counter(figure) "(" counter(subfigure, lower-alpha) ") ";
+}
+/* 増やしたfigureの番号を減らして元に戻す */
+figure>figure figcaption::after {
+  content: "";
+  counter-increment: figure -1;
+}
 
-figure pre~figcaption::before {
+figure pre~figcaption::before,
+figure figcaption:first-child::before {
   counter-increment: listing;
   content: "リスト" counter(heading1) "." counter(listing) " ";
 }
@@ -28,12 +45,14 @@ figure blockquote~figcaption::before {
 
 /* list */
 /* listが見出し設定の後にあると見出し番号がリセットされる? */
-/* ol { counter-reset: enum; } */
-/* ol li { list-style-type: none; } */
-/* ol li::before {                    */
-/* counter-increment: enum;           */
-/* content: counters(enum, ".") ". "; */
-/* }                                  */
+/* ol {                                 */
+/*   counter-reset: enum;               */
+/*   list-style-type: none;             */
+/* }                                    */
+/* li::before {                         */
+/*   counter-increment: enum;           */
+/*   content: counters(enum, ".") ". "; */
+/* }                                    */
 ol {
   counter-reset: enum1;
   padding-left: 1em;
@@ -110,8 +129,7 @@ article>h2:first-of-type,
 article>h3:first-of-type,
 article>h4:first-of-type,
 article>h5:first-of-type,
-article>h6:first-of-type
-{
+article>h6:first-of-type {
   counter-reset: heading1;
   font-size: 2.17em;
 }
@@ -121,9 +139,8 @@ section>h2:first-of-type,
 section>h3:first-of-type,
 section>h4:first-of-type,
 section>h5:first-of-type,
-section>h6:first-of-type
-{
-  counter-increment: heading1; counter-reset: heading2 table figure listing;
+section>h6:first-of-type {
+  counter-increment: heading1; counter-reset: heading2 figure table listing;
   font-size: 2.0em;
 }
 
@@ -132,8 +149,7 @@ section>h2:first-of-type::before,
 section>h3:first-of-type::before,
 section>h4:first-of-type::before,
 section>h5:first-of-type::before,
-section>h6:first-of-type::before
-{
+section>h6:first-of-type::before {
   content: counter(heading1) " ";
 }
 
@@ -142,8 +158,7 @@ section>section>h2:first-of-type,
 section>section>h3:first-of-type,
 section>section>h4:first-of-type,
 section>section>h5:first-of-type,
-section>section>h6:first-of-type
-{
+section>section>h6:first-of-type {
   counter-increment: heading2; counter-reset: heading3;
   font-size: 1.83em;
 }
@@ -152,8 +167,7 @@ section>section>h2:first-of-type::before,
 section>section>h3:first-of-type::before,
 section>section>h4:first-of-type::before,
 section>section>h5:first-of-type::before,
-section>section>h6:first-of-type::before
-{
+section>section>h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) " ";
 }
 
@@ -162,8 +176,7 @@ section>section>section>h2:first-of-type,
 section>section>section>h3:first-of-type,
 section>section>section>h4:first-of-type,
 section>section>section>h5:first-of-type,
-section>section>section>h6:first-of-type
-{
+section>section>section>h6:first-of-type {
   counter-increment: heading3; counter-reset: heading4;
   font-size: 1.67em;
 }
@@ -172,8 +185,7 @@ section>section>section>h2:first-of-type::before,
 section>section>section>h3:first-of-type::before,
 section>section>section>h4:first-of-type::before,
 section>section>section>h5:first-of-type::before,
-section>section>section>h6:first-of-type::before
-{
+section>section>section>h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) " ";
 }
 
@@ -182,8 +194,7 @@ section>section>section>section>h2:first-of-type,
 section>section>section>section>h3:first-of-type,
 section>section>section>section>h4:first-of-type,
 section>section>section>section>h5:first-of-type,
-section>section>section>section>h6:first-of-type
-{
+section>section>section>section>h6:first-of-type {
   counter-increment: heading4; counter-reset: heading5;
   font-size: 1.50em;
 }
@@ -192,8 +203,7 @@ section>section>section>section>h2:first-of-type::before,
 section>section>section>section>h3:first-of-type::before,
 section>section>section>section>h4:first-of-type::before,
 section>section>section>section>h5:first-of-type::before,
-section>section>section>section>h6:first-of-type::before
-{
+section>section>section>section>h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
            counter(heading4) " ";
 }
@@ -203,8 +213,7 @@ section>section>section>section>section>h2:first-of-type,
 section>section>section>section>section>h3:first-of-type,
 section>section>section>section>section>h4:first-of-type,
 section>section>section>section>section>h5:first-of-type,
-section>section>section>section>section>h6:first-of-type
-{
+section>section>section>section>section>h6:first-of-type {
   counter-increment: heading5; counter-reset: heading6;
   font-size: 1.33em;
 }
@@ -213,8 +222,7 @@ section>section>section>section>section>h2:first-of-type::before,
 section>section>section>section>section>h3:first-of-type::before,
 section>section>section>section>section>h4:first-of-type::before,
 section>section>section>section>section>h5:first-of-type::before,
-section>section>section>section>section>h6:first-of-type::before
-{
+section>section>section>section>section>h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
            counter(heading4) "." counter(heading5) " ";
 }
@@ -224,8 +232,7 @@ section>section>section>section>section>section>h2:first-of-type,
 section>section>section>section>section>section>h3:first-of-type,
 section>section>section>section>section>section>h4:first-of-type,
 section>section>section>section>section>section>h5:first-of-type,
-section>section>section>section>section>section>h6:first-of-type
-{
+section>section>section>section>section>section>h6:first-of-type {
   /* 使っていなくてもheading7をリセットしないとheading6が増えないっぽい */
   counter-increment: heading6; counter-reset: heading7;
   font-size: 1.17em;
@@ -235,8 +242,7 @@ section>section>section>section>section>section>h2:first-of-type::before,
 section>section>section>section>section>section>h3:first-of-type::before,
 section>section>section>section>section>section>h4:first-of-type::before,
 section>section>section>section>section>section>h5:first-of-type::before,
-section>section>section>section>section>section>h6:first-of-type::before
-{
+section>section>section>section>section>section>h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
            counter(heading4) "." counter(heading5) "." counter(heading6) " ";
 }
@@ -324,7 +330,7 @@ th, td {
 
 /** Font */
 body {
-  font-family: "TeX Gyre Heros", "FreeSans", "IPAexGothic", "TakaoExGothic", sans-serif;
+  font-family: "TeX Gyre Heros", "FreeSans", "Migu 1P", "TakaoGothic", "VL Gothic", "Yu Gothic", "Meiryo UI", sans-serif;
 }
 p {
   text-indent: 1em;
@@ -478,21 +484,21 @@ figure>dl>dd:nth-of-type(n+2) {
 .column-2 {
   width: 45%;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: bottom;
   margin-left: 1em;
   margin-right: 1em;
 }
 .column-3 {
   width: 30%;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: bottom;
   margin-left: 1em;
   margin-right: 1em;
 }
 .column-4 {
   width: 20%;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: bottom;
   margin-left: 1em;
   margin-right: 1em;
 }

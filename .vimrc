@@ -785,12 +785,14 @@ augroup END
 
 
 "" QuickFix
+""" Quickfix is available from v6.0 at least
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
+
 if exists('##QuickfixCmdPre')
   autocmd QuickfixCmdPost [^l]* tab cwindow
-  nnoremap [q :cprevious<CR>
-  nnoremap ]q :cnext<CR>
-  nnoremap [Q :cfirst<CR>
-  nnoremap ]Q :clast<CR>
 
   "" Location list
   autocmd QuickfixCmdPre  l* tabnew
@@ -800,8 +802,8 @@ if exists('##QuickfixCmdPre')
   nnoremap [L :lfirst<CR>
   nnoremap ]L :llast<CR>
 
-  "" vim grep
-  """ ignored files in vimgrep
+  "" Vim grep
+  """ Ignored files in :vimgrep
   let s:ignore_list = ',.git/**,.svn/**,obj/**'
   let s:ignore_list = s:ignore_list . ',tags,GTAGS,GRTAGS,GPATH'
   let s:ignore_list = s:ignore_list . ',*.o,*.obj,*.exe,*.dll,*.bin,*.so'
@@ -831,9 +833,6 @@ nnoremap [t :tprevious<CR>
 nnoremap ]t :tnext<CR>
 nnoremap [T :tfirst<CR>
 nnoremap ]T :tlast<CR>
-
-nnoremap <buffer> <2-LeftMouse> i
-inoremap <buffer> <2-LeftMouse> <ESC>
 
 "" Buffer
 nnoremap <silent> [b :bprevious<CR>
