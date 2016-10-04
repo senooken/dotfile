@@ -9,19 +9,25 @@ abbr        script_dir
 	script_dir="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 	
 snippet     if-command-inline
-	command -v ${1:cmd} >&- && ${2}
+	[ "$(command -v ${1:cmd})" ] && ${2}
 	
 snippet     if-command-block
 options     head
-	if command -v ${1:cmd} >&-; then
+	if [ "$(command -v ${1:cmd})" ]; then
 		${2}
 	fi
 	
 snippet     if-command-else
 options     head
-	if command -v ${1:cmd} >&-; then
+	if [ "$(command -v ${1:cmd})" ]; then
 		${2}
 	else
 		${3}
 	fi
 	
+snippet if-non-root-user
+options  head
+	if [ $(id -u) != 0 ]; then
+		${1:cmd}
+		exit 1
+	fi

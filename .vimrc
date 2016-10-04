@@ -45,6 +45,9 @@ autocmd BufWritePre *
 if has('vim_starting')
   if s:IS_WINDOWS
     set runtimepath+=~/.vim/after/
+    if exists('+packagepath')
+      set packpath+=~/.vim
+    endif
   endif
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
@@ -138,7 +141,6 @@ if s:is_neobundle_installed
   NeoBundle 'Lokaltog/vim-easymotion' " cursor
 
   call neobundle#end()
-  filetype plugin indent on " valid vim plugin
   " NeoBundleCheck " I'm not prefered checking.
 endif
 
@@ -512,9 +514,9 @@ set history=100 " Command and search history
 
 "" View
 set nonumber   " 行番号を表示/非表示
-set ruler      " show ruler
+set ruler      " Show ruler
 set nolist     " タブや改行を表示しない
-set showcmd    " show inputting command and counting visual mode
+set showcmd    " Show inputting command and counting visual mode
 set showmatch  " 括弧入力時の対応する括弧を表示
 set showmode   " 現在のモードを表示
 
@@ -524,7 +526,9 @@ if has('+extra_search')
 endif
 
 "" Base color
+filetype plugin indent on " valid vim plugin
 syntax enable
+
 "" In Windows 7, cmd.exe black color cannot work.
 if s:IS_WINDOWS_7
   highlight StatusLine ctermfg=DarkBlue  " for black color
@@ -533,11 +537,11 @@ endif
 "" Statusline
 set laststatus=2
 
-set statusline =[%n]%<%f\ %m%r%h%w  " file name
-set statusline+=%<%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " encoding
-set statusline+=[%04B]  " character code
-" set statusline+=[%{mode()}]  " mode
-set statusline+=%=\ %4l/%4L\|%3v\|%4P  " current position information
+set statusline =[%n]%<%f\ %m%r%h%w  " File name
+set statusline+=%<%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " Encoding
+set statusline+=[%04B]  " Character code
+" set statusline+=[%{mode()}]  " Mode
+set statusline+=%=\ %4l/%4L\|%3v\|%4P  " Current position information
 
 "" Tabpage
 " set tabline+=[%n]
@@ -572,6 +576,7 @@ endif
 " tabが挿入されるとときにshiftwidthを使う
 set smarttab
 set expandtab
+"set noexpandtab
 " Tab文字を画面上の見た目で何文字幅にするか設定
 set tabstop=2
 " cindentやautoindent時に挿入されるタブの幅
@@ -580,7 +585,6 @@ set shiftwidth=2
 " この値が0以外の時はtabstopの設定が無効になる
 set softtabstop=0
 " Tab文字を空白に置き換えない
-"set noexpandtab
 set textwidth=0 " Prevent auto line break
 
 "" Auto creating file

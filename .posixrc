@@ -49,20 +49,26 @@ esac
 ### Interactive shell local development PATH
 case "$-" in *i*)
 	### System path
-	[ -n "${PATH%%sbin*}" ] &&
+	case "$PATH" in *sbin*);; *)
 		export PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
-	# [ -n "${LD_LIBRARY_PATH%%*lib*}" ] &&
-	# 	export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
-	# [ -n "${CPATH%%*include*}" ] &&
-	# 	export CPATH="/usr/local/include:/usr/include:$CPATH"
-	# [ -n "${MANPATH%%*man*}" ] &&
-	# 	export MANPATH="/usr/local/share/man:/usr/share/man:$MANPATH"
-	# [ -n "${INFOPATH%%*info*}" ] &&
-	# 	export INFOPATH="/usr/local/share/info:/usr/share/info:$INFOPATH"
-	# [ -n "${PKG_CONFIG_PATH%%*pkgconfig*}" ] &&
-	# 	export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/lib/pkgconfig:${PKG_CONFIG_PATH}"
+	esac
+	case "$LD_LIBRARY_PATH" in *lib*);; *)
+		export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
+	esac
+	case "$CPATH" in *include*);; *)
+		export CPATH="/usr/local/include:/usr/include:$CPATH"
+	esac
+	case "$MANPATH" in *man*);; *)
+		export MANPATH="/usr/local/share/man:/usr/share/man:$MANPATH"
+	esac
+	case "$INFOPATH" in *info*);; *)
+		export INFOPATH="/usr/local/share/info:/usr/share/info:$INFOPATH"
+	esac
+	case "$PKG_CONFIG_PATH" in *pkgconfig*);; *)
+		 PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/lib/pkgconfig:/lib/pkgconfig:${PKG_CONFIG_PATH}"
+	esac
 
-	### Local installation path
+	### Local path
 	LOCAL="$HOME/.local"
 	case "$PATH" in *"$LOCAL"*);; *)
 		export PATH="$LOCAL/bin:$PATH"
@@ -77,7 +83,6 @@ case "$-" in *i*)
 		: ${PYTHONVERSION:=$(python3 -V 2>&1 | grep -E -o '[0-9]+\.[0-9]+')}
 	esac
 
-
 	### Locale
 	export LANG='ja_JP.UTF-8'
 	export LANGUAGE='en'
@@ -86,7 +91,7 @@ case "$-" in *i*)
 
 	## Invalid stty keybind
 	# stty start undef
-export DISPLAY="${DISPLAY:-:0}"  # if DISPLAY is none, then set.
+	export DISPLAY="${DISPLAY:-:0}"  # if DISPLAY is none, then set.
 esac
 
 : ${HOME:=~}      # for MSYS
@@ -142,7 +147,7 @@ alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l='ls'
 
 ### ls color
-if command -v dircolors >&-; then
+if [ "$(command -v dircolors)" ]; then
 	[ -f "${d:=~/.dir_colors}" ] && eval $(dircolors "$d") || eval $(dircolors)
 fi
 
@@ -160,7 +165,7 @@ alias glone='git clone'
 
 ### Pager
 export PAGER='less'
-command -v lv >&- && export PAGER='lv'
+[ "$(command -v lv)" ] && export PAGER='lv'
 export LV='-c -l'
 export LESS='-imR'
 alias info='info --vi-keys'
@@ -176,10 +181,15 @@ case "${OSTYPE}" in
 esac
 
 #### Copy to clipboard
-command -v clip    >&- && alias clip='iconv -s -f UTF-8 -t CP932 | clip' # MSYS (Windows)
-command -v xsel    >&- && alias clip='xsel -ib' # Linux
-command -v putclip >&- && alias clip='putclip' # Cygwin
-command -v pbcopy  >&- && alias clip='pbcopy' # Mac
+if   [ "$(command -v clip)"    ]; then  # MSYS (Windows)
+	alias clip='iconv -s -f UTF-8 -t CP932 | clip'
+elif [ "$(command -v xsel)"    ]; then  # Linux
+	alias clip='xsel -ib'
+elif [ "$(command -v putclip)" ]; then  # Cygwin
+	alias clip='putclip'
+elif [ "$(command -v pbcopy)"  ]; then  # Mac
+	alias clip='pbcopy'
+fi
 
 ### development
 alias py='python3'
@@ -193,13 +203,13 @@ alias gp='g++ -Wall -Wextra -pedantic -std=c++1y'
 alias gc='gcc -Wall -Wextra -pedantic -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
 
-command -v xstow >&- && alias stow='xstow'
+[ "$(command -v xstow)" ] && alias stow='xstow'
 
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
-if command -v vim >&-; then
+if [ "$(command -v vim)" ]; then
 	alias vi='vim'
 	alias vim='vim -X'
 	export EDITOR='vim'
