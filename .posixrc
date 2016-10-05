@@ -46,27 +46,23 @@ case "$TERM" in ?term*|rxvt*|screen*)
 esac
 
 ## Environmental variables
+: ${HOME:=~}      # for MSYS
+
 ### Interactive shell local development PATH
 case "$-" in *i*)
 	### System path
-	case "$PATH" in *sbin*);; *)
+	[ -z "$PATH"            -o -n "${PATH%%*sbin*}"           ] &&
 		export PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
-	esac
-	case "$LD_LIBRARY_PATH" in *lib*);; *)
+	[ -z "$LD_LIBRARY_PATH" -o -n "${LD_LIBRARY_PATH%%*lib*}" ] &&
 		export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
-	esac
-	case "$CPATH" in *include*);; *)
+	[ -z "$CPATH"           -o -n "${CPATH%%*include*}"       ] &&
 		export CPATH="/usr/local/include:/usr/include:$CPATH"
-	esac
-	case "$MANPATH" in *man*);; *)
+	[ -z "$MANPATH"         -o -n "${MANPATH%%*man*}"         ] &&
 		export MANPATH="/usr/local/share/man:/usr/share/man:$MANPATH"
-	esac
-	case "$INFOPATH" in *info*);; *)
+	[ -z "$INFOPATH"        -o -n "${INFOPATH%%*info*}"       ] &&
 		export INFOPATH="/usr/local/share/info:/usr/share/info:$INFOPATH"
-	esac
-	case "$PKG_CONFIG_PATH" in *pkgconfig*);; *)
-		 PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/lib/pkgconfig:/lib/pkgconfig:${PKG_CONFIG_PATH}"
-	esac
+	[ -z "$PKG_CONFIG_PATH" -o -n "${PKG_CONFIG_PATH%%*pkg*}" ] &&
+		export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/lib/pkgconfig:/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 	### Local path
 	LOCAL="$HOME/.local"
@@ -93,8 +89,6 @@ case "$-" in *i*)
 	# stty start undef
 	export DISPLAY="${DISPLAY:-:0}"  # if DISPLAY is none, then set.
 esac
-
-: ${HOME:=~}      # for MSYS
 
 ### Windows shell
 export CYGWIN='nodosfilewarning winsymlinks:nativestrict'
