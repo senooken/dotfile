@@ -15,15 +15,17 @@ snippet     if-command-block
 options     head
 	if [ "$(command -v ${1:cmd})" ]; then
 		${2}
+	
+snippet else
+options head
+	else
+		${0}
 	fi
 	
-snippet     if-command-else
-options     head
-	if [ "$(command -v ${1:cmd})" ]; then
-		${2}
-	else
-		${3}
-	fi
+snippet elif
+options head
+	elif [ ${1:condition} ]; then
+		${0}
 	
 snippet if-non-root-user
 options  head

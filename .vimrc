@@ -822,10 +822,13 @@ if exists('##QuickfixCmdPre')
   endif
 endif
 
-if executable('grep')
+"" Basically define alias in .posixrc (Unix) or .init.cmd (Windows)
+if     executable('ag')
+  set grepprg=ag
+elseif executable('grep')
   set grepprg=grep\ -n
 else
-  set grepprg=findstr\ /n\ /p
+  set grepprg=findstr\ /n
 endif
 
 "" tags
