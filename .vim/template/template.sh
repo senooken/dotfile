@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # \file      template.sh
 # \author    SENOO, Ken
 # \copyright CC0

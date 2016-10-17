@@ -679,7 +679,10 @@ nnoremap <C-h> :<C-u>help<Space>
 " nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR> " search word in help
 
 "" Insert line break by Enter
-autocmd BufEnter * if &modifiable | nnoremap <buffer> <CR> i<CR><ESC> | endif
+autocmd BufEnter *
+  \  if &modifiable
+  \|   nnoremap <buffer> <CR> i<CR><ESC>
+  \| endif
 
 
 "" move window
@@ -737,8 +740,7 @@ endif
 
 """ 全角スペースの表示
 highlight ZenkakuSpace ctermbg=red guibg=#666666
-autocmd BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
-autocmd WinEnter *    let w:m3 = matchadd("ZenkakuSpace", '　')
+autocmd BufWinEnter,WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 
 " """ ドラッグドロップで新しいタブでファイルを開く
 " autocmd VimEnter * tab all
@@ -763,8 +765,8 @@ autocmd! FileType sh setlocal noexpandtab
 
 "" folding
 " autocmd FileType python :set foldmethod=indent
-autocmd FileType python :set foldlevel=1
-autocmd FileType python :set foldnestmax=2
+autocmd FileType python set foldlevel=1
+autocmd FileType python set foldnestmax=2
 autocmd FileType * setlocal formatoptions-=ro
 
 "" 閉じタグの自動補完

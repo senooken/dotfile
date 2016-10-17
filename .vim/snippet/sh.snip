@@ -8,13 +8,17 @@ snippet     script_dir
 abbr        script_dir
 	script_dir="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 	
+snippet     progname
+abbr        progname
+	readonly PROGNAME=$(basename $0)
+	
 snippet     if-command-inline
-	[ "$(command -v ${1:cmd})" ] && ${2}
+	hash ${1:cmd} 2>&- && ${0}
 	
 snippet     if-command-block
 options     head
-	if [ "$(command -v ${1:cmd})" ]; then
-		${2}
+	if hash ${1:cmd} 2>&-; then
+		${0}
 	
 snippet else
 options head
@@ -30,6 +34,12 @@ options head
 snippet if-non-root-user
 options  head
 	if [ $(id -u) != 0 ]; then
-		${1:cmd}
+		${0:cmd}
 		exit 1
 	fi
+	
+snippet for-times
+	for i in $(awk "BEGIN{for(i=1; i<=${1:times}; ++i) print i}")
+	do
+		${0}
+	done

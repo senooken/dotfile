@@ -7,6 +7,10 @@
 
 ## \brief POSIX compatible shell configure
 
+is_cmd_existing(){
+	hash "$@" 2>/dev/null
+}
+
 ## Prompt
 PURPLE='\033[35m'
 RED='\033[31m'
@@ -54,7 +58,7 @@ case "$-" in *i*)
 	[ -z "$PATH"            -o -n "${PATH%%*sbin*}"           ] &&
 		export PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 	[ -z "$LD_LIBRARY_PATH" -o -n "${LD_LIBRARY_PATH%%*lib*}" ] &&
-		export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
+		export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:/lib:$LD_LIBRARY_PATH"
 	[ -z "$CPATH"           -o -n "${CPATH%%*include*}"       ] &&
 		export CPATH="/usr/local/include:/usr/include:$CPATH"
 	[ -z "$MANPATH"         -o -n "${MANPATH%%*man*}"         ] &&
@@ -142,8 +146,8 @@ alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l='ls'
 
 ### ls color
-if [ "$(command -v dircolors)" ]; then
-	[ -f "${d:=~/.dir_colors}" ] && eval $(dircolors "$d") || eval $(dircolors)
+if is_cmd_existing dircolors; then
+	[ -f "${d:=$HOME/.dir_colors}" ] && eval $(dircolors $d) || eval $(dircolors)
 fi
 
 ### Default to human readable figures
@@ -160,7 +164,8 @@ alias glone='git clone'
 
 ### Pager
 export PAGER='less'
-[ "$(command -v lv)" ] && export PAGER='lv'
+is_cmd_existing lv && export PAGER='lv'
+
 export LV='-c -l'
 export LESS='-imR'
 alias info='info --vi-keys'
@@ -176,13 +181,13 @@ case "${OSTYPE}" in
 esac
 
 #### Copy to clipboard
-if   [ "$(command -v clip)"    ]; then  # MSYS (Windows)
+if   is_cmd_existing clip   ; then  # MSYS (Windows)
 	alias clip='iconv -s -f UTF-8 -t CP932 | clip'
-elif [ "$(command -v xsel)"    ]; then  # Linux
+elif is_cmd_existing xsel   ; then  # Linux
 	alias clip='xsel -ib'
-elif [ "$(command -v putclip)" ]; then  # Cygwin
+elif is_cmd_existing putclip; then  # Cygwin
 	alias clip='putclip'
-elif [ "$(command -v pbcopy)"  ]; then  # Mac
+elif is_cmd_existing pbcopy ; then  # Mac
 	alias clip='pbcopy'
 fi
 
@@ -198,13 +203,13 @@ alias gp='g++ -Wall -Wextra -pedantic -std=c++1y'
 alias gc='gcc -Wall -Wextra -pedantic -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
 
-[ "$(command -v xstow)" ] && alias stow='xstow'
+is_cmd_existing xstow && alias stow='xstow'
 
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
-if [ "$(command -v vim)" ]; then
+if is_cmd_existing vim; then
 	alias vi='vim'
 	alias vim='vim -X'
 	export EDITOR='vim'
@@ -219,17 +224,34 @@ WXCONFIG=$(wx-config --cppflags --libs 2>&-)
 GTKCONFIG=$(pkg-config --cflags --libs gtk+-3.0 2>&-)
 LIBCPP='-static-libgcc -static-libstdc++'
 
-## grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
-GREP_OPTIONS='--color=auto -I --exclude={tags,GTAGS,GRTAGS,GPATH}'
+## For --exclude list
+EXCLUDE_FILE_LIST='tags GTAGS GRTAGS GPATH'
+EXCLUDE_DIR_LIST='.. node_modules .git .svn obj'
+
+EXCLUDE_FILE_OPT=''
+for i in $EXCLUDE_FILE_LIST $EXCLUDE_DIR_LIST
+do
+	EXCLUDE_FILE_OPT="$EXCLUDE_FILE_LIST --exclude=$i"
+done
+
+EXCLUDE_DIR_OPT=''
+for i in $EXCLUDE_DIR_LIST
+do
+	EXCLUDE_DIR_OPT="$EXCLUDE_DIR_LIST --exclude-dir=$i"
+done
+
+## In grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
+GREP_OPTIONS='--color=auto -I $EXCLUDE_FILE_OPT'
 GREP_VERSION=$(grep -V | sed -n '1s/[^0-9]*\([0-9]*\)\.\([0-9]*\).*/\1\2/p')
 if [ "$GREP_VERSION" -gt 25 ]; then  #  v2.5.2 or later
-	GREP_OPTIONS="${GREP_OPTIONS} --exclude-dir={.,..,.git,.svn,obj}"
+	GREP_OPTIONS="$GREP_OPTIONS $EXCLUDE_DIR_OPT"
 else  # --exclude=*dir* option is only available when --exclude-dir disabled
-	GREP_OPTIONS="${GREP_OPTIONS} --exclude={..*,*.git*,*.svn*}"
+	GREP_OPTIONS="$GREP_OPTIONS --exclude={..*,*.git*,*.svn*}"
 fi
-alias grep="grep ${GREP_OPTIONS}"
+alias grep="grep $GREP_OPTIONS"
 
-alias ag="ag -U"
+alias ag='ag -U'
+alias ctags='ctags $EXCLUDE_FILE_OPT'
 
 : ${SCREEN_SHELL:=$(command -v zsh )}
 : ${SCREEN_SHELL:=$(command -v bash)}
