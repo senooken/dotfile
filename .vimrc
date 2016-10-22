@@ -816,7 +816,7 @@ if exists('##QuickfixCmdPre')
   let s:ignore_list = s:ignore_list . ',*.a,*.out,*.jar,*.pak,*.deb,*.rpm,*.iso'
   let s:ignore_list = s:ignore_list . ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.lzh'
   let s:ignore_list = s:ignore_list . ',*.png,*.jp*,*.gif,*.tif*,*.bmp,*.mp*'
-  " let s:ignore_list .= ',*.pdf,*.od*,*.doc*,*.xls*,*.ppt*'
+  let s:ignore_list = s:ignore_list . ',*.pdf,*.od*,*.doc*,*.xls*,*.ppt*'
 
   if exists('+wildignore')
     autocmd QuickFixCmdPre  * execute 'setlocal wildignore+=' . s:ignore_list

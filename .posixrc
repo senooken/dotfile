@@ -1,53 +1,20 @@
 #!/bin/sh
-##############################################################################
-# \file      .posixrc
-# \author    SENOO, Ken
-# \copyright CC0
-##############################################################################
+################################################################################
+## \file      .posixrc
+## \author    SENOO, Ken
+## \copyright CC0
+################################################################################
 
 ## \brief POSIX compatible shell configure
 
-is_cmd_existing(){
+is_cmd_enable(){
 	hash "$@" 2>/dev/null
 }
 
-## Prompt
-PURPLE='\033[35m'
-RED='\033[31m'
-CLEAR='\033[m'
-
-if [ -n "$BASH" ]; then
-	ENCLOSE_OPEN='\\\['
-	ENCLOSE_CLOSE='\\\]'
-elif [ -n "$ZSH_NAME" ]; then
-	ENCLOSE_OPEN='%%{'
-	ENCLOSE_CLOSE='%%}'
-fi
-
-for color in PURPLE RED CLEAR
-do
-	eval "${color}=${ENCLOSE_OPEN}\$${color}${ENCLOSE_CLOSE}"
-done
-
-: ${LOGNAME:=$(logname)}  # for Windows shell
-: ${COLUMNS:=80}            # for sh
-
-CWD='$(pwd | sed s@$HOME@~@)'
-USERNAME=$(id -nu)
-HOST=$(uname -n)
-[ $(id -u) = 0 ] && PROMPT_SIGN='#' || PROMPT_SIGN='$'
-PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
-PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
-
-PS1="\$([ \$((COLUMNS - \$(echo \"$USERNAME@$HOST:$CWD$\" | wc -m))) -le 15 ] &&
-	printf '$PROMPT_NAME'\"$CWD\"'\n$PROMPT_MARK' ||
-	printf '$PROMPT_NAME'\"$CWD\"'''$PROMPT_MARK' )"
-
-## TODO: enable posix compatible
-## Terminal title
-case "$TERM" in ?term*|rxvt*|screen*)
-	PROMPT_COMMAND='printf "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"'
-esac
+is_option_enable()(
+	: ${CMD:=$1} ${OPT=$2}
+	$CMD --help 2>&1 | grep -q -- "$OPT"'[=[, ]'
+)
 
 ## Environmental variables
 : ${HOME:=~}      # for MSYS
@@ -113,6 +80,44 @@ if grep -sq 'debian' /etc/os-release; then
 	export ZIPINFO='-O cp932'
 fi
 
+: ${LOGNAME:=$(logname)}  # for Windows shell
+: ${COLUMNS:=80}          # for sh
+
+## Prompt
+PURPLE='\033[35m'
+RED='\033[31m'
+CLEAR='\033[m'
+
+if [ -n "$BASH" ]; then
+	ENCLOSE_OPEN='\\\['
+	ENCLOSE_CLOSE='\\\]'
+elif [ -n "$ZSH_NAME" ]; then
+	ENCLOSE_OPEN='%%{'
+	ENCLOSE_CLOSE='%%}'
+fi
+
+for color in PURPLE RED CLEAR
+do
+	eval "${color}=${ENCLOSE_OPEN}\$${color}${ENCLOSE_CLOSE}"
+done
+
+CWD='$(pwd | sed s@$HOME@~@)'
+USERNAME=$(id -nu)
+HOST=$(uname -n)
+[ $(id -u) = 0 ] && PROMPT_SIGN='#' || PROMPT_SIGN='$'
+PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
+PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
+
+PS1="\$([ \$((COLUMNS - \$(echo \"$USERNAME@$HOST:$CWD$\" | wc -m))) -le 15 ] &&
+	printf '$PROMPT_NAME'\"$CWD\"'\n$PROMPT_MARK' ||
+	printf '$PROMPT_NAME'\"$CWD\"'''$PROMPT_MARK' )"
+
+## TODO: enable posix compatible
+## Terminal title
+case "$TERM" in ?term*|rxvt*|screen*)
+	PROMPT_COMMAND='printf "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"'
+esac
+
 
 ## Alias
 ### Enable alias in non-interactive shell
@@ -146,7 +151,7 @@ alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l='ls'
 
 ### ls color
-if is_cmd_existing dircolors; then
+if is_cmd_enable dircolors; then
 	[ -f "${d:=$HOME/.dir_colors}" ] && eval $(dircolors $d) || eval $(dircolors)
 fi
 
@@ -164,7 +169,7 @@ alias glone='git clone'
 
 ### Pager
 export PAGER='less'
-is_cmd_existing lv && export PAGER='lv'
+is_cmd_enable lv && export PAGER='lv'
 
 export LV='-c -l'
 export LESS='-imR'
@@ -181,13 +186,13 @@ case "${OSTYPE}" in
 esac
 
 #### Copy to clipboard
-if   is_cmd_existing clip   ; then  # MSYS (Windows)
+if   is_cmd_enable clip   ; then  # MSYS (Windows)
 	alias clip='iconv -s -f UTF-8 -t CP932 | clip'
-elif is_cmd_existing xsel   ; then  # Linux
+elif is_cmd_enable xsel   ; then  # Linux
 	alias clip='xsel -ib'
-elif is_cmd_existing putclip; then  # Cygwin
+elif is_cmd_enable putclip; then  # Cygwin
 	alias clip='putclip'
-elif is_cmd_existing pbcopy ; then  # Mac
+elif is_cmd_enable pbcopy ; then  # Mac
 	alias clip='pbcopy'
 fi
 
@@ -203,13 +208,13 @@ alias gp='g++ -Wall -Wextra -pedantic -std=c++1y'
 alias gc='gcc -Wall -Wextra -pedantic -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
 
-is_cmd_existing xstow && alias stow='xstow'
+is_cmd_enable xstow && alias stow='xstow'
 
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
-if is_cmd_existing vim; then
+if is_cmd_enable vim; then
 	alias vi='vim'
 	alias vim='vim -X'
 	export EDITOR='vim'
@@ -225,33 +230,20 @@ GTKCONFIG=$(pkg-config --cflags --libs gtk+-3.0 2>&-)
 LIBCPP='-static-libgcc -static-libstdc++'
 
 ## For --exclude list
-EXCLUDE_FILE_LIST='tags GTAGS GRTAGS GPATH'
-EXCLUDE_DIR_LIST='.. node_modules .git .svn obj'
-
-EXCLUDE_FILE_OPT=''
-for i in $EXCLUDE_FILE_LIST $EXCLUDE_DIR_LIST
-do
-	EXCLUDE_FILE_OPT="$EXCLUDE_FILE_LIST --exclude=$i"
-done
-
-EXCLUDE_DIR_OPT=''
-for i in $EXCLUDE_DIR_LIST
-do
-	EXCLUDE_DIR_OPT="$EXCLUDE_DIR_LIST --exclude-dir=$i"
-done
+EXCLUDE_FILE='{tags,GTAGS,GRTAGS,GPATH}'
+EXCLUDE_DIR='{.,..,node_modules,.git,.svn,obj}'
 
 ## In grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
-GREP_OPTIONS='--color=auto -I $EXCLUDE_FILE_OPT'
-GREP_VERSION=$(grep -V | sed -n '1s/[^0-9]*\([0-9]*\)\.\([0-9]*\).*/\1\2/p')
-if [ "$GREP_VERSION" -gt 25 ]; then  #  v2.5.2 or later
-	GREP_OPTIONS="$GREP_OPTIONS $EXCLUDE_DIR_OPT"
+GREP_OPTIONS="--color=auto -I --exclude=$EXCLUDE_FILE"
+if is_option_enable grep --exclude-dir; then  # v2.5.2 or later
+	GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$EXCLUDE_DIR"
 else  # --exclude=*dir* option is only available when --exclude-dir disabled
 	GREP_OPTIONS="$GREP_OPTIONS --exclude={..*,*.git*,*.svn*}"
 fi
 alias grep="grep $GREP_OPTIONS"
 
 alias ag='ag -U'
-alias ctags='ctags $EXCLUDE_FILE_OPT'
+alias ctags="ctags --exclude=$EXCLUDE_DIR"
 
 : ${SCREEN_SHELL:=$(command -v zsh )}
 : ${SCREEN_SHELL:=$(command -v bash)}
