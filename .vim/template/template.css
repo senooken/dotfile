@@ -59,8 +59,8 @@ ol {
 }
 ol>li {
   list-style-type: none;
-  padding-left: 1em;
-  text-indent: -1em;
+  padding-left: 0.5em;
+  text-indent: -0.5em;
 }
 ol>li::before {
   counter-increment: enum1;
@@ -255,6 +255,8 @@ table {
   /** centering **/
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 /** Table color **/
 tbody>tr:nth-of-type(even) {
@@ -342,8 +344,8 @@ h1, h2, h3, h4, h5, h6 {
   /* orange */
   /* background-color: rgb(100%,80%,0%); */
   background-color: #e6e6ff;
-  margin-top: 0em;
-  margin-bottom: 0em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 em, strong {
   color: red;

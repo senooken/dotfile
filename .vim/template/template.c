@@ -1,10 +1,10 @@
-/****************************************************************************
- \file      template.c
- \author    SENOO, Ken
- \copyright CC0
- \date      first created date: <+DATE+>
- \date      last  updated date: 
-*****************************************************************************/
+////////////////////////////////////////////////////////////////////////////////
+/// \file      template.c
+/// \author    SENOO, Ken
+/// \copyright CC0
+/// \date      first created date: <+DATE+>
+/// \date      last  updated date: 
+////////////////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
 <+CURSOR+>

@@ -7,17 +7,14 @@
 
 ## \brief POSIX compatible shell configure
 
-is_cmd_enable(){
+is_cmd_enabled(){
 	hash "$@" 2>/dev/null
 }
 
-is_option_enable()(
+is_option_enabled()(
 	: ${CMD:=$1} ${OPT=$2}
 	$CMD --help 2>&1 | grep -q -- "$OPT"'[=[, ]'
 )
-
-## Environmental variables
-: ${HOME:=~}      # for MSYS
 
 ### Interactive shell local development PATH
 case "$-" in *i*)
@@ -60,6 +57,12 @@ case "$-" in *i*)
 	## Invalid stty keybind
 	# stty start undef
 	export DISPLAY="${DISPLAY:-:0}"  # if DISPLAY is none, then set.
+
+	## Utility
+	N='/dev/null'
+
+	## Environmental variables
+	: ${HOME:=~}      # for MSYS
 esac
 
 ### Windows shell
@@ -151,7 +154,7 @@ alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l='ls'
 
 ### ls color
-if is_cmd_enable dircolors; then
+if is_cmd_enabled dircolors; then
 	[ -f "${d:=$HOME/.dir_colors}" ] && eval $(dircolors $d) || eval $(dircolors)
 fi
 
@@ -169,7 +172,7 @@ alias glone='git clone'
 
 ### Pager
 export PAGER='less'
-is_cmd_enable lv && export PAGER='lv'
+is_cmd_enabled lv && export PAGER='lv'
 
 export LV='-c -l'
 export LESS='-imR'
@@ -178,7 +181,7 @@ alias info='info --vi-keys'
 
 ### Open
 alias o='open'
-case "${OSTYPE}" in
+case "$OSTYPE" in
 	freebsd*|darwin*) alias o='open' ;;
 	linux*)           alias open='xdg-open' ;; # alias open="gnome-open";;
 	cygwin*)          alias open='cygstart' ;;
@@ -186,13 +189,13 @@ case "${OSTYPE}" in
 esac
 
 #### Copy to clipboard
-if   is_cmd_enable clip   ; then  # MSYS (Windows)
+if   is_cmd_enabled clip   ; then  # MSYS (Windows)
 	alias clip='iconv -s -f UTF-8 -t CP932 | clip'
-elif is_cmd_enable xsel   ; then  # Linux
+elif is_cmd_enabled xsel   ; then  # Linux
 	alias clip='xsel -ib'
-elif is_cmd_enable putclip; then  # Cygwin
+elif is_cmd_enabled putclip; then  # Cygwin
 	alias clip='putclip'
-elif is_cmd_enable pbcopy ; then  # Mac
+elif is_cmd_enabled pbcopy ; then  # Mac
 	alias clip='pbcopy'
 fi
 
@@ -208,13 +211,13 @@ alias gp='g++ -Wall -Wextra -pedantic -std=c++1y'
 alias gc='gcc -Wall -Wextra -pedantic -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
 
-is_cmd_enable xstow && alias stow='xstow'
+is_cmd_enabled xstow && alias stow='xstow'
 
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
-if is_cmd_enable vim; then
+if is_cmd_enabled vim; then
 	alias vi='vim'
 	alias vim='vim -X'
 	export EDITOR='vim'
@@ -224,7 +227,7 @@ fi
 alias now='date +%Y%m%dT%H%M%S'
 
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
-# WXCONFIG=$(wx-config --cppflags --libs 2>&- | tr \"\n\" ' ') # wxwidgetsのコンパイルフラグ
+# WXCONFIG=$(wx-config --cppflags --libs 2>&- | tr \"\n\" ' ')
 WXCONFIG=$(wx-config --cppflags --libs 2>&-)
 GTKCONFIG=$(pkg-config --cflags --libs gtk+-3.0 2>&-)
 LIBCPP='-static-libgcc -static-libstdc++'
@@ -235,7 +238,7 @@ EXCLUDE_DIR='{.,..,node_modules,.git,.svn,obj}'
 
 ## In grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
 GREP_OPTIONS="--color=auto -I --exclude=$EXCLUDE_FILE"
-if is_option_enable grep --exclude-dir; then  # v2.5.2 or later
+if is_option_enabled grep --exclude-dir; then  # v2.5.2 or later
 	GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$EXCLUDE_DIR"
 else  # --exclude=*dir* option is only available when --exclude-dir disabled
 	GREP_OPTIONS="$GREP_OPTIONS --exclude={..*,*.git*,*.svn*}"
