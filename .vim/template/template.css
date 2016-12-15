@@ -519,3 +519,11 @@ figure>dl>dd:nth-of-type(n+2) {
   @bottom-center {content: "- " counter(page) "/" counter(pages) " -";}
   @bottom-right {content: "Date";}
 }
+
+/** Print style */
+@media print {
+  /* ShowerでPDF作成するときにChromiumでtheadが二重に表示される対策 */
+  thead {
+    display: table-row-group;
+  }
+}
