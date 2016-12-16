@@ -15,11 +15,11 @@
 /** caption */
 caption::before {
   counter-increment: table;
-  content: "表" counter(heading1) "." counter(table) " ";
+  content: "Table " counter(heading1) "." counter(table) " ";
 }
 figure>figcaption::before {
   counter-increment: figure;
-  content: "図" counter(heading1) "." counter(figure) " ";
+  content: "Figure " counter(heading1) "." counter(figure) " ";
 }
 /* subfigureの開始時だけリセット */
 figure>figure:first-of-type {
@@ -30,7 +30,7 @@ figure>figure:first-of-type {
 figure>figure>figcaption::before {
   counter-increment: figure subfigure;
   counter-reset: subsubfigure;
-  content: "図" counter(heading1) "." counter(figure) "(" counter(subfigure, lower-alpha) ") ";
+  content: "Figure " counter(heading1) "." counter(figure) "(" counter(subfigure, lower-alpha) ") ";
 }
 /* 増やしたfigureの番号を減らして元に戻す */
 figure>figure figcaption::after {
@@ -41,7 +41,7 @@ figure>figure figcaption::after {
 figure pre~figcaption::before,
 figure figcaption:first-child::before {
   counter-increment: listing;
-  content: "リスト" counter(heading1) "." counter(listing) " ";
+  content: "List " counter(heading1) "." counter(listing) " ";
 }
 figure blockquote~figcaption::before {
   content: "—";
@@ -63,8 +63,8 @@ ol {
 }
 ol>li {
   list-style-type: none;
-  padding-left: 1em;
-  text-indent: -1em;
+  padding-left: 0.5em;
+  text-indent: -0.5em;
 }
 ol>li::before {
   counter-increment: enum1;
@@ -259,6 +259,8 @@ table {
   /** centering **/
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 /** Table color **/
 tbody>tr:nth-of-type(even) {
@@ -323,13 +325,13 @@ th, td {
   content: ")";
 }
 [href^="#fig:"]::before {
-  content: "図";
+  content: "Figure ";
 }
 [href^="#tab:"]::before {
-  content: "表";
+  content: "Table ";
 }
 [href^="#lis:"]::before {
-  content: "リスト";
+  content: "List ";
 }
 
 /** Font */
@@ -346,8 +348,8 @@ h1, h2, h3, h4, h5, h6 {
   /* orange */
   /* background-color: rgb(100%,80%,0%); */
   background-color: #e6e6ff;
-  margin-top: 0em;
-  margin-bottom: 0em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 em, strong {
   color: red;
@@ -520,6 +522,14 @@ figure>dl>dd:nth-of-type(n+2) {
   @bottom-left {content: "SENOO, Ken";}
   @bottom-center {content: "- " counter(page) "/" counter(pages) " -";}
   @bottom-right {content: "Date";}
+}
+
+/** Print style */
+@media print {
+  /* ShowerでPDF作成するときにChromiumでtheadが二重に表示される対策 */
+  thead {
+    display: table-row-group;
+  }
 }
     </style>
   </head>

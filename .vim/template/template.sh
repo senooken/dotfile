@@ -9,11 +9,10 @@
 
 ## \brief Initialize POSIX shell environment
 init(){
-	umask 0022
 	set -eu
-	unset IFS
-	LC_ALL='C'
-	PATH="$(command -p getconf PATH):$PATH"
+	umask 0022
+	export LC_ALL='C'
+	export PATH="$(command -p getconf PATH):${PATH:-}"
 }
 
 init

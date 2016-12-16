@@ -11,10 +11,10 @@ is_cmd_enabled(){
 	hash "$@" 2>/dev/null
 }
 
-is_option_enabled()(
+is_option_enabled(){(
 	: ${CMD:=$1} ${OPT=$2}
-	$CMD --help 2>&1 | grep -q -- "$OPT"'[=[, ]'
-)
+	"$CMD" --help 2>&1 | grep -q -- "$OPT"'[=[, ]'
+)}
 
 ### Interactive shell local development PATH
 case "$-" in *i*)
@@ -245,7 +245,7 @@ else  # --exclude=*dir* option is only available when --exclude-dir disabled
 fi
 alias grep="grep $GREP_OPTIONS"
 
-alias ag='ag -U'
+alias ag='ag -fU'
 alias ctags="ctags --exclude=$EXCLUDE_DIR"
 
 : ${SCREEN_SHELL:=$(command -v zsh )}

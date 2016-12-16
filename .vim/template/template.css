@@ -11,11 +11,11 @@
 /** caption */
 caption::before {
   counter-increment: table;
-  content: "表" counter(heading1) "." counter(table) " ";
+  content: "Table " counter(heading1) "." counter(table) " ";
 }
 figure>figcaption::before {
   counter-increment: figure;
-  content: "図" counter(heading1) "." counter(figure) " ";
+  content: "Figure " counter(heading1) "." counter(figure) " ";
 }
 /* subfigureの開始時だけリセット */
 figure>figure:first-of-type {
@@ -26,7 +26,7 @@ figure>figure:first-of-type {
 figure>figure>figcaption::before {
   counter-increment: figure subfigure;
   counter-reset: subsubfigure;
-  content: "図" counter(heading1) "." counter(figure) "(" counter(subfigure, lower-alpha) ") ";
+  content: "Figure " counter(heading1) "." counter(figure) "(" counter(subfigure, lower-alpha) ") ";
 }
 /* 増やしたfigureの番号を減らして元に戻す */
 figure>figure figcaption::after {
@@ -37,7 +37,7 @@ figure>figure figcaption::after {
 figure pre~figcaption::before,
 figure figcaption:first-child::before {
   counter-increment: listing;
-  content: "リスト" counter(heading1) "." counter(listing) " ";
+  content: "List " counter(heading1) "." counter(listing) " ";
 }
 figure blockquote~figcaption::before {
   content: "—";
@@ -321,13 +321,13 @@ th, td {
   content: ")";
 }
 [href^="#fig:"]::before {
-  content: "図";
+  content: "Figure ";
 }
 [href^="#tab:"]::before {
-  content: "表";
+  content: "Table ";
 }
 [href^="#lis:"]::before {
-  content: "リスト";
+  content: "List ";
 }
 
 /** Font */
