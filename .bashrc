@@ -176,35 +176,32 @@ export HISTTIMEFORMAT="%Y%m%dT%H%M "
 # Source global definitions
 [ -f /etc/bashrc ] && . /etc/bashrc
 
-export TMPDIR=/tmp
-export TZ=JST-09
 export MAKE_MODE=unix
-
 export JLESSCHARSET=japanese-sjis
 
 ## shell option
-[ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s autocd
+[ $BASH_VERSINFO -ge 4 ] && shopt -s autocd
 shopt -s cdable_vars  # enable cd <var>
 shopt -s cdspell  # auto modify cd path since 2.0
 
-if [[ ${BASH_VERSINFO[0]} -ge 5 ||
-	    ${BASH_VERSINFO[0]} -ge 4 && ${BASH_VERSINFO[1]} -ge 3 ]]; then
+if [[ $BASH_VERSINFO -ge 5 ||
+	    $BASH_VERSINFO -ge 4 && ${BASH_VERSINFO[1]} -ge 3 ]]; then
 	shopt -s direxpand # auto modify in completion
 fi
 
 # shopt -s expand_aliases  # enable alias in shell script since 2.0
-[ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s dirspell
+[ $BASH_VERSINFO -ge 4 ] && shopt -s dirspell
 shopt -s hostcomplete # try host completion
 
 shopt -s extglob  # extentive regex. ?，*, +, @, !(1|2) since 2.02
 shopt -s nocaseglob  # ignore case since 2.02
 
 # **: match recursive subdirectory. **/: only 1 recursive.
-[ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s globstar
+[ $BASH_VERSINFO -ge 4 ] && shopt -s globstar
 # shopt -s dotglob # include .dotfile in <command> *.
 
-# [ ${BASH_VERSINFO[0]} -ge 3 ] && shopt -s force_fignore
-# [ ${BASH_VERSINFO[0]} -ge 3 ] && shopt -s gnu_errfmt
+# [ $BASH_VERSINFO -ge 3 ] && shopt -s force_fignore
+# [ $BASH_VERSINFO -ge 3 ] && shopt -s gnu_errfmt
 
 # shopt -s promptvars  # since 2.0
 # shopt -s progcomp  # since 2.04
@@ -221,5 +218,5 @@ shopt -s nocaseglob  # ignore case since 2.02
 
 ## for shared shell setting
 export ENV="${ENV:-$HOME/.posixrc}"
-[ -f "$ENV" ] && . "$ENV"
+[ -r "$ENV" ] && . "$ENV"
 # source /opt/OpenFOAM/OpenFOAM-2.3.x/etc/bashrc.win

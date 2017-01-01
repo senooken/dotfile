@@ -2,15 +2,16 @@
 "" \author    SENOO, Ken
 "" \copyright CC0
 
-"" constant variable
+"" Constant variable
+""" Boolean
 let s:FALSE = 0
-let s:TRUE = !s:FALSE
+let s:TRUE  = !s:FALSE
 
-"" platform
-let s:IS_WINDOWS = has('win64') || has('win32')   || has('win16')
-let s:IS_CYGWIN  = has('win32unix')
-let s:IS_MAC     = has('mac')   || has('macunix') || has('gui_macvim')
-let s:IS_LINUX   = has('unix')  && !s:IS_MAC      && !s:IS_CYGWIN
+""" Platform
+let s:IS_WINDOWS   = has('win64') || has('win32')   || has('win16')
+let s:IS_CYGWIN    = has('win32unix')
+let s:IS_MAC       = has('mac')   || has('macunix') || has('gui_macvim')
+let s:IS_LINUX     = has('unix')  && !s:IS_MAC      && !s:IS_CYGWIN
 let s:IS_WINDOWS_7 = s:IS_WINDOWS && system('VER') =~# 'Version 6.1'
 
 "" Charset, Line ending
@@ -139,6 +140,9 @@ if s:is_neobundle_installed
   NeoBundle 'vim-jp/vimdoc-ja'
   NeoBundle 'tyru/caw.vim' " comment out
   NeoBundle 'Lokaltog/vim-easymotion' " cursor
+
+  NeoBundle 'ctrlpvim/ctrlp.vim'
+  NeoBundle 'tacahiroy/ctrlp-funky'
 
   call neobundle#end()
   " NeoBundleCheck " I'm not prefered checking.
@@ -501,6 +505,14 @@ if s:Neobundled('autodate.vim')
   autocmd BufWritePre template.*  silent! :AutodateOFF
 endif
 
+if s:Neobundled('ctrlp.vim')
+  let g:ctrlp_extensions = ['funky']
+endif
+
+if s:Neobundled('ctrlp-funky')
+  let g:ctrlp_funky_matchtype = 'path'
+endif
+
 "" Netrw
 let g:netrw_liststyle=3
 
@@ -618,9 +630,9 @@ function! s:Add_execmod()
   let s:line = getline(1)
   if strpart(s:line, 0, 2) == '#!' || strpart(s:line, 0) == '[Desktop Entry]'
     if s:IS_WINDOWS
-      call system('icacls '   . expand('%') . ' /grant ' . $USERNAME . ':(X)')
+      call system('icacls '      . shellescape(expand('%') . ' /grant ' . $USERNAME . ':(X)'))
     else
-      call system('chmod +x ' . expand('%'))
+      call system('chmod +x -- ' . shellescape(expand('%')))
     endif
   endif
 endfunction

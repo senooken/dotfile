@@ -7,14 +7,14 @@
 
 ## \brief POSIX compatible shell configure
 
-is_cmd_enabled(){
-	hash "$@" 2>/dev/null
+is_exe_enabled(){
+	command -v "$@" >/dev/null
 }
 
-is_option_enabled(){(
-	: ${CMD:=$1} ${OPT=$2}
-	"$CMD" --help 2>&1 | grep -q -- "$OPT"'[=[, ]'
-)}
+is_option_enabled()(
+	EXE="$1"; OPT="$2"
+	"$EXE" --help 2>&1 | grep -q -- "$OPT"'[=[, ]'
+)
 
 ### Interactive shell local development PATH
 case "$-" in *i*)
@@ -63,6 +63,8 @@ case "$-" in *i*)
 
 	## Environmental variables
 	: ${HOME:=~}      # for MSYS
+	export TMPDIR='/tmp'
+	export TZ='JST-09'
 esac
 
 ### Windows shell
@@ -154,8 +156,8 @@ alias ll="ls -Gl --time-style=+'%Y-%m-%d %H:%M'"
 alias l='ls'
 
 ### ls color
-if is_cmd_enabled dircolors; then
-	[ -f "${d:=$HOME/.dir_colors}" ] && eval $(dircolors $d) || eval $(dircolors)
+if is_exe_enabled dircolors; then
+	[ -r "${d:=$HOME/.dir_colors}" ] && eval $(dircolors $d) || eval $(dircolors)
 fi
 
 ### Default to human readable figures
@@ -172,7 +174,7 @@ alias glone='git clone'
 
 ### Pager
 export PAGER='less'
-is_cmd_enabled lv && export PAGER='lv'
+is_exe_enabled lv && export PAGER='lv'
 
 export LV='-c -l'
 export LESS='-imR'
@@ -189,13 +191,13 @@ case "$OSTYPE" in
 esac
 
 #### Copy to clipboard
-if   is_cmd_enabled clip   ; then  # MSYS (Windows)
+if   is_exe_enabled clip   ; then  # MSYS (Windows)
 	alias clip='iconv -s -f UTF-8 -t CP932 | clip'
-elif is_cmd_enabled xsel   ; then  # Linux
+elif is_exe_enabled xsel   ; then  # Linux
 	alias clip='xsel -ib'
-elif is_cmd_enabled putclip; then  # Cygwin
+elif is_exe_enabled putclip; then  # Cygwin
 	alias clip='putclip'
-elif is_cmd_enabled pbcopy ; then  # Mac
+elif is_exe_enabled pbcopy ; then  # Mac
 	alias clip='pbcopy'
 fi
 
@@ -211,25 +213,57 @@ alias gp='g++ -Wall -Wextra -pedantic -std=c++1y'
 alias gc='gcc -Wall -Wextra -pedantic -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
 
-is_cmd_enabled xstow && alias stow='xstow'
+is_exe_enabled xstow && alias stow='xstow'
 
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
 alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
-if is_cmd_enabled vim; then
+if is_exe_enabled vim; then
 	alias vi='vim'
 	alias vim='vim -X'
 	export EDITOR='vim'
 fi
 # export SVN_EDITOR=$EDITOR
 
-alias now='date +%Y%m%dT%H%M%S'
+get_tz()(
+	L_D=$(date +%j); U_D=$(date -u +%j)
+	is_crossed_year="[ $L_D -eq 1 -o $U_D -eq 1 ] && [ $((L_D+U_D)) -ne 3 ]"
+	eval $is_crossed_year && [ $L_D -eq 1 ] && U_D=0 || L_D=0
+
+	LOCAL_MIN=$(echo "$L_D*24*60 + $(date    +%H)*60 + $(date    +%M)" | bc)
+	UTC_0_MIN=$(echo "$U_D*24*60 + $(date -u +%H)*60 + $(date -u +%M)" | bc)
+	DELTA_MIN=$((LOCAL_MIN - UTC_0_MIN))
+	printf '%+03d:%+03d\n' $((DELTA_MIN/60)) $((DELTA_MIN%60)) | sed 's/:[+-]/:/'
+)
+
+now()(
+	dt=$(date +%Y%m%dT%H%M%S)
+
+	while getopts 'lst-:' opt
+	do
+		case "$opt${OPTARGS:-}" in
+			l|-long)  dt=$(date +%Y-%m-%dT%H:%M:%S);;
+			s|-short) dt=$(date +%Y%m%dT%H%M%S    );;
+			t|-time-zone) flag_t='t';;
+			*) exit 1;;
+		esac
+	done
+
+	case "${flag_t:-}" in t)
+		TIME_ZONE=$(get_tz)
+		[ -n "${dt%%*:*}" ] && TIME_ZONE=$(printf '%s\n' "$TIME_ZONE" | sed 's/://')
+		dt="$dt$TIME_ZONE"
+	esac
+
+	echo "$dt"
+)
+
 
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
 # WXCONFIG=$(wx-config --cppflags --libs 2>&- | tr \"\n\" ' ')
-WXCONFIG=$(wx-config --cppflags --libs 2>&-)
-GTKCONFIG=$(pkg-config --cflags --libs gtk+-3.0 2>&-)
+WXCONFIG=$( wx-config  --libs --cppflags  2>&-)
+GTKCONFIG=$(pkg-config --libs --cflags gtk+-3.0 2>&-)
 LIBCPP='-static-libgcc -static-libstdc++'
 
 ## For --exclude list
@@ -243,8 +277,8 @@ if is_option_enabled grep --exclude-dir; then  # v2.5.2 or later
 else  # --exclude=*dir* option is only available when --exclude-dir disabled
 	GREP_OPTIONS="$GREP_OPTIONS --exclude={..*,*.git*,*.svn*}"
 fi
-alias grep="grep $GREP_OPTIONS"
 
+alias grep="grep $GREP_OPTIONS"
 alias ag='ag -fU'
 alias ctags="ctags --exclude=$EXCLUDE_DIR"
 

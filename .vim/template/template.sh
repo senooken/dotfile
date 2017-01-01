@@ -11,9 +11,14 @@
 init(){
 	set -eu
 	umask 0022
-	export LC_ALL='C'
-	export PATH="$(command -p getconf PATH):${PATH:-}"
+	export LC_ALL='C' PATH="$(command -p getconf PATH):$PATH"
 }
+
+is_main()(
+	EXE_NAME='.sh'
+	CURRENT_EXE="$(ps -p $$ -o comm=)"
+	[ "$EXE_NAME" = "$CURRENT_EXE" ]
+)
 
 init
 <+CURSOR+>
