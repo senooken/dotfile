@@ -628,7 +628,9 @@ set whichwrap=b,s,h,l,<,>,[,],~  " カーソルを行頭、行末で止まらな
 autocmd BufWritePost * :call s:Add_execmod()
 function! s:Add_execmod()
   let s:line = getline(1)
+  " if strpart(s:line, 0, 2) == '#!' || strpart(s:line, 0) == '[Desktop Entry]'
   if strpart(s:line, 0, 2) == '#!' || strpart(s:line, 0) == '[Desktop Entry]'
+  \ || &filetype == 'sh'
     if s:IS_WINDOWS
       call system('icacls '      . shellescape(expand('%') . ' /grant ' . $USERNAME . ':(X)'))
     else
@@ -838,7 +840,8 @@ endif
 
 "" Basically define alias in .posixrc (Unix) or .init.cmd (Windows)
 if     executable('ag')
-  set grepprg=ag
+  set grepprg=ag\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
 elseif executable('grep')
   set grepprg=grep\ -n
 else

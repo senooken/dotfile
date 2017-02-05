@@ -1,4 +1,3 @@
-#!/bin/sh
 ################################################################################
 ## \file      template.sh
 ## \author    SENOO, Ken
@@ -11,13 +10,16 @@
 init(){
 	set -eu
 	umask 0022
-	export LC_ALL='C' PATH="$(command -p getconf PATH):$PATH"
+	PATH="$(command -p getconf PATH 2>&-):/bin:/usr/bin${PATH:+:}$PATH"
+	export PATH="${PATH#:}" LC_ALL='C'
 }
 
 is_main()(
 	EXE_NAME='.sh'
-	CURRENT_EXE="$(ps -p $$ -o comm=)"
-	[ "$EXE_NAME" = "$CURRENT_EXE" ]
+	NOW_EXE=$(ps -p $$ -o args=)
+	case "$NOW_EXE" in *$EXE_NAME*);; *)
+		return 1
+	esac
 )
 
 init

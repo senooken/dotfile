@@ -299,7 +299,7 @@ tbody>tr:last-of-type {
 }
 
 th, td {
-  word-wrap: break-all;
+  word-wrap: break-word;
 }
 
 /** Cross reference */
@@ -510,6 +510,14 @@ figure>dl>dd:nth-of-type(n+2) {
   margin-right: 1em;
 }
 
+/** Show update date */
+h1[title]::after, h2[title]::after, h3[title]::after,
+h4[title]::after, h5[title]::after, h6[title]::after {
+  color: gray;
+  font-size: 0.5em;
+  content: " Update: " attr(title);
+}
+
 
 /** Page style */
 @page {
@@ -529,6 +537,15 @@ figure>dl>dd:nth-of-type(n+2) {
   /* ShowerでPDF作成するときにChromiumでtheadが二重に表示される対策 */
   thead {
     display: table-row-group;
+  }
+
+  /* Show URL */
+  a[href]::after {
+    content: "（" attr(href) "）";
+  }
+  a[href^="#"]::after,
+  a[href^="javascript"]::after {
+    content: "";
   }
 }
     </style>
