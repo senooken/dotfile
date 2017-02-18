@@ -100,3 +100,7 @@ $if Bash
     "\C-x\C-p": " | percol"
     "\C-^": "~/"
 $endif
+
+
+"\M-[D": backward-char
+

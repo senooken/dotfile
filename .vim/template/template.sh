@@ -1,3 +1,4 @@
+#!/bin/sh
 ################################################################################
 ## \file      template.sh
 ## \author    SENOO, Ken
@@ -16,10 +17,7 @@ init(){
 
 is_main()(
 	EXE_NAME='.sh'
-	NOW_EXE=$(ps -p $$ -o args=)
-	case "$NOW_EXE" in *$EXE_NAME*);; *)
-		return 1
-	esac
+	[ "$EXE_NAME" = "${0##*/}" ]
 )
 
 init
