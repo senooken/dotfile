@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="UTF-8" />
@@ -380,6 +380,7 @@ pre {
   font-family: "Migu 1M", "Inconsolata", "DejaVu Sans Mono", "Consolas", "TakaoGothic", "VL Gothic", "HGGothicM", "MS Gothic",  monospace;
   background-color: #ffffe6;
   overflow: auto;
+  tab-size: 2;
 }
 
 /** Line number for source code */
@@ -510,11 +511,10 @@ figure>dl>dd:nth-of-type(n+2) {
 }
 
 /** Show update date */
-h1[title]::after, h2[title]::after, h3[title]::after,
-h4[title]::after, h5[title]::after, h6[title]::after {
+[data-updated-date]::after {
   color: gray;
   font-size: 0.5em;
-  content: " Update: " attr(title);
+  content: " Update: " attr(data-updated-date);
 }
 
 
@@ -540,7 +540,7 @@ h4[title]::after, h5[title]::after, h6[title]::after {
 
   /* Show URL */
   a[href]::after {
-    content: "（" attr(href) "）";
+    content: "<" attr(href) ">";
   }
   a[href^="#"]::after,
   a[href^="javascript"]::after {

@@ -1,8 +1,8 @@
-/****************************************************************************
+﻿/****************************************************************************
  \file      template.css
  \author    SENOO, Ken
  \copyright CC0
- \date      first created date: <+DATE+>
+ \date      first created date: 
  \date      last  updated date: 
  ****************************************************************************/
 
@@ -134,115 +134,115 @@ article>h6:first-of-type {
   font-size: 2.17em;
 }
 
-section>h1:first-of-type,
-section>h2:first-of-type,
-section>h3:first-of-type,
-section>h4:first-of-type,
-section>h5:first-of-type,
-section>h6:first-of-type {
+section h1:first-of-type,
+section h2:first-of-type,
+section h3:first-of-type,
+section h4:first-of-type,
+section h5:first-of-type,
+section h6:first-of-type {
   counter-increment: heading1; counter-reset: heading2 figure table listing;
   font-size: 2.0em;
 }
 
-section>h1:first-of-type::before,
-section>h2:first-of-type::before,
-section>h3:first-of-type::before,
-section>h4:first-of-type::before,
-section>h5:first-of-type::before,
-section>h6:first-of-type::before {
+section h1:first-of-type::before,
+section h2:first-of-type::before,
+section h3:first-of-type::before,
+section h4:first-of-type::before,
+section h5:first-of-type::before,
+section h6:first-of-type::before {
   content: counter(heading1) " ";
 }
 
-section>section>h1:first-of-type,
-section>section>h2:first-of-type,
-section>section>h3:first-of-type,
-section>section>h4:first-of-type,
-section>section>h5:first-of-type,
-section>section>h6:first-of-type {
+section section h1:first-of-type,
+section section h2:first-of-type,
+section section h3:first-of-type,
+section section h4:first-of-type,
+section section h5:first-of-type,
+section section h6:first-of-type {
   counter-increment: heading2; counter-reset: heading3;
   font-size: 1.83em;
 }
-section>section>h1:first-of-type::before,
-section>section>h2:first-of-type::before,
-section>section>h3:first-of-type::before,
-section>section>h4:first-of-type::before,
-section>section>h5:first-of-type::before,
-section>section>h6:first-of-type::before {
+section section h1:first-of-type::before,
+section section h2:first-of-type::before,
+section section h3:first-of-type::before,
+section section h4:first-of-type::before,
+section section h5:first-of-type::before,
+section section h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) " ";
 }
 
-section>section>section>h1:first-of-type,
-section>section>section>h2:first-of-type,
-section>section>section>h3:first-of-type,
-section>section>section>h4:first-of-type,
-section>section>section>h5:first-of-type,
-section>section>section>h6:first-of-type {
+section section section h1:first-of-type,
+section section section h2:first-of-type,
+section section section h3:first-of-type,
+section section section h4:first-of-type,
+section section section h5:first-of-type,
+section section section h6:first-of-type {
   counter-increment: heading3; counter-reset: heading4;
   font-size: 1.67em;
 }
-section>section>section>h1:first-of-type::before,
-section>section>section>h2:first-of-type::before,
-section>section>section>h3:first-of-type::before,
-section>section>section>h4:first-of-type::before,
-section>section>section>h5:first-of-type::before,
-section>section>section>h6:first-of-type::before {
+section section section h1:first-of-type::before,
+section section section h2:first-of-type::before,
+section section section h3:first-of-type::before,
+section section section h4:first-of-type::before,
+section section section h5:first-of-type::before,
+section section section h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) " ";
 }
 
-section>section>section>section>h1:first-of-type,
-section>section>section>section>h2:first-of-type,
-section>section>section>section>h3:first-of-type,
-section>section>section>section>h4:first-of-type,
-section>section>section>section>h5:first-of-type,
-section>section>section>section>h6:first-of-type {
+section section section section h1:first-of-type,
+section section section section h2:first-of-type,
+section section section section h3:first-of-type,
+section section section section h4:first-of-type,
+section section section section h5:first-of-type,
+section section section section h6:first-of-type {
   counter-increment: heading4; counter-reset: heading5;
   font-size: 1.50em;
 }
-section>section>section>section>h1:first-of-type::before,
-section>section>section>section>h2:first-of-type::before,
-section>section>section>section>h3:first-of-type::before,
-section>section>section>section>h4:first-of-type::before,
-section>section>section>section>h5:first-of-type::before,
-section>section>section>section>h6:first-of-type::before {
+section section section section h1:first-of-type::before,
+section section section section h2:first-of-type::before,
+section section section section h3:first-of-type::before,
+section section section section h4:first-of-type::before,
+section section section section h5:first-of-type::before,
+section section section section h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
            counter(heading4) " ";
 }
 
-section>section>section>section>section>h1:first-of-type,
-section>section>section>section>section>h2:first-of-type,
-section>section>section>section>section>h3:first-of-type,
-section>section>section>section>section>h4:first-of-type,
-section>section>section>section>section>h5:first-of-type,
-section>section>section>section>section>h6:first-of-type {
+section section section section section h1:first-of-type,
+section section section section section h2:first-of-type,
+section section section section section h3:first-of-type,
+section section section section section h4:first-of-type,
+section section section section section h5:first-of-type,
+section section section section section h6:first-of-type {
   counter-increment: heading5; counter-reset: heading6;
   font-size: 1.33em;
 }
-section>section>section>section>section>h1:first-of-type::before,
-section>section>section>section>section>h2:first-of-type::before,
-section>section>section>section>section>h3:first-of-type::before,
-section>section>section>section>section>h4:first-of-type::before,
-section>section>section>section>section>h5:first-of-type::before,
-section>section>section>section>section>h6:first-of-type::before {
+section section section section section h1:first-of-type::before,
+section section section section section h2:first-of-type::before,
+section section section section section h3:first-of-type::before,
+section section section section section h4:first-of-type::before,
+section section section section section h5:first-of-type::before,
+section section section section section h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
            counter(heading4) "." counter(heading5) " ";
 }
 /** heading6 だけカウンターが増えない？ */
-section>section>section>section>section>section>h1:first-of-type,
-section>section>section>section>section>section>h2:first-of-type,
-section>section>section>section>section>section>h3:first-of-type,
-section>section>section>section>section>section>h4:first-of-type,
-section>section>section>section>section>section>h5:first-of-type,
-section>section>section>section>section>section>h6:first-of-type {
+section section section section section section h1:first-of-type,
+section section section section section section h2:first-of-type,
+section section section section section section h3:first-of-type,
+section section section section section section h4:first-of-type,
+section section section section section section h5:first-of-type,
+section section section section section section h6:first-of-type {
   /* 使っていなくてもheading7をリセットしないとheading6が増えないっぽい */
   counter-increment: heading6; counter-reset: heading7;
   font-size: 1.17em;
 }
-section>section>section>section>section>section>h1:first-of-type::before,
-section>section>section>section>section>section>h2:first-of-type::before,
-section>section>section>section>section>section>h3:first-of-type::before,
-section>section>section>section>section>section>h4:first-of-type::before,
-section>section>section>section>section>section>h5:first-of-type::before,
-section>section>section>section>section>section>h6:first-of-type::before {
+section section section section section section h1:first-of-type::before,
+section section section section section section h2:first-of-type::before,
+section section section section section section h3:first-of-type::before,
+section section section section section section h4:first-of-type::before,
+section section section section section section h5:first-of-type::before,
+section section section section section section h6:first-of-type::before {
   content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
            counter(heading4) "." counter(heading5) "." counter(heading6) " ";
 }
@@ -377,6 +377,7 @@ pre {
   font-family: "Migu 1M", "Inconsolata", "DejaVu Sans Mono", "Consolas", "TakaoGothic", "VL Gothic", "HGGothicM", "MS Gothic",  monospace;
   background-color: #ffffe6;
   overflow: auto;
+  tab-size: 2;
 }
 
 /** Line number for source code */
@@ -507,11 +508,10 @@ figure>dl>dd:nth-of-type(n+2) {
 }
 
 /** Show update date */
-h1[title]::after, h2[title]::after, h3[title]::after,
-h4[title]::after, h5[title]::after, h6[title]::after {
+[data-updated-date]::after {
   color: gray;
   font-size: 0.5em;
-  content: " Update: " attr(title);
+  content: " Update: " attr(data-updated-date);
 }
 
 
@@ -537,7 +537,7 @@ h4[title]::after, h5[title]::after, h6[title]::after {
 
   /* Show URL */
   a[href]::after {
-    content: "（" attr(href) "）";
+    content: " (" attr(href) ")";
   }
   a[href^="#"]::after,
   a[href^="javascript"]::after {

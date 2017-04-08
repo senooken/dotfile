@@ -17,6 +17,7 @@ let s:IS_WINDOWS_7 = s:IS_WINDOWS && system('VER') =~# 'Version 6.1'
 "" Charset, Line ending
 set encoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932,utf-16le,utf-16
+" set fileencodings=utf-16le,ucs-bom,utf-16le,iso-2022-jp,euc-jp,cp932,utf-16
 set fileformats=unix,dos,mac
 
 "" Windowsのコマンドプロンプトの日本語文字化け対策
@@ -28,18 +29,18 @@ if exists('+fixendofline')  " version 7.4.785+
   autocmd BufWritePre * set nofixendofline
 endif
 
-" Fix 'fileencoding' to use 'encoding'
-" if the buffer only contains 7-bit characters.
-" Note that if the buffer is not 'modifiable',
-" its 'fileencoding' cannot be changed, so that such buffers are skipped.
 autocmd BufReadPost *
-  \   if &modifiable && !search('[^\x00-\x7F]', 'cnw')
+  \ let s:IS_UNICODE = &fenc =~ 'utf-16' || &fenc =~ 'ucs' || &fenc =~ 'unicode'
+
+" Fix 'fileencoding' to use 'encoding' if the buffer only ASCII characters.
+autocmd BufReadPost *
+  \   if &modifiable && !s:IS_UNICODE && !search('[^\x00-\x7F]', 'cnw')
   \ |   setlocal fileencoding=
   \ | endif
 
-"" 文字エンコーディングUTF-16のときはbombを付ける
+" Set BOM in UTF-16 and UTF-32
 autocmd BufWritePre *
-  \   if &fileencoding =~? 'utf-16*'
+  \   if s:IS_UNICODE
   \ |   setlocal bomb
   \ | endif
 
@@ -69,7 +70,7 @@ if s:is_neobundle_installed
   "" list installing plugins
   """ completion
   if has("lua")
-    NeoBundle 'Shougo/neocomplete'
+    " NeoBundle 'Shougo/neocomplete'
   else
     NeoBundle 'Shougo/neocomplcache'
   endif
@@ -131,7 +132,6 @@ if s:is_neobundle_installed
   endif
 
   NeoBundle 'thinca/vim-quickrun' " quick run in vim
-  NeoBundle 'thinca/vim-template'
   if executable('ctags')
     NeoBundle 'taglist.vim'
   endif
@@ -484,23 +484,10 @@ endif
 " endif
 
 "" template file
-if s:Neobundled('vim-template')
-  " テンプレート中に含まれる特定文字列を置換
-  autocmd User plugin-template-loaded call s:Template_keywords()
-  function! s:Template_keywords()
-      silent! %s/<+DATE+>/\=strftime('%Y-%m-%dT%H:%M+09:00')/g
-      silent! 1s/^ ::/::/  " for template.bat
-  endfunction
-  " テンプレート中に含まれる'<+CURSOR+>'にカーソルを移動
-  autocmd User plugin-template-loaded
-      \   if search('<+CURSOR+>') | silent! execute 'normal! "_da>' | endif
-else
-  "" vim-templateが使えないときの設定
-  autocmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
-  autocmd BufNewFile * silent! :0r  ~/.vim/template/%:t
-endif
+autocmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
+autocmd BufNewFile * silent! :0r  ~/.vim/template/%:t
 
-"" templateの編集中はタイムスタンプが埋め込まれないように無効化
+"" Disable autodate.vim during editing template
 if s:Neobundled('autodate.vim')
   autocmd BufWritePre template.*  silent! :AutodateOFF
 endif
@@ -532,11 +519,8 @@ set showcmd    " Show inputting command and counting visual mode
 set showmatch  " 括弧入力時の対応する括弧を表示
 set showmode   " 現在のモードを表示
 
-"" Highlight
-if has('+extra_search')
-  set hlsearch  " 検索結果文字列のハイライトを有効にする
-endif
-
+set nomodeline
+set modelines=0
 "" Base color
 filetype plugin indent on " valid vim plugin
 syntax enable
@@ -551,8 +535,11 @@ set laststatus=2
 
 set statusline =[%n]%<%f\ %m%r%h%w  " File name
 set statusline+=%<%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " Encoding
-set statusline+=[%04B]  " Character code
 " set statusline+=[%{mode()}]  " Mode
+set statusline+=%{(&bomb?'[bomb]':'')}  " BOM
+set statusline+=%{(&eol?'':'[noeol]')}  " EOL
+set statusline+=[%04B]  " Character code
+" set statusline+=%{'['.&eol.']'}
 set statusline+=%=\ %4l/%4L\|%3v\|%4P  " Current position information
 
 "" Tabpage
@@ -826,7 +813,7 @@ if exists('##QuickfixCmdPre')
   """ Ignored files in :vimgrep
   let s:ignore_list = ',.git/**,.svn/**,obj/**'
   let s:ignore_list = s:ignore_list . ',tags,GTAGS,GRTAGS,GPATH'
-  let s:ignore_list = s:ignore_list . ',*.o,*.obj,*.exe,*.dll,*.bin,*.so'
+  let s:ignore_list = s:ignore_list . ',*.o,*.obj,*.exe,*.dll,*.bin,*.so,*.img'
   let s:ignore_list = s:ignore_list . ',*.a,*.out,*.jar,*.pak,*.deb,*.rpm,*.iso'
   let s:ignore_list = s:ignore_list . ',*.zip,*gz,*.xz,*.bz2,*.7z,*.lha,*.lzh'
   let s:ignore_list = s:ignore_list . ',*.png,*.jp*,*.gif,*.tif*,*.bmp,*.mp*'
