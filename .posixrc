@@ -157,6 +157,7 @@ is_option_enabled ls -G           && LL_OPTION="-G $LL_OPTION"
 is_option_enabled ls --time-style &&
 	LL_OPTION="--time-style='+%Y-%m-%d %H:%M' $LL_OPTION"
 
+alias mv='mv -i'
 alias ls='ls -AFh --color=auto' l='ls'
 alias ll="ls $LL_OPTION"
 

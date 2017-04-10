@@ -17,7 +17,6 @@ let s:IS_WINDOWS_7 = s:IS_WINDOWS && system('VER') =~# 'Version 6.1'
 "" Charset, Line ending
 set encoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932,utf-16le,utf-16
-" set fileencodings=utf-16le,ucs-bom,utf-16le,iso-2022-jp,euc-jp,cp932,utf-16
 set fileformats=unix,dos,mac
 
 "" Windowsのコマンドプロンプトの日本語文字化け対策
@@ -26,23 +25,19 @@ if s:IS_WINDOWS | set termencoding=cp932 | endif
 set ambiwidth=double " 全角記号をきちんと表示
 
 if exists('+fixendofline')  " version 7.4.785+
-  autocmd BufWritePre * set nofixendofline
+  autocmd BufWritePre * setlocal nofixendofline
 endif
 
-autocmd BufReadPost *
-  \ let s:IS_UNICODE = &fenc =~ 'utf-16' || &fenc =~ 'ucs' || &fenc =~ 'unicode'
+autocmd BufReadPost,BufWritePre * let s:IS_UCS = &fenc =~ 'utf-16\|ucs\|unicode'
 
 " Fix 'fileencoding' to use 'encoding' if the buffer only ASCII characters.
 autocmd BufReadPost *
-  \   if &modifiable && !s:IS_UNICODE && !search('[^\x00-\x7F]', 'cnw')
+  \   if &modifiable && !s:IS_UCS && !search('[^\x00-\x7F]', 'cnw')
   \ |   setlocal fileencoding=
   \ | endif
 
 " Set BOM in UTF-16 and UTF-32
-autocmd BufWritePre *
-  \   if s:IS_UNICODE
-  \ |   setlocal bomb
-  \ | endif
+autocmd BufWritePre * if s:IS_UCS | setlocal bomb | endif
 
 if has('vim_starting')
   if s:IS_WINDOWS
@@ -536,10 +531,9 @@ set laststatus=2
 set statusline =[%n]%<%f\ %m%r%h%w  " File name
 set statusline+=%<%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " Encoding
 " set statusline+=[%{mode()}]  " Mode
-set statusline+=%{(&bomb?'[bomb]':'')}  " BOM
-set statusline+=%{(&eol?'':'[noeol]')}  " EOL
+set statusline+=%{&bomb?'[bomb]':''}  " BOM
+set statusline+=%{&eol?'':'[noeol]'}  " EOL
 set statusline+=[%04B]  " Character code
-" set statusline+=%{'['.&eol.']'}
 set statusline+=%=\ %4l/%4L\|%3v\|%4P  " Current position information
 
 "" Tabpage
@@ -747,7 +741,7 @@ autocmd BufWinEnter,WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 " autocmd VimEnter * tab all
 " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
-"" language config
+"" Language config
 """ AsciiDoc
 autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
 
@@ -756,7 +750,8 @@ autocmd BufNewFile,BufRead *.bas setlocal filetype=vb shiftwidth=4 tabstop=4
 autocmd BufWritePre *.bas setlocal fileencoding=cp932
 
 """ for bat file
-autocmd BufWritePre *.bat setlocal fileformat=dos fileencoding=cp932
+autocmd FileType dosbatch setlocal fileformat=dos fileencoding=cp932
+autocmd FileType javascript setlocal fileencoding=utf-16le
 
 """ for snippet file
 autocmd BufNewFile,BufRead *.snip setlocal noexpandtab
