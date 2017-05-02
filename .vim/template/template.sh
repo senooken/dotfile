@@ -1,4 +1,4 @@
-: POSIX compatible shell script
+:
 ################################################################################
 ## \file      template.sh
 ## \author    SENOO, Ken
@@ -9,15 +9,10 @@
 
 ## \brief Initialize POSIX shell environment
 init(){
-	POSIX_PATH=`command -p getconf PATH 2>&-`
-	case "$PATH" in "$POSIX_PATH"*);; *)
-		PATH="${POSIX_PATH:+$POSIX_PATH:}$PATH" export PATH
-		exec sh "$0" "$@"
-	esac
-
 	set -eu
 	umask 0022
-	export LC_ALL='C'
+	PATH="$(command -p getconf PATH 2>&- || :)${PATH+:$PATH}"
+	export PATH="${PATH#:}" LC_ALL='C'
 }
 
 is_main()(

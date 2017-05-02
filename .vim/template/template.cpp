@@ -2,10 +2,10 @@
 /// \file      template.cpp
 /// \author    SENOO, Ken
 /// \copyright CC0
-/// \date      first created date: <+DATE+>
+/// \date      first created date: 
 /// \date      last  updated date: 
 ////////////////////////////////////////////////////////////////////////////////
-<+CURSOR+>
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -15,7 +15,7 @@
 #include <boost/algorithm/string.hpp>//split(in,st,sep),trim/[_copy]_if(st,sep)
 #include <boost/lexical_cast.hpp> // boost::lexical_cast<type>(obj)
 
-int main(void) {
+int main(void){
 
   return 0;
 }

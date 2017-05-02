@@ -16,7 +16,8 @@ let s:IS_WINDOWS_7 = s:IS_WINDOWS && system('VER') =~# 'Version 6.1'
 
 "" Charset, Line ending
 set encoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932,utf-16le,utf-16
+set fileencodings=ucs-bom,iso-2022-jp,utf-8,cp932,euc-jp,utf-16le,utf-16
+" set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932,utf-16le,utf-16
 set fileformats=unix,dos,mac
 
 "" Windowsのコマンドプロンプトの日本語文字化け対策
@@ -839,6 +840,7 @@ nnoremap [t :tprevious<CR>
 nnoremap ]t :tnext<CR>
 nnoremap [T :tfirst<CR>
 nnoremap ]T :tlast<CR>
+nnoremap <C-]> g<C-]>
 
 "" Buffer
 nnoremap <silent> [b :bprevious<CR>

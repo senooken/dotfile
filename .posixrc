@@ -1,4 +1,4 @@
-: POSIX compatible shell script
+:
 ################################################################################
 ## \file      .posixrc.sh
 ## \author    SENOO, Ken
@@ -61,8 +61,9 @@ case "$-/${IS_POSIXRC_LOADED:-false}" in *i*/false)
 	export DISPLAY="${DISPLAY:-:0}"  # if DISPLAY is none, then set.
 
 	## Utility
-	N='/dev/null'
+	NULL='/dev/null'
 	HT=$(printf '\t')
+	SHS='sh ksh ksh93 pdksh mksh posh ash dash bash zsh yash'
 
 	## Environmental variables
 	: ${HOME:=~}      # for MSYS
@@ -115,7 +116,7 @@ HOST=$(uname -n)
 PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
 PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
 
-PS1="\$([ \$((COLUMNS - \$(echo \"$USERNAME@$HOST:$CWD$\" | wc -m))) -le 15 ] &&
+PS1="\$([ \$((COLUMNS - \$(expr \"$USERNAME@$HOST:$CWD$\" : '.*'))) -le 15 ] &&
 	printf '$PROMPT_NAME'\"$CWD\"'\n$PROMPT_MARK' ||
 	printf '$PROMPT_NAME'\"$CWD\"'''$PROMPT_MARK' )"
 
@@ -139,7 +140,7 @@ if [ "$OS" = "Windows_NT" ]; then
 	  "$EXE" "$@" 2>&1 | iconv -f CP932 -t UTF-8
 	)
 
-	for exe in ipconfig netstat netsh taskkill reg; do
+	for exe in javac ant ping ipconfig netstat netsh taskkill reg; do
 		eval "alias $exe='wincmd $exe'"
 	done
 
