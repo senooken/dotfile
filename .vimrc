@@ -757,13 +757,12 @@ autocmd FileType javascript setlocal fileencoding=utf-16le
 """ for snippet file
 autocmd BufNewFile,BufRead *.snip setlocal noexpandtab
 
-autocmd! FileType python setlocal shiftwidth=4 tabstop=4
+autocmd! FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 autocmd! FileType sh setlocal noexpandtab
 
 "" folding
 " autocmd FileType python :set foldmethod=indent
-autocmd FileType python set foldlevel=1
-autocmd FileType python set foldnestmax=2
+autocmd FileType python setlocal foldlevel=1 foldnestmax=2
 autocmd FileType * setlocal formatoptions-=ro
 
 "" 閉じタグの自動補完

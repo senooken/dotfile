@@ -3,8 +3,8 @@
 ## \file      template.sh
 ## \author    SENOO, Ken
 ## \copyright CC0
-## \date      first created date: 
-## \date      last  updated date: 
+## \date      created date: 
+## \date      updated date: 
 ################################################################################
 
 ## \brief Initialize POSIX shell environment

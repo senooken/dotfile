@@ -1,0 +1,7 @@
+@author: SENOO, Ken
+(Last Update: 2014-08-09T13:57+09:00)
+
+superscript.txtとsubscript.txtはWikipediaの該当ページからリストを抽出して作成した。ライセンスを明記するとしたらCC-BY-SAになるのだろう。現時点ではよくわからないので明記しない。
+
+U+1d43はWikipediaの方で重複していたのでsuperscript.txtにおいては後に出てきた方を削除した。superscript.txtとsubscript.txtの1行目は読み込みのときに無視される。
+

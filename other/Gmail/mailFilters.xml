@@ -1,0 +1,411 @@
+<?xml version='1.0' encoding='UTF-8'?><feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+	<title>Mail Filters</title>
+	<id>tag:mail.google.com,2008:filters:1326039896581,1334505492766,1334507185669,1335360386277,1335888675845,1336919319020,1338107184344,1339597033280,1344784684294,1344784722127,1346165150180,1346255178142,1353857274976,1353982196494,1356011940121,1356267922622,1356268051506,1356268560125,1356780401559,1356780445245,1365340915299,1366638581274,1372680198219,1373986179169,1391178164776,1406895123246,1425798053465,1426220152379,1426220192274,1426220195829,1426220201542,1426220213491,1426220213503,1426220213504,1426220213508,1426220218987,1427101321906,1427101447314,1432397900177,1438496176104</id>
+	<updated>2015-08-02T06:17:27Z</updated>
+	<author>
+		<name>Ken Senoo</name>
+		<email>senoo.ken@gmail.com</email>
+	</author>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1326039896581</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='west-wind@jttk.zaq.ne.jp'/>
+		<apps:property name='label' value='動物愛護'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1334505492766</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='to' value='senoo.ken.28c@st.kyoto-u.ac.jp'/>
+		<apps:property name='label' value='別メール/京都大学'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1334507185669</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='info@diarynote.jp'/>
+		<apps:property name='hasTheWord' value='DiaryNote 日記更新のお知らせ'/>
+		<apps:property name='label' value='ブログ'/>
+		<apps:property name='shouldMarkAsRead' value='true'/>
+		<apps:property name='shouldArchive' value='true'/>
+		<apps:property name='forwardTo' value='senopen.6df3d@m.evernote.com'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1335360386277</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='subject' value='請求額'/>
+		<apps:property name='label' value='クレジットカード'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1335888675845</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='info@booklog.jp'/>
+		<apps:property name='label' value='メルマガ/ブクログ'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1336919319020</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='楽天'/>
+		<apps:property name='label' value='楽天'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1338107184344</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='mts@mts-em.jp'/>
+		<apps:property name='label' value='メルマガ'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1339597033280</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='replyto-531f6ea1@plus.google.com'/>
+		<apps:property name='label' value='SNS/Google+'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1344784684294</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='auction-master@mail.yahoo.co.jp'/>
+		<apps:property name='subject' value='落札者'/>
+		<apps:property name='label' value='購入履歴'/>
+		<apps:property name='forwardTo' value='senopen.6df3d@m.evernote.com'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1344784722127</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='to' value='senoo.ken@gmail.com'/>
+		<apps:property name='subject' value='【楽天カード】カードご請求金額のご案内'/>
+		<apps:property name='label' value='クレジットカード/請求金額'/>
+		<apps:property name='forwardTo' value='senopen.6df3d@m.evernote.com'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1346165150180</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='order@rakuten.co.jp'/>
+		<apps:property name='subject' value='【楽天市場】注文内容ご確認（自動配信メール）'/>
+		<apps:property name='label' value='購入履歴'/>
+		<apps:property name='forwardTo' value='senopen.6df3d@m.evernote.com'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1346255178142</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='@facebook'/>
+		<apps:property name='label' value='SNS/Facebook'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1353857274976</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='sns@oooug.jp'/>
+		<apps:property name='label' value='SNS/OpenOffice'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1353982196494</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='auto-confirm@amazon.co.jp'/>
+		<apps:property name='subject' value='ご注文の確認'/>
+		<apps:property name='label' value='購入履歴'/>
+		<apps:property name='shouldMarkAsRead' value='true'/>
+		<apps:property name='shouldArchive' value='true'/>
+		<apps:property name='forwardTo' value='senopen.6df3d@m.evernote.com'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1356011940121</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='subject' value='ポイント明細のお知らせ【楽天】'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1356267922622</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='subject' value='auご利用料金更新のお知らせ'/>
+		<apps:property name='label' value='クレジットカード/請求金額'/>
+		<apps:property name='forwardTo' value='chachadora1349@yahoo.co.jp'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1356268051506</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='subject' value='auご利用料金更新のお知らせ'/>
+		<apps:property name='forwardTo' value='senopen.6df3d@m.evernote.com'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1356268560125</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='diarynote.jp'/>
+		<apps:property name='label' value='SNS/DiaryNote'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1356780401559</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='subject' value='からのツイートがあります'/>
+		<apps:property name='hasTheWord' value='n-frabbxra=tznvy.pbz-e9cf8@postmaster.twitter.com'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1356780445245</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='n-frabbxra=tznvy.pbz-e9cf8@postmaster.twitter.com'/>
+		<apps:property name='label' value='SNS/Twitter'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1365340915299</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='service-jp@paypal.com'/>
+		<apps:property name='subject' value='お支払いのご連絡'/>
+		<apps:property name='label' value='クレジットカード/請求金額'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1366638581274</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='service-jp@paypal.com'/>
+		<apps:property name='subject' value='へのお支払いのご連絡'/>
+		<apps:property name='label' value='Receipts'/>
+		<apps:property name='shouldMarkAsRead' value='true'/>
+		<apps:property name='shouldArchive' value='true'/>
+		<apps:property name='forwardTo' value='senopen.6df3d@m.evernote.com'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1372680198219</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='gkurata@athehost.env.kyoto-u.ac.jp OR kurata.gakuji.5a@kyoto-u.ac.jp'/>
+		<apps:property name='forwardTo' value='senopen.6df3d@m.evernote.com'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1373986179169</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='kaizaru7@yahoo.co.jp'/>
+		<apps:property name='label' value='動物愛護'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1391178164776</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='hasTheWord' value='category:promotions'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1406895123246</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='subject' value='STACIA通信'/>
+		<apps:property name='label' value='junk'/>
+		<apps:property name='shouldMarkAsRead' value='true'/>
+		<apps:property name='shouldArchive' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1425798053465</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='hasTheWord' value='after:2015/01/01 before:2016/01/01'/>
+		<apps:property name='label' value='year/2015'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1426220152379</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='hasTheWord' value='filename:(.lzh OR .zip OR .cab)'/>
+		<apps:property name='label' value='zip'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1426220192274</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='hasTheWord' value='filename:(.doc OR .xls OR .ppt OR .pdf OR .txt OR .rtf OR .html)'/>
+		<apps:property name='label' value='document'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1426220195829</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='hasTheWord' value='filename:(.jpg OR .jpeg OR .bmp OR .gif OR .png OR .tif OR .pct OR .eps)'/>
+		<apps:property name='label' value='image'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1426220201542</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='yamada.yuuko.6x@kyoto-u.ac.jp OR root@db2.kulib.kyoto-u.ac.jp'/>
+		<apps:property name='label' value='library'/>
+		<apps:property name='shouldMarkAsRead' value='true'/>
+		<apps:property name='shouldArchive' value='true'/>
+		<apps:property name='forwardTo' value='senopen.6df3d@m.evernote.com'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1426220213491</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='kyoto-u.ac.jp'/>
+		<apps:property name='label' value='school/京都大学'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1426220213503</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='@oit.ac.jp'/>
+		<apps:property name='label' value='school/大阪工大'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1426220213504</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='endless_road-0.0-carnival.710@ezweb.ne.jp'/>
+		<apps:property name='label' value='school/大阪工大'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1426220213508</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='www.akasi-sentar@k.vodafone.ne.jp OR ts-ni.517_4132_1824.k-1-www.jp@docomo.ne.jp OR aim0tone@ezweb.ne.jp'/>
+		<apps:property name='label' value='school/大阪工大/松本研'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1426220218987</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='ship-confirm@amazon.co.jp'/>
+		<apps:property name='label' value='shop/ship'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1427101321906</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='mailmag@ml.nikki.ne.jp OR information@j-broad.co.jp'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1427101447314</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='from' value='research-info@rakuten.co.jp OR pm-info@mail.rakuten.com'/>
+		<apps:property name='shouldArchive' value='true'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1432397900177</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='hasTheWord' value='from:(a.ti.a.ti.sat.30.04.2011@gmail.com) OR to:(from:(a.ti.a.ti.sat.30.04.2011@gmail.com))'/>
+		<apps:property name='label' value='person/守家 康介'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1438496176104</id>
+		<updated>2015-08-02T06:17:27Z</updated>
+		<content></content>
+		<apps:property name='hasTheWord' value='from:(mslamsh20131029@outlook.jp OR senoo.ken@gmail.com OR senookn@hydro-soft.co.jp) to:(senoo.ken@gmail.com)'/>
+		<apps:property name='label' value='sent-me'/>
+		<apps:property name='shouldMarkAsRead' value='true'/>
+		<apps:property name='shouldArchive' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+</feed>
