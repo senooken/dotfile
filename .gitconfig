@@ -31,3 +31,5 @@
 	sslverify = false
 [init]
 	templatedir = ~/.git-template
+[guitool "Tag"]
+	cmd = git tag

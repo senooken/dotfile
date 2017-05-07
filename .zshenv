@@ -21,6 +21,7 @@ bindkey -e
 
 #bindkey "^[[5~" # PageUp
 #bindkey "^[[6~" # PageDown
+## For Cygwin and MSYS2
 bindkey "^[[3~" delete-char
 
 ### Home and End key mapping
