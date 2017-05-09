@@ -217,6 +217,6 @@ shopt -s nocaseglob  # ignore case since 2.02
 # shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
 
 ## for shared shell setting
-export ENV="${ENV:-$HOME/.posixrc.sh}"
+export ENV="${ENV-$HOME/.shrc}"
 [ -r "$ENV" ] && . "$ENV"
 # source /opt/OpenFOAM/OpenFOAM-2.3.x/etc/bashrc.win

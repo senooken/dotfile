@@ -35,4 +35,4 @@ bindkey "^[OF" end-of-line
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 
-[ -f "$ENV" ] && . "$ENV"
+[ -r "$ENV" ] && . "$ENV"

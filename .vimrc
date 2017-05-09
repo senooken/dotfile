@@ -743,18 +743,21 @@ autocmd BufWinEnter,WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
 "" Language config
+""" Shell script
+autocmd BufRead,BufNewFile .shrc setlocal filetype=sh
+
 """ AsciiDoc
 autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
 
-""" for Visual Basic
+""" Visual Basic
 autocmd BufNewFile,BufRead *.bas setlocal filetype=vb shiftwidth=4 tabstop=4
 autocmd BufWritePre *.bas setlocal fileencoding=cp932
 
-""" for bat file
+""" Bat file
 autocmd FileType dosbatch setlocal fileformat=dos fileencoding=cp932
 autocmd FileType javascript setlocal fileencoding=utf-16le
 
-""" for snippet file
+""" Snippet file
 autocmd BufNewFile,BufRead *.snip setlocal noexpandtab
 
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4 expandtab

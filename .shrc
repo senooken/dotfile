@@ -1,13 +1,13 @@
 :
 ################################################################################
-## \file      .posixrc.sh
+## \file      .shrc
 ## \author    SENOO, Ken
 ## \copyright CC0
 ## \brief POSIX compatible shell configure
 ################################################################################
 
 alias source='.'
-is_exe_enabled(){ command -v ${1+"$@"} >/dev/null; }
+is_exe_enabled()( command -v ${1+"$@"} >/dev/null )
 
 is_opt_enabled()(
 	EXE="$1"; OPT="$2"
@@ -17,7 +17,7 @@ is_opt_enabled()(
 ### Interactive shell local development PATH
 case "$-/${IS_POSIXRC_LOADED:-false}" in *i*/false)
 	export IS_POSIXRC_LOADED='true'
-	export ENV="${ENV:-$HOME/.posixrc.sh}"
+	export ENV="${ENV:-$HOME/.shrc}"
 	LOCAL="$HOME/.local"
 	### System path
 	PATH="/system/bin:/system/xbin${PATH+:$PATH}"
