@@ -844,6 +844,24 @@ nnoremap [T :tfirst<CR>
 nnoremap ]T :tlast<CR>
 nnoremap <C-]> g<C-]>
 
+"" cscope
+if has('cscope')
+  " set cscopequickfix=s-,g-,d-,c-,t-,e-,i-,a-
+  set cscopequickfix=s-,g-,d-,c-,t-,e-,i-
+  set cscopetag
+  set cscoperelative
+  " set cscopepathcomp=3  " not work?
+
+  if filereadable('cscope.out')
+    cscope add cscope.out
+  elseif $CSCOPE_DB != ''
+    cscope add $CSCOPE_DB
+  endif
+  set cscopeverbose
+endif
+
+
+
 "" Buffer
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>

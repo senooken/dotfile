@@ -1,7 +1,7 @@
-\# \file      template.md
-\# \author    SENOO, Ken
-\# \copyright CC0
-\# \date      first created date: <+DATE+>
-\# \date      last  updated date: 
+template.md
+SENOO, Ken
+CC0
+created date: 
+updated date: 
 
-<+CURSOR+>
+

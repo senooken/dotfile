@@ -9,10 +9,10 @@
 
 ## \brief Initialize POSIX shell environment
 init(){
-	set -eu
-	umask 0022
-	PATH="$(command -p getconf PATH 2>&- || :)${PATH+:$PATH}"
+	PATH="$(command -p getconf PATH 2>&-)${PATH+:$PATH}"
 	export PATH="${PATH#:}" LC_ALL='C'
+	umask 0022
+	set -eu
 }
 
 is_main()(
