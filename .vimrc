@@ -846,11 +846,12 @@ nnoremap <C-]> g<C-]>
 
 "" cscope
 if has('cscope')
-  " set cscopequickfix=s-,g-,d-,c-,t-,e-,i-,a-
-  set cscopequickfix=s-,g-,d-,c-,t-,e-,i-
+  set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
+  if v:version > 704 || has('patch-7.4.1952')
+    let &cscopequickfix .= ',a-'
+  endif
   set cscopetag
   set cscoperelative
-  " set cscopepathcomp=3  " not work?
 
   if filereadable('cscope.out')
     cscope add cscope.out
@@ -858,8 +859,20 @@ if has('cscope')
     cscope add $CSCOPE_DB
   endif
   set cscopeverbose
-endif
 
+  """ Search word under cursor. Nul = C-Space
+  let s:map = 'nnoremap <silent> '
+  for s:type in ['s', 'g', 'd', 'c', 't', 'e', 'f', 'i', 'a']
+    if s:type ==# 'f' || s:type ==# 'i'
+      let s:target = ' find ' . s:type . ' <C-R>=expand("<file>")<CR><CR>'
+    else
+      let s:target = ' find ' . s:type . ' <C-R>=expand("<cword>")<CR><CR>'
+    endif
+    execute s:map '<C-\>'      . s:type . ' :cscope'       . s:target
+    execute s:map '<Nul>'      . s:type . ' :scscope'      . s:target
+    execute s:map '<Nul><Nul>' . s:type . ' :vert scscope' . s:target
+  endfor
+endif
 
 
 "" Buffer
