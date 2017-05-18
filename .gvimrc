@@ -35,3 +35,14 @@ nnoremap <silent> ,F :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("
 set foldmethod=manual
 
 " set guioptions+=b " nowrapのときに横スクロールバー
+
+
+"" Menu
+menu Custom.Edit\ \.vimrc   :e $MYVIMRC<cr>
+menu Custom.Reload\ .vimrc  :so $MYVIMRC<cr>
+menu Custom.Command\ mode   :
+if mapcheck('<C-V>') == ''
+  menu Custom.Visual\ block <C-V>
+else
+  menu Custom.Visual\ block <C-q>
+endif

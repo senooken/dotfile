@@ -649,6 +649,12 @@ set wildmode=list:longest,full  " 1回目で共通部分，2回目で順番に�
 "map <c-a> <HOME>
 noremap <C-e> <END>
 noremap <m-d> dw
+"" For mouse key
+noremap   <Up>      k
+noremap   <Down>    j
+noremap   <Left>    h
+noremap   <Right>   l
+
 "map <c-u> d0
 "map <c-k> d$
 " When insert mode, enable hjkl and go to home/end.
@@ -663,10 +669,10 @@ inoremap <C-d> <delete>
 inoremap <C-b> <C-g>u<C-h>
 
 "" Handle tmux HOME and End key in vim
-map <Esc>OH <Home>
-map! <Esc>OH <Home>
-map <Esc>OF <End>
-map! <Esc>OF <End>
+noremap <Esc>OH <Home>
+noremap! <Esc>OH <Home>
+noremap <Esc>OF <End>
+noremap! <Esc>OF <End>
 
 " inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
 
@@ -678,6 +684,8 @@ nnoremap <C-h> :<C-u>help<Space>
 autocmd BufEnter *
   \  if &modifiable
   \|   nnoremap <buffer> <CR> i<CR><ESC>
+  \| else
+  \|   nnoremap <buffer> <CR> <CR>
   \| endif
 
 
@@ -720,10 +728,9 @@ autocmd BufEnter * lcd %:p:h
 set nrformats=   " deal as decimal for number
 
 "" show special character
+set listchars=tab:>-,trail:_,extends:),precedes:(
 if v:version >= 700
-  set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
-else
-  set listchars=tab:>-,trail:_,extends:),precedes:(
+  let &listchars .= ',nbsp:%'
 endif
 set list
 
@@ -845,9 +852,9 @@ nnoremap ]T :tlast<CR>
 nnoremap <C-]> g<C-]>
 
 "" cscope
-if has('cscope')
+if executable('cscope') && has('cscope')
   set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
-  if v:version > 704 || has('patch-7.4.1952')
+  if v:version >= 800 || has('patch-7.4.1952')
     let &cscopequickfix .= ',a-'
   endif
   set cscopetag
