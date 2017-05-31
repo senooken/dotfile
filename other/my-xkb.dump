@@ -1130,8 +1130,8 @@ xkb_symbols "pc+jp+inet(evdev)" {
         symbols[Group1]= [               w,               W ]
     };
     key <AD03> {
-//        type= "ALPHABETIC",  
-        type= "THREE_LEVEL",  
+//        type= "ALPHABETIC",
+        type= "THREE_LEVEL",
         symbols[Group1]= [               e,               E, End ]
     };
     key <AD04> {
@@ -1147,8 +1147,9 @@ xkb_symbols "pc+jp+inet(evdev)" {
         symbols[Group1]= [               y,               Y ]
     };
     key <AD07> {
-        type= "ALPHABETIC",
-        symbols[Group1]= [               u,               U ]
+//        type= "ALPHABETIC",
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               u,               U, Prior ]
     };
     key <AD08> {
 //        type= "ALPHABETIC",
@@ -1177,8 +1178,9 @@ xkb_symbols "pc+jp+inet(evdev)" {
         symbols[Group1]= [               s,               S ]
     };
     key <AC03> {
-        type= "ALPHABETIC",
-        symbols[Group1]= [               d,               D ]
+//        type= "ALPHABETIC",
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               d,               D, Next ]
     };
     key <AC04> {
         type= "ALPHABETIC",

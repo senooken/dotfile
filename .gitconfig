@@ -32,4 +32,5 @@
 [init]
 	templatedir = ~/.git-template
 [guitool "Tag"]
-	cmd = git tag
+	cmd = git tag $ARGS
+	argprompt = yes

@@ -38,11 +38,11 @@ set foldmethod=manual
 
 
 "" Menu
-menu Custom.Edit\ \.vimrc   :e $MYVIMRC<cr>
-menu Custom.Reload\ .vimrc  :so $MYVIMRC<cr>
-menu Custom.Command\ mode   :
+menu &Custom.&Edit\ \.vimrc<Tab>:e\ $MYVIMRC   :e $MYVIMRC<cr>
+menu Custom.&Reload\ \.vimrc<Tab>:so\ $MYVIMRC  :so $MYVIMRC<cr>
+menu Custom.&Command\ mode<Tab>:   :
 if mapcheck('<C-V>') == ''
-  menu Custom.Visual\ block <C-V>
+  menu Custom.&Visual\ block<Tab><C-V> <C-V>
 else
-  menu Custom.Visual\ block <C-q>
+  menu Custom.&Visual\ block<Tab><C-q> <C-q>
 endif

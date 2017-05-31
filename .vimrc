@@ -105,7 +105,6 @@ if s:is_neobundle_installed
 
   "" text edit
   NeoBundle 'tpope/vim-surround'
-  NeoBundle 'Align'
   NeoBundle 'YankRing.vim'
 
   " NeoBundle 'tyru/open-browser'
@@ -391,14 +390,14 @@ if s:Neobundled('vim-indent-guides')
 endif
 
 if s:Neobundled('autodate.vim')
-    let autodate_keyword_pre='updated date:'
+    let autodate_keyword_pre='Updated date:'
     let autodate_keyword_post='$'
     let autodate_format='%Y-%m-%dT%H:%M+09:00'
     let autodate_lines=10
 endif
 
 if s:Neobundled('autofname.vim')
-    let autofname_keyword_pre='\\file'
+    let autofname_keyword_pre=' [\@]file'
     let autofname_keyword_post='$'
     let autofname_lines=5
 endif
@@ -495,6 +494,11 @@ endif
 if s:Neobundled('ctrlp-funky')
   let g:ctrlp_funky_matchtype = 'path'
 endif
+
+"" vim-easy-align
+vmap <Enter> <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 "" Netrw
 let g:netrw_liststyle=3
@@ -674,6 +678,9 @@ noremap! <Esc>OH <Home>
 noremap <Esc>OF <End>
 noremap! <Esc>OF <End>
 
+" noremap <Esc>[5~ <PageUp>
+noremap <Esc>[6~ <PageDown>
+
 " inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
 
 "" short cut for help
@@ -694,6 +701,10 @@ nnoremap <ESC>h <C-w>h
 nnoremap <ESC>j <C-w>j
 nnoremap <ESC>k <C-w>k
 nnoremap <ESC>l <C-w>l
+
+"" Tab page
+nnoremap <Tab>   :tabnext<CR>
+nnoremap <S-Tab> :tabprevious<CR>
 
 "" Allow saving of files as sudo
 " cabbrev w!! %!sudo tee > /dev/null %
@@ -728,9 +739,10 @@ autocmd BufEnter * lcd %:p:h
 set nrformats=   " deal as decimal for number
 
 "" show special character
-set listchars=tab:>-,trail:_,extends:),precedes:(
 if v:version >= 700
-  let &listchars .= ',nbsp:%'
+  set listchars=tab:›\ ,trail:␣,extends:»,precedes:«,nbsp:%
+else
+  set listchars=tab:>-,trail:_,extends:),precedes:(
 endif
 set list
 
@@ -852,7 +864,7 @@ nnoremap ]T :tlast<CR>
 nnoremap <C-]> g<C-]>
 
 "" cscope
-if executable('cscope') && has('cscope')
+if has('cscope')
   set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
   if v:version >= 800 || has('patch-7.4.1952')
     let &cscopequickfix .= ',a-'
@@ -860,7 +872,7 @@ if executable('cscope') && has('cscope')
   set cscopetag
   set cscoperelative
 
-  if filereadable('cscope.out')
+  if filereadable('cscope.out') && executable('cscope')
     cscope add cscope.out
   elseif $CSCOPE_DB != ''
     cscope add $CSCOPE_DB
