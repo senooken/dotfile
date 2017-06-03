@@ -6,7 +6,7 @@ def configure(keymap):
     keymap_global = keymap.defineWindowKeymap()
 
     # 変換キーを モディファイアキー(U0)に登録
-    HENKAN = 28
+    HENKAN = "28"
     keymap.defineModifier(HENKAN, "User0") 
     # keymap_global["O-U0"] = "28"
 
@@ -106,6 +106,8 @@ def configure(keymap):
     # 表計算ソフトのタブ切替。Webのタブ切替などにも有効
     keymap_global["U0-O"] = "Ctrl-PageUp"
     keymap_global["U0-P"] = "Ctrl-PageDown"
+    keymap_global["LCtrl-U0-U"] = "Ctrl-PageUp"
+    keymap_global["LCtrl-U0-D"] = "Ctrl-PageDown"
 
     #keymap_global["U1-Semicolon"] = "Ctrl-Smicolon"
     keymap_global["Alt-U0-K"] = "Alt-Up" # Exploreで1階層上に移動
