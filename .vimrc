@@ -679,7 +679,7 @@ noremap <Esc>OF <End>
 noremap! <Esc>OF <End>
 
 " noremap <Esc>[5~ <PageUp>
-noremap <Esc>[6~ <PageDown>
+" noremap <Esc>[6~ <PageDown>
 
 " inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
 
@@ -703,7 +703,7 @@ nnoremap <ESC>k <C-w>k
 nnoremap <ESC>l <C-w>l
 
 "" Tab page
-nnoremap <Tab>   :tabnext<CR>
+nnoremap <C-Tab> :tabnext<CR>
 nnoremap <S-Tab> :tabprevious<CR>
 
 "" Allow saving of files as sudo
