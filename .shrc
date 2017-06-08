@@ -74,6 +74,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	ALPHA_U='A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'
 	ALPHA_L='a b c d e f g h i j k l m n o p q r s t u v w x y z'
 	SHS='sh ksh ksh93 pdksh mksh posh ash dash bash zsh yash'
+	CV='eval command -v'
 
 	## Environmental variables
 	: ${HOME:=~}      # for MSYS
@@ -289,6 +290,16 @@ WXCONFIG=$( wx-config  --libs --cppflags  2>&- || :)
 GTKCONFIG=$(pkg-config --libs --cflags gtk+-3.0 2>&- || :)
 LIBCPP='-static-libgcc -static-libstdc++'
 
+: ${SCREEN_SHELL:=$(command -v zsh )}
+: ${SCREEN_SHELL:=$(command -v bash)}
+
+## For not having screen-256color, but having xterm-256color support.
+toe -a 2>&- | grep -q 'screen-256color' &&
+	SCREEN_TERM='screen-256color' || SCREEN_TERM="$TERM"
+
+alias screen="screen -T $SCREEN_TERM -s $SCREEN_SHELL"
+alias tmux="SHELL=$SCREEN_SHELL tmux"
+
 ## For --exclude list
 EXCLUDE_FILE='{cscope.files,cscope.out,cscope.in.out,cscope.po.out,tags,GTAGS,GRTAGS,GPATH}'
 EXCLUDE_DIR='{.,..,node_modules,.git,.svn,obj}'
@@ -305,22 +316,13 @@ elif is_opt_enabled grep --exlude; then
 	GREP_OPTIONS="$GREP_OPTIONS --exclude={..*,*.git*,*.svn*}"
 fi
 
-if $IS_INTERACTIVE && is_exe_enabled bind locate; then
-	if ! locate readline.so | grep -Eq -e 'so.([7-9]|[0-9]{2,})$' -e 'so.6.3'; then
-		bind 'TAB: complete' 'C-SPC: menu-complete'
-	fi
+## Overwrite GNU Readline Tab (complete) by menu-complete
+IS_BASH_VER_GE_43="eval bash --version | grep -q -e ' 4\.[3-9]*' -e ' [5-9]\.'"
+if [ "$0" = 'bash' ] &&  $IS_BASH_VER_GE_43; then
+	bind 'TAB: menu-complete'
 fi
 
 alias grep="grep $GREP_OPTIONS"
 alias ag="ag -fU --ignore=$EXCLUDE_FILE"
 alias ctags="ctags --exclude=$EXCLUDE_DIR"
 
-: ${SCREEN_SHELL:=$(command -v zsh )}
-: ${SCREEN_SHELL:=$(command -v bash)}
-
-## For not having screen-256color, but having xterm-256color support.
-toe -a 2>&- | grep -q 'screen-256color' &&
-	SCREEN_TERM='screen-256color' || SCREEN_TERM="$TERM"
-
-alias screen="screen -T $SCREEN_TERM -s $SCREEN_SHELL"
-alias tmux="SHELL=$SCREEN_SHELL tmux"
