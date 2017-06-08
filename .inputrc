@@ -32,5 +32,5 @@ set skip-completed-text on
 
 ## Menu completion (\e[Z = Shift-TAB)
 set menu-complete-display-prefix on
-TAB: menu-complete
+Control-SPC: menu-complete
 "\e[Z": menu-complete-backward
