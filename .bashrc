@@ -179,32 +179,32 @@ export HISTTIMEFORMAT="%Y%m%dT%H%M "
 export MAKE_MODE=unix
 export JLESSCHARSET=japanese-sjis
 
-## shell option
-[ $BASH_VERSINFO -ge 4 ] && shopt -s autocd
-shopt -s cdable_vars  # enable cd <var>
-shopt -s cdspell  # auto modify cd path since 2.0
+## Shell option
+{
+	shopt -s autocd  # v4.0+
+	shopt -s cdable_vars  # enable cd <var>
+	shopt -s cdspell  # auto modify cd path since v2.0
 
-if [[ $BASH_VERSINFO -ge 5 ||
-	    $BASH_VERSINFO -ge 4 && ${BASH_VERSINFO[1]} -ge 3 ]]; then
-	shopt -s direxpand # auto modify in completion
-fi
+	# Avoid completing $VAR -> \$VAR
+	[ "${BASH_VERSION%.*}" = 4.2 ] && shopt -s direxpand # v4.2.3+
 
-# shopt -s expand_aliases  # enable alias in shell script since 2.0
-[ $BASH_VERSINFO -ge 4 ] && shopt -s dirspell
-shopt -s hostcomplete # try host completion
+	# shopt -s expand_aliases  # 2.0+ enable alias in shell script
+	shopt -s dirspell  # v4.0+
+	shopt -s hostcomplete # try host completion
 
-shopt -s extglob  # extentive regex. ?，*, +, @, !(1|2) since 2.02
-shopt -s nocaseglob  # ignore case since 2.02
+	shopt -s extglob  # v2.02+. extentive regex. ?，*, +, @, !(1|2)
+	shopt -s nocaseglob  # v2.02+. ignore case
 
-# **: match recursive subdirectory. **/: only 1 recursive.
-[ $BASH_VERSINFO -ge 4 ] && shopt -s globstar
-# shopt -s dotglob # include .dotfile in <command> *.
+	# **: match recursive subdirectory. **/: only 1 recursive.
+	shopt -s globstar  # v4.0+
+	# shopt -s dotglob # include .dotfile in <command> *.
 
-# [ $BASH_VERSINFO -ge 3 ] && shopt -s force_fignore
-# [ $BASH_VERSINFO -ge 3 ] && shopt -s gnu_errfmt
+	# shopt -s force_fignore # v3.0+
+	# shopt -s gnu_errfmt # v3.0+
 
-# shopt -s promptvars  # since 2.0
-# shopt -s progcomp  # since 2.04
+	# shopt -s promptvars  # v2.0+
+	# shopt -s progcomp  # v2.04+
+} 2>&-
 
 ## synchonization of bash history [130414]
 # url: http://iandeth.dyndns.org/mt/ian/archives/000651.html
@@ -219,4 +219,3 @@ shopt -s nocaseglob  # ignore case since 2.02
 ## for shared shell setting
 export ENV="${ENV-$HOME/.shrc}"
 [ -r "$ENV" ] && . "$ENV"
-# source /opt/OpenFOAM/OpenFOAM-2.3.x/etc/bashrc.win

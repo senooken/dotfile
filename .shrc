@@ -75,6 +75,9 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	ALPHA_L='a b c d e f g h i j k l m n o p q r s t u v w x y z'
 	SHS='sh ksh ksh93 pdksh mksh posh ash dash bash zsh yash'
 	CV='eval command -v'
+	BOM8=$(printf '\357\273\277')
+	BOM16LE=$(printf '\377\376')
+	BOM16BE=$(printf '\376\377')
 
 	## Environmental variables
 	: ${HOME:=~}      # for MSYS
@@ -318,11 +321,23 @@ fi
 
 ## Overwrite GNU Readline Tab (complete) by menu-complete
 IS_BASH_VER_GE_43="eval bash --version | grep -q -e ' 4\.[3-9]*' -e ' [5-9]\.'"
-if [ "$0" = 'bash' ] &&  $IS_BASH_VER_GE_43; then
+if $IS_INTERACTIVE && [ "${0##*/}" = 'bash' ] &&  $IS_BASH_VER_GE_43; then
 	bind 'TAB: menu-complete'
 fi
 
 alias grep="grep $GREP_OPTIONS"
-alias ag="ag -fU --ignore=$EXCLUDE_FILE"
+# alias ag="ag -fU --ignore=$EXCLUDE_FILE"
+alias ag="ag -fU"
 alias ctags="ctags --exclude=$EXCLUDE_DIR"
+
+
+acinstall()(
+	PKG="$1"
+	PREFIX="${2-$LOCAL/stow}"
+	./configure --prefix="$PREFIX/$PKG" && make && make install &&
+		is_exe_enabled stow && stow -d "$PREFIX" "$PKG"
+)
+
+
+
 

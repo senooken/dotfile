@@ -65,9 +65,7 @@ if s:is_neobundle_installed
 
   "" list installing plugins
   """ completion
-  if has("lua")
-    " NeoBundle 'Shougo/neocomplete'
-  else
+  if !has("lua")
     NeoBundle 'Shougo/neocomplcache'
   endif
 
@@ -146,24 +144,6 @@ endif
 function! s:Neobundled(bundle)
   return s:is_neobundle_installed && neobundle#is_installed(a:bundle)
 endfunction
-
-if s:Neobundled('neocomplete')
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_ignore_case = 1
-  let g:neocomplete#enable_smart_case = 1
-  if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns._ = '\h\w*'
-  "" C++
-  if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-  endif
-  let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-endif
 
 if s:Neobundled('neocomplcache')
   let g:neocomplcache_enable_at_startup = 1
@@ -847,9 +827,9 @@ if     executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
 elseif executable('grep')
-  set grepprg=grep\ -n
-else
-  set grepprg=findstr\ /n
+  set grepprg=grep\ -Rn
+elseif executable('findstr')
+  set grepprg=findstr\ /n\ /s
 endif
 
 "" tags

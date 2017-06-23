@@ -34,3 +34,5 @@
 [guitool "Tag"]
 	cmd = git tag $ARGS
 	argprompt = yes
+[gui]
+	recentrepo = /home/senooken/MEGA/ref/bibfile
