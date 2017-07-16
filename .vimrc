@@ -796,11 +796,8 @@ nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
 if exists('##QuickfixCmdPre')
-  autocmd QuickfixCmdPost [^l]* tab cwindow
-
-  "" Location list
-  autocmd QuickfixCmdPre  l* tabnew
-  autocmd QuickfixCmdPost l* lwindow
+  autocmd QuickfixCmdPre  * tabnew
+  autocmd QuickfixCmdPost * lwindow
   nnoremap [l :lprevious<CR>
   nnoremap ]l :lnext<CR>
   nnoremap [L :lfirst<CR>

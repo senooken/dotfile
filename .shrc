@@ -131,13 +131,13 @@ PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
 PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
 
 PS1="\$([ \$((COLUMNS - \$(expr \"$USERNAME@$HOST:$CWD$\" : '.*'))) -le 15 ] &&
-	printf '$PROMPT_NAME'\"$CWD\"'\n$PROMPT_MARK' ||
-	printf '$PROMPT_NAME'\"$CWD\"'''$PROMPT_MARK' )"
+	printf '$PROMPT_NAME%s\n$PROMPT_MARK' \"$CWD\" ||
+	printf '$PROMPT_NAME%s''$PROMPT_MARK' \"$CWD\")"
 
-## TODO: enable posix compatible
+## \todo Enable posix compatible
 ## Terminal title
 case "$TERM" in ?term*|rxvt*|screen*)
-	PROMPT_COMMAND='printf "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"'
+	PROMPT_COMMAND='printf %b "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"'
 esac
 
 
