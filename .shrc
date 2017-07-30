@@ -8,10 +8,30 @@
 
 # set -u
 alias source='.'
-is_exe_enabled()( command -v ${1+"$@"} >/dev/null )
+is_exe_enabled(){
+	IS_ENABLED_SET_E=$( case "$-" in (*e*) echo true;; (*) echo false;; esac )
+	is_command_enabled(){ command -v : >/dev/null 2>&1; }
+
+	$IS_ENABLED_SET_E && set +e
+	if is_command_enabled; then
+		$IS_ENABLED_SET_E && set -e
+		command -v ${1+"$@"} >/dev/null 2>&1 && return || return
+	fi
+	$IS_ENABLED_SET_E && set -e
+
+	IFS=:
+	for path in $PATH; do
+		unset IFS
+		command -p [ -x "$path/"${1+"$@"} ] && return
+	done
+}
+
+run_if_exe_enabled(){
+	is_exe_enabled "$1" && ${1+"$@"}
+}
 
 is_opt_enabled()(
-	EXE="${1-}"; OPT="${2-}"
+	EXE="$1"; OPT="$2"
 	"$EXE" --help 2>&1 | grep -q -- "$OPT"'[[:blank:],=[]'
 )
 
@@ -73,7 +93,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	DIGIT='0 1 2 3 4 5 6 7 8 9'
 	ALPHA_U='A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'
 	ALPHA_L='a b c d e f g h i j k l m n o p q r s t u v w x y z'
-	SHS='sh ksh ksh93 pdksh mksh posh ash dash bash zsh yash'
+	SHS='sh ksh ksh93 pdksh oksh lksh mksh posh ash dash bash zsh yash'
 	CV='eval command -v'
 	BOM8=$(printf '\357\273\277')
 	BOM16LE=$(printf '\377\376')
@@ -335,9 +355,5 @@ acinstall()(
 	PKG="$1"
 	PREFIX="${2-$LOCAL/stow}"
 	./configure --prefix="$PREFIX/$PKG" && make && make install &&
-		is_exe_enabled stow && stow -d "$PREFIX" "$PKG"
+		run_if_exe_enabled -d "$PREFIX" "$PKG"
 )
-
-
-
-
