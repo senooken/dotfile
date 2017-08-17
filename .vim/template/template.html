@@ -271,12 +271,13 @@ table {
 }
 /** Table color **/
 tbody>tr:nth-of-type(even) {
-  background: #ffffaa;
+  background: hsla( 60,100%,50%,0.5 );
 }
 thead>tr>th {
-  background: #ffcc99;
+  background: hsla( 30,100%,50%,0.5 );
   text-align: center;
-  font-weight: bold
+  font-weight: bold;
+  color: white;
 }
 /** Column margin **/
 td {
@@ -286,23 +287,6 @@ td {
 /** Table border **/
 td, th {
   border-style: none;
-}
-
-thead>tr:first-of-type {
-  border-top-style: solid;
-  border-top-width: medium;
-}
-thead>tr:last-of-type {
-  border-bottom-style: solid;
-  border-bottom-width: thin;
-}
-tbody>tr:first-of-type {
-  border-top-style: solid;
-  border-top-width: thin;
-}
-tbody>tr:last-of-type {
-  border-bottom-style: solid;
-  border-bottom-width: medium;
 }
 
 th, td {
@@ -522,13 +506,6 @@ figure>dl>dd:nth-of-type(n+2) {
 }
 
 /** Description box */
-/** Table reset **/
-.alert thead>tr:last-of-type, .alert tbody>tr:last-of-type,
-.example thead>tr:last-of-type, .example tbody>tr:last-of-type,
-.structure thead>tr:last-of-type, .structure tbody>tr:last-of-type {
-  border: initial;
-}
-
 /*** Base color */
 .alert {
   background-color: red;
@@ -540,7 +517,7 @@ figure>dl>dd:nth-of-type(n+2) {
   background-color: blue;
 }
 .alert, .example, .structure {
-  background-image: linear-gradient( hsla( 0,0%,100%,.2 ), hsla( 0,0%,100%,.2 ) );
+  background-image: linear-gradient( hsla( 0,0%,100%,0.2 ), hsla( 0,0%,100%,0.2 ) );
 }
 /*** Reset border */
 table.alert, table.example, table.structure {
@@ -551,14 +528,14 @@ table.alert, table.example, table.structure {
 /*** Table head */
 .alert thead>tr>th, .example thead>tr>th, .structure thead>tr>th {
   background: initial;
+  color: white;
   text-align: left;
+  font-size: larger;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  color: white;
-  font-size: larger;
 }
 .alert tbody, .example tbody, .structure tbody {
-  background-image: linear-gradient( hsla( 0,0%,100%,.9 ), hsla( 0,0%,100%,.9 ) );
+  background-image: linear-gradient( hsla( 0,0%,100%,0.9 ), hsla( 0,0%,100%,0.9 ) );
 }
 
 /** Show update date */

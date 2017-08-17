@@ -31,7 +31,7 @@ run_if_exe_enabled(){
 }
 
 is_opt_enabled()(
-	EXE="$1"; OPT="$2"
+	EXE="$1" OPT="$2"
 	"$EXE" --help 2>&1 | grep -q -- "$OPT"'[[:blank:],=[]'
 )
 
@@ -57,7 +57,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	CPATH="$LOCAL/include:$LOCAL/opt/include:$CPATH"
 
 	MANPATH="/usr/local/share/man:/usr/share/man:/opt/man:$MANPATH"
-	MANPATH="$LOCAL/share/man:$LOCAL/opt/man:$MANPATH"
+	MANPATH="$LOCAL/share/man:$LOCAL/opt/man:$LOCAL/usr/share/man:$MANPATH"
 	MANDATORY_MANPATH="$MANPATH:$MANDATORY_MANPATH"  # for Busybox
 	INFOPATH="/usr/local/share/info:/usr/share/info:$INFOPATH"
 	INFOPATH="$LOCAL/share/info:$LOCAL/opt/info:/opt/info:$INFOPATH"
@@ -89,7 +89,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	NULL='/dev/null'
 	POSIX_PATH=$(command -p getconf PATH 2>&- || env -i command -p sh -c 'echo "$PATH"')
 	HT=$(printf '\t')
-	LF=$(printf '\n_'); LF="${LF%_}"
+	LF=$(printf '\n_') LF="${LF%_}"
 	DIGIT='0 1 2 3 4 5 6 7 8 9'
 	ALPHA_U='A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'
 	ALPHA_L='a b c d e f g h i j k l m n o p q r s t u v w x y z'
@@ -150,7 +150,7 @@ HOST=$(uname -n)
 PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
 PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
 
-PS1="\$([ \$((COLUMNS - \$(expr \"$USERNAME@$HOST:$CWD$\" : '.*'))) -le 15 ] &&
+PS1="\$([ \$((COLUMNS - \$(expr \"$USERNAME@$HOST:$CWD$\" : '.*'))) -le 20 ] &&
 	printf '$PROMPT_NAME%s\n$PROMPT_MARK' \"$CWD\" ||
 	printf '$PROMPT_NAME%s''$PROMPT_MARK' \"$CWD\")"
 
@@ -340,8 +340,8 @@ elif is_opt_enabled grep --exlude; then
 fi
 
 ## Overwrite GNU Readline Tab (complete) by menu-complete
-IS_BASH_VER_GE_43="eval bash --version | grep -q -e ' 4\.[3-9]*' -e ' [5-9]\.'"
-if $IS_INTERACTIVE && [ "${0##*/}" = 'bash' ] &&  $IS_BASH_VER_GE_43; then
+is_bash_ver_ge_43(){ bash --version | grep -q -e ' 4\.[3-9]*' -e ' [5-9]\.'; }
+if $IS_INTERACTIVE && [ "${0##*/}" = 'bash' ] && is_bash_ver_ge_43; then
 	bind 'TAB: menu-complete'
 fi
 

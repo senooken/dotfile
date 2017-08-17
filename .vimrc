@@ -377,7 +377,7 @@ if s:Neobundled('autodate.vim')
 endif
 
 if s:Neobundled('autofname.vim')
-    let autofname_keyword_pre=' [\@]file'
+    let autofname_keyword_pre=' [\@]file '
     let autofname_keyword_post='$'
     let autofname_lines=5
 endif
@@ -850,9 +850,9 @@ if has('cscope')
   set cscoperelative
 
   if filereadable('cscope.out') && executable('cscope')
-    cscope add cscope.out
-  elseif $CSCOPE_DB != ''
-    cscope add $CSCOPE_DB
+    cscope add cscope.out expand('%:p:h') -C
+  elseif filereadable($CSCOPE_DB)
+    cscope add $CSCOPE_DB matchstr($CSCOPE_DB, '.*[/\\]') -C
   endif
   set cscopeverbose
 
