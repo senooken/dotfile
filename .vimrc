@@ -851,7 +851,7 @@ if has('cscope')
 
   if executable('cscope')
     if filereadable('cscope.out')
-      execute 'cscope add cscope.out ' . expand('%:p:h') ' -C'
+      execute 'cscope add cscope.out ' . expand('%:p:h') . ' -C'
     elseif filereadable($CSCOPE_DB)
       execute 'cscope add $CSCOPE_DB ' . matchstr($CSCOPE_DB, '.*[/\\]') . ' -C'
     endif
