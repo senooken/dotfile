@@ -30,8 +30,6 @@
 # Don't use ^D to exit
 # set -o ignoreeof
 #
-# Make bash append rather than overwrite the history on disk
-# shopt -s histappend
 
 # Completion options
 #
@@ -50,25 +48,29 @@
 # Any completions you add in ~/.bash_completion are sourced last.
 # [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
-# History Options
-#
-# Don't put duplicate lines in the history.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-export HISTSIZE=9999  # number of saved history commands
-export HISTFILESIZE=$HISTSIZE # number of saved history command lines
-export HISTTIMEFORMAT="%Y%m%dT%H%M "
+## Shared shell setting
+export ENV="${ENV-$HOME/.shrc}"
+[ -r "$ENV" ] && . "$ENV"
 
-# Ignore some controlling instructions
-# HISTIGNORE is a colon-delimited list of patterns which should be excluded.
-# The '&' is a special pattern which suppresses duplicate entries.
-# export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
-# export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
-#
-# Whenever displaying the prompt, write the previous line to disk
-# export PROMPT_COMMAND="history -a"
+PROMPT_COMMAND="$COMMON_PROMPT_EXE; $PROMPT_COMMAND"
+
+## History Options
+### Base option
+HISTCONTROL='ignorespace:ignoredups:erasedups'
+HISTSIZE=99999
+HISTTIMEFORMAT="%Y%m%dT%H%M%S "
+# HISTIGNORE=$'[ \t]*:[fb]g:exit'
+
+## History synchonization
+## ただし，この方法だとerasedupsが機能しない
+# share_history(){
+# 	history -a
+# 	history -c
+# 	history -r
+# }
+# PROMPT_COMMAND="$PROMPT_COMMAND; share_history"
 
 # Aliases
-#
 # Some people use a different file for aliases
 # if [ -f "${HOME}/.bash_aliases" ]; then
 #   source "${HOME}/.bash_aliases"
@@ -205,17 +207,3 @@ export JLESSCHARSET=japanese-sjis
 	# shopt -s promptvars  # v2.0+
 	# shopt -s progcomp  # v2.04+
 } 2>&-
-
-## synchonization of bash history [130414]
-# url: http://iandeth.dyndns.org/mt/ian/archives/000651.html
-# function share_history {  # 以下の内容を関数として定義
-#   history -a  # .BASH_HISTORYに前回コマンドを1行追記
-#   history -c  # 端末ローカルの履歴を一旦消去
-#   history -r  # .BASH_HISTORYから履歴を読み込み直す
-# }
-# PROMPT_COMMAND='share_history'  # 上記関数をプロンプト毎に自動実施
-# shopt -u histappend   # .bash_history追記モードは不要なのでOFFに
-
-## for shared shell setting
-export ENV="${ENV-$HOME/.shrc}"
-[ -r "$ENV" ] && . "$ENV"

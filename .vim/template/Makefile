@@ -1,5 +1,5 @@
-# \file   Makefile
-# \author SENOO, Ken
+## \file   Makefile
+## \author SENOO, Ken
 
 ## choose target compiler
 FC = gfortran

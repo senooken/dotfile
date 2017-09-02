@@ -154,12 +154,10 @@ PS1="\$([ \$((COLUMNS - \$(expr \"$USERNAME@$HOST:$CWD$\" : '.*'))) -le 20 ] &&
 	printf '$PROMPT_NAME%s\n$PROMPT_MARK' \"$CWD\" ||
 	printf '$PROMPT_NAME%s''$PROMPT_MARK' \"$CWD\")"
 
-## \todo Enable posix compatible
 ## Terminal title
 case "$TERM" in ?term*|rxvt*|screen*)
-	PROMPT_COMMAND='printf %b "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"'
+	COMMON_PROMPT_EXE='printf %b "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"'
 esac
-
 
 ## Alias
 ### Enable alias in non-interactive shell
@@ -171,7 +169,7 @@ if [ "${OS-}" = "Windows_NT" ]; then
 	wincmd()(
 	  EXE="$1"
 	  shift
-	  "$EXE" "$@" 2>&1 | iconv -f CP932 -t UTF-8
+	  "$EXE" ${1+"$@"} 2>&1 | iconv -f CP932 -t UTF-8
 	)
 
 	for exe in javac ant ping ipconfig netstat netsh taskkill reg; do
