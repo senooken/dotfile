@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<map MAP_XML_VERSION="1.0">
+  <entry key="Article" value="jabref-entrytype: Article: req[author;title;journal/journaltitle;year/date] opt[subtitle;editor;series;volume;number;eid;issue;pages;note;issn;doi;eprint;eprintclass;eprinttype;url;urldate;translator;annotator;commentator;titleaddon;editora;editorb;editorc;journalsubtitle;issuetitle;issuesubtitle;language;origlanguage;month;version;addendum;pubstate]"/>
+  <entry key="Brochure" value="jabref-entrytype: Brochure: req[] opt[title;author;address;year;month;url;note]"/>
+  <entry key="Clause" value="jabref-entrytype: Clause: req[author;day;month;title;year] opt[rivision;url]"/>
+  <entry key="Incollection" value="jabref-entrytype: Incollection: req[author;title;booktitle;year/date] opt[translator;subtitle;titleaddon;maintitle;mainsubtitle;maintitleaddon;booksubtitle;booktitleaddon;volume;edition;publisher;isbn;chapter;pages;doi;eprint;eprintclass;eprinttype;url;urldate;editor;editora;editorb;editorc;annotator;commentator;introduction;foreword;afterword;language;origlanguage;part;volumes;series;number;note;location;addendum;pubstate]"/>
+  <entry key="Mvbook" value="jabref-entrytype: Mvbook: req[author;title;year/date] opt[editor;subtitle;titleaddon;edition;publisher;isbn;pagetotal;doi;eprint;eprintclass;eprinttype;url;urldate;editora;editorb;editorc;translator;annotator;commentator;introduction;foreword;afterword;language;origlanguage;volumes;series;number;note;location;addendum;pubstate]"/>
+  <entry key="Other" value="jabref-entrytype: Other: req[author;title] opt[]"/>
+  <entry key="Poster" value="jabref-entrytype: Poster: req[author;title] opt[month;note;year]"/>
+  <entry key="Slide" value="jabref-entrytype: Slide: req[] opt[title;author;address;organization;url;note;year;month]"/>
+  <entry key="Standard" value="jabref-entrytype: Standard: req[title;author;year] opt[month;day;url]"/>
+  <entry key="Techreport" value="jabref-entrytype: Techreport: req[author;title;institution;year/date] opt[subtitle;titleaddon;type;number;isrn;chapter;pages;pagetotal;doi;eprint;eprintclass;eprinttype;url;urldate;language;version;note;location;month;addendum;pubstate]"/>
+  <entry key="Web" value="jabref-entrytype: Web: req[] opt[title;author;organization;url;note;year;month]"/>
+</map>
