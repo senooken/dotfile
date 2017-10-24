@@ -36,3 +36,4 @@
 	argprompt = yes
 [gui]
 	recentrepo = /home/senooken/MEGA/ref/bibfile
+	historybrowser = gitk
