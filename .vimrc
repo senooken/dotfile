@@ -16,33 +16,32 @@ let s:IS_WINDOWS_7 = s:IS_WINDOWS && system('VER') =~# 'Version 6.1'
 
 "" Charset, Line ending
 set encoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp,euc-jp,cp932,utf-8,utf-32,utf-16
+set fileencodings=ucs-bom,iso-2022-jp,euc-jp,utf-8,cp932
 set fileformats=unix,dos,mac
 
 "" Windowsのコマンドプロンプトの日本語文字化け対策
 if s:IS_WINDOWS | set termencoding=cp932 | endif
 
-set ambiwidth=double " 全角記号をきちんと表示
+set ambiwidth=double " show full width
 
 if exists('+fixendofline')  " version 7.4.785+
   autocmd BufWritePre * setlocal nofixendofline
 endif
 
-autocmd BufReadPost,BufWritePre * let s:IS_UCS = &fenc =~ 'utf-16\|ucs\|unicode'
+augroup MyAutoCmd
+  autocmd!
+augroup END
 
-" Fix 'fileencoding' to use 'encoding' if the buffer only ASCII characters.
-autocmd BufReadPost *
-  \   if &modifiable && !s:IS_UCS && !search('[^\x00-\x7F]', 'cnw')
-  \ |   setlocal fileencoding=
+"" Fix 'fileencoding' to use 'encoding' if the buffer only ASCII characters.
+autocmd MyAutoCmd BufReadPost *
+  \   if &modifiable && !search('[^\x00-\x7F]', 'cnw')
+  \ |   setlocal fileencoding=utf-8
   \ | endif
-
-" Set BOM in UTF-16 and UTF-32
-autocmd BufWritePre * if s:IS_UCS | setlocal bomb | endif
 
 if has('vim_starting')
   if s:IS_WINDOWS
     set runtimepath+=~/.vim/after/
-    if exists('+packagepath')
+    if exists('+packpath')
       set packpath+=~/.vim
     endif
   endif
@@ -52,7 +51,7 @@ endif
 let s:is_neobundle_installed = s:TRUE
 try " specify plugin installation base directory.
   call neobundle#begin(expand('~/.vim/bundle/'))
-catch /^Vim\%((\a\+)\)\=:E117/  " catch error E117: Unkown function
+catch /^Vim(call):E117/  " catch error E117: Unkown function
   let s:is_neobundle_installed = s:FALSE
   set title titlestring=NeoBundle\ is\ not\ installed!
 endtry
@@ -362,7 +361,7 @@ if s:Neobundled('vim-indent-guides')
     let g:indent_guides_auto_colors = 0
     "" 奇数インデントのカラー
     autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=gray
-    "" 偶数インデントのカラー
+    " "" 偶数インデントのカラー
     autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3c3c3c ctermbg=yellow " darkgray
     let g:indent_guides_color_change_percent  =  30 " width of changing highlight color
     let g:indent_guides_guide_size = 1 " indent guide size
@@ -458,8 +457,8 @@ endif
 " endif
 
 "" template file
-autocmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
-autocmd BufNewFile * silent! :0r  ~/.vim/template/%:t
+autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
+autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/%:t
 
 "" Disable autodate.vim during editing template
 if s:Neobundled('autodate.vim')
@@ -483,7 +482,8 @@ nmap ga <Plug>(EasyAlign)
 let g:netrw_liststyle=3
 
 "" Extend default Vim %
-source $VIMRUNTIME/macros/matchit.vim
+runtime macros/matchit.vim
+runtime ftplugin/man.vim
 
 "2013/01/29 http://wikiwiki.jp/mira/?cygwin%2F%B4%C4%B6%AD%B9%BD%C3%DB%2F.vimrc
 "-----------------------------------------------------------------------------
@@ -511,13 +511,13 @@ endif
 
 "" Statusline
 set laststatus=2
-
-set statusline =[%n]%<%f\ %m%r%h%w  " File name
-set statusline+=%<%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " Encoding
-" set statusline+=[%{mode()}]  " Mode
-set statusline+=%{&bomb?'[bomb]':''}  " BOM
-set statusline+=%{&eol?'':'[noeol]'}  " EOL
-set statusline+=[%04B]  " Character code
+set statusline =[%n]%<%f    " File name
+set statusline+=\ %m%r%h%w  " Flag for modified, readonly, help buffer, preview
+set statusline+=%<%y        " filetype
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " Encoding
+set statusline+=%{&bomb?'[bomb]':''}   " BOM
+set statusline+=%{&eol?'':'[noeol]'}   " EOL
+set statusline+=[%04B]                 " Character code
 set statusline+=%=\ %4l/%4L\|%3v\|%4P  " Current position information
 
 "" Tabpage
@@ -593,9 +593,7 @@ set whichwrap=b,s,h,l,<,>,[,],~  " カーソルを行頭、行末で止まらな
 autocmd BufWritePost * :call s:Add_execmod()
 function! s:Add_execmod()
   let s:line = getline(1)
-  " if strpart(s:line, 0, 2) == '#!' || strpart(s:line, 0) == '[Desktop Entry]'
-  if strpart(s:line, 0, 2) == '#!' || strpart(s:line, 0) == '[Desktop Entry]'
-  \ || &filetype == 'sh'
+  if strpart(s:line, 0, 2) == '#!' || &filetype =~# 'desktop\|sh'
     if s:IS_WINDOWS
       call system('icacls '      . shellescape(expand('%') . ' /grant ' . $USERNAME . ':(X)'))
     else
@@ -624,8 +622,12 @@ set hlsearch
 if exists('+wildignorecase')  " required 7.3.072+
   set wildignorecase         " ファイル名とディレクトリの補完で大文字小文字無視
 endif
+source $VIMRUNTIME/menu.vim
 set wildmenu
 set wildmode=list:longest,full  " 1回目で共通部分，2回目で順番に補完
+set cpo-=<
+set wcm=<C-Z>
+map <F4> :emenu <C-Z>
 
 
 " Command mode keybind.
@@ -713,7 +715,7 @@ augroup vimrcEx
 augroup END
 
 "" cd editting file directory.
-autocmd BufEnter * lcd %:p:h
+autocmd MyAutoCmd BufEnter * if finddir(expand('%:p:h')) != '' | lcd %:p:h | endif
 
 set nrformats=   " deal as decimal for number
 
@@ -795,7 +797,7 @@ nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
 if exists('##QuickfixCmdPre')
-  autocmd QuickfixCmdPre  * tabnew
+  " autocmd QuickfixCmdPre  * tabnew
   autocmd QuickfixCmdPost * lwindow
   nnoremap [l :lprevious<CR>
   nnoremap ]l :lnext<CR>
@@ -818,7 +820,7 @@ if exists('##QuickfixCmdPre')
   endif
 endif
 
-"" Basically define alias in .posixrc (Unix) or .init.cmd (Windows)
+"" Basically define alias in .shrc (Unix) or .init.cmd (Windows)
 if     executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
@@ -830,7 +832,7 @@ endif
 
 "" tags
 if has('path_extra')
-  set tags+=tags;
+  set tags& tags+=tags;
 endif
 
 nnoremap [t :tprevious<CR>
@@ -885,7 +887,7 @@ if has('mouse')
 endif
 
 "" For pasting after end of line character
-autocmd BufEnter *
+autocmd MyAutoCmd BufEnter *
   \  if &modifiable && has('mouse')
   \|   nnoremap <buffer> <2-LeftMouse> i
   \|   inoremap <buffer> <2-LeftMouse> <ESC>

@@ -172,10 +172,10 @@
   <entry key="listOfFileColumns" value=""/>
   <entry key="lookAndFeel" value="com.jgoodies.plaf.windows.ExtWindowsLookAndFeel"/>
   <entry key="lyxpipe" value=""/>
-  <entry key="mainWindowPosX" value="227"/>
-  <entry key="mainWindowPosY" value="208"/>
+  <entry key="mainWindowPosX" value="414"/>
+  <entry key="mainWindowPosY" value="52"/>
   <entry key="mainWindowSizeX" value="952"/>
-  <entry key="mainWindowSizeY" value="493"/>
+  <entry key="mainWindowSizeY" value="677"/>
   <entry key="markImportedEntries" value="true"/>
   <entry key="markedEntryBackground" value="255:255:180"/>
   <entry key="markedEntryBackground0" value="255:255:180"/>
@@ -305,7 +305,7 @@
   <entry key="webSearchVisible" value="false"/>
   <entry key="winEdtPath" value=""/>
   <entry key="windowMaximised" value="false"/>
-  <entry key="workingDirectory" value="/home/senooken/Copy/ref/bibfile/mybib.bib"/>
+  <entry key="workingDirectory" value="/home/senooken/MEGA/ref/mybib/OSS/editor/Vim/NATSUNO20080823Vimの極め方.xhtml"/>
   <entry key="wrapFieldLine" value="false"/>
   <entry key="writeFieldAddSpaces" value="true"/>
   <entry key="writeFieldCamelCase" value="true"/>
