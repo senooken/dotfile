@@ -356,7 +356,7 @@ endif
 
 if s:Neobundled('vim-indent-guides')
     "" vim-indent-guides'
-    let g:indent_guides_enable_on_vim_startup = 1
+    " let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_start_level = 2 " start indent column
     let g:indent_guides_auto_colors = 0
     "" 奇数インデントのカラー
@@ -755,7 +755,7 @@ autocmd BufWritePre *.bas setlocal fileencoding=cp932
 
 """ Bat file
 autocmd FileType dosbatch setlocal fileformat=dos fileencoding=cp932
-autocmd FileType javascript setlocal fileencoding=utf-16le
+" autocmd FileType javascript setlocal fileencoding=utf-16le
 
 """ Snippet file
 autocmd BufNewFile,BufRead *.snip setlocal noexpandtab
@@ -798,7 +798,7 @@ nnoremap ]Q :clast<CR>
 
 if exists('##QuickfixCmdPre')
   " autocmd QuickfixCmdPre  * tabnew
-  autocmd QuickfixCmdPost * lwindow
+  " autocmd QuickfixCmdPost * lwindow
   nnoremap [l :lprevious<CR>
   nnoremap ]l :lnext<CR>
   nnoremap [L :lfirst<CR>

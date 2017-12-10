@@ -5,7 +5,7 @@
 "" MS Windows like keybind
 source $VIMRUNTIME/mswin.vim
 
-set number
+" set number
 "" font
 let s:MYFONT = 'Migu 1M'
 let s:MYFS   = '9'

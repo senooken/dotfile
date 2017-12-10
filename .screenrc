@@ -24,7 +24,7 @@ altscreen on
 ignorecase on
 
 ## scroll back buffer
-# defscrollback 1000 # 1以上: vim実行中に画面を上下に3段以上広げて:sp -> crash
+defscrollback 10000 # 1以上: vim実行中に画面を上下に3段以上広げて:sp -> crash
 
 hardstatus on
 hardstatus alwayslastline '%{= .g}%H%{-} %L=%-w%45L>%{=u g.}%n %t%{-}%+w %-17<%=%Y-%m-%dT%02c'
