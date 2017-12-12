@@ -1,4 +1,4 @@
-﻿/*******************************************************************************
+/*******************************************************************************
  \file      template.css
  \author    SENOO, Ken
  \copyright CC0
@@ -148,7 +148,7 @@ section>h3:first-of-type,
 section>h4:first-of-type,
 section>h5:first-of-type,
 section>h6:first-of-type {
-  counter-increment: heading1; counter-reset: heading2 figure table listing;
+  counter-increment: heading1; counter-reset: heading2 figure table listing example;
   font-size: 2.0em;
 }
 
@@ -516,13 +516,13 @@ figure>dl>dd:nth-of-type(n+2) {
 .alert, .example, .structure {
   background-image: linear-gradient( hsla( 0,0%,100%,0.2 ), hsla( 0,0%,100%,0.2 ) );
 }
-/*** Reset border */
+/*** Reset border ***/
 table.alert, table.example, table.structure {
   border: none;
   border-collapse: collapse;
   border-spacing: 0px;
 }
-/*** Table head */
+/*** Table head ***/
 .alert thead>tr>th, .example thead>tr>th, .structure thead>tr>th {
   background: initial;
   color: white;
@@ -535,7 +535,62 @@ table.alert, table.example, table.structure {
   background-image: linear-gradient( hsla( 0,0%,100%,0.9 ), hsla( 0,0%,100%,0.9 ) );
 }
 
-/** Show update date */
+/** Theme block **/
+figure.example pre~figcaption::before,
+figure.example figcaption:first-child::before {
+  counter-increment: example;
+  content: "Example " counter(heading1) "." counter(example) ": ";
+}
+figure.structure pre~figcaption::before,
+figure.structure figcaption:first-child::before,
+figure.alert pre~figcaption::before,
+figure.alert figcaption:first-child::before {
+  content: none;
+}
+
+figure.structure figcaption,
+figure.alert figcaption,
+figure.example figcaption {
+  text-align: left;
+}
+
+
+figure.structure figcaption,
+figure.alert figcaption,
+figure.example figcaption {
+  color: white;
+  font-weight: bold;
+}
+
+figure.structure figcaption~*,
+figure.alert figcaption~*,
+figure.example figcaption~* {
+  background-image: linear-gradient( hsla( 0,0%,100%,0.9 ), hsla( 0,0%,100%,0.9 ) );
+}
+
+caption, figcaption {
+  font-family: "TeX Gyre Heros", "FreeSans", "Migu 1P", "TakaoGothic", "VL Gothic", "Yu Gothic", "Meiryo UI", sans-serif;
+}
+
+figure figcaption {
+  text-indent: 0.5em;
+}
+
+figure * {
+  text-align: left;
+}
+
+figure>figcaption:last-child {
+  text-align: center;
+}
+
+figure>figcaption+* {
+  margin-top: 0;
+}
+
+
+
+/** Show update date **/
 [data-updated-date]::after {
   color: gray;
   font-size: 0.5em;
