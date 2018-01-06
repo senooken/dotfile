@@ -3,6 +3,6 @@
 ## \file      template.py
 ## \author    SENOO, Ken
 ## \copyright CC0
-## \date      created date: 
-## \date      updated date: 
+## \date      Created date: 
+## \date      Updated date: 
 

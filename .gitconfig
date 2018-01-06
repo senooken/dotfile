@@ -1,6 +1,6 @@
 [user]
-	name = SENOO Ken
-	email = mslamsh20131029@outlook.jp
+	name = DODESI, Huuka
+	email = contact@dd4fqa.jp
 [color]
 	diff = auto
 	status = auto
@@ -35,5 +35,5 @@
 	cmd = git tag $ARGS
 	argprompt = yes
 [gui]
-	recentrepo = /home/senooken/MEGA/ref/bibfile
+	recentrepo = /home/dd4fqa/Documents/ref/bib
 	historybrowser = gitk

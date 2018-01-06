@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
-<map MAP_XML_VERSION="1.0"/>
+<map MAP_XML_VERSION="1.0">
+  <entry key="Movie" value="jabref-entrytype: Movie: req[title] opt[month;year;url;author]"/>
+  <entry key="Web" value="jabref-entrytype: Web: req[] opt[title;author;organization;url;note;year;month]"/>
+</map>

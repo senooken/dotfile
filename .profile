@@ -14,8 +14,16 @@
 # for ssh logins, install and configure the libpam-umask package.
 # umask 022
 
+
+## Environmental variables
 export ENV="${ENV-$HOME/.shrc}"
-[ -r "$ENV" ] && . "$ENV"
+# [ -r "$ENV" ] && . "$ENV"
+
+LOCAL="$HOME/.local"
+CLASSPATH="$LOCAL/share/java:${CLASSPATH:-.}"
+PATH="$LOCAL/bin:$PATH"
+
+export LOCAL CLASSPATH PATH
 
 # if running bash, include .bashrc if it exists
 [ -n "$BASH" ] && [ -r "$HOME/.bashrc" ] && . "$HOME/.bashrc"

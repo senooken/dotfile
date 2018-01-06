@@ -16,7 +16,7 @@ let s:IS_WINDOWS_7 = s:IS_WINDOWS && system('VER') =~# 'Version 6.1'
 
 "" Charset, Line ending
 set encoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp,euc-jp,utf-8,cp932
+set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
 
 "" Windowsのコマンドプロンプトの日本語文字化け対策

@@ -1,7 +1,7 @@
 :
 ################################################################################
 ## \file      template.sh
-## \author    SENOO, Ken
+## \author    DODESI, HUUKA
 ## \copyright CC0
 ## \date      Created date: 
 ## \date      Updated date: 
