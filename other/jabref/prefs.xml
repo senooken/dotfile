@@ -12,7 +12,7 @@
   <entry key="arxivColumn" value="false"/>
   <entry key="autoAssignGroup" value="true"/>
   <entry key="autoCompFF" value="false"/>
-  <entry key="autoCompFirstNameMode" value="both"/>
+  <entry key="autoCompFirstNameMode" value="BOTH"/>
   <entry key="autoCompLF" value="false"/>
   <entry key="autoComplete" value="true"/>
   <entry key="autoCompleteFields" value="author;editor;journal;publisher;keywords;language"/>
@@ -34,9 +34,10 @@
   <entry key="citeCommand" value="cite"/>
   <entry key="citeseerColumn" value="false"/>
   <entry key="columnNames" value="bibtexkey;entrytype;author;year;title;keywords;timestamp;review"/>
-  <entry key="columnWidths" value="93;40;80;40;150;90;90;100"/>
+  <entry key="columnWidths" value="87;38;75;38;140;85;84;100"/>
   <entry key="compactRankingColumn" value="true"/>
   <entry key="confirmDelete" value="false"/>
+  <entry key="consoleCommand" value=""/>
   <entry key="ctrlClick" value="false"/>
   <entry key="customExportFormat0" value="Jab2HTML;C:\\Program Files\\JabRef\\Jab2HTML\\CustomEx\\Jab2HTML.layout;.html"/>
   <entry key="customTabFields_0" value="keywords;url;note;yomi;month;day;event;edition;address;author;organization;series;booktitle"/>
@@ -105,7 +106,7 @@
   <entry key="emailSubject" value="References"/>
   <entry key="enableSourceEditing" value="true"/>
   <entry key="enforceLegalBibtexKey" value="true"/>
-  <entry key="entryEditorHeight" value="276"/>
+  <entry key="entryEditorHeight" value="295"/>
   <entry key="exportInOriginalOrder" value="false"/>
   <entry key="exportInSpecifiedOrder" value="true"/>
   <entry key="exportInStandardOrder" value="true"/>
@@ -121,7 +122,7 @@
   <entry key="extraFileColumns" value="false"/>
   <entry key="fieldEditorTextColor" value="0:0:0"/>
   <entry key="fileColumn" value="true"/>
-  <entry key="fileDirectory" value="/home/senooken/Copy/ref"/>
+  <entry key="fileDirectory" value=""/>
   <entry key="fileWorkingDirectory" value="/usr/bin"/>
   <entry key="filechooserDisableRename" value="true"/>
   <entry key="floatMarkedEntries" value="true"/>
@@ -155,6 +156,7 @@
   <entry key="htmlviewer" value="Uses default application"/>
   <entry key="importAlwaysUsePDFImportStyle" value="false"/>
   <entry key="importDefaultPDFimportStyle" value="2"/>
+  <entry key="importFileDirPattern" value=""/>
   <entry key="importFileNamePattern" value="\bibtexkey"/>
   <entry key="importWorkingDirectory" value="/home/senooken/Downloads"/>
   <entry key="includeEmptyFields" value="false"/>
@@ -170,12 +172,13 @@
   <entry key="lastUsedImport" value="RIS"/>
   <entry key="latexEditorPath" value="C:\Program Files\LEd\LEd.exe"/>
   <entry key="listOfFileColumns" value=""/>
+  <entry key="localAutoSave" value="false"/>
   <entry key="lookAndFeel" value="com.jgoodies.plaf.windows.ExtWindowsLookAndFeel"/>
   <entry key="lyxpipe" value=""/>
-  <entry key="mainWindowPosX" value="40"/>
-  <entry key="mainWindowPosY" value="231"/>
+  <entry key="mainWindowPosX" value="37"/>
+  <entry key="mainWindowPosY" value="158"/>
   <entry key="mainWindowSizeX" value="1024"/>
-  <entry key="mainWindowSizeY" value="460"/>
+  <entry key="mainWindowSizeY" value="562"/>
   <entry key="markImportedEntries" value="true"/>
   <entry key="markedEntryBackground" value="255:255:180"/>
   <entry key="markedEntryBackground0" value="255:255:180"/>
@@ -191,7 +194,7 @@
   <entry key="namesLastOnly" value="false"/>
   <entry key="namesNatbib" value="false"/>
   <entry key="newline" value="&#10;"/>
-  <entry key="numberColWidth" value="30"/>
+  <entry key="numberColWidth" value="35"/>
   <entry key="numericFields" value="mittnum;author;year"/>
   <entry key="openFoldersOfAttachedFiles" value="false"/>
   <entry key="openLastEdited" value="true"/>
@@ -209,22 +212,26 @@
   <entry key="preserveFieldFormatting" value="false"/>
   <entry key="preview0" value="&lt;font color=&quot;navy&quot; size=&quot;+1&quot;&gt;&lt;b&gt;\bibtexkey&lt;/B&gt;&lt;/font&gt; &lt;font color=&quot;gray&quot; size=&quot;-1&quot;&gt;[\bibtextype]&lt;/font&gt;&lt;BR&gt;__NEWLINE__\begin{title}&lt;font size=&quot;+1&quot;&gt;\title&lt;/font&gt;__NEWLINE__&lt;a href=&quot;http://www.google.com/search?num=30&amp;q=\title&quot;&gt;&lt;font size=&quot;-1&quot;&gt;Google&lt;/font&gt;&lt;/a&gt; __NEWLINE__&lt;a href=&quot;http://scholar.google.com/scholar?num=30&amp;q=\title&quot;&gt;&lt;font size=&quot;-1&quot;&gt;Google Scholar&lt;/font&gt;&lt;/a&gt;\end{title}&lt;BR&gt;__NEWLINE__\begin{author} \format[HTMLChars,AuthorLastFirst,AuthorAndsReplacer]{\author}__NEWLINE__&lt;a href=&quot;http://www.google.com/search?num=30&amp;q=\author&quot;&gt;&lt;font size=&quot;-1&quot;&gt;Google&lt;/font&gt;&lt;/a&gt; __NEWLINE__&lt;a href=&quot;http://scholar.google.com/scholar?num=30&amp;q=\author&quot;&gt;&lt;font size=&quot;-1&quot;&gt;Google Scholar&lt;/font&gt;&lt;/a&gt;&lt;BR&gt;\end{author}__NEWLINE__\begin{editor}\format[HTMLChars,AuthorLastFirst,AuthorAndsReplacer]{\editor} &lt;i&gt;(ed.)&lt;/i&gt;&lt;BR&gt;\end{editor}__NEWLINE__\begin{chapter} \format[HTMLChars]{\chapter}&lt;BR&gt;\end{chapter}__NEWLINE__\begin{journal} &lt;em&gt;\format[HTMLChars]{\journal}, &lt;/em&gt;\end{journal}__NEWLINE__\begin{school} &lt;em&gt;\format[HTMLChars]{\school}, &lt;/em&gt;\end{school}__NEWLINE__\begin{institution} &lt;em&gt;\format[HTMLChars]{\institution}, &lt;/em&gt;\end{institution}__NEWLINE__\begin{publisher} &lt;em&gt;\format[HTMLChars]{\publisher}, &lt;/em&gt;\end{publisher}__NEWLINE__\begin{year}&lt;b&gt;\year&lt;/b&gt;\end{year}\begin{month}&lt;b&gt;:\month&lt;/b&gt;\end{month}\begin{volume}, Vol.\volume\end{volume}\begin{number}(\number)\end{number}\begin{pages}, \format[FormatPagesForHTML]{\pages} \end{pages}__NEWLINE__&lt;BR&gt;&lt;BR&gt;__NEWLINE__\begin{keywords}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;keywords:&lt;/b&gt;&lt;/font&gt;\keywords&lt;BR&gt;\end{keywords}__NEWLINE__\begin{points}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;points:&lt;/b&gt;&lt;/font&gt;\points&amp;nbsp;&amp;nbsp;\end{points}__NEWLINE__\begin{owner}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;owner:&lt;/b&gt;&lt;/font&gt;\owner&amp;nbsp;&amp;nbsp;\end{owner}__NEWLINE__\begin{yomi}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;yomi:&lt;/b&gt;&lt;/font&gt;\yomi&amp;nbsp;&amp;nbsp;\end{yomi}__NEWLINE__\begin{price}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;price:&lt;/b&gt;&lt;/font&gt;\price&amp;nbsp;&amp;nbsp;\end{price}__NEWLINE__\begin{totalpages}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;total pages:&lt;/b&gt;&lt;/font&gt;\totalpages&amp;nbsp;&amp;nbsp;\end{totalpages}__NEWLINE__\begin{isbn}&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;ISBN:&lt;/b&gt;&lt;/font&gt;\isbn&amp;nbsp;&amp;nbsp;__NEWLINE__Webcat Plus(&lt;a href=&quot;http://webcatplus-equal.nii.ac.jp/libportal/EqualFromForm?txt_isbn=\isbn&quot;&gt;jp&lt;/a&gt;,&lt;a href=&quot;http://webcatplus-equal.nii.ac.jp/libportal/EqualFromForm?hdn_if_lang=eng&amp;txt_isbn=\isbn&quot;&gt;en&lt;/a&gt;)__NEWLINE__&amp;nbsp;Lead2Amazon(&lt;a href=&quot;http://lead.to/amazon/jp/?key=\isbn&amp;op=bt&amp;ht=jp&quot;&gt;co.jp&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=us&quot;&gt;com&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=ca&quot;&gt;ca&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=uk&quot;&gt;co.uk&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=de&quot;&gt;de&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=fr&quot;&gt;fr&lt;/a&gt;)__NEWLINE__\end{isbn}__NEWLINE__\begin{timestamp}&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;reg:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\timestamp}&amp;nbsp;&amp;nbsp;\end{timestamp}__NEWLINE__\begin{update}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;up:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\update} \end{update}__NEWLINE____NEWLINE__\begin{file}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;file:&lt;/b&gt;&lt;/font&gt;\file \end{file}__NEWLINE__\begin{pdf}&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;PDF:&lt;/b&gt;&lt;/font&gt;\pdf \end{pdf}__NEWLINE__\begin{url}&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;URL:&lt;/b&gt;&lt;/font&gt;&lt;a href=&quot;\url&quot;&gt;\url&lt;/a&gt; \end{url}__NEWLINE__\begin{rela}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;related:&lt;/b&gt;&lt;/font&gt;\rela\end{rela}\begin{relb}, \relb\end{relb}\begin{relc}, \relc\end{relc}\begin{reld}, \reld\end{reld}\begin{reld}, \reld\end{reld}__NEWLINE__\begin{abstract}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;abstract:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\abstract} \end{abstract}__NEWLINE__\begin{note}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;note:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\note} \end{note}__NEWLINE__\begin{memo}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;memo:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\memo} \end{memo}__NEWLINE__\begin{review}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;review:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\review} \end{review}__NEWLINE__\begin{comment}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;comment:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\comment} \end{comment}"/>
   <entry key="preview1" value="\begin{author} \format[HTMLChars,AuthorLastFirst,AuthorAndsReplacer]{\author}\end{author}&lt;!--__NEWLINE__--&gt;\begin{editor} \format[AuthorLastFirst,HTMLChars,AuthorAbbreviator,AuthorAndsReplacer]{\editor} &lt;i&gt;(ed.)&lt;/i&gt;\end{editor}&lt;!--__NEWLINE__--&gt;\begin{year}(\year)\end{year}&lt;!--__NEWLINE__--&gt;\begin{title}: \title\end{title}&lt;!--__NEWLINE__--&gt;\begin{journal}, &lt;em&gt;\format[HTMLChars]{\journal}&lt;/em&gt;\end{journal}&lt;!--__NEWLINE__--&gt;\begin{volume}, Vol. \volume\end{volume}&lt;!--__NEWLINE__--&gt;\begin{number}, No. \number\end{number}&lt;!--__NEWLINE__--&gt;\begin{pages}, pp. \format[FormatPagesForHTML]{\pages}\end{pages}&lt;!--__NEWLINE__--&gt;\begin{chapter}, \format[HTMLChars]{\chapter}\end{chapter}&lt;!--__NEWLINE__--&gt;\begin{school}, \format[HTMLChars]{\school} \end{school}&lt;!--__NEWLINE__--&gt;\begin{url}. &lt;a href=&quot;\url&quot;&gt;\url&lt;/a&gt;\end{url}."/>
-  <entry key="previewEnabled" value="true"/>
-  <entry key="previewPanelHeight" value="10"/>
+  <entry key="previewEnabled" value="false"/>
+  <entry key="previewPanelHeight" value="119"/>
   <entry key="previewStyle" value="&lt;font face=&quot;sans-serif&quot;&gt;&lt;b&gt;&lt;i&gt;\bibtextype&lt;/i&gt;&lt;a name=&quot;\bibtexkey&quot;&gt;\begin{bibtexkey} (\bibtexkey)&lt;/a&gt;\end{bibtexkey}&lt;/b&gt;&lt;br&gt;__NEWLINE__\begin{author} \format[Authors(LastFirst,Initials,Semicolon,Amp),HTMLChars]{\author}&lt;BR&gt;\end{author}__NEWLINE__\begin{editor} \format[Authors(LastFirst,Initials,Semicolon,Amp),HTMLChars]{\editor} &lt;i&gt;(\format[IfPlural(Eds.,Ed.)]{\editor})&lt;/i&gt;&lt;BR&gt;\end{editor}__NEWLINE__\begin{title} \format[HTMLChars]{\title} \end{title}&lt;BR&gt;__NEWLINE__\begin{chapter} \format[HTMLChars]{\chapter}&lt;BR&gt;\end{chapter}__NEWLINE__\begin{journal} &lt;em&gt;\format[HTMLChars]{\journal}, &lt;/em&gt;\end{journal}__NEWLINE__\begin{booktitle} &lt;em&gt;\format[HTMLChars]{\booktitle}, &lt;/em&gt;\end{booktitle}__NEWLINE__\begin{school} &lt;em&gt;\format[HTMLChars]{\school}, &lt;/em&gt;\end{school}__NEWLINE__\begin{institution} &lt;em&gt;\format[HTMLChars]{\institution}, &lt;/em&gt;\end{institution}__NEWLINE__\begin{publisher} &lt;em&gt;\format[HTMLChars]{\publisher}, &lt;/em&gt;\end{publisher}__NEWLINE__\begin{year}&lt;b&gt;\year&lt;/b&gt;\end{year}\begin{volume}&lt;i&gt;, \volume&lt;/i&gt;\end{volume}\begin{pages}, \format[FormatPagesForHTML]{\pages} \end{pages}__NEWLINE__\begin{abstract}&lt;BR&gt;&lt;BR&gt;&lt;b&gt;Abstract: &lt;/b&gt; \format[HTMLChars]{\abstract} \end{abstract}__NEWLINE__\begin{review}&lt;BR&gt;&lt;BR&gt;&lt;b&gt;Review: &lt;/b&gt; \format[HTMLChars]{\review} \end{review}&lt;/dd&gt;__NEWLINE__&lt;p&gt;&lt;/p&gt;&lt;/font&gt;"/>
   <entry key="priBinary" value="false"/>
-  <entry key="priDescending" value="true"/>
-  <entry key="priSort" value="timestamp"/>
+  <entry key="priDescending" value="false"/>
+  <entry key="priSort" value="ranking"/>
   <entry key="promptBeforeUsingAutosave" value="true"/>
   <entry key="proxyHostname" value="my proxy host"/>
+  <entry key="proxyPassword" value=""/>
   <entry key="proxyPort" value="my proxy port"/>
+  <entry key="proxyUsername" value=""/>
   <entry key="psDirectory" value=""/>
   <entry key="psviewer" value="Uses default application"/>
   <entry key="pushToApplication" value="TeXstudio"/>
   <entry key="recentDatabases" value="/home/dd4fqa/Documents/ref/bib/main.bib"/>
   <entry key="recentFiles" value="/home/senooken/ref/bibfile/hobby.bib;/home/senooken/Copy/ref/bibfile/job.bib;/home/senooken/Copy/ref/bibfile/TeX.bib;/home/senooken/Copy/ref/bibfile/M_AirDB.bib;/home/senooken/Copy/ref/bibfile/movie.bib;/home/senooken/ref/bibfile/adult.bib;/home/senooken/Copy/ref/bibfile/mybib.bib"/>
+  <entry key="reformatFileOnSaveAndExport" value="false"/>
   <entry key="regExpSearch" value="true"/>
   <entry key="regExpSearchExpression" value="**/.*[bibtexkey].*\\.[extension]"/>
+  <entry key="remoteServerPort" value="6050"/>
   <entry key="resolveStringsAllFields" value="false"/>
   <entry key="runAutomaticFileSearch" value="false"/>
   <entry key="saveInOriginalOrder" value="false"/>
@@ -271,6 +278,8 @@
   <entry key="tableColorCodesOn" value="true"/>
   <entry key="tableOptFieldBackground" value="230:255:230"/>
   <entry key="tableReqFieldBackground" value="230:235:255"/>
+  <entry key="tableResolvedColorCodesOn" value="false"/>
+  <entry key="tableResolvedFieldBackground" value="240:240:240"/>
   <entry key="tableRowPadding" value="9"/>
   <entry key="tableShowGrid" value="false"/>
   <entry key="tableText" value="0:0:0"/>
@@ -284,6 +293,7 @@
   <entry key="urlColumn" value="true"/>
   <entry key="useCaseKeeperOnSearch" value="true"/>
   <entry key="useConvertToEquation" value="false"/>
+  <entry key="useDefaultConsoleApplication" value="true"/>
   <entry key="useDefaultLookAndFeel" value="true"/>
   <entry key="useIEEEAbrv" value="true"/>
   <entry key="useImportInspectionDialog" value="true"/>
@@ -291,6 +301,7 @@
   <entry key="useNativeFileDialogOnMac" value="true"/>
   <entry key="useOwner" value="true"/>
   <entry key="useProxy" value="false"/>
+  <entry key="useProxyAuthentication" value="false"/>
   <entry key="useRegExpSearch" value="false"/>
   <entry key="useRemoteServer" value="false"/>
   <entry key="useTimeStamp" value="true"/>

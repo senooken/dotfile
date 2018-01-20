@@ -1,39 +1,13 @@
 :
 ################################################################################
 ## \file      .shrc
-## \author    SENOO, Ken
+## \author    DODESI, HUUKA
 ## \copyright CC0
 ## \brief POSIX compatible shell configure
 ################################################################################
 
 # set -u
 alias source='.'
-is_exe_enabled(){
-	IS_ENABLED_SET_E=$( case "$-" in (*e*) echo true;; (*) echo false;; esac )
-	is_command_enabled(){ command -v : >/dev/null 2>&1; }
-
-	$IS_ENABLED_SET_E && set +e
-	if is_command_enabled; then
-		$IS_ENABLED_SET_E && set -e
-		command -v ${1+"$@"} >/dev/null 2>&1 && return || return
-	fi
-	$IS_ENABLED_SET_E && set -e
-
-	IFS=:
-	for path in $PATH; do
-		unset IFS
-		command -p [ -x "$path/"${1+"$@"} ] && return
-	done
-}
-
-run_if_exe_enabled(){
-	is_exe_enabled "$1" && ${1+"$@"}
-}
-
-is_opt_enabled()(
-	EXE="$1" OPT="$2"
-	"$EXE" --help 2>&1 | grep -q -- "$OPT"'[[:blank:],=[]'
-)
 
 IS_INTERACTIVE=$(case "$-" in (*i*) echo true;; (*) echo false;; esac)
 IS_INITIALIZED=${IS_INITIALIZED:+true}; IS_INITIALIZED=${IS_INITIALIZED:-false}
