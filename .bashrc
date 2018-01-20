@@ -49,10 +49,10 @@
 # [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
 ## Shared shell setting
-export ENV="${ENV-$HOME/.shrc}"
+export ENV="${ENV-$HOME/.profile}"
 [ -r "$ENV" ] && . "$ENV"
 
-PROMPT_COMMAND="$COMMON_PROMPT_EXE; $PROMPT_COMMAND"
+PROMPT_COMMAND="$COMMON_PROMPT_EXE"
 
 ## History Options
 ### Base option

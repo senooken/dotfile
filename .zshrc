@@ -6,6 +6,9 @@
 #
 #####################################################################
 
+## for shared shell setting
+[ -r "$ENV" ] && . "$ENV"
+
 ## Plugin manage
 export ZPLUG_HOME=~/.zsh/
 if [ -f ${ZPLUG_HOME}/zplug/zplug ]; then
@@ -243,5 +246,3 @@ zstyle ':completion:*' matcher-list "m:{a-zA-A}={A-Za-z}"
 ## terminal title
 precmd(){ eval "$PROMPT_COMMAND"; }
 
-## for shared shell setting
-[ -r "$ENV" ] && . "$ENV"
