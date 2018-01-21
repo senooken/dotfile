@@ -761,7 +761,7 @@ figure>dl>dd:nth-of-type(n+2) {
 figure.example pre~figcaption::before,
 figure.example figcaption:first-child::before {
   counter-increment: example;
-  content: "Example " counter(heading1) "." counter(example) ": ";
+  content: "例 " counter(heading1) "." counter(example) ": ";
 }
 figure.structure pre~figcaption::before,
 figure.structure figcaption:first-child::before,
@@ -777,6 +777,12 @@ figure.example figcaption {
 }
 
 
+figure.structure,
+figure.alert,
+figure.example {
+  border-radius: 0.3em;
+}
+
 figure.structure figcaption,
 figure.alert figcaption,
 figure.example figcaption {
@@ -788,6 +794,10 @@ figure.structure figcaption~*,
 figure.alert figcaption~*,
 figure.example figcaption~* {
   background-image: linear-gradient( hsla( 0,0%,100%,0.9 ), hsla( 0,0%,100%,0.9 ) );
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
 }
 
 caption, figcaption {
@@ -795,7 +805,7 @@ caption, figcaption {
 }
 
 figure figcaption {
-  text-indent: 0.5em;
+  text-indent: 1em;
 }
 
 figure * {
@@ -811,15 +821,6 @@ figure>blockquote+figcaption:last-child {
 
 figure>figcaption+* {
   margin-top: 0;
-}
-
-
-
-/** Show update date **/
-[data-updated-date]::after {
-  color: gray;
-  font-size: 0.5em;
-  content: " Update: " attr(data-updated-date);
 }
 
 

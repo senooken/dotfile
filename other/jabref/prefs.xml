@@ -176,7 +176,7 @@
   <entry key="lookAndFeel" value="com.jgoodies.plaf.windows.ExtWindowsLookAndFeel"/>
   <entry key="lyxpipe" value=""/>
   <entry key="mainWindowPosX" value="37"/>
-  <entry key="mainWindowPosY" value="158"/>
+  <entry key="mainWindowPosY" value="167"/>
   <entry key="mainWindowSizeX" value="1024"/>
   <entry key="mainWindowSizeY" value="562"/>
   <entry key="markImportedEntries" value="true"/>

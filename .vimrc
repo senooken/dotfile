@@ -42,10 +42,34 @@ if has('vim_starting')
   if s:IS_WINDOWS
     set runtimepath+=~/.vim/after/
     if exists('+packpath')
-      set packpath+=~/.vim
+      set packpath& packpath+=~/.vim
     endif
   endif
   set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+"" \brief Check if a plugin is installed.
+"" \param[in] plugin Plugin name (direcotry name).
+"" \return 1: installed, 0: not installed.
+function! s:is_plugin_installed(plugin)
+  for path in split(&runtimepath, ',')
+    if finddir(a:plugin, path . '/**') != ''
+      return 1
+    endif
+  endfor
+  return 0
+endfunction
+
+if s:is_plugin_installed('vim-mucomplete')
+  set completeopt& completeopt+=menuone
+  inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
+  inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
+  inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
+  set completeopt+=noselect
+  set completeopt+=noinsert
+  set shortmess+=c   " Shut off completion messages
+  set belloff+=ctrlg " If Vim beeps during completion
+  let g:mucomplete#enable_auto_at_startup = 1
 endif
 
 let s:is_neobundle_installed = s:TRUE
@@ -67,15 +91,13 @@ if s:is_neobundle_installed
     NeoBundle 'Shougo/neocomplcache'
   endif
 
-  NeoBundle 'Shougo/neosnippet'
-  NeoBundle 'Shougo/neosnippet-snippets'
-  NeoBundle 'honza/vim-snippets'
-  NeoBundle 'garbas/vim-snipmate' , {'depends' :
-        \ [ 'MarcWeber/vim-addon-mw-utils',
-        \   'tomtom/tlib_vim']
-        \ }
-
-  NeoBundle 'syngan/vim-clurin'
+  " NeoBundle 'Shougo/neosnippet'
+  " NeoBundle 'Shougo/neosnippet-snippets'
+  " NeoBundle 'honza/vim-snippets'
+  " NeoBundle 'garbas/vim-snipmate' , {'depends' :
+  "       \ [ 'MarcWeber/vim-addon-mw-utils',
+  "       \   'tomtom/tlib_vim']
+  "       \ }
   " NeoBundle 'kana/vim-smartinput'
 
   " NeoBundle 'mattn/emmet-vim'
@@ -231,12 +253,12 @@ if s:Neobundled('vim-smartinput')
   "     \   })
 endif
 
-if s:Neobundled('vim-clurin')
+if s:is_plugin_installed('vim-clurin')
   nmap + <Plug>(clurin-next)
   nmap - <Plug>(clurin-prev)
   vmap + <Plug>(clurin-next)
   vmap - <Plug>(clurin-prev)
-  function! s:Default_pm(cnt) abort
+  function! s:default_pm(cnt) abort
     if a:cnt >= 0
       execute 'normal!'   a:cnt  . "j0"
     else
@@ -245,7 +267,7 @@ if s:Neobundled('vim-clurin')
   endfunction
   let g:clurin = {
   \   '-': {
-  \     'nomatch': function('s:Default_pm'),
+  \     'nomatch': function('s:default_pm'),
   \     'def': [
   \       [
   \         {'pattern': '''\(\k\+\)''' , 'replace':  '''\1''' },
@@ -398,12 +420,8 @@ if s:Neobundled('vim-quickrun')
 endif
 
 if s:Neobundled('caw.vim')
-    " コメントアウトを切り替えるマッピング
-    " \c でカーソル行をコメントアウト  再度 \c でコメントアウトを解除
     nmap \c <Plug>(caw:hatpos:toggle)
     vmap \c <Plug>(caw:hatpos:toggle)
-
-    " \C でコメントアウトの解除
     nmap \C <Plug>(caw:zeropos:uncomment)
     vmap \C <Plug>(caw:zeropos:uncomment)
 endif
@@ -892,6 +910,8 @@ autocmd MyAutoCmd BufEnter *
   \|   nnoremap <buffer> <2-LeftMouse> i
   \|   inoremap <buffer> <2-LeftMouse> <ESC>
   \| endif
+
+
 
 "" Enable alias for external command
 if filereadable($ENV)
