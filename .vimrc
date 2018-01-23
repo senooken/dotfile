@@ -3,10 +3,6 @@
 "" \copyright CC0
 
 "" Constant variable
-""" Boolean
-let s:FALSE = 0
-let s:TRUE  = !s:FALSE
-
 """ Platform
 let s:IS_WINDOWS   = has('win64') || has('win32')   || has('win16')
 let s:IS_CYGWIN    = has('win32unix')
@@ -39,25 +35,20 @@ autocmd MyAutoCmd BufReadPost *
   \ | endif
 
 if has('vim_starting')
-  if s:IS_WINDOWS
-    set runtimepath+=~/.vim/after/
+  if match(&runtimepath, expand('~/.vim')) == -1
+    set runtimepath& runtimepath+=~/.vim,~/.vim/after
     if exists('+packpath')
       set packpath& packpath+=~/.vim
     endif
   endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 
 "" \brief Check if a plugin is installed.
 "" \param[in] plugin Plugin name (direcotry name).
 "" \return 1: installed, 0: not installed.
 function! s:is_plugin_installed(plugin)
-  for path in split(&runtimepath, ',')
-    if finddir(a:plugin, path . '/**') != ''
-      return 1
-    endif
-  endfor
-  return 0
+  return globpath(&runtimepath, 'pack/*/*/' . a:plugin, 1) != ''
 endfunction
 
 if s:is_plugin_installed('vim-mucomplete')
@@ -70,13 +61,105 @@ if s:is_plugin_installed('vim-mucomplete')
   set shortmess+=c   " Shut off completion messages
   set belloff+=ctrlg " If Vim beeps during completion
   let g:mucomplete#enable_auto_at_startup = 1
+  imap <plug>Unused <plug>(MUcompleteCycBwd)
 endif
 
-let s:is_neobundle_installed = s:TRUE
+if s:is_plugin_installed('caw.vim')
+  nmap \c <Plug>(caw:hatpos:toggle)
+  vmap \c <Plug>(caw:hatpos:toggle)
+  nmap \C <Plug>(caw:zeropos:uncomment)
+  vmap \C <Plug>(caw:zeropos:uncomment)
+endif
+
+if s:is_plugin_installed('autodate.vim')
+  let autodate_keyword_pre='Updated date:'
+  let autodate_keyword_post='$'
+  let autodate_format='%Y-%m-%dT%H:%M+09:00'
+  let autodate_lines=10
+  "" Disable autodate.vim during editing template
+  autocmd BufWritePre template.*  silent! :AutodateOFF
+endif
+
+if s:is_plugin_installed('autofname.vim')
+  let autofname_keyword_pre=' [\@]file '
+  let autofname_keyword_post='$'
+  let autofname_lines=5
+endif
+
+if s:is_plugin_installed('vim-clurin')
+  nmap + <Plug>(clurin-next)
+  nmap - <Plug>(clurin-prev)
+  vmap + <Plug>(clurin-next)
+  vmap - <Plug>(clurin-prev)
+  function! s:default_pm(cnt) abort
+    if a:cnt >= 0
+      execute 'normal!'   a:cnt  . "j0"
+    else
+      execute 'normal!' (-a:cnt) . "k0"
+    endif
+  endfunction
+  let g:clurin = {
+  \   '-': {
+  \     'nomatch': function('s:default_pm'),
+  \     'def': [
+  \       [
+  \         {'pattern': '''\(\k\+\)''' , 'replace':  '''\1''' },
+  \         {'pattern':  '"\(\k\+\)"'  , 'replace':   '"\1"'  },
+  \       ],
+  \       ['TRUE', 'FALSE'], ['True', 'False'],
+  \       ['ON', 'OFF'], ['on', 'off'], ['On', 'Off'],
+  \       ['>', '<'], ['>=','<='], ['>>', '<<'],
+  \       ['+', '-'], ['*','/'], ['==', '!='], ['++', '--'],
+  \       ['&&', '||'], ['and', 'or'], ['AND', 'OR'],
+  \       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+  \       ['first', 'second', 'third', 'fourth', 'fifth'],
+  \       ['FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH'],
+  \       ['First', 'Second', 'Third', 'Fourth', 'Fifth'],
+  \       ['foo', 'bar', 'baz'], ['FOO', 'BAR', 'BAZ'], ['Foo', 'Bar', 'Baz'],
+  \       ['hoge', 'piyo', 'fuga'], ['HOGE', 'PIYO', 'FUGA'],['Hoge', 'Piyo', 'Fuga'],
+  \       ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+  \       ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'],
+  \       ['月', '火', '水', '木', '金', '土', '日'],
+  \       ['（月）', '（火）', '（水）', '（木）', '（金）', '（土）', '（日）'],
+  \       ['月曜', '火曜', '水曜', '木曜', '金曜', '土曜', '日曜'],
+  \       ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'],
+  \       ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  \       ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+  \       ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  \       ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
+  \       ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'],
+  \       ['yes', 'no'], ['YES', 'NO'], ['Yes', 'No'], ['OK', 'NG'],
+  \       ['begin', 'end'], ['BEGIN', 'END'], ['Begin', 'End'],
+  \       ['start', 'stop'], ['START', 'STOP'], ['Start', 'Stop'],
+  \       ['first', 'last'], ['FIRST', 'LAST'], ['First', 'Last'],
+  \       ['top', 'bottom'], ['TOP', 'BOTTOM'], ['Top', 'Bottom'],
+  \       ['before', 'after'], ['BEFORE', 'AFTER'], ['Before', 'After'],
+  \       ['left', 'right'], ['LEFT', 'RIGHT'], ['Left', 'Right'],
+  \       ['up', 'down'], ['UP', 'DOWN'], ['Up', 'Down'],
+  \       ['north', 'south', 'east', 'west'],
+  \       ['NORTH', 'SOUTH', 'EAST', 'WEST'],
+  \       ['North', 'South', 'East', 'West'],
+  \       ['N', 'S', 'E', 'W'],
+  \       ['max', 'min'], ['MAX', 'MIN'], ['Max', 'Min'],
+  \       ['least', 'most'], ['LEAST', 'MOST'], ['Least', 'Most'],
+  \       ['less', 'more'], ['LESS', 'MORE'], ['Less', 'More'],
+  \       ['few', 'much'], ['FEW', 'MUCH'], ['Few', 'Much'],
+  \       ['in', 'out'], ['IN', 'OUT'], ['In', 'Out'],
+  \       ['old', 'new'], ['OLD', 'NEW'], ['Old', 'New'],
+  \       ['open', 'close'], ['OPEN', 'CLOSE'], ['Open', 'Close'],
+  \       ['read', 'write'], ['READ', 'WRITE'], ['Read', 'Write'],
+  \       ['next', 'previous'], ['NEXT', 'PREVIOUS'], ['Next', 'Previous'],
+  \       ['English', 'Japanese'], ['en', 'ja'], ['US', 'JP'], ['us', 'jp']
+  \     ]
+  \   }
+  \ }
+endif
+
+let s:is_neobundle_installed = v:true
 try " specify plugin installation base directory.
   call neobundle#begin(expand('~/.vim/bundle/'))
 catch /^Vim(call):E117/  " catch error E117: Unkown function
-  let s:is_neobundle_installed = s:FALSE
+  let s:is_neobundle_installed = v:false
   set title titlestring=NeoBundle\ is\ not\ installed!
 endtry
 
@@ -106,7 +189,6 @@ if s:is_neobundle_installed
   "" language
   " NeoBundleLazy 'c.vim', { 'autoload': {'filetypes' : ['cpp', 'c']}}
   NeoBundleLazy 'asciidoc.vim', {"autoload" : {"filetypes" : "asciidoc"}}
-  NeoBundle 'sheerun/vim-polyglot'
 
   "" Install clang_complete
   " NeoBundle 'Rip-Rip/clang_complete'
@@ -118,19 +200,14 @@ if s:is_neobundle_installed
   NeoBundle 'kana/vim-smartchr'
   NeoBundle 'kana/vim-submode'
 
-  NeoBundle 'istepura/vim-toolbar-icons-silk' " cool gvim toolbar icon
   NeoBundle 'nathanaelkane/vim-indent-guides' " clearly indent
 
   "" text edit
-  NeoBundle 'tpope/vim-surround'
   NeoBundle 'YankRing.vim'
 
   " NeoBundle 'tyru/open-browser'
   " NeoBundle 'kannokanno/previm'
   " NeoBundle 'plasticboy/vim-markdown'
-
-  NeoBundle 'autodate.vim'
-  NeoBundle 'lamsh/autofname.vim'
 
   if executable('make') && executable('gcc') && executable('cc')
     NeoBundle 'Shougo/vimproc.vim', {
@@ -150,11 +227,8 @@ if s:is_neobundle_installed
   endif
 
   " NeoBundle 'gtags.vim'
-  NeoBundle 'vim-jp/vimdoc-ja'
-  NeoBundle 'tyru/caw.vim' " comment out
   NeoBundle 'Lokaltog/vim-easymotion' " cursor
 
-  NeoBundle 'ctrlpvim/ctrlp.vim'
   NeoBundle 'tacahiroy/ctrlp-funky'
 
   call neobundle#end()
@@ -253,74 +327,6 @@ if s:Neobundled('vim-smartinput')
   "     \   })
 endif
 
-if s:is_plugin_installed('vim-clurin')
-  nmap + <Plug>(clurin-next)
-  nmap - <Plug>(clurin-prev)
-  vmap + <Plug>(clurin-next)
-  vmap - <Plug>(clurin-prev)
-  function! s:default_pm(cnt) abort
-    if a:cnt >= 0
-      execute 'normal!'   a:cnt  . "j0"
-    else
-      execute 'normal!' (-a:cnt) . "k0"
-    endif
-  endfunction
-  let g:clurin = {
-  \   '-': {
-  \     'nomatch': function('s:default_pm'),
-  \     'def': [
-  \       [
-  \         {'pattern': '''\(\k\+\)''' , 'replace':  '''\1''' },
-  \         {'pattern':  '"\(\k\+\)"'  , 'replace':   '"\1"'  },
-  \       ],
-  \       ['TRUE', 'FALSE'], ['True', 'False'],
-  \       ['ON', 'OFF'], ['on', 'off'], ['On', 'Off'],
-  \       ['>', '<'], ['>=','<='], ['>>', '<<'],
-  \       ['+', '-'], ['*','/'], ['==', '!='], ['++', '--'],
-  \       ['&&', '||'], ['and', 'or'], ['AND', 'OR'],
-  \       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  \       ['first', 'second', 'third', 'fourth', 'fifth'],
-  \       ['FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH'],
-  \       ['First', 'Second', 'Third', 'Fourth', 'Fifth'],
-  \       ['foo', 'bar', 'baz'], ['FOO', 'BAR', 'BAZ'], ['Foo', 'Bar', 'Baz'],
-  \       ['hoge', 'piyo', 'fuga'], ['HOGE', 'PIYO', 'FUGA'],['Hoge', 'Piyo', 'Fuga'],
-  \       ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
-  \       ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'],
-  \       ['月', '火', '水', '木', '金', '土', '日'],
-  \       ['（月）', '（火）', '（水）', '（木）', '（金）', '（土）', '（日）'],
-  \       ['月曜', '火曜', '水曜', '木曜', '金曜', '土曜', '日曜'],
-  \       ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'],
-  \       ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  \       ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-  \       ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  \       ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
-  \       ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'],
-  \       ['yes', 'no'], ['YES', 'NO'], ['Yes', 'No'], ['OK', 'NG'],
-  \       ['begin', 'end'], ['BEGIN', 'END'], ['Begin', 'End'],
-  \       ['start', 'stop'], ['START', 'STOP'], ['Start', 'Stop'],
-  \       ['first', 'last'], ['FIRST', 'LAST'], ['First', 'Last'],
-  \       ['top', 'bottom'], ['TOP', 'BOTTOM'], ['Top', 'Bottom'],
-  \       ['before', 'after'], ['BEFORE', 'AFTER'], ['Before', 'After'],
-  \       ['left', 'right'], ['LEFT', 'RIGHT'], ['Left', 'Right'],
-  \       ['up', 'down'], ['UP', 'DOWN'], ['Up', 'Down'],
-  \       ['north', 'south', 'east', 'west'],
-  \       ['NORTH', 'SOUTH', 'EAST', 'WEST'],
-  \       ['North', 'South', 'East', 'West'],
-  \       ['N', 'S', 'E', 'W'],
-  \       ['max', 'min'], ['MAX', 'MIN'], ['Max', 'Min'],
-  \       ['least', 'most'], ['LEAST', 'MOST'], ['Least', 'Most'],
-  \       ['less', 'more'], ['LESS', 'MORE'], ['Less', 'More'],
-  \       ['few', 'much'], ['FEW', 'MUCH'], ['Few', 'Much'],
-  \       ['in', 'out'], ['IN', 'OUT'], ['In', 'Out'],
-  \       ['old', 'new'], ['OLD', 'NEW'], ['Old', 'New'],
-  \       ['open', 'close'], ['OPEN', 'CLOSE'], ['Open', 'Close'],
-  \       ['read', 'write'], ['READ', 'WRITE'], ['Read', 'Write'],
-  \       ['next', 'previous'], ['NEXT', 'PREVIOUS'], ['Next', 'Previous'],
-  \       ['English', 'Japanese'], ['en', 'ja'], ['US', 'JP'], ['us', 'jp']
-  \     ]
-  \   }
-  \ }
-endif
 
 if s:Neobundled('unite.vim')
     let g:unite_source_history_yank_enable=1
@@ -389,18 +395,6 @@ if s:Neobundled('vim-indent-guides')
     let g:indent_guides_guide_size = 1 " indent guide size
 endif
 
-if s:Neobundled('autodate.vim')
-    let autodate_keyword_pre='Updated date:'
-    let autodate_keyword_post='$'
-    let autodate_format='%Y-%m-%dT%H:%M+09:00'
-    let autodate_lines=10
-endif
-
-if s:Neobundled('autofname.vim')
-    let autofname_keyword_pre=' [\@]file '
-    let autofname_keyword_post='$'
-    let autofname_lines=5
-endif
 
 if s:Neobundled('vim-quickrun')
     let g:quickrun_config = {} " initialization
@@ -419,12 +413,6 @@ if s:Neobundled('vim-quickrun')
     " set splitright
 endif
 
-if s:Neobundled('caw.vim')
-    nmap \c <Plug>(caw:hatpos:toggle)
-    vmap \c <Plug>(caw:hatpos:toggle)
-    nmap \C <Plug>(caw:zeropos:uncomment)
-    vmap \C <Plug>(caw:zeropos:uncomment)
-endif
 
 " if s:Neobundled('vim-easymotion')
 "     let g:EasyMotion_do_mapping = 0
@@ -478,10 +466,6 @@ endif
 autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
 autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/%:t
 
-"" Disable autodate.vim during editing template
-if s:Neobundled('autodate.vim')
-  autocmd BufWritePre template.*  silent! :AutodateOFF
-endif
 
 if s:Neobundled('ctrlp.vim')
   let g:ctrlp_extensions = ['funky']

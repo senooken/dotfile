@@ -3,7 +3,7 @@
 "" \copyright CC0
 
 "" MS Windows like keybind
-source $VIMRUNTIME/mswin.vim
+runtime mswin.vim
 
 " set number
 "" font
