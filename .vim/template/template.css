@@ -24,20 +24,20 @@ figure>figcaption::before {
   counter-increment: figure;
   content: "Figure " counter(heading1) "." counter(figure) " ";
 }
-/* subfigureの開始時だけリセット */
-figure>figure:first-of-type {
+/* Reset subfigure */
+figure table:first-of-type {
   counter-reset: subfigure;
 }
 /* そのままやると，subfigureの番号が先に登場するのでfigureと番号が不一致 */
 /* だから，subfigure内ではfigureの番号を増加させ，抜けるときに減らす */
-figure>figure>figcaption::before {
+figure figure>figcaption::before {
   counter-increment: figure subfigure;
   counter-reset: subsubfigure;
   /* content: "Figure " counter(heading1) "." counter(figure) "(" counter(subfigure, lower-alpha) ") "; */
   content: "(" counter(subfigure, lower-alpha) ") ";
 }
 /* 増やしたfigureの番号を減らして元に戻す */
-figure>figure figcaption::after {
+figure figure>figcaption::after {
   content: "";
   counter-increment: figure -1;
 }
