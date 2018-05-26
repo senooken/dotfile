@@ -78,6 +78,7 @@ IS_INITIALIZED=${IS_INITIALIZED:+true}; IS_INITIALIZED=${IS_INITIALIZED:-false}
 ### Interactive shell local development PATH
 if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	IS_INITIALIZED='true'
+	# set -ux
 	export ENV="${ENV:-$HOME/.profile}"
 	LOCAL="$HOME/.local"
 	### System path
@@ -90,6 +91,8 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	LD_LIBRARY_PATH="/vendor/lib:/system/lib:$LD_LIBRARY_PATH"
 	LD_LIBRARY_PATH="$LOCAL/opt/lib:/opt/lib:/usr/lib64:/lib64:$LD_LIBRARY_PATH"
 	LD_LIBRARY_PATH="$LOCAL/lib:/usr/local/lib:/usr/lib:/lib:$LD_LIBRARY_PATH"
+	LD_LIBRARY_PATH="$LOCAL/lib64:/usr/local/lib64:/usr/lib64:/lib64:$LD_LIBRARY_PATH"
+	LDFLAGS="-L$LOCAL/lib64 -L$LOCAL/lib"
 	CPATH="/usr/local/include:/usr/include:/opt/include:$CPATH"
 	CPATH="$LOCAL/include:$LOCAL/opt/include:$CPATH"
 
@@ -104,8 +107,29 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	PKG_CONFIG_PATH="$LOCAL/opt/lib/pkgconfig:/opt/lib/pkgconfig:$PKG_CONFIG_PATH"
 	PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-	export PATH LD_LIBRARY_PATH CPATH PKG_CONFIG_PATH
+	export PATH LD_LIBRARY_PATH CPATH PKG_CONFIG_PATH LDFLAGS
 	export MANPATH MANDATORY_MANPATH INFOPATH
+
+	## Apache
+	APACHE_ROOT=$LOCAL/apache2
+	if [ -d "$APACHE_ROOT" ]; then
+		PATH="$APACHE_ROOT/bin:$PATH"
+		CPATH="$APACHE_ROOT/include:$CPATH"
+		MANPATH="$APACHE_ROOT/man:$MANPATH"
+		MANDATORY_MANPATH="$APACHE_ROOT/man:$MANDATORY_MANPATH"
+		export PATH CPATH MANPATH MANDATORY_MANPATH
+	fi
+
+	## MySQL
+	MYSQL_HOME=$LOCAL/mysql
+	if [ -d "$MYSQL_HOME" ]; then
+		PATH="$MYSQL_HOME/bin:$PATH"
+		CPATH="$MYSQL_HOME/include:$CPATH"
+		LD_LIBRARY_PATH="$MYSQL_HOME/lib:$LD_LIBRARY_PATH"
+		MANPATH="$MYSQL_HOME/man:$MANPATH"
+		MANDATORY_MANPATH="$MYSQL_HOME/man:$MANDATORY_MANPATH"
+		export MYSQL_HOME PATH CPATH LD_LIBRARY_PATH MANPATH MANDATORY_MANPATH
+	fi
 
 	## Language specific configuration
 	# export GEM_HOME="$LOCAL"       # ruby gem
@@ -115,7 +139,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	### Locale
 	export LANG='ja_JP.UTF-8'
 	export LANGUAGE='en'
-	export LC_TIME='en_US.UTF-8'
+	export LC_TIME='en_DK.UTF-8'
 	export LC_MESSAGES='en_US.UTF-8'
 
 	## Invalid stty keybind
@@ -147,8 +171,8 @@ export CYGWIN='nodosfilewarning winsymlinks:nativestrict'
 export MSYS='winsymlinks:nativestrict'
 
 ### For wine
-# export WINEARCH='win32'
-# export WINEPREFIX="$HOME/.wine32"
+export WINEARCH='win32'
+export WINEPREFIX="$HOME/.wine32"
 
 ### For .deb package
 export DEBFULLNAME='Ken SENOO'
@@ -227,6 +251,7 @@ is_opt_enabled ls -G           && LL_OPTION="-G $LL_OPTION"
 is_opt_enabled ls --time-style &&
 	LL_OPTION="--time-style='+%Y-%m-%d %H:%M' $LL_OPTION"
 
+alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls -AFh --color=auto' l='ls'
 alias ll="ls $LL_OPTION"
@@ -344,19 +369,19 @@ now()(
 
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
 # WXCONFIG=$(wx-config --cppflags --libs 2>&- | tr \"\n\" ' ')
-WXCONFIG=$( wx-config  --libs --cppflags  2>&- || :)
-GTKCONFIG=$(pkg-config --libs --cflags gtk+-3.0 2>&- || :)
+WXCONFIG=$(run_if_exe_enabled wx-config  --libs --cppflags)
+# GTKCONFIG=$(run_if_exe_enabled pkg-config --exists gtk+-3.0 && pkg-config --libs --cflags gtk+-3.0)
 LIBCPP='-static-libgcc -static-libstdc++'
 
 : ${SCREEN_SHELL:=$(command -v zsh )}
 : ${SCREEN_SHELL:=$(command -v bash)}
 
 ## For not having screen-256color, but having xterm-256color support.
-toe -a 2>&- | grep -q 'screen-256color' &&
-	SCREEN_TERM='screen-256color' || SCREEN_TERM="$TERM"
-
-alias screen="screen -T $SCREEN_TERM -s $SCREEN_SHELL"
-alias tmux="SHELL=$SCREEN_SHELL tmux"
+# toe -a 2>&- | grep -q 'screen-256color' &&
+# 	SCREEN_TERM='screen-256color' || SCREEN_TERM="$TERM"
+#
+# alias screen="screen -T $SCREEN_TERM -s $SCREEN_SHELL"
+# alias tmux="SHELL=$SCREEN_SHELL tmux"
 
 ## For --exclude list
 EXCLUDE_FILE='{cscope.files,cscope.out,cscope.in.out,cscope.po.out,tags,GTAGS,GRTAGS,GPATH}'

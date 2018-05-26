@@ -106,7 +106,7 @@
   <entry key="emailSubject" value="References"/>
   <entry key="enableSourceEditing" value="true"/>
   <entry key="enforceLegalBibtexKey" value="true"/>
-  <entry key="entryEditorHeight" value="295"/>
+  <entry key="entryEditorHeight" value="419"/>
   <entry key="exportInOriginalOrder" value="false"/>
   <entry key="exportInSpecifiedOrder" value="true"/>
   <entry key="exportInStandardOrder" value="true"/>
@@ -118,7 +118,7 @@
   <entry key="exportTerDescending" value="false"/>
   <entry key="exportTerSort" value="year"/>
   <entry key="exportWorkingDirectory" value=""/>
-  <entry key="externalFileTypes" value="3gp:3gp:video/3gpp::new;FLV:flv:::new;MP4:mp4:::new"/>
+  <entry key="externalFileTypes" value="3gp:3gp:video/3gpp::new;Epub:epub:application::new;FLV:flv:::new;HTML:htm:text/html::new;HTML(htm):htm:text/html::new;MP4:mp4:::new;Markdown:md:text/markdown::new;URL(XHTML):xhtml:text/xhtml+xml::new;XML:xml:text/xml::new"/>
   <entry key="extraFileColumns" value="false"/>
   <entry key="fieldEditorTextColor" value="0:0:0"/>
   <entry key="fileColumn" value="true"/>
@@ -166,8 +166,8 @@
   <entry key="keyGenAlwaysAddLetter" value="false"/>
   <entry key="keyGenFirstLetterA" value="true"/>
   <entry key="language" value="en"/>
-  <entry key="lastEdited" value="/home/dd4fqa/Documents/ref/bib/main.bib"/>
-  <entry key="lastFocused" value="/home/dd4fqa/Documents/ref/bib/main.bib"/>
+  <entry key="lastEdited" value="/home/senooken/Documents/ref/bib/main.bib;/home/senooken/Documents/ref/bib/food.bib;/home/senooken/Documents/ref/bib/hobby.bib"/>
+  <entry key="lastFocused" value="/home/senooken/Documents/ref/bib/main.bib"/>
   <entry key="lastUsedExport" value="Jab2HTML"/>
   <entry key="lastUsedImport" value="RIS"/>
   <entry key="latexEditorPath" value="C:\Program Files\LEd\LEd.exe"/>
@@ -175,10 +175,10 @@
   <entry key="localAutoSave" value="false"/>
   <entry key="lookAndFeel" value="com.jgoodies.plaf.windows.ExtWindowsLookAndFeel"/>
   <entry key="lyxpipe" value=""/>
-  <entry key="mainWindowPosX" value="70"/>
-  <entry key="mainWindowPosY" value="201"/>
-  <entry key="mainWindowSizeX" value="1024"/>
-  <entry key="mainWindowSizeY" value="485"/>
+  <entry key="mainWindowPosX" value="228"/>
+  <entry key="mainWindowPosY" value="194"/>
+  <entry key="mainWindowSizeX" value="1053"/>
+  <entry key="mainWindowSizeY" value="477"/>
   <entry key="markImportedEntries" value="true"/>
   <entry key="markedEntryBackground" value="255:255:180"/>
   <entry key="markedEntryBackground0" value="255:255:180"/>
@@ -213,7 +213,7 @@
   <entry key="preview0" value="&lt;font color=&quot;navy&quot; size=&quot;+1&quot;&gt;&lt;b&gt;\bibtexkey&lt;/B&gt;&lt;/font&gt; &lt;font color=&quot;gray&quot; size=&quot;-1&quot;&gt;[\bibtextype]&lt;/font&gt;&lt;BR&gt;__NEWLINE__\begin{title}&lt;font size=&quot;+1&quot;&gt;\title&lt;/font&gt;__NEWLINE__&lt;a href=&quot;http://www.google.com/search?num=30&amp;q=\title&quot;&gt;&lt;font size=&quot;-1&quot;&gt;Google&lt;/font&gt;&lt;/a&gt; __NEWLINE__&lt;a href=&quot;http://scholar.google.com/scholar?num=30&amp;q=\title&quot;&gt;&lt;font size=&quot;-1&quot;&gt;Google Scholar&lt;/font&gt;&lt;/a&gt;\end{title}&lt;BR&gt;__NEWLINE__\begin{author} \format[HTMLChars,AuthorLastFirst,AuthorAndsReplacer]{\author}__NEWLINE__&lt;a href=&quot;http://www.google.com/search?num=30&amp;q=\author&quot;&gt;&lt;font size=&quot;-1&quot;&gt;Google&lt;/font&gt;&lt;/a&gt; __NEWLINE__&lt;a href=&quot;http://scholar.google.com/scholar?num=30&amp;q=\author&quot;&gt;&lt;font size=&quot;-1&quot;&gt;Google Scholar&lt;/font&gt;&lt;/a&gt;&lt;BR&gt;\end{author}__NEWLINE__\begin{editor}\format[HTMLChars,AuthorLastFirst,AuthorAndsReplacer]{\editor} &lt;i&gt;(ed.)&lt;/i&gt;&lt;BR&gt;\end{editor}__NEWLINE__\begin{chapter} \format[HTMLChars]{\chapter}&lt;BR&gt;\end{chapter}__NEWLINE__\begin{journal} &lt;em&gt;\format[HTMLChars]{\journal}, &lt;/em&gt;\end{journal}__NEWLINE__\begin{school} &lt;em&gt;\format[HTMLChars]{\school}, &lt;/em&gt;\end{school}__NEWLINE__\begin{institution} &lt;em&gt;\format[HTMLChars]{\institution}, &lt;/em&gt;\end{institution}__NEWLINE__\begin{publisher} &lt;em&gt;\format[HTMLChars]{\publisher}, &lt;/em&gt;\end{publisher}__NEWLINE__\begin{year}&lt;b&gt;\year&lt;/b&gt;\end{year}\begin{month}&lt;b&gt;:\month&lt;/b&gt;\end{month}\begin{volume}, Vol.\volume\end{volume}\begin{number}(\number)\end{number}\begin{pages}, \format[FormatPagesForHTML]{\pages} \end{pages}__NEWLINE__&lt;BR&gt;&lt;BR&gt;__NEWLINE__\begin{keywords}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;keywords:&lt;/b&gt;&lt;/font&gt;\keywords&lt;BR&gt;\end{keywords}__NEWLINE__\begin{points}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;points:&lt;/b&gt;&lt;/font&gt;\points&amp;nbsp;&amp;nbsp;\end{points}__NEWLINE__\begin{owner}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;owner:&lt;/b&gt;&lt;/font&gt;\owner&amp;nbsp;&amp;nbsp;\end{owner}__NEWLINE__\begin{yomi}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;yomi:&lt;/b&gt;&lt;/font&gt;\yomi&amp;nbsp;&amp;nbsp;\end{yomi}__NEWLINE__\begin{price}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;price:&lt;/b&gt;&lt;/font&gt;\price&amp;nbsp;&amp;nbsp;\end{price}__NEWLINE__\begin{totalpages}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;total pages:&lt;/b&gt;&lt;/font&gt;\totalpages&amp;nbsp;&amp;nbsp;\end{totalpages}__NEWLINE__\begin{isbn}&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;ISBN:&lt;/b&gt;&lt;/font&gt;\isbn&amp;nbsp;&amp;nbsp;__NEWLINE__Webcat Plus(&lt;a href=&quot;http://webcatplus-equal.nii.ac.jp/libportal/EqualFromForm?txt_isbn=\isbn&quot;&gt;jp&lt;/a&gt;,&lt;a href=&quot;http://webcatplus-equal.nii.ac.jp/libportal/EqualFromForm?hdn_if_lang=eng&amp;txt_isbn=\isbn&quot;&gt;en&lt;/a&gt;)__NEWLINE__&amp;nbsp;Lead2Amazon(&lt;a href=&quot;http://lead.to/amazon/jp/?key=\isbn&amp;op=bt&amp;ht=jp&quot;&gt;co.jp&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=us&quot;&gt;com&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=ca&quot;&gt;ca&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=uk&quot;&gt;co.uk&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=de&quot;&gt;de&lt;/a&gt;,&lt;a href=&quot;http://lead.to/amazon/en/?key=\isbn&amp;op=bt&amp;ht=fr&quot;&gt;fr&lt;/a&gt;)__NEWLINE__\end{isbn}__NEWLINE__\begin{timestamp}&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;reg:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\timestamp}&amp;nbsp;&amp;nbsp;\end{timestamp}__NEWLINE__\begin{update}&lt;font color=&quot;green&quot;&gt;&lt;b&gt;up:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\update} \end{update}__NEWLINE____NEWLINE__\begin{file}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;file:&lt;/b&gt;&lt;/font&gt;\file \end{file}__NEWLINE__\begin{pdf}&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;PDF:&lt;/b&gt;&lt;/font&gt;\pdf \end{pdf}__NEWLINE__\begin{url}&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;URL:&lt;/b&gt;&lt;/font&gt;&lt;a href=&quot;\url&quot;&gt;\url&lt;/a&gt; \end{url}__NEWLINE__\begin{rela}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;related:&lt;/b&gt;&lt;/font&gt;\rela\end{rela}\begin{relb}, \relb\end{relb}\begin{relc}, \relc\end{relc}\begin{reld}, \reld\end{reld}\begin{reld}, \reld\end{reld}__NEWLINE__\begin{abstract}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;abstract:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\abstract} \end{abstract}__NEWLINE__\begin{note}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;note:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\note} \end{note}__NEWLINE__\begin{memo}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;memo:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\memo} \end{memo}__NEWLINE__\begin{review}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;review:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\review} \end{review}__NEWLINE__\begin{comment}&lt;BR&gt;&lt;BR&gt;&lt;font color=&quot;green&quot;&gt;&lt;b&gt;comment:&lt;/b&gt;&lt;/font&gt;\format[HTMLChars]{\comment} \end{comment}"/>
   <entry key="preview1" value="\begin{author} \format[HTMLChars,AuthorLastFirst,AuthorAndsReplacer]{\author}\end{author}&lt;!--__NEWLINE__--&gt;\begin{editor} \format[AuthorLastFirst,HTMLChars,AuthorAbbreviator,AuthorAndsReplacer]{\editor} &lt;i&gt;(ed.)&lt;/i&gt;\end{editor}&lt;!--__NEWLINE__--&gt;\begin{year}(\year)\end{year}&lt;!--__NEWLINE__--&gt;\begin{title}: \title\end{title}&lt;!--__NEWLINE__--&gt;\begin{journal}, &lt;em&gt;\format[HTMLChars]{\journal}&lt;/em&gt;\end{journal}&lt;!--__NEWLINE__--&gt;\begin{volume}, Vol. \volume\end{volume}&lt;!--__NEWLINE__--&gt;\begin{number}, No. \number\end{number}&lt;!--__NEWLINE__--&gt;\begin{pages}, pp. \format[FormatPagesForHTML]{\pages}\end{pages}&lt;!--__NEWLINE__--&gt;\begin{chapter}, \format[HTMLChars]{\chapter}\end{chapter}&lt;!--__NEWLINE__--&gt;\begin{school}, \format[HTMLChars]{\school} \end{school}&lt;!--__NEWLINE__--&gt;\begin{url}. &lt;a href=&quot;\url&quot;&gt;\url&lt;/a&gt;\end{url}."/>
   <entry key="previewEnabled" value="true"/>
-  <entry key="previewPanelHeight" value="121"/>
+  <entry key="previewPanelHeight" value="105"/>
   <entry key="previewStyle" value="&lt;font face=&quot;sans-serif&quot;&gt;&lt;b&gt;&lt;i&gt;\bibtextype&lt;/i&gt;&lt;a name=&quot;\bibtexkey&quot;&gt;\begin{bibtexkey} (\bibtexkey)&lt;/a&gt;\end{bibtexkey}&lt;/b&gt;&lt;br&gt;__NEWLINE__\begin{author} \format[Authors(LastFirst,Initials,Semicolon,Amp),HTMLChars]{\author}&lt;BR&gt;\end{author}__NEWLINE__\begin{editor} \format[Authors(LastFirst,Initials,Semicolon,Amp),HTMLChars]{\editor} &lt;i&gt;(\format[IfPlural(Eds.,Ed.)]{\editor})&lt;/i&gt;&lt;BR&gt;\end{editor}__NEWLINE__\begin{title} \format[HTMLChars]{\title} \end{title}&lt;BR&gt;__NEWLINE__\begin{chapter} \format[HTMLChars]{\chapter}&lt;BR&gt;\end{chapter}__NEWLINE__\begin{journal} &lt;em&gt;\format[HTMLChars]{\journal}, &lt;/em&gt;\end{journal}__NEWLINE__\begin{booktitle} &lt;em&gt;\format[HTMLChars]{\booktitle}, &lt;/em&gt;\end{booktitle}__NEWLINE__\begin{school} &lt;em&gt;\format[HTMLChars]{\school}, &lt;/em&gt;\end{school}__NEWLINE__\begin{institution} &lt;em&gt;\format[HTMLChars]{\institution}, &lt;/em&gt;\end{institution}__NEWLINE__\begin{publisher} &lt;em&gt;\format[HTMLChars]{\publisher}, &lt;/em&gt;\end{publisher}__NEWLINE__\begin{year}&lt;b&gt;\year&lt;/b&gt;\end{year}\begin{volume}&lt;i&gt;, \volume&lt;/i&gt;\end{volume}\begin{pages}, \format[FormatPagesForHTML]{\pages} \end{pages}__NEWLINE__\begin{abstract}&lt;BR&gt;&lt;BR&gt;&lt;b&gt;Abstract: &lt;/b&gt; \format[HTMLChars]{\abstract} \end{abstract}__NEWLINE__\begin{review}&lt;BR&gt;&lt;BR&gt;&lt;b&gt;Review: &lt;/b&gt; \format[HTMLChars]{\review} \end{review}&lt;/dd&gt;__NEWLINE__&lt;p&gt;&lt;/p&gt;&lt;/font&gt;"/>
   <entry key="priBinary" value="false"/>
   <entry key="priDescending" value="true"/>
@@ -226,7 +226,7 @@
   <entry key="psDirectory" value=""/>
   <entry key="psviewer" value="Uses default application"/>
   <entry key="pushToApplication" value="TeXstudio"/>
-  <entry key="recentDatabases" value="/home/dd4fqa/Documents/ref/bib/main.bib"/>
+  <entry key="recentDatabases" value="/home/senooken/Documents/ref/bib/hobby.bib;/home/senooken/Documents/ref/bib/food.bib;/home/senooken/Documents/ref/bib/main.bib;/home/dd4fqa/Documents/ref/bib/main.bib"/>
   <entry key="recentFiles" value="/home/senooken/ref/bibfile/hobby.bib;/home/senooken/Copy/ref/bibfile/job.bib;/home/senooken/Copy/ref/bibfile/TeX.bib;/home/senooken/Copy/ref/bibfile/M_AirDB.bib;/home/senooken/Copy/ref/bibfile/movie.bib;/home/senooken/ref/bibfile/adult.bib;/home/senooken/Copy/ref/bibfile/mybib.bib"/>
   <entry key="reformatFileOnSaveAndExport" value="false"/>
   <entry key="regExpSearch" value="true"/>
@@ -266,7 +266,7 @@
   <entry key="showRelevanceColumn" value="false"/>
   <entry key="showSearchInDialog" value="false"/>
   <entry key="showSource" value="true"/>
-  <entry key="sidePaneWidth" value="192"/>
+  <entry key="sidePaneWidth" value="175"/>
   <entry key="sizeX" value="897"/>
   <entry key="sizeY" value="536"/>
   <entry key="specialFieldsEnabled" value="true"/>
@@ -309,7 +309,7 @@
   <entry key="useXmpPrivacyFilter" value="false"/>
   <entry key="validFieldBackgroundColor" value="255:255:255"/>
   <entry key="valueDelimiters" value="1"/>
-  <entry key="versionIgnoreUpdate" value="4.1"/>
+  <entry key="versionIgnoreUpdate" value="4.2"/>
   <entry key="vim" value="vim"/>
   <entry key="vimServer" value="vim"/>
   <entry key="warnAboutDuplicatesInInspection" value="true"/>
@@ -317,7 +317,7 @@
   <entry key="webSearchVisible" value="false"/>
   <entry key="winEdtPath" value=""/>
   <entry key="windowMaximised" value="false"/>
-  <entry key="workingDirectory" value="/home/dd4fqa/Documents/ref/bib"/>
+  <entry key="workingDirectory" value="/home/senooken/Documents/ref/bib"/>
   <entry key="wrapFieldLine" value="false"/>
   <entry key="writeFieldAddSpaces" value="true"/>
   <entry key="writeFieldCamelCase" value="true"/>

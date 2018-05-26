@@ -2,13 +2,14 @@
 /// \file      template.c
 /// \author    SENOO, Ken
 /// \copyright CC0
-/// \date      first created date: 
-/// \date      last  updated date: 
+/// \version   0.0.0
+/// \date      Created: 
+/// \date      Updated: 
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
 
-int main(void){
+int main(void) {
 
   return 0;
 }

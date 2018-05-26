@@ -671,7 +671,7 @@ nnoremap <C-h> :<C-u>help<Space>
 " nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR> " search word in help
 
 "" Insert line break by Enter
-autocmd BufEnter *
+autocmd BufEnter,BufWinEnter *
   \  if &modifiable
   \|   nnoremap <buffer> <CR> i<CR><ESC>
   \| else

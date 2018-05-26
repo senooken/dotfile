@@ -1,12 +1,16 @@
- :: \file      template.cmd
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: \file      template.cmd
 :: \author    SENOO, Ken
 :: \copyright CC0
-:: \date      first created date: <+DATE+>
-:: \date      last  updated date: 
+:: \version   0.0.0
+:: \date      Created: 
+:: \date      Updated: 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 @echo off
+setlocal enabledelayedexpansion
 
 :: Change current directory for network directory
 pushd %~dp0
 
-<+CURSOR+>
+

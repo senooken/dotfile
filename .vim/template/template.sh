@@ -1,10 +1,11 @@
 :
 ################################################################################
 ## \file      template.sh
-## \author    DODESI, HUUKA
+## \author    SENOO, Ken
 ## \copyright CC0
-## \date      Created date: 
-## \date      Updated date: 
+## \version   0.0.0
+## \date      Created: 
+## \date      Updated: 
 ################################################################################
 
 ## \brief Initialize POSIX shell environment

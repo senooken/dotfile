@@ -1,6 +1,6 @@
 /*******************************************************************************
  \file      template.css
- \author    DODESI, Huuka
+ \author    SENOO, Ken
  \copyright CC0
  \date      Created date: 
  \date      Updated date: 
@@ -11,7 +11,7 @@
 /** caption **/
 caption::before {
   counter-increment: table;
-  content: "Table " counter(heading1) "." counter(table) " ";
+  content: "表" counter(heading1) "." counter(table) "：";
 }
 table tr:first-of-type {
   counter-reset: subtable;
@@ -22,7 +22,7 @@ table table caption::before {
 }
 figure>figcaption::before {
   counter-increment: figure;
-  content: "Figure " counter(heading1) "." counter(figure) " ";
+  content: "図" counter(heading1) "." counter(figure) "：";
 }
 /* Reset subfigure */
 figure table:first-of-type {
@@ -45,7 +45,7 @@ figure figure>figcaption::after {
 figure pre~figcaption::before,
 figure figcaption:first-child::before {
   counter-increment: listing;
-  content: "List " counter(heading1) "." counter(listing) " ";
+  content: "リスト" counter(heading1) "." counter(listing) "：";
 }
 figure blockquote~figcaption::before {
   content: "—";
@@ -505,10 +505,10 @@ table {
 }
 /** Table color **/
 tbody>tr:nth-of-type(even) {
-  background: hsla( 60,100%,50%,0.5 );
+  background: hsla(60, 100%, 50%, 0.5);
 }
 thead>tr>th {
-  background: hsla( 30,100%,50%,0.5 );
+  background: hsla(30, 100%, 50%, 0.5);
   text-align: center;
   font-weight: bold;
   color: white;
@@ -550,13 +550,13 @@ th, td {
   content: ")";
 }
 [href^="#fig:"]::before {
-  content: "Figure ";
+  content: "図";
 }
 [href^="#tab:"]::before {
-  content: "Table ";
+  content: "表";
 }
 [href^="#lis:"]::before {
-  content: "List ";
+  content: "リスト";
 }
 
 /** Font */
@@ -572,7 +572,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
   /* orange */
   /* background-color: rgb(100%,80%,0%); */
-  background-color: #e6e6ff;
+  background-color: hsl(240, 100%, 90%);
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
@@ -587,31 +587,32 @@ kbd, code, samp, var {
   font-family: "Migu 1M", "Inconsolata", "DejaVu Sans Mono", "Consolas", "TakaoGothic", "VL Gothic", "HGGothicM", "MS Gothic",  monospace;
   border-width: thin;
   border-style: solid;
-  border-color: #cccccc;
+  border-color: hsl(0, 0%, 80%);
   border-radius: 5px;
 }
 kbd {
-  background-color: #ffe6e6;
+  background-color: hsl(0, 100%, 90%);
 }
 code {
-  background-color: #e6ffe6;
+  background-color: hsl(120, 100%, 90%);
 }
 samp {
-  background-color: #e6e6e6;
+  background-color: hsl(0, 0%, 90%);
 }
 var {
-  background-color: #e6ffff;
+  background-color: hsl(180, 100%, 90%);
 }
 pre {
   font-family: "Migu 1M", "Inconsolata", "DejaVu Sans Mono", "Consolas", "TakaoGothic", "VL Gothic", "HGGothicM", "MS Gothic",  monospace;
-  background-color: #ffffe6;
+  background-color: hsl(60, 100%, 90%);
   overflow: auto;
   tab-size: 2;
 }
 
-/** Line number for source code */
+/** Line number for source code **/
 pre>code, pre>samp {
   display: block;
+  white-space: pre;
   border-style: none;
   position: relative;
   padding-left: 3em;
@@ -635,9 +636,9 @@ pre>code::before, pre>samp::before {
   border-right: 1px solid;
 }
 
-/** Blockquote */
+/** Blockquote **/
 blockquote {
-  background-color: #eee;
+  background-color: hsl(0, 0%, 90%);
   padding: 1.0em;
   padding-left: 3em;
   position: relative;
@@ -647,7 +648,7 @@ blockquote::before {
   font-size: 600%;
   line-height: 1em;
   font-family: serif;
-  color: #999;
+  color: hsl(0, 0%, 60%);
   position: absolute;
   left: 0;
   top: 0;
@@ -739,8 +740,8 @@ figure>dl>dd:nth-of-type(n+2) {
   margin-right: 1em;
 }
 
-/** Description box */
-/*** Base color */
+/** Description box **/
+/*** Base color ***/
 .alert {
   background-color: red;
 }
