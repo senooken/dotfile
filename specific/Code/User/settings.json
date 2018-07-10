@@ -1,3 +1,7 @@
 {
-    "workbench.colorTheme": "Solarized Light"
+    "workbench.colorTheme": "Solarized Light",
+    "editor.fontSize": 10,
+    "editor.minimap.enabled": false,
+    "files.autoGuessEncoding": true,
+    "window.zoomLevel": 0
 }

@@ -1,6 +1,6 @@
 ################################################################################
 ## \file      .profile
-## \author    DODESI, HUUKA
+## \author    SENOO, Ken
 ## \copyright CC0
 ################################################################################
 
@@ -131,6 +131,17 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 		export MYSQL_HOME PATH CPATH LD_LIBRARY_PATH MANPATH MANDATORY_MANPATH
 	fi
 
+	## Qt
+	QT_HOME=$LOCAL/opt/Qt/Qt5.10.0/5.10.0/gcc_64
+	if [ -d "$QT_HOME" ]; then
+		PATH="$QT_HOME/bin:$PATH"
+		CPATH="$QT_HOME/include:$QT_HOME/include/QtWidgets:$CPATH"
+		LD_LIBRARY_PATH="$QT_HOME/lib:$LD_LIBRARY_PATH"
+		MANPATH="$QT_HOME/man:$MANPATH"
+		MANDATORY_MANPATH="$QT_HOME/man:$MANDATORY_MANPATH"
+		export MYSQL_HOME PATH CPATH LD_LIBRARY_PATH MANPATH MANDATORY_MANPATH
+	fi
+
 	## Language specific configuration
 	# export GEM_HOME="$LOCAL"       # ruby gem
 	# export PYTHONUSERBASE="$LOCAL" # python pip
@@ -173,10 +184,6 @@ export MSYS='winsymlinks:nativestrict'
 ### For wine
 export WINEARCH='win32'
 export WINEPREFIX="$HOME/.wine32"
-
-### For .deb package
-export DEBFULLNAME='Ken SENOO'
-export DEBEMAIL='mslamsh20131029@outlook.jp'
 
 ### For unzip encoding
 if grep -sq 'debian' /etc/os-release; then
