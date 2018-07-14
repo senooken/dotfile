@@ -111,17 +111,17 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	export MANPATH MANDATORY_MANPATH INFOPATH
 
 	## Apache
-	APACHE_ROOT=$LOCAL/apache2
-	if [ -d "$APACHE_ROOT" ]; then
-		PATH="$APACHE_ROOT/bin:$PATH"
-		CPATH="$APACHE_ROOT/include:$CPATH"
-		MANPATH="$APACHE_ROOT/man:$MANPATH"
+	APACHE_HOME="$LOCAL/apache2"
+	if [ -d "$APACHE_HOME" ]; then
+		PATH="$APACHE_HOME/bin:$PATH"
+		CPATH="$APACHE_HOME/include:$CPATH"
+		MANPATH="$APACHE_HOME/man:$MANPATH"
 		MANDATORY_MANPATH="$APACHE_ROOT/man:$MANDATORY_MANPATH"
-		export PATH CPATH MANPATH MANDATORY_MANPATH
+		export APACHE_HOME PATH CPATH MANPATH MANDATORY_MANPATH
 	fi
 
 	## MySQL
-	MYSQL_HOME=$LOCAL/mysql
+	MYSQL_HOME="$LOCAL/mysql"
 	if [ -d "$MYSQL_HOME" ]; then
 		PATH="$MYSQL_HOME/bin:$PATH"
 		CPATH="$MYSQL_HOME/include:$CPATH"
@@ -132,14 +132,15 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	fi
 
 	## Qt
-	QT_HOME=$LOCAL/opt/Qt/Qt5.10.0/5.10.0/gcc_64
+	QT_HOME="$LOCAL/opt/Qt/Qt5.10.0/5.10.0/gcc_64"
 	if [ -d "$QT_HOME" ]; then
 		PATH="$QT_HOME/bin:$PATH"
 		CPATH="$QT_HOME/include:$QT_HOME/include/QtWidgets:$CPATH"
+		CPATH="$QT_HOME/include/QtQml:$CPATH"
 		LD_LIBRARY_PATH="$QT_HOME/lib:$LD_LIBRARY_PATH"
 		MANPATH="$QT_HOME/man:$MANPATH"
 		MANDATORY_MANPATH="$QT_HOME/man:$MANDATORY_MANPATH"
-		export MYSQL_HOME PATH CPATH LD_LIBRARY_PATH MANPATH MANDATORY_MANPATH
+		export QT_HOME PATH CPATH LD_LIBRARY_PATH MANPATH MANDATORY_MANPATH
 	fi
 
 	## Language specific configuration
@@ -235,21 +236,21 @@ esac
 ### Windows character encoding convert
 if [ "${OS-}" = "Windows_NT" ]; then
 	wincmd(){
-	  EXE="$1"
-	  shift
-	  "$EXE" ${1+"$@"} 2>&1 | iconv -f CP932 -t UTF-8
+		EXE="$1"
+		shift
+		"$EXE" ${1+"$@"} 2>&1 | iconv -f CP932 -t UTF-8
 	}
 
 	for exe in javac ant ping ipconfig netstat netsh taskkill reg; do
 		eval "alias $exe='wincmd $exe'"
 	done
 
-	alias cs='wincmd cscript.exe -NoLogo'
-	alias ws='wincmd wscript.exe -NoLogo'
+	alias cs='wincmd cscript.exe /NoLogo'
+	alias ws='wincmd wscript.exe /NoLogo'
 	alias choco='wincmd choco'
 else
-	alias cs='wine cscript.exe -NoLogo'
-	alias ws='wine wscript.exe -NoLogo'
+	alias cs='wine cscript.exe /NoLogo'
+	alias ws='wine wscript.exe /NoLogo'
 fi
 
 ### ls

@@ -171,7 +171,7 @@ endfunction
 
 "" open browser by double click
 "function! Browser () 
-"    let line = getline (".") 
+"    let line = getline (".")
 "    let line = matchstr (line, "http[^ ]*") 
 "    exec "!start \"C:\\Program Files\\Mozilla Firefox\\firefox.exe\"" line
 "endfunction
@@ -179,17 +179,16 @@ endfunction
 
 
 "" Search
-"set wrapscan   " 省略形ws。検索が末尾まで進んだら先頭から再建策。既定値。
-set nowrapscan  " 省略形nows。wrapscanをオフにする。
+set nowrapscan
 set ignorecase
 set smartcase
 set hlsearch
 
 "" Menu
-if exists('+wildignorecase')  " required 7.3.072+
-  set wildignorecase         " ファイル名とディレクトリの補完で大文字小文字無視
+if exists('+wildignorecase')  " Required Vim 7.3.072+
+  set wildignorecase         " Ignore case in file name menu completion.
 endif
-source $VIMRUNTIME/menu.vim
+runtime! menu.vim
 set wildmenu
 set wildmode=list:longest,full  " 1回目で共通部分，2回目で順番に補完
 set cpo-=<
@@ -258,7 +257,7 @@ nnoremap <S-Tab> :tabprevious<CR>
 " cabbrev w!! %!sudo tee > /dev/null %
 cnoremap w!! %!sudo tee >&- %
 
-"" コマンドラインモードでEmacのキー移動
+"" コマンドラインモードでEmacsのキー移動
 cnoremap <C-a> <Home>
 cnoremap <C-b> <Left>
 cnoremap <C-d> <Del>
@@ -274,7 +273,7 @@ cnoremap <M-f> <S-Right>
 nnoremap <BS> X
 nnoremap Q gq
 
-"" move last file position by $VIMRUNTIME/vimrc_example.vim
+"" Move last file position by $VIMRUNTIME/vimrc_example.vim
 augroup vimrcEx
   autocmd!
   autocmd BufReadPost *
@@ -294,7 +293,7 @@ else
 endif
 set list
 
-"" 折り返し
+"" Word wrap
 set linebreak " 空白などいい感じの場所で折り返し
 set showbreak=+\  " 折り返し後の行頭記号
 if exists('+breakindent')  " version 7.4.338 or later
@@ -309,10 +308,7 @@ autocmd BufWinEnter,WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 " autocmd VimEnter * tab all
 " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
-"" Language config
-""" Shell script
-autocmd BufRead,BufNewFile .shrc setlocal filetype=sh
-
+"" Language
 """ AsciiDoc
 autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
 
@@ -387,8 +383,8 @@ if exists('##QuickfixCmdPre')
   endif
 endif
 
-"" Basically define alias in .shrc (Unix) or .init.cmd (Windows)
-if     executable('ag')
+"" External grep
+if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
 elseif executable('grep')

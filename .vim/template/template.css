@@ -11,7 +11,7 @@
 /** caption **/
 caption::before {
   counter-increment: table;
-  content: "表" counter(heading1) "." counter(table) "：";
+  content: "表" counter(heading1) "." counter(table) ": ";
 }
 table tr:first-of-type {
   counter-reset: subtable;
@@ -22,7 +22,7 @@ table table caption::before {
 }
 figure>figcaption::before {
   counter-increment: figure;
-  content: "図" counter(heading1) "." counter(figure) "：";
+  content: "図" counter(heading1) "." counter(figure) ": ";
 }
 /* Reset subfigure */
 figure table:first-of-type {
@@ -45,7 +45,7 @@ figure figure>figcaption::after {
 figure pre~figcaption::before,
 figure figcaption:first-child::before {
   counter-increment: listing;
-  content: "リスト" counter(heading1) "." counter(listing) "：";
+  content: "リスト" counter(heading1) "." counter(listing) ": ";
 }
 figure blockquote~figcaption::before {
   content: "—";
