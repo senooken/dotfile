@@ -431,11 +431,6 @@ endif
 " "   let g:vimfiler_safe_mode_by_default = 0
 " " endif
 " 
-" "" template file
-" autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
-" autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/%:t
-" 
-" 
 " if s:Neobundled('ctrlp.vim')
 "   let g:ctrlp_extensions = ['funky']
 " endif

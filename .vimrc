@@ -12,7 +12,7 @@ let s:IS_WINDOWS_7 = s:IS_WINDOWS && system('VER') =~# 'Version 6.1'
 
 "" Encoding
 set encoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932
+set fileencodings=ucs-bom,iso-2022-jp,utf-8,euc-jp,cp932,cp1252
 set fileformats=unix,dos,mac
 
 "" Windowsのコマンドプロンプトの日本語文字化け対策
@@ -436,6 +436,9 @@ if has('cscope')
   endfor
 endif
 
+"" template file
+autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
+autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/%:t
 
 "" Buffer
 nnoremap <silent> [b :bprevious<CR>

@@ -21,8 +21,9 @@ export ENV="${ENV-$HOME/.profile}"
 LOCAL="$HOME/.local"
 CLASSPATH="$LOCAL/share/java:${CLASSPATH:-.}"
 PATH="$LOCAL/bin:$PATH"
+J=J=$(grep -cs '^processor' /proc/cpuinfo || echo 2)
 
-export LOCAL CLASSPATH PATH
+export LOCAL CLASSPATH PATH J
 
 ## \brief Export specific GitHub directory.
 ## \param[in] $1 target directory in GitHub repository URL.
@@ -132,7 +133,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	fi
 
 	## Qt
-	QT_HOME="$LOCAL/opt/Qt/Qt5.10.0/5.10.0/gcc_64"
+	QT_HOME="$LOCAL/opt/Qt/5.11.1/gcc_64"
 	if [ -d "$QT_HOME" ]; then
 		PATH="$QT_HOME/bin:$PATH"
 		CPATH="$QT_HOME/include:$QT_HOME/include/QtWidgets:$CPATH"
@@ -261,7 +262,9 @@ is_opt_enabled ls --time-style &&
 
 alias cp='cp -i'
 alias mv='mv -i'
-alias ls='ls -AFh --color=auto' l='ls'
+alias ls='ls -AFh'
+is_opt_enabled ls --color && alias ls='--color=auto'
+alias l='ls'
 alias ll="ls $LL_OPTION"
 
 ### ls color
