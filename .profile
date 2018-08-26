@@ -152,8 +152,9 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	### Locale
 	export LANG='ja_JP.UTF-8'
 	export LANGUAGE='en'
-	export LC_TIME='en_DK.UTF-8'
 	export LC_MESSAGES='en_US.UTF-8'
+	## Use ISO 8601 format (YYYY-MM-DDThh:mm:ss) date time.
+	export LC_TIME=$(locale -a | grep -e en_DK -e sv_SE | head -n 1)
 
 	## Invalid stty keybind
 	# stty start undef
@@ -263,7 +264,7 @@ is_opt_enabled ls --time-style &&
 alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls -AFh'
-is_opt_enabled ls --color && alias ls='--color=auto'
+is_opt_enabled ls --color && alias ls='ls --color=auto'
 alias l='ls'
 alias ll="ls $LL_OPTION"
 
