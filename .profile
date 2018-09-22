@@ -14,16 +14,19 @@
 # for ssh logins, install and configure the libpam-umask package.
 # umask 022
 
-
 ## Environmental variables
 export ENV="${ENV-$HOME/.profile}"
 
-LOCAL="$HOME/.local"
-CLASSPATH="$LOCAL/share/java:${CLASSPATH:-.}"
-PATH="$LOCAL/bin:$PATH"
-J=J=$(grep -cs '^processor' /proc/cpuinfo || echo 2)
+export LOCAL="$HOME/.local"
+export J=$(grep -cs '^processor' /proc/cpuinfo || echo 2)
 
-export LOCAL CLASSPATH PATH J
+### Locale
+export LANG='ja_JP.UTF-8' LANGUAGE='en'
+export LC_MESSAGES='en_US.UTF-8'
+## Use ISO 8601 date time format (YYYY-MM-DDThh:mm:ss).
+ISO8601_LOCALE=$(command -v locale >/dev/null && locale -a | sort -r |
+	grep -e en_CA.UTF-8 -e en_DK -e se_NO -e si_LK -e sv_SE.ISO | head -n 1)
+LC_TIME=$ISO8601_LOCALE date +%x | grep -q - && export LC_TIME=$ISO8601_LOCALE
 
 ## \brief Export specific GitHub directory.
 ## \param[in] $1 target directory in GitHub repository URL.
@@ -51,7 +54,7 @@ is_exe_enabled(){
 	is_exe_existed ${1+"$@"}
 }
 
-## \brief Check exe existed without command/type/which/whence for posh.
+## \brief Check if exe existed without command/type/which/whence for posh.
 is_exe_existed(){
 	unset OLD_IFS
 	${IFS+true} false && OLD_IFS="$IFS"
@@ -74,7 +77,7 @@ is_opt_enabled()(
 alias source='.'
 
 IS_INTERACTIVE=$(case "$-" in (*i*) echo true;; (*) echo false;; esac)
-IS_INITIALIZED=${IS_INITIALIZED:+true}; IS_INITIALIZED=${IS_INITIALIZED:-false}
+IS_INITIALIZED=${IS_INITIALIZED:+true} IS_INITIALIZED=${IS_INITIALIZED:-false}
 
 ### Interactive shell local development PATH
 if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
@@ -94,6 +97,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	LD_LIBRARY_PATH="$LOCAL/lib:/usr/local/lib:/usr/lib:/lib:$LD_LIBRARY_PATH"
 	LD_LIBRARY_PATH="$LOCAL/lib64:/usr/local/lib64:/usr/lib64:/lib64:$LD_LIBRARY_PATH"
 	LDFLAGS="-L$LOCAL/lib64 -L$LOCAL/lib"
+	CLASSPATH="$LOCAL/share/java:${CLASSPATH:-.}"
 	CPATH="/usr/local/include:/usr/include:/opt/include:$CPATH"
 	CPATH="$LOCAL/include:$LOCAL/opt/include:$CPATH"
 
@@ -109,7 +113,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 	export PATH LD_LIBRARY_PATH CPATH PKG_CONFIG_PATH LDFLAGS
-	export MANPATH MANDATORY_MANPATH INFOPATH
+	export MANPATH MANDATORY_MANPATH INFOPATH CLASSPATH
 
 	## Apache
 	APACHE_HOME="$LOCAL/apache2"
@@ -149,13 +153,6 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	# export PYTHONUSERBASE="$LOCAL" # python pip
 	PYTHONVERSION=$(python3 -V 2>&1 | grep -E -o '[0-9]+\.[0-9]+')
 
-	### Locale
-	export LANG='ja_JP.UTF-8'
-	export LANGUAGE='en'
-	export LC_MESSAGES='en_US.UTF-8'
-	## Use ISO 8601 format (YYYY-MM-DDThh:mm:ss) date time.
-	export LC_TIME=$(locale -a | grep -e en_DK -e sv_SE | head -n 1)
-
 	## Invalid stty keybind
 	# stty start undef
 	export DISPLAY="${DISPLAY:-:0}"
@@ -164,7 +161,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	NULL='/dev/null'
 	POSIX_PATH=$(command -p getconf PATH 2>&- || env -i command -p sh -c 'echo "$PATH"')
 	HT=$(printf '\t')
-	LF=$(printf '\n_') LF="${LF%_}"
+	LF=$(printf '\n.') LF="${LF%.}"
 	DIGIT='0 1 2 3 4 5 6 7 8 9'
 	ALPHA_U='A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'
 	ALPHA_L='a b c d e f g h i j k l m n o p q r s t u v w x y z'
