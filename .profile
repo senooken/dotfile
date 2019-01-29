@@ -191,7 +191,7 @@ if grep -sq 'debian' /etc/os-release; then
 	export ZIPINFO='-O cp932'
 fi
 
-: ${LOGNAME:=$(logname)}  # for Windows shell
+: ${LOGNAME:=$(id -nu)}  # for Windows shell
 : ${COLUMNS:=80}          # for sh
 
 ## Prompt
@@ -261,7 +261,7 @@ is_opt_enabled ls --time-style &&
 alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls -AFh'
-is_opt_enabled ls --color && alias ls='ls --color=auto'
+is_opt_enabled ls --color && alias ls='ls -AFh --color=auto'
 alias l='ls'
 alias ll="ls $LL_OPTION"
 
