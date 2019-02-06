@@ -206,7 +206,7 @@ if grep -sq 'debian' /etc/os-release; then
 	export ZIPINFO='-O cp932'
 fi
 
-: ${LOGNAME:=$(logname)}  # for Windows shell
+: ${LOGNAME:=$(id -nu)}  # for Windows shell
 : ${COLUMNS:=80}          # for sh
 
 ## Prompt

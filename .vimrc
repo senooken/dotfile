@@ -385,7 +385,7 @@ endif
 
 "" External grep
 if executable('ag')
-  set grepprg=ag\ --vimgrep\ $*
+  set grepprg=ag\ --nogroup\ --nocolor\ --column\ $*
   set grepformat=%f:%l:%c:%m
 elseif executable('grep')
   set grepprg=grep\ -Rn
