@@ -5,5 +5,3 @@
 	ignorecase = true
   symlinks = true
   filemode = false
-  symlinks = true
-  filemode = false

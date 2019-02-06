@@ -4,9 +4,10 @@
   <entry key="Article" value="jabref-entrytype: Article: req[author;title;journal/journaltitle;year/date] opt[subtitle;editor;series;volume;number;eid;issue;pages;note;issn;doi;eprint;eprintclass;eprinttype;url;urldate;translator;annotator;commentator;titleaddon;editora;editorb;editorc;journalsubtitle;issuetitle;issuesubtitle;language;origlanguage;month;version;addendum;pubstate]"/>
   <entry key="Brochure" value="jabref-entrytype: Brochure: req[] opt[title;author;address;year;month;url;note]"/>
   <entry key="Clause" value="jabref-entrytype: Clause: req[author;day;month;title;year] opt[rivision;url]"/>
-  <entry key="Movie" value="jabref-entrytype: Movie: req[title] opt[month;year;url;author]"/>
+  <entry key="Movie" value="jabref-entrytype: Movie: req[title] opt[month;year;date;url;author]"/>
   <entry key="Other" value="jabref-entrytype: Other: req[author;title] opt[]"/>
-  <entry key="Slide" value="jabref-entrytype: Slide: req[] opt[title;author;address;organization;url;note;year;month]"/>
+  <entry key="Slide" value="jabref-entrytype: Slide: req[;title;date] opt[title;author;address;organization;url;note;year;month]"/>
   <entry key="Standard" value="jabref-entrytype: Standard: req[title;author;year;date] opt[month;day;url]"/>
-  <entry key="Web" value="jabref-entrytype: Web: req[] opt[title;author;organization;url;note;year;month]"/>
+  <entry key="Unpublished" value="jabref-entrytype: Unpublished: req[author;title;year/date] opt[subtitle;titleaddon;howpublished;pubstate;url;urldate;language;note;location;month;addendum]"/>
+  <entry key="Web" value="jabref-entrytype: Web: req[;title;author;date] opt[title;author;organization;url;note;year;month]"/>
 </map>

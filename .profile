@@ -14,6 +14,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 # umask 022
 
+set -x
+
 ## Environmental variables
 export ENV="${ENV-$HOME/.profile}"
 
@@ -87,23 +89,27 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	LOCAL="$HOME/.local"
 	### System path
 	PATH="/system/bin:/system/xbin${PATH+:$PATH}"
-	PATH="$LOCAL/opt/bin:/opt/bin:/opt/sbin:$PATH"
+	PATH="/opt/bin:/opt/sbin:$PATH"
 	PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 	PATH="$(command -p getconf PATH 2>&- || :):$PATH"
-	PATH="$LOCAL/bin:$LOCAL/sbin:$LOCAL/usr/bin:$LOCAL/usr/sbin:${PATH#:}"
+	PATH="$LOCAL/opt/bin:$LOCAL/opt/sbin:${PATH#:}"
+	PATH="$LOCAL/bin:$LOCAL/sbin:$PATH"
 
 	LD_LIBRARY_PATH="/vendor/lib:/system/lib:$LD_LIBRARY_PATH"
-	LD_LIBRARY_PATH="$LOCAL/opt/lib:/opt/lib:/usr/lib64:/lib64:$LD_LIBRARY_PATH"
-	LD_LIBRARY_PATH="$LOCAL/lib:/usr/local/lib:/usr/lib:/lib:$LD_LIBRARY_PATH"
-	LD_LIBRARY_PATH="$LOCAL/lib64:/usr/local/lib64:/usr/lib64:/lib64:$LD_LIBRARY_PATH"
-	LDFLAGS="-L$LOCAL/lib64 -L$LOCAL/lib"
+	LD_LIBRARY_PATH="/opt/lib64:/opt/lib:$LD_LIBRARY_PATH"
+	LD_LIBRARY_PATH="/usr/lib64:/usr/lib:/lib64:/lib:$LD_LIBRARY_PATH"
+	LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:$LD_LIBRARY_PATH"
+	LD_LIBRARY_PATH="$LOCAL/lib64:$LOCAL/lib:$LOCAL/opt/lib64:$LOCAL/opt/lib:$LD_LIBRARY_PATH"
+	LIBRARY_PATH="$LD_LIBRARY_PATH"
+	LDFLAGS="-L$LOCAL/lib64 -L$LOCAL/lib -L$LOCAL/opt/lib64 -L$LOCAL/opt/lib"
+
 	CLASSPATH="$LOCAL/share/java:${CLASSPATH:-.}"
 	CPATH="/usr/local/include:/usr/include:/opt/include:$CPATH"
 	CPATH="$LOCAL/include:$LOCAL/opt/include:$CPATH"
 
 	MANPATH="/usr/local/share/man:/usr/share/man:/opt/man:$MANPATH"
 	MANPATH="$LOCAL/share/man:$LOCAL/opt/man:$LOCAL/usr/share/man:$MANPATH"
-	MANDATORY_MANPATH="$MANPATH:$MANDATORY_MANPATH"  # for Busybox
+	MANDATORY_MANPATH="$MANPATH"  # for Busybox
 	INFOPATH="/usr/local/share/info:/usr/share/info:$INFOPATH"
 	INFOPATH="$LOCAL/share/info:$LOCAL/opt/info:/opt/info:$INFOPATH"
 
@@ -112,8 +118,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	PKG_CONFIG_PATH="$LOCAL/opt/lib/pkgconfig:/opt/lib/pkgconfig:$PKG_CONFIG_PATH"
 	PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-	export PATH LD_LIBRARY_PATH CPATH PKG_CONFIG_PATH LDFLAGS
-	export MANPATH MANDATORY_MANPATH INFOPATH CLASSPATH
+	ACLOCAL_PATH="$LOCAL/share/aclocal"
 
 	## Apache
 	APACHE_HOME="$LOCAL/apache2"
@@ -121,8 +126,8 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 		PATH="$APACHE_HOME/bin:$PATH"
 		CPATH="$APACHE_HOME/include:$CPATH"
 		MANPATH="$APACHE_HOME/man:$MANPATH"
-		MANDATORY_MANPATH="$APACHE_ROOT/man:$MANDATORY_MANPATH"
-		export APACHE_HOME PATH CPATH MANPATH MANDATORY_MANPATH
+		MANDATORY_MANPATH="$MANPATH"
+		export APACHE_HOME
 	fi
 
 	## MySQL
@@ -131,9 +136,15 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 		PATH="$MYSQL_HOME/bin:$PATH"
 		CPATH="$MYSQL_HOME/include:$CPATH"
 		LD_LIBRARY_PATH="$MYSQL_HOME/lib:$LD_LIBRARY_PATH"
+		LIBRARY_PATH="$LD_LIBRARY_PATH"
 		MANPATH="$MYSQL_HOME/man:$MANPATH"
-		MANDATORY_MANPATH="$MYSQL_HOME/man:$MANDATORY_MANPATH"
-		export MYSQL_HOME PATH CPATH LD_LIBRARY_PATH MANPATH MANDATORY_MANPATH
+		MANDATORY_MANPATH="$MANPATH"
+		export MYSQL_HOME
+	fi
+
+	## PostgreSQL
+	if ${PGDATA:-true} false && [ -d "$LOCAL/var/lib/pgsql/data" ]; then
+		export PGDATA="$LOCAL/var/lib/pgsql/data"
 	fi
 
 	## Qt
@@ -143,15 +154,19 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 		CPATH="$QT_HOME/include:$QT_HOME/include/QtWidgets:$CPATH"
 		CPATH="$QT_HOME/include/QtQml:$CPATH"
 		LD_LIBRARY_PATH="$QT_HOME/lib:$LD_LIBRARY_PATH"
+		LIBRARY_PATH="$LD_LIBRARY_PATH"
 		MANPATH="$QT_HOME/man:$MANPATH"
-		MANDATORY_MANPATH="$QT_HOME/man:$MANDATORY_MANPATH"
-		export QT_HOME PATH CPATH LD_LIBRARY_PATH MANPATH MANDATORY_MANPATH
+		MANDATORY_MANPATH="$MANDATORY_MANPATH"
+		export QT_HOME
 	fi
+
+	export PATH LD_LIBRARY_PATH LIBRARY_PATH CPATH PKG_CONFIG_PATH LDFLAGS
+	export MANPATH MANDATORY_MANPATH INFOPATH CLASSPATH ACLOCAL_PATH
 
 	## Language specific configuration
 	# export GEM_HOME="$LOCAL"       # ruby gem
 	# export PYTHONUSERBASE="$LOCAL" # python pip
-	PYTHONVERSION=$(python3 -V 2>&1 | grep -E -o '[0-9]+\.[0-9]+')
+	PYTHONVERSION=$(run_if_exe_enabled python3 -V | grep -o '[0-9]\.[0-9]*')
 
 	## Invalid stty keybind
 	# stty start undef
@@ -261,7 +276,7 @@ is_opt_enabled ls --time-style &&
 alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls -AFh'
-is_opt_enabled ls --color && alias ls='ls --color=auto'
+is_opt_enabled ls --color && alias ls='ls -AFh --color=auto'
 alias l='ls'
 alias ll="ls $LL_OPTION"
 
@@ -428,3 +443,5 @@ acinstall()(
 	./configure --prefix="$PREFIX/$PKG" && make && make install &&
 		run_if_exe_enabled stow -d "$PREFIX" "$PKG"
 )
+
+set +x

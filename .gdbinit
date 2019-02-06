@@ -5,6 +5,10 @@
 ################################################################################
 
 set confirm off
+set print pretty on
+set history filename ~/.gdb_history
+set history save
+set history expansion
 
 define skip
 	if $argc != 1
