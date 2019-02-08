@@ -400,12 +400,11 @@ LIBCPP='-static-libgcc -static-libstdc++'
 : ${SCREEN_SHELL:=$(command -v zsh )}
 : ${SCREEN_SHELL:=$(command -v bash)}
 
-## For not having screen-256color, but having xterm-256color support.
-# toe -a 2>&- | grep -q 'screen-256color' &&
-# 	SCREEN_TERM='screen-256color' || SCREEN_TERM="$TERM"
-#
-# alias screen="screen -T $SCREEN_TERM -s $SCREEN_SHELL"
-# alias tmux="SHELL=$SCREEN_SHELL tmux"
+## For 256 color terminal.
+SCREEN_TERM=$(run_if_exe_enabled toe -a | awk '/256color/ {print $1; exit}')
+: ${SCREEN_TERM:=$TERM}
+alias screen="screen -T $SCREEN_TERM -s $SCREEN_SHELL"
+alias tmux="SHELL=$SCREEN_SHELL tmux"
 
 ## For --exclude list
 EXCLUDE_FILE='{cscope.files,cscope.out,cscope.in.out,cscope.po.out,tags,GTAGS,GRTAGS,GPATH}'
