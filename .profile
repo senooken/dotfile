@@ -113,10 +113,16 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	INFOPATH="/usr/local/share/info:/usr/share/info:$INFOPATH"
 	INFOPATH="$LOCAL/share/info:$LOCAL/opt/info:/opt/info:$INFOPATH"
 
-	PKG_CONFIG_PATH="/lib/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="$LOCAL/opt/lib/pkgconfig:/opt/lib/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="/usr/share/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="/usr/lib64/pkgconfig:/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="/usr/local/share/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="/usr/local/lib64/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="/opt/share/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="/opt/lib64/pkgconfig:/opt/lib/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="$LOCAL/opt/share/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="$LOCAL/opt/lib64/pkgconfig:$LOCAL/opt/lib/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="$LOCAL/share/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="$LOCAL/lib64/pkgconfig:$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 	ACLOCAL_PATH="$LOCAL/share/aclocal"
 
@@ -338,7 +344,7 @@ is_exe_enabled xstow && alias stow='xstow'
 
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
-alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
+# alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
 is_exe_enabled vim && alias vi='vim' vim='vim -X'
 
@@ -401,7 +407,7 @@ LIBCPP='-static-libgcc -static-libstdc++'
 : ${SCREEN_SHELL:=$(command -v bash)}
 
 ## For 256 color terminal.
-SCREEN_TERM=$(run_if_exe_enabled toe -a | awk '/256color/ {print $1; exit}')
+SCREEN_TERM=$(run_if_exe_enabled toe -a | sort | awk '/-256color/ {print $1; exit}')
 : ${SCREEN_TERM:=$TERM}
 alias screen="screen -T $SCREEN_TERM -s $SCREEN_SHELL"
 alias tmux="SHELL=$SCREEN_SHELL tmux"
