@@ -81,7 +81,7 @@ IS_INITIALIZED=${IS_INITIALIZED:+true} IS_INITIALIZED=${IS_INITIALIZED:-false}
 
 ### Interactive shell local development PATH
 if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
-	IS_INITIALIZED='true'
+	export IS_INITIALIZED='true'
 	# set -ux
 	export ENV="${ENV:-$HOME/.profile}"
 	LOCAL="$HOME/.local"
@@ -306,7 +306,7 @@ export PAGER='less'
 
 export LV='-c -l'
 export LESS='-imR'
-alias info='info --vi-keys'
+# alias info='info --vi-keys'
 
 ### Open
 alias o='open'
@@ -338,11 +338,9 @@ alias gp='g++ -Wall -Wextra -pedantic -std=c++1y'
 alias gc='gcc -Wall -Wextra -pedantic -std=gnu11'
 alias gf='gfortran -Wall -O3 -static'
 
-is_exe_enabled xstow && alias stow='xstow'
-
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
-# alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
+alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
 
 is_exe_enabled vim && alias vi='vim' vim='vim -X'
 
@@ -435,15 +433,5 @@ alias grep="grep $GREP_OPTIONS"
 # alias ag="ag -fU --ignore=$EXCLUDE_FILE"
 alias ag="ag -fU"
 alias ctags="ctags --exclude=$EXCLUDE_DIR"
-
-
-acinstall()(
-	PKG="$1"
-	PREFIX="${2-$LOCAL/stow}"
-	tar -xf "$PKG."*
-	cd "$PKG"
-	./configure --prefix="$PREFIX/$PKG" && make && make install &&
-		run_if_exe_enabled stow -d "$PREFIX" "$PKG"
-)
 
 set +x
