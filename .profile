@@ -85,6 +85,9 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	# set -ux
 	export ENV="${ENV:-$HOME/.profile}"
 	LOCAL="$HOME/.local"
+
+	# forとかでうまくやりたい。
+	# lib/x86_64-linux-gnu, lib/x86_64-linux-gnu/pkgconfig 追加。たしか，glib。
 	### System path
 	PATH="/system/bin:/system/xbin${PATH+:$PATH}"
 	PATH="/opt/bin:/opt/sbin:$PATH"
@@ -93,7 +96,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	PATH="$LOCAL/opt/bin:$LOCAL/opt/sbin:${PATH#:}"
 	PATH="$LOCAL/bin:$LOCAL/sbin:$PATH"
 
-	LD_LIBRARY_PATH="/vendor/lib:/system/lib:$LD_LIBRARY_PATH"
+	LD_LIBRARY_PATH="/vendor/lib:/system/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
 	LD_LIBRARY_PATH="/opt/lib64:/opt/lib:$LD_LIBRARY_PATH"
 	LD_LIBRARY_PATH="/usr/lib64:/usr/lib:/lib64:/lib:$LD_LIBRARY_PATH"
 	LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:$LD_LIBRARY_PATH"
@@ -246,6 +249,12 @@ case "$TERM" in ?term*|rxvt*|screen*)
 	COMMON_PROMPT_EXE='printf %b "\033]0;$0@$HOST: $(pwd | sed s@$HOME@~@)\007"'
 esac
 
+## For 256 color terminal.
+case "$TERM" in *-256color*);; *)
+	COLOR_TERM=$(run_if_exe_enabled toe -a | awk '/-256color/ {print $1; exit}')
+	export TERM="${COLOR_TERM:-$TERM}"
+esac
+
 ## Alias
 ### Enable alias in non-interactive shell
 [ -n "${BASH-}"     ] && shopt -s expand_aliases
@@ -340,7 +349,7 @@ alias gf='gfortran -Wall -O3 -static'
 
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
-alias stow="stow --ignore='dir|gschemas.compiled|icon-theme.cache'"
+# alias stow='stow --ignore="dir|gschemas.compiled|icon-theme.cache"'
 
 is_exe_enabled vim && alias vi='vim' vim='vim -X'
 
@@ -395,16 +404,14 @@ now()(
 
 # zshでは{=var}というようにして空白区切りで展開して使う。じゃないと使えない
 # WXCONFIG=$(wx-config --cppflags --libs 2>&- | tr \"\n\" ' ')
-WXCONFIG=$(run_if_exe_enabled wx-config  --libs --cppflags)
+WXCONFIG=$(run_if_exe_enabled wx-config --libs --cppflags)
 # GTKCONFIG=$(run_if_exe_enabled pkg-config --exists gtk+-3.0 && pkg-config --libs --cflags gtk+-3.0)
 LIBCPP='-static-libgcc -static-libstdc++'
 
-: ${SCREEN_SHELL:=$(command -v zsh )}
+# : ${SCREEN_SHELL:=$(command -v zsh )}
 : ${SCREEN_SHELL:=$(command -v bash)}
 
-## For 256 color terminal.
-SCREEN_TERM=$(run_if_exe_enabled toe -a | awk '/-256color/ {print $1; exit}')
-alias screen="screen -T ${SCREEN_TERM:=$TERM} -s $SCREEN_SHELL"
+alias screen="screen -s $SCREEN_SHELL"
 alias tmux="SHELL=$SCREEN_SHELL tmux"
 
 ## For --exclude list
