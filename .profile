@@ -251,7 +251,7 @@ esac
 
 ## For 256 color terminal.
 case "$TERM" in *-256color*);; *)
-	COLOR_TERM=$(run_if_exe_enabled toe -a | awk '/-256color/ {print $1; exit}')
+	COLOR_TERM=$(env -i sh -c 'command -v toe >/dev/null && toe -a' | awk '/-256color/ {print $1; exit}')
 	export TERM="${COLOR_TERM:-$TERM}"
 esac
 
