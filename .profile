@@ -174,6 +174,11 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	# export GEM_HOME="$LOCAL"       # ruby gem
 	# export PYTHONUSERBASE="$LOCAL" # python pip
 	PYTHONVERSION=$(run_if_exe_enabled python3 -V | grep -o '[0-9]\.[0-9]*')
+	### Perl
+	export PERL5LIB="$LOCAL/lib/perl5${PERL5LIB+:$PERL5LIB}"
+	export PERL_MB_OPT="--install_base $LOCAL"
+	export PERL_MM_OPT="INSTALL_BASE=$LOCAL"
+	export PERL_LOCAL_LIB_ROOT="$LOCAL${PERL_LOCAL_LIB_ROOT+:$PERL_LOCAL_LIB_ROOT}"
 
 	## Invalid stty keybind
 	# stty start undef
