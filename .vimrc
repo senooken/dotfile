@@ -430,7 +430,7 @@ if has('cscope')
     else
       let s:target = ' find ' . s:type . ' <C-R>=expand("<cword>")<CR><CR>'
     endif
-    execute s:map '<C-\>'      . s:type . ' :cscope'       . s:target
+    execute s:map '<C-\>'      . s:type . ' :lcscope'      . s:target
     execute s:map '<Nul>'      . s:type . ' :scscope'      . s:target
     execute s:map '<Nul><Nul>' . s:type . ' :vert scscope' . s:target
   endfor
