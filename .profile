@@ -107,6 +107,9 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	CLASSPATH="$LOCAL/share/java:${CLASSPATH:-.}"
 	CPATH="/usr/local/include:/usr/include:/opt/include:$CPATH"
 	CPATH="$LOCAL/include:$LOCAL/opt/include:$CPATH"
+	for cpath in "$LOCAL"/include/*/; do
+		CPATH="${cpath%/}:$CPATH"
+	done
 
 	MANPATH="/usr/local/share/man:/usr/share/man:/opt/man:$MANPATH"
 	MANPATH="$LOCAL/share/man:$LOCAL/opt/man:$LOCAL/usr/share/man:$MANPATH"
@@ -125,20 +128,19 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	PKG_CONFIG_PATH="$LOCAL/share/pkgconfig:$PKG_CONFIG_PATH"
 	PKG_CONFIG_PATH="$LOCAL/lib64/pkgconfig:$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-	ACLOCAL_PATH="$LOCAL/share/aclocal"
+	ACLOCAL_PATH="$LOCAL/share/aclocal${ACLOCAL_PATH+:$ACLOCAL_PATH}"
 
 	## Apache
-	APACHE_HOME="$LOCAL/apache2"
+	export APACHE_HOME="$LOCAL/apache2"
 	if [ -d "$APACHE_HOME" ]; then
 		PATH="$APACHE_HOME/bin:$PATH"
 		CPATH="$APACHE_HOME/include:$CPATH"
 		MANPATH="$APACHE_HOME/man:$MANPATH"
 		MANDATORY_MANPATH="$MANPATH"
-		export APACHE_HOME
 	fi
 
 	## MySQL
-	MYSQL_HOME="$LOCAL/mysql"
+	export MYSQL_HOME="$LOCAL/mysql"
 	if [ -d "$MYSQL_HOME" ]; then
 		PATH="$MYSQL_HOME/bin:$PATH"
 		CPATH="$MYSQL_HOME/include:$CPATH"
@@ -146,13 +148,12 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 		LIBRARY_PATH="$LD_LIBRARY_PATH"
 		MANPATH="$MYSQL_HOME/man:$MANPATH"
 		MANDATORY_MANPATH="$MANPATH"
-		export MYSQL_HOME
+		PKG_CONFIG_PATH="$MYSQL_HOME/lib/pkgconfig:$MYSQL_HOME/share/pkgconfig:$PKG_CONFIG_PATH"
+		ACLOCAL_PATH="$MYSQL_HOME/share/aclocal:$ACLOCAL_PATH"
 	fi
 
 	## PostgreSQL
-	if ${PGDATA:-true} false && [ -d "$LOCAL/var/lib/pgsql/data" ]; then
-		export PGDATA="$LOCAL/var/lib/pgsql/data"
-	fi
+	[ -d "${PGDATA:=$LOCAL/var/lib/pgsql/data}" ] && export PGDATA
 
 	## Qt
 	QT_HOME="$LOCAL/opt/Qt/5.11.1/gcc_64"
