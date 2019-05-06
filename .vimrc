@@ -309,6 +309,14 @@ autocmd BufWinEnter,WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 " autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
 "" Language
+set path&
+let s:cpath = ''
+for s:dir in split($CPATH, ":")
+  let s:cpath .= ',' . s:dir . '/*,'
+  " let s:cpath .= substitute(glob(s:dir . "/*/"), "\n", ",", "g")
+endfor
+let &path .= s:cpath
+
 """ AsciiDoc
 autocmd BufRead,BufNewFile *.adoc,*.asciidoc,*.ad setlocal filetype=asciidoc
 
