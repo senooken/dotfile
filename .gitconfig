@@ -35,7 +35,6 @@
 	cmd = git tag $ARGS
 	argprompt = yes
 [gui]
-	recentrepo = /home/dd4fqa/Documents/ref/bib
 	historybrowser = gitk
 [uploadpack]
 	allowtipsha1inwant = true
