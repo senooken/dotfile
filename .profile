@@ -107,9 +107,6 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	CLASSPATH="$LOCAL/share/java:${CLASSPATH:-.}"
 	CPATH="/usr/local/include:/usr/include:/opt/include:$CPATH"
 	CPATH="$LOCAL/include:$LOCAL/opt/include:$CPATH"
-	for cpath in "$LOCAL"/include/*/; do
-		CPATH="${cpath%/}:$CPATH"
-	done
 
 	MANPATH="/usr/local/share/man:/usr/share/man:/opt/man:$MANPATH"
 	MANPATH="$LOCAL/share/man:$LOCAL/opt/man:$LOCAL/usr/share/man:$MANPATH"
