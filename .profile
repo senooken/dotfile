@@ -105,16 +105,16 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	LDFLAGS="-L$LOCAL/lib64 -L$LOCAL/lib -L$LOCAL/opt/lib64 -L$LOCAL/opt/lib"
 
 	CLASSPATH="$LOCAL/share/java:${CLASSPATH:-.}"
-	CPATH="/usr/local/include:/usr/include:/opt/include:$CPATH"
+	CPATH="/usr/local/include:/usr/include:/opt/include${CPATH+:$CPATH}"
 	CPATH="$LOCAL/include:$LOCAL/opt/include:$CPATH"
 
-	MANPATH="/usr/local/share/man:/usr/share/man:/opt/man:$MANPATH"
+	MANPATH="/usr/local/share/man:/usr/share/man:/opt/man${MANPATH+:$MANPATH}"
 	MANPATH="$LOCAL/share/man:$LOCAL/opt/man:$LOCAL/usr/share/man:$MANPATH"
 	MANDATORY_MANPATH="$MANPATH"  # for Busybox
-	INFOPATH="/usr/local/share/info:/usr/share/info:$INFOPATH"
+	INFOPATH="/usr/local/share/info:/usr/share/info${INFOPATH+:$INFOPATH}"
 	INFOPATH="$LOCAL/share/info:$LOCAL/opt/info:/opt/info:$INFOPATH"
 
-	PKG_CONFIG_PATH="/usr/share/pkgconfig:$PKG_CONFIG_PATH"
+	PKG_CONFIG_PATH="/usr/share/pkgconfig${PKG_CONFIG_PATH+:$PKG_CONFIG_PATH}"
 	PKG_CONFIG_PATH="/usr/lib64/pkgconfig:/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
 	PKG_CONFIG_PATH="/usr/local/share/pkgconfig:$PKG_CONFIG_PATH"
 	PKG_CONFIG_PATH="/usr/local/lib64/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
