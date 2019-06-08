@@ -86,46 +86,32 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	export ENV="${ENV:-$HOME/.profile}"
 	LOCAL="$HOME/.local"
 
-	# forとかでうまくやりたい。
-	# lib/x86_64-linux-gnu, lib/x86_64-linux-gnu/pkgconfig 追加。たしか，glib。
-	### System path
+	## PATH Initialize
+	POSIX_PATH=$(command -v getconf >/dev/null && command -p getconf PATH)
+	[ -n "$POXIX_PATH" ] && PATH=$POSIX_PATH${PATH+:$PATH}
+
+	## Android
 	PATH="/system/bin:/system/xbin${PATH+:$PATH}"
-	PATH="/opt/bin:/opt/sbin:$PATH"
-	PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
-	PATH="$(command -p getconf PATH 2>&- || :):$PATH"
-	PATH="$LOCAL/opt/bin:$LOCAL/opt/sbin:${PATH#:}"
-	PATH="$LOCAL/bin:$LOCAL/sbin:$PATH"
-
 	LD_LIBRARY_PATH="/vendor/lib:/system/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
-	LD_LIBRARY_PATH="/opt/lib64:/opt/lib:$LD_LIBRARY_PATH"
-	LD_LIBRARY_PATH="/usr/lib64:/usr/lib:/lib64:/lib:$LD_LIBRARY_PATH"
-	LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:$LD_LIBRARY_PATH"
-	LD_LIBRARY_PATH="$LOCAL/lib64:$LOCAL/lib:$LOCAL/opt/lib64:$LOCAL/opt/lib:$LD_LIBRARY_PATH"
-	LIBRARY_PATH="$LD_LIBRARY_PATH"
-	LDFLAGS="-L$LOCAL/lib64 -L$LOCAL/lib -L$LOCAL/opt/lib64 -L$LOCAL/opt/lib"
 
-	CLASSPATH="$LOCAL/share/java:${CLASSPATH:-.}"
-	CPATH="/usr/local/include:/usr/include:/opt/include${CPATH+:$CPATH}"
-	CPATH="$LOCAL/include:$LOCAL/opt/include:$CPATH"
+	for dir in /usr /usr/local /opt "$LOCAL" "$LOCAL/opt"; do
+		PATH="$dir/bin:$dir/sbin:$PATH"
+		CPATH="$dir/include${CPATH+:$CPATH}"
+		INFOPATH="$dir/share/info${INFOPATH+:$INFOPATH}"
+		MANPATH="$dir/share/man${MANPATH+:$MANPATH}"
+		## For Busybox
+		MANDATORY_MANPATH="$dir/share/man${MANDATORY_MANPATH+:$MANDATORY_MANPATH}"
+		PKG_CONFIG_PATH="$dir/share/pkgconfig${PKG_CONFIG_PATH+:$PKG_CONFIG_PATH}"
+		ACLOCAL_PATH="$dir/share/aclocal${ACLOCAL_PATH+:$ACLOCAL_PATH}"
+		CLASS_PATH="$dir/share/java${CLASS_PATH+:$CLASS_PATH}"
 
-	MANPATH="/usr/local/share/man:/usr/share/man:/opt/man${MANPATH+:$MANPATH}"
-	MANPATH="$LOCAL/share/man:$LOCAL/opt/man:$LOCAL/usr/share/man:$MANPATH"
-	MANDATORY_MANPATH="$MANPATH"  # for Busybox
-	INFOPATH="/usr/local/share/info:/usr/share/info${INFOPATH+:$INFOPATH}"
-	INFOPATH="$LOCAL/share/info:$LOCAL/opt/info:/opt/info:$INFOPATH"
-
-	PKG_CONFIG_PATH="/usr/share/pkgconfig${PKG_CONFIG_PATH+:$PKG_CONFIG_PATH}"
-	PKG_CONFIG_PATH="/usr/lib64/pkgconfig:/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="/usr/local/share/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="/usr/local/lib64/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="/opt/share/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="/opt/lib64/pkgconfig:/opt/lib/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="$LOCAL/opt/share/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="$LOCAL/opt/lib64/pkgconfig:$LOCAL/opt/lib/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="$LOCAL/share/pkgconfig:$PKG_CONFIG_PATH"
-	PKG_CONFIG_PATH="$LOCAL/lib64/pkgconfig:$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH"
-
-	ACLOCAL_PATH="$LOCAL/share/aclocal${ACLOCAL_PATH+:$ACLOCAL_PATH}"
+		for sub in lib lib64 lib32 lib/x86_64-linux-gnu lib/i386-linux-gnu; do
+			LD_LIBRARY_PATH="$dir/$sub:$LD_LIBRARY_PATH"
+			LIBRARY_PATH="$dir/$sub${LIBRARY_PATH+:$LIBRARY_PATH}"
+			LD_FLAGS="-L$dir/$sub${LD_FLAGS+ $LD_FLAGS}"
+			PKG_CONFIG_PATH="$dir/$sub/pkgconfig${PKG_CONFIG_PATH+:$PKG_CONFIG_PATH}"
+		done
+	done
 
 	## Apache
 	export APACHE_HOME="$LOCAL/apache2"
