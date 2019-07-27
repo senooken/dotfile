@@ -15,9 +15,9 @@
 case "$-" in (*i*) set -x;; esac
 
 ## Environmental variables
-export ENV="${ENV-$HOME/.profile}"
+export ENV=${ENV-$HOME/.profile}
 
-export LOCAL="$HOME/.local"
+export LOCAL=$HOME/.local
 export J=$(grep -cs '^processor' /proc/cpuinfo || echo 2)
 
 ### Locale
@@ -139,16 +139,13 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	[ -d "${PGDATA:=$LOCAL/var/lib/pgsql/data}" ] && export PGDATA
 
 	## Qt
-	QT_HOME="$LOCAL/opt/Qt/5.11.1/gcc_64"
+	export QT_HOME="$LOCAL/qt5"
 	if [ -d "$QT_HOME" ]; then
 		PATH="$QT_HOME/bin:$PATH"
-		CPATH="$QT_HOME/include:$QT_HOME/include/QtWidgets:$CPATH"
-		CPATH="$QT_HOME/include/QtQml:$CPATH"
+		CPATH="$QT_HOME/include:$CPATH"
 		LD_LIBRARY_PATH="$QT_HOME/lib:$LD_LIBRARY_PATH"
 		LIBRARY_PATH="$LD_LIBRARY_PATH"
-		MANPATH="$QT_HOME/man:$MANPATH"
-		MANDATORY_MANPATH="$MANDATORY_MANPATH"
-		export QT_HOME
+		PKG_CONFIG_PATH="$QT_HOME/lib/pkgconfig:$PKG_CONFIG_PATH"
 	fi
 
 	export PATH LD_LIBRARY_PATH LIBRARY_PATH CPATH PKG_CONFIG_PATH LDFLAGS
@@ -163,7 +160,8 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	export PERL_MB_OPT="--install_base $LOCAL"
 	export PERL_MM_OPT="INSTALL_BASE=$LOCAL"
 	export PERL_LOCAL_LIB_ROOT="$LOCAL${PERL_LOCAL_LIB_ROOT+:$PERL_LOCAL_LIB_ROOT}"
-
+	## PHP
+	export PHP_INI_SCAN_DIR="$LOCAL/etc"
 	## Invalid stty keybind
 	# stty start undef
 	export DISPLAY="${DISPLAY:-:0}"
@@ -182,10 +180,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	BOM16LE=$(printf '\377\376')
 	BOM16BE=$(printf '\376\377')
 
-	## Environmental variables
-	: ${HOME:=~}      # for MSYS
-	export TMPDIR='/tmp'
-	export TZ='JST-9'
+	HOME=${HOME:-~}      # for MSYS
 fi
 
 ### Windows shell
@@ -420,10 +415,10 @@ elif is_opt_enabled grep --exlude; then
 fi
 
 ## Overwrite GNU Readline Tab (complete) by menu-complete
-is_bash_ver_ge_43(){ bash --version | grep -q -e ' 4\.[3-9]*' -e ' [5-9]\.'; }
-if $IS_INTERACTIVE && [ "${0##*/}" = 'bash' ] && is_bash_ver_ge_43; then
-	bind 'TAB: menu-complete'
-fi
+# is_bash_ver_ge_43(){ bash --version | grep -q -e ' 4\.[3-9]*' -e ' [5-9]\.'; }
+# if $IS_INTERACTIVE && [ "${0##*/}" = 'bash' ] && is_bash_ver_ge_43; then
+# 	bind 'TAB: menu-complete'
+# fi
 
 alias grep="grep $GREP_OPTIONS"
 # alias ag="ag -fU --ignore=$EXCLUDE_FILE"
