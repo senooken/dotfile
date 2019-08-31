@@ -2,8 +2,8 @@
  \file      template.css
  \author    SENOO, Ken
  \copyright CC0
- \date      Created date: 
- \date      Updated date: 
+ \date      Created: 
+ \date      Updated: 
 *******************************************************************************/
 
 @charset "UTF-8";
@@ -145,7 +145,7 @@ section>h3:first-of-type,
 section>h4:first-of-type,
 section>h5:first-of-type,
 section>h6:first-of-type {
-  counter-increment: heading1; counter-reset: heading2 figure table listing example;
+  counter-increment: heading1; counter-reset: heading2 figure table listing;
   font-size: 2.0em;
 }
 
@@ -756,15 +756,12 @@ figure>dl>dd:nth-of-type(n+2) {
 }
 
 /** Theme block **/
-figure.example pre~figcaption::before,
-figure.example figcaption:first-child::before {
-  counter-increment: example;
-  content: "例 " counter(heading1) "." counter(example) ": ";
-}
 figure.structure pre~figcaption::before,
 figure.structure figcaption:first-child::before,
 figure.alert pre~figcaption::before,
-figure.alert figcaption:first-child::before {
+figure.alert figcaption:first-child::before,
+figure.example pre~figcaption::before,
+figure.example figcaption:first-child::before {
   content: none;
 }
 
@@ -808,6 +805,9 @@ figure figcaption {
 
 figure * {
   text-align: left;
+}
+figure>img {
+  text-align: center;
 }
 
 figure>figcaption:last-child {
