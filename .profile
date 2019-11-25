@@ -405,11 +405,11 @@ EXCLUDE_DIR='{.,..,node_modules,.git,.svn,obj}'
 ## In GNU grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
 is_opt_enabled grep --color  && GREP_OPTIONS='--color=auto'
 is_opt_enabled grep -I       && GREP_OPTIONS="$GREP_OPTIONS --color=auto"
-is_opt_enabled grep --exlude && GREP_OPTIONS="$GREP_OPTIONS --exclude=$EXCLUDE_FILE"
+is_opt_enabled grep --exclude && GREP_OPTIONS="$GREP_OPTIONS --exclude=$EXCLUDE_FILE"
 
 if is_opt_enabled grep --exclude-dir; then  # v2.5.2 or later
 	GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$EXCLUDE_DIR"
-elif is_opt_enabled grep --exlude; then
+elif is_opt_enabled grep --exclude; then
 # --exclude=*dir* option is only available when --exclude-dir disabled
 	GREP_OPTIONS="$GREP_OPTIONS --exclude={..*,*.git*,*.svn*}"
 fi
