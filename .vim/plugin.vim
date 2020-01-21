@@ -35,7 +35,7 @@ if s:is_plugin_installed('caw.vim')
 endif
 
 if s:is_plugin_installed('autodate.vim')
-  let autodate_keyword_pre='Updated date:'
+  let autodate_keyword_pre='Updated:'
   let autodate_keyword_post='$'
   let autodate_format='%Y-%m-%dT%H:%M+09:00'
   let autodate_lines=10
