@@ -215,5 +215,10 @@ elif [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
+## Git completion.
+if [ -f "$HOME/.local/src/git/contrib/completion/git-completion.bash" ]; then
+	. "$HOME/.local/src/git/contrib/completion/git-completion.bash"
+fi
+
 [ -r ~/.after.sh ] && . ~/.after.sh
 

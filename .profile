@@ -202,10 +202,6 @@ fi
 : ${COLUMNS:=80}          # for sh
 
 ## Prompt
-PURPLE='\033[35m'
-RED='\033[31m'
-CLEAR='\033[m'
-
 if [ -n "$BASH" ]; then
 	ENCLOSE_OPEN='\\\['
 	ENCLOSE_CLOSE='\\\]'
@@ -214,7 +210,12 @@ elif [ -n "$ZSH_NAME" ]; then
 	ENCLOSE_CLOSE='%%}'
 fi
 
-for color in PURPLE RED CLEAR; do
+BLUE='\033[34m'
+PURPLE='\033[35m'
+RED='\033[31m'
+CLEAR='\033[m'
+
+for color in PURPLE BLUE RED CLEAR; do
 	eval "$color=$ENCLOSE_OPEN\$$color$ENCLOSE_CLOSE"
 done
 
@@ -225,9 +226,23 @@ HOST=$(uname -n)
 PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
 PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
 
-PS1="\$([ \$((COLUMNS - \$(expr \"$USERNAME@$HOST:$CWD$\" : '.*'))) -le 20 ] &&
-	printf '$PROMPT_NAME%s\n$PROMPT_MARK' \"$CWD\" ||
-	printf '$PROMPT_NAME%s''$PROMPT_MARK' \"$CWD\")"
+PS1="\$(
+	PROMPT_LINE=\"\$?$PROMPT_NAME$CWD\"
+	GIT_PS1= PROMPT_INFO=$USERNAME@$HOST:$CWD$
+	command -v __git_ps1 >/dev/null && [ "$BASH$ZSH_NAME" ] &&
+		GIT_PS1=\$(__git_ps1 ':%s')
+	[ \$((COLUMNS-\${#PROMPT_INFO}-\${#GIT_PS1})) -le 20 ] &&
+		PROMPT_LINE=\"\$PROMPT_LINE\n\"
+	printf '%s' \"\$PROMPT_LINE$BLUE\$GIT_PS1$PROMPT_MARK\"
+)"
+
+### git-prompt.sh
+case "$BASH$ZSH_NAME" in *)
+	export GIT_PS1_SHOWDIRTYSTATE=true
+	export GIT_PS1_SHOWSTASHSTATE=true
+	export GIT_PS1_SHOWUNTRACKEDFILES=true
+	export GIT_PS1_SHOWUPSTREAM="verbose"
+esac
 
 ## Terminal title
 case "$TERM" in ?term*|rxvt*|screen*)
