@@ -527,6 +527,11 @@ th, td {
   word-wrap: break-word;
 }
 
+td>ul, td>ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /** Cross reference */
 [href^="#chap:"]::before {
   content: "第";
