@@ -226,8 +226,9 @@ HOST=$(uname -n)
 PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
 PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
 
+	# PROMPT_LINE=\"\$?$PROMPT_NAME$CWD\"
 PS1="\$(
-	PROMPT_LINE=\"\$?$PROMPT_NAME$CWD\"
+	PROMPT_LINE=\"\$(printf '%03d' \$?)$PROMPT_NAME$CWD\"
 	GIT_PS1= PROMPT_INFO=$USERNAME@$HOST:$CWD$
 	command -v __git_ps1 >/dev/null && [ "$BASH$ZSH_NAME" ] &&
 		GIT_PS1=\$(__git_ps1 ':%s')
