@@ -331,7 +331,7 @@ autocmd FileType dosbatch setlocal fileformat=dos fileencoding=cp932
 """ Snippet file
 autocmd BufNewFile,BufRead *.snip setlocal noexpandtab
 
-autocmd! FileType python setlocal shiftwidth=4 tabstop=4 expandtab
+autocmd! FileType php,python setlocal shiftwidth=4 tabstop=4 expandtab
 autocmd! FileType sh setlocal noexpandtab
 
 "" folding
