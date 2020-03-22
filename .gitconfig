@@ -9,6 +9,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	filemode = false
+	autocrlf = input
 [diff "word"]
 	texconv = strings
 [diff "db"]
