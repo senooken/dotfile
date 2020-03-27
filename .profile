@@ -189,8 +189,7 @@ export CYGWIN='nodosfilewarning winsymlinks:nativestrict'
 export MSYS='winsymlinks:nativestrict'
 
 ### For wine
-export WINEARCH='win32'
-export WINEPREFIX="$HOME/.wine32"
+export WINEARCH='win32' WINEPREFIX="$HOME/.wine32"
 
 ### For unzip encoding
 if grep -sq 'debian' /etc/os-release; then
