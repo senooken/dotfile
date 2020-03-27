@@ -56,7 +56,7 @@ PROMPT_COMMAND="$COMMON_PROMPT_EXE"
 
 ## History Options
 ### Base option
-HISTCONTROL='ignorespace:ignoredups:erasedups'
+HISTCONTROL='ignoredups:erasedups'
 HISTSIZE=99999
 HISTTIMEFORMAT="%Y%m%dT%H%M%S "
 # HISTIGNORE=$'[ \t]*:[fb]g:exit'
