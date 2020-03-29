@@ -9,14 +9,14 @@
 ################################################################################
 
 ## \brief Initialize POSIX shell environment
-init(){
+init() {
 	PATH="$(command -p getconf PATH 2>&-):${PATH:-.}"
 	export PATH="${PATH#:}" LC_ALL='C'
 	umask 0022
 	set -eu
 }
 
-is_main()(
+is_main() (
 	EXE_NAME='.sh'
 	[ "$EXE_NAME" = "${0##*/}" ]
 )
