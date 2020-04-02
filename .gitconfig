@@ -39,3 +39,5 @@
 	historybrowser = gitk
 [uploadpack]
 	allowtipsha1inwant = true
+[credential]
+	helper = cache --timeout=3600
