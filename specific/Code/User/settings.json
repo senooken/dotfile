@@ -3,5 +3,6 @@
     "editor.fontSize": 10,
     "editor.minimap.enabled": false,
     "files.autoGuessEncoding": true,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "plantuml.exportOutDir": "."
 }
