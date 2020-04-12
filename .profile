@@ -162,6 +162,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	export PERL_LOCAL_LIB_ROOT="$LOCAL${PERL_LOCAL_LIB_ROOT+:$PERL_LOCAL_LIB_ROOT}"
 	## PHP
 	export PHP_INI_SCAN_DIR="$LOCAL/etc"
+	export PHP_PEAR_PHP_BIN='php' PHP_PEAR_INSTALL_DIR="$LOCAL/lib/php"
 	export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/composer/vendor/bin:$PATH"
 	## Invalid stty keybind
 	# stty start undef
