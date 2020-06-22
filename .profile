@@ -139,7 +139,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	[ -d "${PGDATA:=$LOCAL/var/lib/pgsql/data}" ] && export PGDATA
 
 	## Qt
-	export QT_HOME="$LOCAL/qt5"
+	# export QT_HOME="$LOCAL/qt5"
 	if [ -d "$QT_HOME" ]; then
 		PATH="$QT_HOME/bin:$PATH"
 		CPATH="$QT_HOME/include:$CPATH"
@@ -419,9 +419,9 @@ alias tmux="SHELL=$SCREEN_SHELL tmux"
 EXCLUDE_FILE='{cscope.files,cscope.out,cscope.in.out,cscope.po.out,tags,GTAGS,GRTAGS,GPATH}'
 EXCLUDE_DIR='{.,..,node_modules,.git,.svn,obj}'
 
-## In GNU grep 2.21 or later, deprecated GREP_OPTIONS environmental variable
+## In GNU grep 2.21+, GREP_OPTIONS environmental variable was deprecated.
 is_opt_enabled grep --color  && GREP_OPTIONS='--color=auto'
-is_opt_enabled grep -I       && GREP_OPTIONS="$GREP_OPTIONS --color=auto"
+is_opt_enabled grep -I       && GREP_OPTIONS="$GREP_OPTIONS -I"
 is_opt_enabled grep --exclude && GREP_OPTIONS="$GREP_OPTIONS --exclude=$EXCLUDE_FILE"
 
 if is_opt_enabled grep --exclude-dir; then  # v2.5.2 or later
