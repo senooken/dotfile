@@ -355,7 +355,7 @@ alias gf='gfortran -Wall -O3 -static'
 
 ## stow conflict list
 # --ignore="dir|gschemas.compiled|icon-theme-cache"
-# alias stow='stow --ignore="dir|gschemas.compiled|icon-theme.cache"'
+alias stow='stow --ignore="dir|gschemas.compiled|icon-theme.cache"'
 
 is_exe_enabled vim && alias vi='vim' vim='vim -X'
 
