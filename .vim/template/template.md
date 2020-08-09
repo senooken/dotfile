@@ -1,7 +1,7 @@
-template.md
-SENOO, Ken
-CC0
-created date: 
-updated date: 
+# template.md
+Author: SENOO, Ken
+License: CC0
+Created: 
+Updated: 
 
 
