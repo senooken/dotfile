@@ -458,14 +458,14 @@ nnoremap <silent> ]B :blast<CR>
 if has('mouse')
   set mouse=a
   set ttymouse=xterm2
+  "" Enter insert/normal/Command-line modes from mouse.
+  autocmd MyAutoCmd BufEnter *
+    \  if &modifiable
+    \|   nnoremap <buffer> <LeftMouse><RightMouse> i
+    \|   inoremap <buffer> <LeftMouse><RightMouse> <ESC>
+    \|   nnoremap <buffer> <ESC> :
+    \| endif
 endif
-
-"" For pasting after end of line character
-autocmd MyAutoCmd BufEnter *
-  \  if &modifiable && has('mouse')
-  \|   nnoremap <buffer> <2-LeftMouse> i
-  \|   inoremap <buffer> <2-LeftMouse> <ESC>
-  \| endif
 
 "" Enable alias for external command
 if filereadable($ENV)
