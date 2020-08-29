@@ -113,7 +113,7 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 		done
 	done
 
-	## Apache
+	## Apache HTTP Server (httpd)
 	export APACHE_HOME="$LOCAL/apache2"
 	if [ -d "$APACHE_HOME" ]; then
 		PATH="$APACHE_HOME/bin:$PATH"
@@ -165,8 +165,8 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	export PERL_MM_OPT=" INSTALLSITEMAN1DIR=$LOCAL/share/man/man1 $PERL_MM_OPT"
 	export PERL_MM_OPT=" INSTALLSITEMAN3DIR=$LOCAL/share/man/man3 $PERL_MM_OPT"
 
-	## PHP
-	export PHP_INI_SCAN_DIR="$LOCAL/etc"
+	### PHP
+	export PHP_INI_SCAN_DIR="$LOCAL/etc:"
 	export PHP_PEAR_PHP_BIN='php' PHP_PEAR_INSTALL_DIR="$LOCAL/lib/php"
 	export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/composer/vendor/bin:$PATH"
 	## Invalid stty keybind
