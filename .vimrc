@@ -463,11 +463,11 @@ if has('mouse')
   endif
 
   "" Enter insert/normal/Command-line modes from mouse.
+  nnoremap <RightMouse><LeftMouse> :
+  inoremap <LeftMouse><RightMouse> <ESC>
   autocmd main BufEnter *
     \  if &modifiable
     \|   nnoremap <buffer> <LeftMouse><RightMouse> i
-    \|   inoremap <buffer> <LeftMouse><RightMouse> <ESC>
-    \|   nnoremap <buffer> <ESC> :
     \| endif
 endif
 
