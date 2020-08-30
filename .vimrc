@@ -24,12 +24,12 @@ if exists('+fixendofline')  " version 7.4.785+
   autocmd BufWritePre * setlocal nofixendofline
 endif
 
-augroup MyAutoCmd
+augroup main
   autocmd!
 augroup END
 
 "" Fix 'fileencoding' to use 'encoding' if the buffer only ASCII characters.
-autocmd MyAutoCmd BufReadPost *
+autocmd main BufReadPost *
   \   if &modifiable && !search('[^\x00-\x7F]', 'cnw')
   \ |   setlocal fileencoding=utf-8
   \ | endif
@@ -281,7 +281,7 @@ augroup vimrcEx
 augroup END
 
 "" cd editting file directory.
-autocmd MyAutoCmd BufEnter * if finddir(expand('%:p:h')) != '' | lcd %:p:h | endif
+autocmd main BufEnter * if finddir(expand('%:p:h')) != '' | lcd %:p:h | endif
 
 set nrformats=   " deal as decimal for number
 
@@ -445,8 +445,8 @@ if has('cscope')
 endif
 
 "" template file
-autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/template.%:e
-autocmd MyAutoCmd BufNewFile * silent! :0r  ~/.vim/template/%:t
+autocmd main BufNewFile * silent! :0r  ~/.vim/template/template.%:e
+autocmd main BufNewFile * silent! :0r  ~/.vim/template/%:t
 
 "" Buffer
 nnoremap <silent> [b :bprevious<CR>
@@ -459,7 +459,7 @@ if has('mouse')
   set mouse=a
   set ttymouse=xterm2
   "" Enter insert/normal/Command-line modes from mouse.
-  autocmd MyAutoCmd BufEnter *
+  autocmd main BufEnter *
     \  if &modifiable
     \|   nnoremap <buffer> <LeftMouse><RightMouse> i
     \|   inoremap <buffer> <LeftMouse><RightMouse> <ESC>
