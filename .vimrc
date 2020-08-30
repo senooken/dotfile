@@ -454,7 +454,14 @@ nnoremap <silent> ]B :blast<CR>
 "" mouse
 if has('mouse')
   set mouse=a
-  set ttymouse=xterm2
+  if has('mouse_sgr')
+    set ttymouse=sgr
+  elseif has('mouse_urxvt')
+    set ttymouse=urxvt
+  else
+    set ttymouse=xterm2
+  endif
+
   "" Enter insert/normal/Command-line modes from mouse.
   autocmd main BufEnter *
     \  if &modifiable
