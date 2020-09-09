@@ -15,9 +15,8 @@
 case "$-" in (*i*) set -x;; esac
 
 ## Environmental variables
-export ENV=${ENV-$HOME/.profile}
-
-export LOCAL=$HOME/.local
+export ENV=${ENV-~/.profile}
+export LOCAL=$([ $(id -u) = 0 ] && echo /usr/ || echo ~/.)local
 export J=$(grep -cs '^processor' /proc/cpuinfo || echo 2)
 
 ### Locale
