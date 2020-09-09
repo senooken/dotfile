@@ -105,6 +105,8 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 		ACLOCAL_PATH="$dir/share/aclocal${ACLOCAL_PATH+:$ACLOCAL_PATH}"
 		CLASS_PATH="$dir/share/java${CLASS_PATH+:$CLASS_PATH}"
 
+		[ -d "$dir/share/terminfo" ] && export TERMINFO="$dir/share/terminfo"
+
 		for sub in lib lib64 lib32 lib/x86_64-linux-gnu lib/i386-linux-gnu; do
 			LD_LIBRARY_PATH="$dir/$sub:$LD_LIBRARY_PATH"
 			LIBRARY_PATH="$dir/$sub${LIBRARY_PATH+:$LIBRARY_PATH}"
