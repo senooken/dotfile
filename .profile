@@ -95,8 +95,19 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 	LD_LIBRARY_PATH="/vendor/lib:/system/lib${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}"
 
 	for dir in /usr /usr/local /opt "$LOCAL" "$LOCAL/opt"; do
+		[ -d "$dir" ] || continue
+		for sub in lib lib64 lib32 lib/x86_64-linux-gnu lib/i386-linux-gnu; do
+			[ -d "$dir/$sub" ] || continue
+			LD_LIBRARY_PATH="$dir/$sub:$LD_LIBRARY_PATH"
+			LIBRARY_PATH="$dir/$sub${LIBRARY_PATH+:$LIBRARY_PATH}"
+			LD_FLAGS="-L$dir/$sub${LD_FLAGS+ $LD_FLAGS}"
+			PKG_CONFIG_PATH="$dir/$sub/pkgconfig${PKG_CONFIG_PATH+:$PKG_CONFIG_PATH}"
+		done
+
 		PATH="$dir/bin:$dir/sbin:$PATH"
 		CPATH="$dir/include${CPATH+:$CPATH}"
+
+		[ -d "$dir/share" ] || continue
 		INFOPATH="$dir/share/info${INFOPATH+:$INFOPATH}"
 		MANPATH="$dir/share/man${MANPATH+:$MANPATH}"
 		## For Busybox
@@ -105,14 +116,8 @@ if $IS_INTERACTIVE && ! $IS_INITIALIZED; then
 		ACLOCAL_PATH="$dir/share/aclocal${ACLOCAL_PATH+:$ACLOCAL_PATH}"
 		CLASS_PATH="$dir/share/java${CLASS_PATH+:$CLASS_PATH}"
 
+		## For ncurses
 		[ -d "$dir/share/terminfo" ] && export TERMINFO="$dir/share/terminfo"
-
-		for sub in lib lib64 lib32 lib/x86_64-linux-gnu lib/i386-linux-gnu; do
-			LD_LIBRARY_PATH="$dir/$sub:$LD_LIBRARY_PATH"
-			LIBRARY_PATH="$dir/$sub${LIBRARY_PATH+:$LIBRARY_PATH}"
-			LD_FLAGS="-L$dir/$sub${LD_FLAGS+ $LD_FLAGS}"
-			PKG_CONFIG_PATH="$dir/$sub/pkgconfig${PKG_CONFIG_PATH+:$PKG_CONFIG_PATH}"
-		done
 	done
 
 	## Apache HTTP Server (httpd)
