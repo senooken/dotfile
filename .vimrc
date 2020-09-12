@@ -235,9 +235,11 @@ nnoremap <C-h> :<C-u>help<Space>
 " nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR> " search word in help
 
 "" Insert line break by Enter in normal mode
-autocmd main BufEnter *
+autocmd main BufWinEnter *
   \  if &modifiable
   \|   nnoremap <buffer> <CR> i<CR><ESC>
+  \| else
+  \|   nunmap <buffer> <CR>
   \| endif
 
 "" move window
