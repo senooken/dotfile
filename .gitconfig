@@ -41,3 +41,5 @@
 	allowtipsha1inwant = true
 [credential]
 	helper = cache --timeout=3600
+[diff "odf"]
+	textconv = "odf2xml() { odt2txt --raw $1 | xmllint --format -; }; odf2xml"
