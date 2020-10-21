@@ -42,4 +42,4 @@
 [credential]
 	helper = cache --timeout=3600
 [diff "odf"]
-	textconv = "odf2xml() { odt2txt --raw $1 | xmllint --format -; }; odf2xml"
+	textconv = "odf2xml() { format=$(command -v xmllint && echo --format - || echo \"eval grep ^ | sed 's@><@>\\\\\\n<@g'\"); odt2txt --raw $1 | $format; }; odf2xml"
