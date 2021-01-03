@@ -9,7 +9,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	filemode = false
-	autocrlf = input
+	autocrlf = false
 [diff "word"]
 	texconv = strings
 [diff "db"]
@@ -31,7 +31,7 @@
 	sslcainfo = /mingw32/ssl/certs/ca-bundle.crt
 	sslverify = false
 [init]
-	templatedir = ~/.git-template
+	# templatedir = ~/.git-template
 [guitool "Tag"]
 	cmd = git tag $ARGS
 	argprompt = yes
