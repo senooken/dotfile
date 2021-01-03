@@ -10,6 +10,7 @@
 	excludesfile = ~/.gitignore
 	filemode = false
 	autocrlf = false
+	quotepath = false
 [diff "word"]
 	texconv = strings
 [diff "db"]
