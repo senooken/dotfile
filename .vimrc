@@ -239,7 +239,7 @@ autocmd main BufWinEnter *
   \  if &modifiable
   \|   nnoremap <buffer> <CR> i<CR><ESC>
   \| else
-  \|   nunmap <buffer> <CR>
+  \|   silent! nunmap <buffer> <CR>
   \| endif
 
 "" move window
