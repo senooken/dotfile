@@ -44,8 +44,8 @@ if s:is_plugin_installed('autodate.vim')
 endif
 
 if s:is_plugin_installed('autofname.vim')
-  let autofname_keyword_pre=' [\@]file '
-  let autofname_keyword_post='$'
+  let autofname_keyword_pre=' \file '
+  let autofname_keyword_post='[ \t]*'
   let autofname_lines=5
 endif
 
