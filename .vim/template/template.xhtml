@@ -1,1 +1,865 @@
-template.html
+<!DOCTYPE html>
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="SENOO, Ken" />
+    <link rel="icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgo8IS0tIEF1dGhvcjogU0VOT08sIEtlbgogICAgIExpbmNlbnNlOiBDQzAKICAgICBUaGlzIHdvcmsgaXMgbGljZW5zZWQgdW5kZXIgdGhlIENDMCAxLjAgVW5pdmVyc2FsIExpbmNlbnNlIChodHRwczovL2NyZWF0aXZlY29tbW9ucy5vcmcvcHVibGljZG9tYWluL3plcm8vMS4wLykuIFRvIHRoZSBleHRlbnQgcG9zc2libGUgdW5kZXIgbGF3LCBJIGhhdmUgd2FpdmVkIGFsbCBjb3B5cmlnaHQgYW5kIHJlbGF0ZWQgb3IgbmVpZ2hib3JpbmcgcmlnaHRzIHRvIHRoaXMgd29yay4KLS0+Cgo8c3ZnCiAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgeG1sbnM6Y2M9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zIyIKICAgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHdpZHRoPSIxMDAiCiAgIGhlaWdodD0iMTAwIgogICBpZD0ic3ZnMiIKICAgdmVyc2lvbj0iMS4xIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIwLjQ4LjQgcjk5MzkiCiAgIHNvZGlwb2RpOmRvY25hbWU9InN0YXItY29sb3Iuc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzNCI+CiAgICA8bGluZWFyR3JhZGllbnQKICAgICAgIGlkPSJsaW5lYXJHcmFkaWVudDM4MzkiPgogICAgICA8c3RvcAogICAgICAgICBzdHlsZT0ic3RvcC1jb2xvcjojZmZmZmZmO3N0b3Atb3BhY2l0eToxOyIKICAgICAgICAgb2Zmc2V0PSIwIgogICAgICAgICBpZD0ic3RvcDM4NDkiIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIHN0eWxlPSJzdG9wLWNvbG9yOiMwMDAwMDA7c3RvcC1vcGFjaXR5OjE7IgogICAgICAgICBvZmZzZXQ9IjEiCiAgICAgICAgIGlkPSJzdG9wMzg0MyIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQKICAgICAgIGlkPSJsaW5lYXJHcmFkaWVudDM4MjUiPgogICAgICA8c3RvcAogICAgICAgICBzdHlsZT0ic3RvcC1jb2xvcjojN2Y5NDg5O3N0b3Atb3BhY2l0eTowLjYxOTYwNzg0OyIKICAgICAgICAgb2Zmc2V0PSIwIgogICAgICAgICBpZD0ic3RvcDM4MzciIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIHN0eWxlPSJzdG9wLWNvbG9yOiNmZmRkYzA7c3RvcC1vcGFjaXR5OjAuNzQ0ODU1OTQ7IgogICAgICAgICBvZmZzZXQ9IjEiCiAgICAgICAgIGlkPSJzdG9wMzgyOSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQKICAgICAgIGlkPSJsaW5lYXJHcmFkaWVudDM3ODUiPgogICAgICA8c3RvcAogICAgICAgICBzdHlsZT0ic3RvcC1jb2xvcjojMDAwMDAwO3N0b3Atb3BhY2l0eTowLjQ5ODAzOTIyOyIKICAgICAgICAgb2Zmc2V0PSIwIgogICAgICAgICBpZD0ic3RvcDM4MTUiIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIHN0eWxlPSJzdG9wLWNvbG9yOiMwMDAwMDA7c3RvcC1vcGFjaXR5OjA7IgogICAgICAgICBvZmZzZXQ9IjEiCiAgICAgICAgIGlkPSJzdG9wMzc4OSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBpZD0iYmFzZSIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiM2NjY2NjYiCiAgICAgYm9yZGVyb3BhY2l0eT0iMS4wIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTp6b29tPSIyLjY3IgogICAgIGlua3NjYXBlOmN4PSIzOS4yMjE2NzEiCiAgICAgaW5rc2NhcGU6Y3k9IjUzLjYyNTAyNiIKICAgICBpbmtzY2FwZTpkb2N1bWVudC11bml0cz0icHgiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ibGF5ZXIxIgogICAgIHNob3dncmlkPSJmYWxzZSIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjEyNjEiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iNjc1IgogICAgIGlua3NjYXBlOndpbmRvdy14PSIxNDQ0IgogICAgIGlua3NjYXBlOndpbmRvdy15PSI0NSIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIwIiAvPgogIDxtZXRhZGF0YQogICAgIGlkPSJtZXRhZGF0YTciPgogICAgPHJkZjpSREY+CiAgICAgIDxjYzpXb3JrCiAgICAgICAgIHJkZjphYm91dD0iIj4KICAgICAgICA8ZGM6Zm9ybWF0PmltYWdlL3N2Zyt4bWw8L2RjOmZvcm1hdD4KICAgICAgICA8ZGM6dHlwZQogICAgICAgICAgIHJkZjpyZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiIC8+CiAgICAgICAgPGRjOnRpdGxlPjwvZGM6dGl0bGU+CiAgICAgIDwvY2M6V29yaz4KICAgIDwvcmRmOlJERj4KICA8L21ldGFkYXRhPgogIDxnCiAgICAgaW5rc2NhcGU6bGFiZWw9ImNpcmNsZSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlkPSJsYXllcjEiCiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwtOTUyLjM2MjE4KSIKICAgICBzdHlsZT0iZGlzcGxheTppbmxpbmUiPgogICAgPHBhdGgKICAgICAgIHNvZGlwb2RpOnR5cGU9ImFyYyIKICAgICAgIHN0eWxlPSJmaWxsOiNlNmU2ZTY7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOm5vbmUiCiAgICAgICBpZD0icGF0aDMwMDQiCiAgICAgICBzb2RpcG9kaTpjeD0iNTQuOTEwNzEzIgogICAgICAgc29kaXBvZGk6Y3k9IjQ3LjU4OTI4NyIKICAgICAgIHNvZGlwb2RpOnJ4PSIzMi4wNTM1NyIKICAgICAgIHNvZGlwb2RpOnJ5PSIzMi4wNTM1NyIKICAgICAgIGQ9Im0gODYuOTY0MjgzLDQ3LjU4OTI4NyBhIDMyLjA1MzU3LDMyLjA1MzU3IDAgMSAxIC02NC4xMDcxNCwwIDMyLjA1MzU3LDMyLjA1MzU3IDAgMSAxIDY0LjEwNzE0LDAgeiIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDEuNTU5ODg4NywwLDAsMS41NTk4ODg4LC0zNS42NTQ2MDEsOTI4LjEyODE4KSIgLz4KICA8L2c+CiAgPGcKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlkPSJsYXllcjIiCiAgICAgaW5rc2NhcGU6bGFiZWw9InRyaWFuZ2xlIgogICAgIHN0eWxlPSJvcGFjaXR5OjAuOTM5OTk5OTk7ZGlzcGxheTppbmxpbmUiCiAgICAgc29kaXBvZGk6aW5zZW5zaXRpdmU9InRydWUiPgogICAgPHBhdGgKICAgICAgIHN0eWxlPSJmaWxsOiNmZjAwMDA7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOm5vbmUiCiAgICAgICBkPSJNIDUwLDAgMzUuNTYyNSwyNSA2NC40Mzc1LDI1IDUwLDAgeiIKICAgICAgIGlkPSJwYXRoNDEzMyIKICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiIC8+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImZpbGw6I2ZmODAwMDtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6bm9uZSIKICAgICAgIGQ9Ik0gNjQuNDM3NSwyNSA3OC44NzUsNTAgOTMuMzEyNSwyNSA2NC40Mzc1LDI1IHoiCiAgICAgICBpZD0icGF0aDQxMzEiCiAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPgogICAgPHBhdGgKICAgICAgIHN0eWxlPSJmaWxsOiNmZmZmMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOm5vbmUiCiAgICAgICBkPSJNIDc4Ljg3NSw1MCA2NC40Mzc1LDc1IDkzLjMxMjUsNzUgNzguODc1LDUwIHoiCiAgICAgICBpZD0icGF0aDQxMjkiCiAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPgogICAgPHBhdGgKICAgICAgIHN0eWxlPSJmaWxsOiMwMGZmMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOm5vbmUiCiAgICAgICBkPSJNIDY0LjQzNzUsNzUgMzUuNTYyNSw3NSA1MCwxMDAgNjQuNDM3NSw3NSB6IgogICAgICAgaWQ9InBhdGg0MTI3IgogICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iZmlsbDojMDAwMGZmO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTpub25lIgogICAgICAgZD0iTSAzNS41NjI1LDc1IDIxLjEyNSw1MCA2LjY4NzUsNzUgbCAyOC44NzUsMCB6IgogICAgICAgaWQ9InBhdGg0MTI1IgogICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iZmlsbDojODAwMGZmO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTpub25lIgogICAgICAgZD0iTSAyMS4xMjUsNTAgMzUuNTYyNSwyNSA2LjY4NzUsMjUgMjEuMTI1LDUwIHoiCiAgICAgICBpZD0icGF0aDMwMTMiCiAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPgogICAgPHBhdGgKICAgICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOm5vbmUiCiAgICAgICBkPSJtIDM1LjY4Mzc4MiwyNC45MzMyNTQgYyAwLC0wLjA1MjIgMTQuMTk5NTcsLTI0LjYzOTI2Njc2IDE0LjI3NTg2NiwtMjQuNzE5MTc4NDMgQyA1MC4wMDU1MywwLjE2NjAxOTI1IDYzLjEyNzU1NSwyMi43MjY4NzMgNjQuMjM1NzQxLDI0Ljc1OTEzMiBsIDAuMTE0NDU4LDAuMjA5OSAtMTQuMzMzMjA4LDAgYyAtNy44ODMyNjUsMCAtMTQuMzMzMjA5LC0wLjAxNjEgLTE0LjMzMzIwOSwtMC4wMzU3OCB6IgogICAgICAgaWQ9InBhdGg0MTAxIgogICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz4KICA8L2c+Cjwvc3ZnPgo=" />
+    <title></title>
+    <!-- <meta name="description" contents="" /> -->
+    <!-- <meta name="keywords" contents="" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="default.css" /> -->
+    <style>
+@charset "UTF-8";
+
+/** caption **/
+caption::before {
+  counter-increment: table;
+  content: "表" counter(heading1) "." counter(table) ": ";
+}
+table tr:first-of-type {
+  counter-reset: subtable;
+}
+table table caption::before {
+  counter-increment: subtable;
+  content: "(" counter(subtable, lower-alpha) ") ";
+}
+figure>figcaption::before {
+  counter-increment: figure;
+  content: "図" counter(heading1) "." counter(figure) ": ";
+}
+/* Reset subfigure */
+figure table:first-of-type {
+  counter-reset: subfigure;
+}
+/* そのままやると，subfigureの番号が先に登場するのでfigureと番号が不一致 */
+/* だから，subfigure内ではfigureの番号を増加させ，抜けるときに減らす */
+figure figure>figcaption::before {
+  counter-increment: figure subfigure;
+  counter-reset: subsubfigure;
+  /* content: "Figure " counter(heading1) "." counter(figure) "(" counter(subfigure, lower-alpha) ") "; */
+  content: "(" counter(subfigure, lower-alpha) ") ";
+}
+/* 増やしたfigureの番号を減らして元に戻す */
+figure figure>figcaption::after {
+  content: "";
+  counter-increment: figure -1;
+}
+
+figure pre~figcaption::before,
+figure figcaption:first-child::before {
+  counter-increment: listing;
+  content: "リスト" counter(heading1) "." counter(listing) ": ";
+}
+figure blockquote~figcaption::before {
+  content: "—";
+}
+
+/* list */
+/* listが見出し設定の後にあると見出し番号がリセットされる? */
+/* ol {                                 */
+/*   counter-reset: enum;               */
+/*   list-style-type: none;             */
+/* }                                    */
+/* li::before {                         */
+/*   counter-increment: enum;           */
+/*   content: counters(enum, ".") ". "; */
+/* }                                    */
+ol {
+  counter-reset: enum1;
+  padding-left: 1em;
+}
+ol>li {
+  list-style-type: none;
+  padding-left: 0.5em;
+  text-indent: -0.5em;
+}
+ol>li::before {
+  counter-increment: enum1;
+  content: counter(enum1) ". ";
+}
+ol>li>ol{
+  counter-reset: enum2;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+ol>li>ol>li::before {
+  counter-increment: enum2;
+  content: counter(enum1) "." counter(enum2) ". ";
+}
+ol>li>ol>li>ol{
+  counter-reset: enum3;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+ol>li>ol>li>ol>li::before {
+  counter-increment: enum3;
+  content: counter(enum1) "." counter(enum2) "." counter(enum3) ". ";
+}
+ol>li>ol>li>ol>li>ol{
+  counter-reset: enum4;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+ol>li>ol>li>ol>li>ol>li::before {
+  counter-increment: enum4;
+  content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) ". ";
+}
+ol>li>ol>li>ol>li>ol>li>ol{
+  counter-reset: enum5;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+ol>li>ol>li>ol>li>ol>li>ol>li::before {
+  counter-increment: enum5;
+  content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) ". ";
+}
+ol>li>ol>li>ol>li>ol>li>ol>li>ol{
+  counter-reset: enum6;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+ol>li>ol>li>ol>li>ol>li>ol>li>ol>li::before {
+  counter-increment: enum6;
+  content: counter(enum1) "." counter(enum2) "." counter(enum3) "." counter(enum4) "." counter(enum5) "." counter(enum6) ". ";
+}
+
+
+/* title */
+body>h1:first-of-type {
+  text-align: center;
+  font-size: xx-large;
+}
+/* 節番号の設定 */
+body { counter-reset: heading1; }
+
+/** 最上位のartilce (body>*>articler)には見出し番号をつけない **/
+article>h1:first-of-type,
+article>h2:first-of-type,
+article>h3:first-of-type,
+article>h4:first-of-type,
+article>h5:first-of-type,
+article>h6:first-of-type {
+  counter-reset: heading1;
+  font-size: 2.17em;
+}
+section>h1:first-of-type,
+section>h2:first-of-type,
+section>h3:first-of-type,
+section>h4:first-of-type,
+section>h5:first-of-type,
+section>h6:first-of-type {
+  counter-increment: heading1; counter-reset: heading2 figure table listing;
+  font-size: 2.0em;
+}
+
+section>h1:first-of-type::before,
+section>h2:first-of-type::before,
+section>h3:first-of-type::before,
+section>h4:first-of-type::before,
+section>h5:first-of-type::before,
+section>h6:first-of-type::before {
+  content: counter(heading1) " ";
+}
+
+
+article>section>h1:first-of-type,
+article>section>h2:first-of-type,
+article>section>h3:first-of-type,
+article>section>h4:first-of-type,
+article>section>h5:first-of-type,
+article>section>h6:first-of-type,
+section>article>h1:first-of-type,
+section>article>h2:first-of-type,
+section>article>h3:first-of-type,
+section>article>h4:first-of-type,
+section>article>h5:first-of-type,
+section>article>h6:first-of-type,
+section>section>h1:first-of-type,
+section>section>h2:first-of-type,
+section>section>h3:first-of-type,
+section>section>h4:first-of-type,
+section>section>h5:first-of-type,
+section>section>h6:first-of-type {
+  counter-increment: heading2; counter-reset: heading3;
+  font-size: 1.83em;
+}
+article>section>h1:first-of-type::before,
+article>section>h2:first-of-type::before,
+article>section>h3:first-of-type::before,
+article>section>h4:first-of-type::before,
+article>section>h5:first-of-type::before,
+article>section>h6:first-of-type::before,
+section>article>h1:first-of-type::before,
+section>article>h2:first-of-type::before,
+section>article>h3:first-of-type::before,
+section>article>h4:first-of-type::before,
+section>article>h5:first-of-type::before,
+section>article>h6:first-of-type::before,
+section>section>h1:first-of-type::before,
+section>section>h2:first-of-type::before,
+section>section>h3:first-of-type::before,
+section>section>h4:first-of-type::before,
+section>section>h5:first-of-type::before,
+section>section>h6:first-of-type::before {
+  content: counter(heading1) "." counter(heading2) " ";
+}
+
+article>section>section>h1:first-of-type,
+article>section>section>h2:first-of-type,
+article>section>section>h3:first-of-type,
+article>section>section>h4:first-of-type,
+article>section>section>h5:first-of-type,
+article>section>section>h6:first-of-type,
+section>article>section>h1:first-of-type,
+section>article>section>h2:first-of-type,
+section>article>section>h3:first-of-type,
+section>article>section>h4:first-of-type,
+section>article>section>h5:first-of-type,
+section>article>section>h6:first-of-type,
+section>section>article>h1:first-of-type,
+section>section>article>h2:first-of-type,
+section>section>article>h3:first-of-type,
+section>section>article>h4:first-of-type,
+section>section>article>h5:first-of-type,
+section>section>article>h6:first-of-type,
+section>section>section>h1:first-of-type,
+section>section>section>h2:first-of-type,
+section>section>section>h3:first-of-type,
+section>section>section>h4:first-of-type,
+section>section>section>h5:first-of-type,
+section>section>section>h6:first-of-type {
+  counter-increment: heading3; counter-reset: heading4;
+  font-size: 1.67em;
+}
+article>section>section>h1:first-of-type::before,
+article>section>section>h2:first-of-type::before,
+article>section>section>h3:first-of-type::before,
+article>section>section>h4:first-of-type::before,
+article>section>section>h5:first-of-type::before,
+article>section>section>h6:first-of-type::before,
+section>article>section>h1:first-of-type::before,
+section>article>section>h2:first-of-type::before,
+section>article>section>h3:first-of-type::before,
+section>article>section>h4:first-of-type::before,
+section>article>section>h5:first-of-type::before,
+section>article>section>h6:first-of-type::before,
+section>section>article>h1:first-of-type::before,
+section>section>article>h2:first-of-type::before,
+section>section>article>h3:first-of-type::before,
+section>section>article>h4:first-of-type::before,
+section>section>article>h5:first-of-type::before,
+section>section>article>h6:first-of-type::before,
+section>section>section>h1:first-of-type::before,
+section>section>section>h2:first-of-type::before,
+section>section>section>h3:first-of-type::before,
+section>section>section>h4:first-of-type::before,
+section>section>section>h5:first-of-type::before,
+section>section>section>h6:first-of-type::before {
+  content: counter(heading1) "." counter(heading2) "." counter(heading3) " ";
+}
+
+article>section>section>section>h1:first-of-type,
+article>section>section>section>h2:first-of-type,
+article>section>section>section>h3:first-of-type,
+article>section>section>section>h4:first-of-type,
+article>section>section>section>h5:first-of-type,
+article>section>section>section>h6:first-of-type,
+section>article>section>section>h1:first-of-type,
+section>article>section>section>h2:first-of-type,
+section>article>section>section>h3:first-of-type,
+section>article>section>section>h4:first-of-type,
+section>article>section>section>h5:first-of-type,
+section>article>section>section>h6:first-of-type,
+section>section>article>section>h1:first-of-type,
+section>section>article>section>h2:first-of-type,
+section>section>article>section>h3:first-of-type,
+section>section>article>section>h4:first-of-type,
+section>section>article>section>h5:first-of-type,
+section>section>article>section>h6:first-of-type,
+section>section>section>article>h1:first-of-type,
+section>section>section>article>h2:first-of-type,
+section>section>section>article>h3:first-of-type,
+section>section>section>article>h4:first-of-type,
+section>section>section>article>h5:first-of-type,
+section>section>section>article>h6:first-of-type,
+section>section>section>section>h1:first-of-type,
+section>section>section>section>h2:first-of-type,
+section>section>section>section>h3:first-of-type,
+section>section>section>section>h4:first-of-type,
+section>section>section>section>h5:first-of-type,
+section>section>section>section>h6:first-of-type {
+  counter-increment: heading4; counter-reset: heading5;
+  font-size: 1.50em;
+}
+article>section>section>section>h1:first-of-type::before,
+article>section>section>section>h2:first-of-type::before,
+article>section>section>section>h3:first-of-type::before,
+article>section>section>section>h4:first-of-type::before,
+article>section>section>section>h5:first-of-type::before,
+article>section>section>section>h6:first-of-type::before,
+section>article>section>section>h1:first-of-type::before,
+section>article>section>section>h2:first-of-type::before,
+section>article>section>section>h3:first-of-type::before,
+section>article>section>section>h4:first-of-type::before,
+section>article>section>section>h5:first-of-type::before,
+section>article>section>section>h6:first-of-type::before,
+section>section>article>section>h1:first-of-type::before,
+section>section>article>section>h2:first-of-type::before,
+section>section>article>section>h3:first-of-type::before,
+section>section>article>section>h4:first-of-type::before,
+section>section>article>section>h5:first-of-type::before,
+section>section>article>section>h6:first-of-type::before,
+section>section>section>article>h1:first-of-type::before,
+section>section>section>article>h2:first-of-type::before,
+section>section>section>article>h3:first-of-type::before,
+section>section>section>article>h4:first-of-type::before,
+section>section>section>article>h5:first-of-type::before,
+section>section>section>article>h6:first-of-type::before,
+section>section>section>section>h1:first-of-type::before,
+section>section>section>section>h2:first-of-type::before,
+section>section>section>section>h3:first-of-type::before,
+section>section>section>section>h4:first-of-type::before,
+section>section>section>section>h5:first-of-type::before,
+section>section>section>section>h6:first-of-type::before {
+  content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
+           counter(heading4) " ";
+}
+
+article>section>section>section>section>h1:first-of-type,
+article>section>section>section>section>h2:first-of-type,
+article>section>section>section>section>h3:first-of-type,
+article>section>section>section>section>h4:first-of-type,
+article>section>section>section>section>h5:first-of-type,
+article>section>section>section>section>h6:first-of-type,
+article>section>section>section>section>h1:first-of-type,
+section>article>section>section>section>h2:first-of-type,
+section>article>section>section>section>h3:first-of-type,
+section>article>section>section>section>h4:first-of-type,
+section>article>section>section>section>h5:first-of-type,
+section>article>section>section>section>h6:first-of-type,
+section>section>article>section>section>h1:first-of-type,
+section>section>article>section>section>h2:first-of-type,
+section>section>article>section>section>h3:first-of-type,
+section>section>article>section>section>h4:first-of-type,
+section>section>article>section>section>h5:first-of-type,
+section>section>article>section>section>h6:first-of-type,
+section>section>section>article>section>h1:first-of-type,
+section>section>section>article>section>h2:first-of-type,
+section>section>section>article>section>h3:first-of-type,
+section>section>section>article>section>h4:first-of-type,
+section>section>section>article>section>h5:first-of-type,
+section>section>section>article>section>h6:first-of-type,
+section>section>section>section>article>h1:first-of-type,
+section>section>section>section>article>h2:first-of-type,
+section>section>section>section>article>h3:first-of-type,
+section>section>section>section>article>h4:first-of-type,
+section>section>section>section>article>h5:first-of-type,
+section>section>section>section>article>h6:first-of-type,
+section>section>section>section>section>h1:first-of-type,
+section>section>section>section>section>h2:first-of-type,
+section>section>section>section>section>h3:first-of-type,
+section>section>section>section>section>h4:first-of-type,
+section>section>section>section>section>h5:first-of-type,
+section>section>section>section>section>h6:first-of-type {
+  counter-increment: heading5; counter-reset: heading6;
+  font-size: 1.33em;
+}
+article>section>section>section>section>h1:first-of-type::before,
+article>section>section>section>section>h2:first-of-type::before,
+article>section>section>section>section>h3:first-of-type::before,
+article>section>section>section>section>h4:first-of-type::before,
+article>section>section>section>section>h5:first-of-type::before,
+article>section>section>section>section>h6:first-of-type::before,
+article>section>section>section>section>h1:first-of-type::before,
+section>article>section>section>section>h2:first-of-type::before,
+section>article>section>section>section>h3:first-of-type::before,
+section>article>section>section>section>h4:first-of-type::before,
+section>article>section>section>section>h5:first-of-type::before,
+section>article>section>section>section>h6:first-of-type::before,
+section>section>article>section>section>h1:first-of-type::before,
+section>section>article>section>section>h2:first-of-type::before,
+section>section>article>section>section>h3:first-of-type::before,
+section>section>article>section>section>h4:first-of-type::before,
+section>section>article>section>section>h5:first-of-type::before,
+section>section>article>section>section>h6:first-of-type::before,
+section>section>section>article>section>h1:first-of-type::before,
+section>section>section>article>section>h2:first-of-type::before,
+section>section>section>article>section>h3:first-of-type::before,
+section>section>section>article>section>h4:first-of-type::before,
+section>section>section>article>section>h5:first-of-type::before,
+section>section>section>article>section>h6:first-of-type::before,
+section>section>section>section>article>h1:first-of-type::before,
+section>section>section>section>article>h2:first-of-type::before,
+section>section>section>section>article>h3:first-of-type::before,
+section>section>section>section>article>h4:first-of-type::before,
+section>section>section>section>article>h5:first-of-type::before,
+section>section>section>section>article>h6:first-of-type::before,
+section>section>section>section>section>h1:first-of-type::before,
+section>section>section>section>section>h2:first-of-type::before,
+section>section>section>section>section>h3:first-of-type::before,
+section>section>section>section>section>h4:first-of-type::before,
+section>section>section>section>section>h5:first-of-type::before,
+section>section>section>section>section>h6:first-of-type::before {
+  content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
+           counter(heading4) "." counter(heading5) " ";
+}
+/** heading6 だけカウンターが増えない？ **/
+article>section>section>section>section>section>h1:first-of-type,
+article>section>section>section>section>section>h2:first-of-type,
+article>section>section>section>section>section>h3:first-of-type,
+article>section>section>section>section>section>h4:first-of-type,
+article>section>section>section>section>section>h5:first-of-type,
+article>section>section>section>section>section>h6:first-of-type,
+article>section>section>section>section>section>h1:first-of-type,
+section>article>section>section>section>section>h2:first-of-type,
+section>article>section>section>section>section>h3:first-of-type,
+section>article>section>section>section>section>h4:first-of-type,
+section>article>section>section>section>section>h5:first-of-type,
+section>article>section>section>section>section>h6:first-of-type,
+section>section>article>section>section>section>h1:first-of-type,
+section>section>article>section>section>section>h2:first-of-type,
+section>section>article>section>section>section>h3:first-of-type,
+section>section>article>section>section>section>h4:first-of-type,
+section>section>article>section>section>section>h5:first-of-type,
+section>section>article>section>section>section>h6:first-of-type,
+section>section>section>article>section>section>h1:first-of-type,
+section>section>section>article>section>section>h2:first-of-type,
+section>section>section>article>section>section>h3:first-of-type,
+section>section>section>article>section>section>h4:first-of-type,
+section>section>section>article>section>section>h5:first-of-type,
+section>section>section>article>section>section>h6:first-of-type,
+section>section>section>section>article>section>h1:first-of-type,
+section>section>section>section>article>section>h2:first-of-type,
+section>section>section>section>article>section>h3:first-of-type,
+section>section>section>section>article>section>h4:first-of-type,
+section>section>section>section>article>section>h5:first-of-type,
+section>section>section>section>article>section>h6:first-of-type,
+section>section>section>section>section>article>h1:first-of-type,
+section>section>section>section>section>article>h2:first-of-type,
+section>section>section>section>section>article>h3:first-of-type,
+section>section>section>section>section>article>h4:first-of-type,
+section>section>section>section>section>article>h5:first-of-type,
+section>section>section>section>section>article>h6:first-of-type,
+section>section>section>section>section>section>h1:first-of-type,
+section>section>section>section>section>section>h2:first-of-type,
+section>section>section>section>section>section>h3:first-of-type,
+section>section>section>section>section>section>h4:first-of-type,
+section>section>section>section>section>section>h5:first-of-type,
+section>section>section>section>section>section>h6:first-of-type {
+  /* 使っていなくてもheading7をリセットしないとheading6が増えないっぽい */
+  counter-increment: heading6; counter-reset: heading7;
+  font-size: 1.17em;
+}
+article>section>section>section>section>section>h1:first-of-type::before,
+article>section>section>section>section>section>h2:first-of-type::before,
+article>section>section>section>section>section>h3:first-of-type::before,
+article>section>section>section>section>section>h4:first-of-type::before,
+article>section>section>section>section>section>h5:first-of-type::before,
+article>section>section>section>section>section>h6:first-of-type::before,
+article>section>section>section>section>section>h1:first-of-type::before,
+section>article>section>section>section>section>h2:first-of-type::before,
+section>article>section>section>section>section>h3:first-of-type::before,
+section>article>section>section>section>section>h4:first-of-type::before,
+section>article>section>section>section>section>h5:first-of-type::before,
+section>article>section>section>section>section>h6:first-of-type::before,
+section>section>article>section>section>section>h1:first-of-type::before,
+section>section>article>section>section>section>h2:first-of-type::before,
+section>section>article>section>section>section>h3:first-of-type::before,
+section>section>article>section>section>section>h4:first-of-type::before,
+section>section>article>section>section>section>h5:first-of-type::before,
+section>section>article>section>section>section>h6:first-of-type::before,
+section>section>section>article>section>section>h1:first-of-type::before,
+section>section>section>article>section>section>h2:first-of-type::before,
+section>section>section>article>section>section>h3:first-of-type::before,
+section>section>section>article>section>section>h4:first-of-type::before,
+section>section>section>article>section>section>h5:first-of-type::before,
+section>section>section>article>section>section>h6:first-of-type::before,
+section>section>section>section>article>section>h1:first-of-type::before,
+section>section>section>section>article>section>h2:first-of-type::before,
+section>section>section>section>article>section>h3:first-of-type::before,
+section>section>section>section>article>section>h4:first-of-type::before,
+section>section>section>section>article>section>h5:first-of-type::before,
+section>section>section>section>article>section>h6:first-of-type::before,
+section>section>section>section>section>article>h1:first-of-type::before,
+section>section>section>section>section>article>h2:first-of-type::before,
+section>section>section>section>section>article>h3:first-of-type::before,
+section>section>section>section>section>article>h4:first-of-type::before,
+section>section>section>section>section>article>h5:first-of-type::before,
+section>section>section>section>section>article>h6:first-of-type::before,
+section>section>section>section>section>section>h1:first-of-type::before,
+section>section>section>section>section>section>h2:first-of-type::before,
+section>section>section>section>section>section>h3:first-of-type::before,
+section>section>section>section>section>section>h4:first-of-type::before,
+section>section>section>section>section>section>h5:first-of-type::before,
+section>section>section>section>section>section>h6:first-of-type::before {
+  content: counter(heading1) "." counter(heading2) "." counter(heading3) "."
+           counter(heading4) "." counter(heading5) "." counter(heading6) " ";
+}
+
+/** Table */
+table {
+  border-collapse: collapse;
+  border: none;
+  /** centering **/
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+/** Table color **/
+tbody>tr:nth-of-type(even) {
+  background: hsla(60, 100%, 50%, 0.5);
+}
+thead>tr>th {
+  background: hsla(30, 100%, 50%, 0.5);
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+/** Column margin **/
+td {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+/** Table border **/
+td, th {
+  border-style: none;
+}
+
+th, td {
+  word-wrap: break-word;
+}
+
+/** Cross reference */
+[href^="#chap:"]::before {
+  content: "第";
+}
+[href^="#chap:"]::after {
+  content: "章";
+}
+[href^="#sec:"]::after, [href^="#sub"]::after {
+  content: "節";
+}
+[href^="#par:"]::after {
+  content: "段落";
+}
+[href^="#enu:"]::before {
+  content: "項目";
+}
+[href^="#eq:"]::before {
+  content: "式(";
+}
+[href^="#eq:"]::after {
+  content: ")";
+}
+[href^="#fig:"]::before {
+  content: "図";
+}
+[href^="#tab:"]::before {
+  content: "表";
+}
+[href^="#lis:"]::before {
+  content: "リスト";
+}
+
+/** Font */
+body {
+  font-family: "TeX Gyre Heros", "FreeSans", "Migu 1P", "TakaoGothic", "VL Gothic", "Yu Gothic", "Meiryo UI", sans-serif;
+}
+p {
+  text-indent: 1em;
+  word-break: break-all;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "TeX Gyre Heros", "Migu 1P", "TakaoGothic", "VL Gothic", "Yu Gothic", "Meiryo UI", sans-serif;
+  font-weight: bold;
+  /* orange */
+  /* background-color: rgb(100%,80%,0%); */
+  background-color: hsl(240, 100%, 90%);
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+em, strong {
+  color: red;
+  font-weight: bold;
+}
+strong {background-color: yellow;}
+
+/** PC */
+kbd, code, samp, var {
+  color: gray;
+  font-family: "Migu 1M", "Inconsolata", "DejaVu Sans Mono", "Consolas", "TakaoGothic", "VL Gothic", "HGGothicM", "MS Gothic",  monospace;
+  border-width: thin;
+  border-style: solid;
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 5px;
+}
+kbd {
+  background-color: hsl(0, 100%, 90%);
+}
+code {
+  background-color: hsl(120, 100%, 90%);
+}
+samp {
+  background-color: hsl(0, 0%, 90%);
+}
+var {
+  background-color: hsl(180, 100%, 90%);
+}
+pre {
+  font-family: "Migu 1M", "Inconsolata", "DejaVu Sans Mono", "Consolas", "TakaoGothic", "VL Gothic", "HGGothicM", "MS Gothic",  monospace;
+  background-color: hsl(60, 100%, 90%);
+  tab-size: 2;
+  white-space: pre-wrap;
+}
+
+/** Line number for source code **/
+pre>code, pre>samp {
+  display: block;
+  white-space: pre;
+  border-style: none;
+  position: relative;
+  padding-left: 3em;
+  overflow-x: auto;
+}
+
+pre>code::before, pre>samp::before {
+  content:
+  "0001000200030004000500060007000800090010001100120013001400150016001700180019002000210022002300240025002600270028002900300031003200330034003500360037003800390040004100420043004400450046004700480049005000510052005300540055005600570058005900600061006200630064006500660067006800690070007100720073007400750076007700780079008000810082008300840085008600870088008900900091009200930094009500960097009800990100010101020103010401050106010701080109011001110112011301140115011601170118011901200121012201230124012501260127012801290130013101320133013401350136013701380139014001410142014301440145014601470148014901500151015201530154015501560157015801590160016101620163016401650166016701680169017001710172017301740175017601770178017901800181018201830184018501860187018801890190019101920193019401950196019701980199020002010202020302040205020602070208020902100211021202130214021502160217021802190220022102220223022402250226022702280229023002310232023302340235023602370238023902400241024202430244024502460247024802490250025102520253025402550256025702580259026002610262026302640265026602670268026902700271027202730274027502760277027802790280028102820283028402850286028702880289029002910292029302940295029602970298029903000301030203030304030503060307030803090310031103120313031403150316031703180319032003210322032303240325032603270328032903300331033203330334033503360337033803390340034103420343034403450346034703480349035003510352035303540355035603570358035903600361036203630364036503660367036803690370037103720373037403750376037703780379038003810382038303840385038603870388038903900391039203930394039503960397039803990400040104020403040404050406040704080409041004110412041304140415041604170418041904200421042204230424042504260427042804290430043104320433043404350436043704380439044004410442044304440445044604470448044904500451045204530454045504560457045804590460046104620463046404650466046704680469047004710472047304740475047604770478047904800481048204830484048504860487048804890490049104920493049404950496049704980499050005010502050305040505050605070508050905100511051205130514051505160517051805190520052105220523052405250526052705280529053005310532053305340535053605370538053905400541054205430544054505460547054805490550055105520553055405550556055705580559056005610562056305640565056605670568056905700571057205730574057505760577057805790580058105820583058405850586058705880589059005910592059305940595059605970598059906000601060206030604060506060607060806090610061106120613061406150616061706180619062006210622062306240625062606270628062906300631063206330634063506360637063806390640064106420643064406450646064706480649065006510652065306540655065606570658065906600661066206630664066506660667066806690670067106720673067406750676067706780679068006810682068306840685068606870688068906900691069206930694069506960697069806990700070107020703070407050706070707080709071007110712071307140715071607170718071907200721072207230724072507260727072807290730073107320733073407350736073707380739074007410742074307440745074607470748074907500751075207530754075507560757075807590760076107620763076407650766076707680769077007710772077307740775077607770778077907800781078207830784078507860787078807890790079107920793079407950796079707980799080008010802080308040805080608070808080908100811081208130814081508160817081808190820082108220823082408250826082708280829083008310832083308340835083608370838083908400841084208430844084508460847084808490850085108520853085408550856085708580859086008610862086308640865086608670868086908700871087208730874087508760877087808790880088108820883088408850886088708880889089008910892089308940895089608970898089909000901090209030904090509060907090809090910091109120913091409150916091709180919092009210922092309240925092609270928092909300931093209330934093509360937093809390940094109420943094409450946094709480949095009510952095309540955095609570958095909600961096209630964096509660967096809690970097109720973097409750976097709780979098009810982098309840985098609870988098909900991099209930994099509960997099809991000";
+
+  display: block;
+  width: 2.4em;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  overflow-y: hidden;
+  border-right: 1px solid;
+}
+
+/** Blockquote **/
+blockquote {
+  background-color: hsl(0, 0%, 90%);
+  padding: 1.0em;
+  padding-left: 3em;
+  position: relative;
+}
+blockquote::before {
+  content: "“";
+  font-size: 600%;
+  line-height: 1em;
+  font-family: serif;
+  color: hsl(0, 0%, 60%);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+blockquote p {
+  margin: 0;
+}
+
+/** Description element */
+dt {
+  font-weight: bold;
+  font-family: sans-serif;
+  padding-left: 0.5em;
+}
+dt, dd {
+  line-height: 1.5em;
+  word-wrap: break-word;
+}
+
+dt {
+  float: left;
+  width: 20%;
+}
+dd {
+  margin-left: 22%;
+}
+dd::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/** figure */
+figure {
+  text-align: center;
+}
+
+figure blockquote~figcaption {
+  text-align: right;
+}
+figure blockquote {
+  text-align: left;
+}
+figure pre {
+  text-align: left;
+}
+figure>dl {
+  border-radius: 0.4em;
+  border: solid  thin rgb(10%,10%,10%);
+  background-color: rgb(90%,90%,90%);
+  text-align: left;
+}
+figure>dl>dt {
+  display: block;
+  width: 100%;
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+  color: white;
+  background-color: rgb(30%,30%,30%);
+  box-sizing: border-box;
+}
+figure>dl>dd {
+  padding-left: 0.5em;
+  margin: auto;
+}
+figure>dl>dd:nth-of-type(n+2) {
+  border-top-style: dashed;
+  border-top-width: thin;
+}
+.column-2 {
+  width: 45%;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.column-3 {
+  width: 30%;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.column-4 {
+  width: 20%;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+/** Description box **/
+/*** Base color ***/
+.alert {
+  background-color: red;
+}
+.example {
+  background-color: green;
+}
+.structure {
+  background-color: blue;
+}
+.alert, .example, .structure {
+  background-image: linear-gradient( hsla( 0,0%,100%,0.2 ), hsla( 0,0%,100%,0.2 ) );
+}
+
+/** Theme block **/
+figure.structure pre~figcaption::before,
+figure.structure figcaption:first-child::before,
+figure.alert pre~figcaption::before,
+figure.alert figcaption:first-child::before,
+figure.example pre~figcaption::before,
+figure.example figcaption:first-child::before {
+  content: none;
+}
+
+figure.structure figcaption,
+figure.alert figcaption,
+figure.example figcaption {
+  text-align: left;
+}
+
+
+figure.structure,
+figure.alert,
+figure.example {
+  border-radius: 0.3em;
+}
+
+figure.structure figcaption,
+figure.alert figcaption,
+figure.example figcaption {
+  color: white;
+  font-weight: bold;
+}
+
+figure.structure figcaption~*,
+figure.alert figcaption~*,
+figure.example figcaption~* {
+  background-image: linear-gradient( hsla( 0,0%,100%,0.9 ), hsla( 0,0%,100%,0.9 ) );
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}
+
+caption, figcaption {
+  font-family: "TeX Gyre Heros", "FreeSans", "Migu 1P", "TakaoGothic", "VL Gothic", "Yu Gothic", "Meiryo UI", sans-serif;
+}
+
+figure figcaption {
+  text-indent: 1em;
+}
+
+figure * {
+  text-align: left;
+}
+figure>img {
+  text-align: center;
+}
+
+figure>figcaption:last-child {
+  text-align: center;
+}
+figure>blockquote+figcaption:last-child {
+  text-align: right;
+}
+
+figure>figcaption+* {
+  margin-top: 0;
+}
+
+
+/** Page style */
+@page {
+  size: A4 portrait;
+  margin: 2cm;
+
+  @top-left {content: "Chapter";}
+  @top-center {content: "Title";}
+  @top-right {content: "Section";}
+  @bottom-left {content: "SENOO, Ken";}
+  @bottom-center {content: "- " counter(page) "/" counter(pages) " -";}
+  @bottom-right {content: "Date";}
+}
+
+/** Print style */
+@media print {
+  /* ShowerでPDF作成するときにChromiumでtheadが二重に表示される対策 */
+  thead {
+    display: table-row-group;
+  }
+
+  /* Show URL */
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  a[href^="#"]::after,
+  a[href^="javascript"]::after {
+    content: "";
+  }
+}
+    </style>
+  </head>
+  <body>
+    <h1>Document Title</h1>
+    <main>
+    </main>
+  </body>
+</html>
