@@ -454,3 +454,6 @@ alias ag="ag -fU"
 alias ctags="ctags --exclude=$EXCLUDE_DIR"
 
 set +x
+
+## Rust PATH
+[ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
