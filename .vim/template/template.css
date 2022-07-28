@@ -42,8 +42,7 @@ figure figure>figcaption::after {
   counter-increment: figure -1;
 }
 
-figure pre~figcaption::before,
-figure figcaption:first-child::before {
+figure pre~figcaption::before {
   counter-increment: listing;
   content: "リスト" counter(heading1) "." counter(listing) ": ";
 }
@@ -817,6 +816,7 @@ figure>img {
 }
 
 figure>figcaption:last-child {
+figure>figcaption:first-child {
   text-align: center;
 }
 figure>blockquote+figcaption:last-child {
