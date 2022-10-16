@@ -215,6 +215,12 @@ elif [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
+## Enable Mac bash completion
+for bash in /usr/local/etc/bash_completion.d/*; do
+	[ -f $bash ] || continue
+	. $bash
+done
+
 ## Git completion.
 if [ -f "$HOME/.local/src/git/contrib/completion/git-completion.bash" ]; then
 	. "$HOME/.local/src/git/contrib/completion/git-completion.bash"
