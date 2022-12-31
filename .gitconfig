@@ -32,6 +32,7 @@
 	sslcainfo = /mingw32/ssl/certs/ca-bundle.crt
 	sslverify = false
 [init]
+	defaultBranch = main
 	# templatedir = ~/.git-template
 [guitool "Tag"]
 	cmd = git tag $ARGS
