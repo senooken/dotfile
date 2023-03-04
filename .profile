@@ -201,7 +201,7 @@ export CYGWIN='nodosfilewarning winsymlinks:nativestrict'
 export MSYS='winsymlinks:nativestrict'
 
 ### For wine
-export WINEARCH='win32' WINEPREFIX="$HOME/.wine32"
+# export WINEARCH='win32' WINEPREFIX="$HOME/.wine32"
 
 ### For unzip encoding
 if grep -sq 'debian' /etc/os-release; then
@@ -238,7 +238,7 @@ PROMPT_NAME="$PURPLE$USERNAME@$HOST:$RED"
 PROMPT_MARK="$PURPLE$PROMPT_SIGN $CLEAR"
 
 	# PROMPT_LINE=\"\$?$PROMPT_NAME$CWD\"
-PS1="\$(
+PS1='\$(
 	PROMPT_LINE=\"\$(printf '%03d' \$?)$PROMPT_NAME$CWD\"
 	GIT_PS1= PROMPT_INFO=$USERNAME@$HOST:$CWD$
 	command -v __git_ps1 >/dev/null && [ "$BASH$ZSH_NAME" ] &&
@@ -246,7 +246,7 @@ PS1="\$(
 	[ \$((COLUMNS-\${#PROMPT_INFO}-\${#GIT_PS1})) -le 20 ] &&
 		PROMPT_LINE=\"\$PROMPT_LINE\n\"
 	printf '%s' \"\$PROMPT_LINE$BLUE\$GIT_PS1$PROMPT_MARK\"
-)"
+)'
 
 ### git-prompt.sh
 case "$BASH$ZSH_NAME" in *)
@@ -454,6 +454,14 @@ alias ag="ag -fU"
 alias ctags="ctags --exclude=$EXCLUDE_DIR"
 
 set +x
+
+## Homebrew
+if [ "$(uname -m)" = "arm64" ]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+	export PATH="/opt/homebrew/bin:$PATH"
+else
+	eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 ## Rust PATH
 [ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
