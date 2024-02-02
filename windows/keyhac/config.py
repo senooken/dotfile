@@ -1,7 +1,15 @@
 ﻿from keyhac import *
 # coding: utf-8
 
+import os
+
 def configure(keymap):
+    if os.name == 'nt':
+        windows(keymap)
+    else:
+        mac(keymap)
+
+def windows(keymap):
     # グローバルキーマップの定義開始
     keymap_global = keymap.defineWindowKeymap()
 
@@ -9,6 +17,9 @@ def configure(keymap):
     HENKAN = "28"
     keymap.defineModifier(HENKAN, "User0") 
     # keymap_global["O-U0"] = "28"
+
+    # [変換]
+    keymap_global["O-"+HENKAN] = HENKAN            # [変換]で日本語入力
 
     ## 無変換キーをSandSの代用にする
     # ワンショットモディファイアとしてShiftを無変換に定義
@@ -139,5 +150,6 @@ def configure(keymap):
     keymap_global["Alt-S-U0-H"] = "Alt-Shift-Left"
     keymap_global["Alt-S-U0-L"] = "Alt-Shift-Right"
 
-# [変換]
-    keymap_global["O-"+HENKAN] = HENKAN            # [変換]で日本語入力
+def mac(keymap):
+    # グローバルキーマップの定義開始
+    keymap_global = keymap.defineWindowKeymap()
