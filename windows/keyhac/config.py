@@ -175,9 +175,9 @@ def mac(keymap):
     # keymap_global["LCtrl-RCtrl"] = "LCtrl-Space" #  保護された空白で使用
     RRSS = "RCmd"
     keymap_global["O-{}".format(RRSS)] = "Esc"
-    LLSS = "LCmd"
-    # [Accessibility]-[Alternate pointer actions]=on が必要
-    keymap_global["O-{}".format(LLSS)] = "F12"
+    # LLSS = "LCmd"
+    # [Accessibility]-[Alternate pointer actions]=on が必要。うまく機能しない。
+    # keymap_global["O-{}".format(LLSS)] = "Fn-F12"
 
     ## Vim
     keymap_global["User0-H"] = "Left"
@@ -222,6 +222,10 @@ def mac(keymap):
     keymap_global["User0-E"] = "End" # End
     keymap_global["Shift-User0-A"] = "Shift-Home"
     keymap_global["Shift-User0-E"] = "Shift-End" # not work?
+    # keymap_global["User0-A"] = "Cmd-Left" # Home
+    # keymap_global["User0-E"] = "Cmd-Right" # End
+    # keymap_global["Shift-User0-A"] = "Shift-Cmd-Left"
+    # keymap_global["Shift-User0-E"] = "Shift-Cmd-Right" # not work?
 
     # 表計算で端まで移動
     keymap_global["{}-User0-H".format(CC)] = "{}-Left".format(CC)
