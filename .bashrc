@@ -221,10 +221,14 @@ for bash in /usr/local/etc/bash_completion.d/*; do
 	. $bash
 done
 
-## Git completion.
-if [ -f "$HOME/.local/src/git/contrib/completion/git-completion.bash" ]; then
-	. "$HOME/.local/src/git/contrib/completion/git-completion.bash"
-fi
+## Git
+_GIT_CORE=
+# Mac
+[ -f ${_GIT_CORE:=/Library/Developer/CommandLineTools/usr/share/git-core} ]
+# Local
+[ -f ${_GIT_CORE:=$HOME/.local/src/git/contrib/completion/} ]
+
+[ -f $_GIT_CORE/git-prompt.sh       ] && . $_GIT_CORE/git-prompt.sh
+[ -f $_GIT_CORE/git-completion.bash ] && . $_GIT_CORE/git-completion.bash
 
 [ -r ~/.after.sh ] && . ~/.after.sh
-
