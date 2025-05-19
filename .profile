@@ -465,3 +465,6 @@ fi
 
 ## Rust PATH
 [ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# if running bash, include .bashrc if it exists
+[ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
