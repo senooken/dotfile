@@ -12,7 +12,7 @@
 # for ssh logins, install and configure the libpam-umask package.
 # umask 022
 
-case "$-" in (*i*) set -x;; esac
+# case "$-" in (*i*) set -x;; esac
 
 ## Environmental variables
 export ENV=${ENV-~/.profile}
@@ -465,6 +465,8 @@ fi
 
 ## Rust PATH
 [ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+[ -r ~/.after.sh ] && . ~/.after.sh
 
 # if running bash, include .bashrc if it exists
 [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"

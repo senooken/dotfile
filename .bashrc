@@ -49,9 +49,6 @@
 # [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
 ## Shared shell setting
-export ENV="${ENV-$HOME/.profile}"
-[ -r "$ENV" ] && . "$ENV"
-
 PROMPT_COMMAND="$COMMON_PROMPT_EXE"
 
 ## History Options
@@ -183,7 +180,7 @@ export JLESSCHARSET=japanese-sjis
 
 ## Shell option
 {
-	shopt -s autocd  # v4.0+
+	[ $BASH_VERSINFO -gt 3 ] && shopt -s autocd  # v4.0+
 	shopt -s cdable_vars  # enable cd <var>
 	shopt -s cdspell  # auto modify cd path since v2.0
 
@@ -191,14 +188,14 @@ export JLESSCHARSET=japanese-sjis
 	[ "${BASH_VERSION%.*}" = 4.2 ] && shopt -s direxpand # v4.2.3+
 
 	# shopt -s expand_aliases  # 2.0+ enable alias in shell script
-	shopt -s dirspell  # v4.0+
+	[ $BASH_VERSINFO -gt 3 ] && shopt -s dirspell  # v4.0+
 	shopt -s hostcomplete # try host completion
 
 	shopt -s extglob  # v2.02+. extentive regex. ?，*, +, @, !(1|2)
 	shopt -s nocaseglob  # v2.02+. ignore case
 
 	# **: match recursive subdirectory. **/: only 1 recursive.
-	shopt -s globstar  # v4.0+
+	[ $BASH_VERSINFO -gt 3 ] && shopt -s globstar  # v4.0+
 	# shopt -s dotglob # include .dotfile in <command> *.
 
 	# shopt -s force_fignore # v3.0+
@@ -230,5 +227,3 @@ _GIT_CORE=
 
 [ -f $_GIT_CORE/git-prompt.sh       ] && . $_GIT_CORE/git-prompt.sh
 [ -f $_GIT_CORE/git-completion.bash ] && . $_GIT_CORE/git-completion.bash
-
-[ -r ~/.after.sh ] && . ~/.after.sh
