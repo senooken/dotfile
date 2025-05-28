@@ -326,7 +326,7 @@ is_exe_enabled less && alias more='less'
 export PAGER='less'
 
 export LV='-c -l'
-export LESS='-imR'
+export LESS='-iMR'
 # alias info='info --vi-keys'
 
 ### Open
